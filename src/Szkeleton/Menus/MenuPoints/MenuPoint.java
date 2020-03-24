@@ -1,4 +1,4 @@
-package Szkeleton.Menu.MenuPoints;
+package Szkeleton.Menus.MenuPoints;
 
 /**
  * Ez az osztály jelképezi a menüpontokat.

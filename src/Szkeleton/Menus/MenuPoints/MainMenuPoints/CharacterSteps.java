@@ -1,6 +1,10 @@
-package Szkeleton.Menu.MenuPoints;
+package Szkeleton.Menus.MenuPoints.MainMenuPoints;
 
-import Szkeleton.Menu.Menu;
+import Szkeleton.Menus.Menu;
+import Szkeleton.Menus.MenuPoints.LesserMenuPoints.CharacterStepsOnHole;
+import Szkeleton.Menus.MenuPoints.LesserMenuPoints.CharacterStepsOnStableIce;
+import Szkeleton.Menus.MenuPoints.LesserMenuPoints.CharacterStepsOnUnstableIce;
+import Szkeleton.Menus.MenuPoints.MenuPoint;
 
 public class CharacterSteps extends MenuPoint {
 

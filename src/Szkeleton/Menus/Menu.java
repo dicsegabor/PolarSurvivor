@@ -1,6 +1,6 @@
-package Szkeleton.Menu;
+package Szkeleton.Menus;
 
-import Szkeleton.Menu.MenuPoints.MenuPoint;
+import Szkeleton.Menus.MenuPoints.MenuPoint;
 
 import java.util.ArrayList;
 import java.util.List;

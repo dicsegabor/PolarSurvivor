@@ -1,6 +1,9 @@
-package Szkeleton.Menu.MenuPoints;
+package Szkeleton.Menus.MenuPoints.MainMenuPoints;
 
-import Szkeleton.Menu.Menu;
+import Szkeleton.Menus.Menu;
+import Szkeleton.Menus.MenuPoints.LesserMenuPoints.CharachterSavedFromWater;
+import Szkeleton.Menus.MenuPoints.LesserMenuPoints.CharacterNotSavedFromWater;
+import Szkeleton.Menus.MenuPoints.MenuPoint;
 
 public class CharacterFallsInWater extends MenuPoint {
 

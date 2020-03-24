@@ -1,10 +1,10 @@
 package Szkeleton;
 
-import Szkeleton.Menu.*;
-import Szkeleton.Menu.MenuPoints.CharacterFallsInWater;
-import Szkeleton.Menu.MenuPoints.CharacterSteps;
-import Szkeleton.Menu.MenuPoints.EskimoBuildsIglu;
-import Szkeleton.Menu.MenuPoints.ResearcherInspectsField;
+import Szkeleton.Menus.*;
+import Szkeleton.Menus.MenuPoints.MainMenuPoints.CharacterFallsInWater;
+import Szkeleton.Menus.MenuPoints.MainMenuPoints.CharacterSteps;
+import Szkeleton.Menus.MenuPoints.MainMenuPoints.EskimoBuildsIglu;
+import Szkeleton.Menus.MenuPoints.MainMenuPoints.ResearcherInspectsField;
 
 public class Program {
 

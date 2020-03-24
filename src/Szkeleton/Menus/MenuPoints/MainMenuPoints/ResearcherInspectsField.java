@@ -1,4 +1,6 @@
-package Szkeleton.Menu.MenuPoints;
+package Szkeleton.Menus.MenuPoints.MainMenuPoints;
+
+import Szkeleton.Menus.MenuPoints.MenuPoint;
 
 public class ResearcherInspectsField extends MenuPoint {
 

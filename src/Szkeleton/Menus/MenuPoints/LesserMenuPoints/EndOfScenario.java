@@ -1,6 +1,8 @@
-package Szkeleton.Menu.MenuPoints;
+package Szkeleton.Menus.MenuPoints.LesserMenuPoints;
 
-public class EndOfScenario extends MenuPoint{
+import Szkeleton.Menus.MenuPoints.MenuPoint;
+
+public class EndOfScenario extends MenuPoint {
 
     public EndOfScenario(String displayedText) {
         super(displayedText);
