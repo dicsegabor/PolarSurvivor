@@ -15,4 +15,8 @@ public abstract class Jegtabla extends Mezo {
     public void vihar(){}
 
     public abstract void befogad(Karakter karakter);
+
+    public void setIgluzott(boolean igluzott) {
+        this.igluzott = igluzott;
+    }
 }

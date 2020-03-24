@@ -95,11 +95,21 @@ public class Menu {
     }
 
     /**
-     * Végrehjatja a kiválasztott menüponthoz tartozó utasítást.
+     * Végrehjatja a kiválasztott menüponthoz tartozó utasítást, valamint letörli a konzolt.
      * @param number A választott menüpont sorszáma.
      */
     private void chooseMenuPoint(int number){
 
+        clearScreen();
+
         menuPoints.get(number - 1).function();
+    }
+
+    /**
+     * Ezt a kódot csak úgy találtam.
+     */
+    private static void clearScreen() {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
     }
 }

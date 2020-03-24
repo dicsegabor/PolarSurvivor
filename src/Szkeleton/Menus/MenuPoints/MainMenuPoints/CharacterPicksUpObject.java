@@ -1,13 +1,13 @@
-package Szkeleton.Menus.MenuPoints.LesserMenuPoints;
+package Szkeleton.Menus.MenuPoints.MainMenuPoints;
 
 import Szkeleton.Menus.MenuPoints.MenuPoint;
 
-public class CharachterSavedFromWater extends MenuPoint {
+public class CharacterPicksUpObject extends MenuPoint {
 
     /**
      * @param displayedText Ez a szöveg jelenik meg a menüponthoz.
      */
-    public CharachterSavedFromWater(String displayedText) {
+    public CharacterPicksUpObject(String displayedText) {
         super(displayedText);
     }
 

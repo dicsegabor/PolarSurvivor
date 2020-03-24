@@ -1,9 +1,19 @@
 package Szkeleton.Menus.MenuPoints.LesserMenuPoints;
 
+import Karakterek.Karakter;
+import Mezok.Jegtabla;
+import Mezok.Lyuk;
+import Mezok.Mezo;
+import Mezok.StabilJegtabla;
+import Szkeleton.Menus.Menu;
+import Szkeleton.Menus.MenuPoints.MainMenuPoints.CharacterFallsInWater;
 import Szkeleton.Menus.MenuPoints.MenuPoint;
 
 public class CharacterStepsOnHole extends MenuPoint {
 
+    /**
+     * @param displayedText Ez a szöveg jelenik meg a menüponthoz.
+     */
     public CharacterStepsOnHole(String displayedText) {
         super(displayedText);
     }
@@ -11,5 +21,20 @@ public class CharacterStepsOnHole extends MenuPoint {
     @Override
     public void function() {
 
+        //Init
+        Karakter character = new Karakter();
+        Jegtabla from = new StabilJegtabla();
+        Mezo to = new Lyuk();
+        from.befogad(character);
+        from.setSzomszed(to);
+        to.setSzomszed(from);
+
+        //Action
+        character.lep(to);
+        from.szomszedE(to);
+        from.kiad(character);
+        to.befogad(character);
+
+        new CharacterFallsInWater("").function();
     }
 }

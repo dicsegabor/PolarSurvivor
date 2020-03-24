@@ -2,11 +2,16 @@ package Szkeleton.Menus.MenuPoints.MainMenuPoints;
 
 import Szkeleton.Menus.Menu;
 import Szkeleton.Menus.MenuPoints.LesserMenuPoints.CharachterSavedFromWater;
+import Szkeleton.Menus.MenuPoints.LesserMenuPoints.CharacterNeedsHelpInWater;
 import Szkeleton.Menus.MenuPoints.LesserMenuPoints.CharacterNotSavedFromWater;
+import Szkeleton.Menus.MenuPoints.LesserMenuPoints.EndOfScenario;
 import Szkeleton.Menus.MenuPoints.MenuPoint;
 
 public class CharacterFallsInWater extends MenuPoint {
 
+    /**
+     * @param displayedText Ez a szöveg jelenik meg a menüponthoz.
+     */
     public CharacterFallsInWater(String displayedText) {
         super(displayedText);
     }
@@ -14,11 +19,10 @@ public class CharacterFallsInWater extends MenuPoint {
     @Override
     public void function() {
 
-        Menu helpOptions = new Menu("Kimentik-e a karaktert a vízből?");
-
-        helpOptions.addMenuPoint(new CharachterSavedFromWater("Igen"));
-        helpOptions.addMenuPoint(new CharacterNotSavedFromWater("Nem"));
-
-        helpOptions.start();
+        //Question
+        Menu options = new Menu("Van-e a karakteren búvárruha");
+        options.addMenuPoint(new EndOfScenario("Igen"));
+        options.addMenuPoint(new CharacterNeedsHelpInWater("Nem"));
+        options.start();
     }
 }

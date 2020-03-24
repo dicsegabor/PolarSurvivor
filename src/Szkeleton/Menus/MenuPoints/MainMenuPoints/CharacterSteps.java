@@ -8,6 +8,9 @@ import Szkeleton.Menus.MenuPoints.MenuPoint;
 
 public class CharacterSteps extends MenuPoint {
 
+    /**
+     * @param displayedText Ez a szöveg jelenik meg a menüponthoz.
+     */
     public CharacterSteps(String displayedText) {
         super(displayedText);
     }

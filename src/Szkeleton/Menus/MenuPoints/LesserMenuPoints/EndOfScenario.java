@@ -4,6 +4,9 @@ import Szkeleton.Menus.MenuPoints.MenuPoint;
 
 public class EndOfScenario extends MenuPoint {
 
+    /**
+     * @param displayedText Ez a szöveg jelenik meg a menüponthoz.
+     */
     public EndOfScenario(String displayedText) {
         super(displayedText);
     }
@@ -11,6 +14,6 @@ public class EndOfScenario extends MenuPoint {
     @Override
     public void function() {
 
-        System.out.println("Vége ennek a forgatókönyvnek!");
+        waitForKey();
     }
 }

@@ -1,18 +1,19 @@
-package Szkeleton.Menus.MenuPoints.LesserMenuPoints;
+package Szkeleton.Menus.MenuPoints.MainMenuPoints;
 
 import Szkeleton.Menus.MenuPoints.MenuPoint;
 
-public class CharachterSavedFromWater extends MenuPoint {
+public class Exit extends MenuPoint {
 
     /**
      * @param displayedText Ez a szöveg jelenik meg a menüponthoz.
      */
-    public CharachterSavedFromWater(String displayedText) {
+    public Exit(String displayedText) {
         super(displayedText);
     }
 
     @Override
     public void function() {
 
+        System.exit(0);
     }
 }
