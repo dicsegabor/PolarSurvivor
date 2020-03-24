@@ -65,15 +65,33 @@ public class Menu {
 
         System.out.println("Kérem írja be a választott számot!");
         Scanner input = new Scanner(System.in);
-        int chosen = input.nextInt();
 
-        while (!(chosen > 0 && chosen <= menuPoints.size() + 1)){
+        String inputValue = input.nextLine();
 
-            System.out.println("Kérem írjon be egy helyes értéket");
-            chosen = input.nextInt();
+        while(!testProperInput(inputValue)) {
+
+            System.out.println("Kérem írjon be egy helyes értéket!");
+            inputValue = input.nextLine();
         }
 
-        chooseMenuPoint(chosen);
+        chooseMenuPoint(Integer.parseInt(inputValue));
+    }
+
+    /**
+     * Leellenőrzi, hogy a kapott bemenet megfelel-e.
+     * @param input Kapott bemenet.
+     * @return Igazzal tér vissza, ha a bemenet egy 0 és a menüpontok száma közti szám.
+     */
+    private boolean testProperInput(String input){
+
+        if (input.matches("-?(0|[1-9]\\d*)")) {
+
+            int chosen = Integer.parseInt(input);
+            if (chosen > 0 && chosen <= menuPoints.size())
+                return true;
+        }
+
+        return false;
     }
 
     /**

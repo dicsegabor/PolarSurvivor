@@ -9,6 +9,5 @@ public class EskimoBuildsIglu extends MenuPoint {
     @Override
     public void function() {
 
-
     }
 }
