@@ -1,6 +1,8 @@
 package Szkeleton.Menus.MenuPoints.LesserMenuPoints;
 
+import Karakterek.Karakter;
 import Szkeleton.Menus.MenuPoints.MenuPoint;
+import Szkeleton.Program;
 
 public class CharacterNotSavedFromWater extends MenuPoint {
 
@@ -14,6 +16,13 @@ public class CharacterNotSavedFromWater extends MenuPoint {
     @Override
     public void function() {
 
-        waitForKey();
+        //Init
+        Karakter victim = new Karakter();
+
+        //Action
+        victim.meghal();
+
+        //End
+        Program.endScenario();
     }
 }

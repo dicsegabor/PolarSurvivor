@@ -3,6 +3,7 @@ package Karakterek;
 import Mezok.Mezo;
 import Mezok.StabilJegtabla;
 import Szkeleton.Program;
+import Targyak.Kotel;
 import Targyak.Targy;
 
 import java.util.List;
@@ -16,28 +17,44 @@ public class Karakter {
 
     public void felvesz(){}
 
-    public void meghal(){}
+    public void meghal(){
+
+        Program.writeToBuffer("Karakter.meghal()");
+    }
 
     public void lep(Mezo mezo){
 
-        Program.write("Karakter.lep(){");
+        Program.writeToBuffer("Karakter.lep(){");
         Program.indent++;
         this.mezo.szomszedE(mezo);
         this.mezo.kiad(this);
         mezo.befogad(this);
-        Program.indent--;
-        Program.write("}");
     }
 
-    public void as(){}
+    public void as(){
 
-    public void kombinal(){}
+        Program.writeToBuffer("Karakter.as()");
+    }
+
+    public void kombinal(){
+
+        Program.writeToBuffer("Karakter.kombinal()");
+    }
 
     //TODO: Szkeleton után átírni Targy-ra a visszatérést
-    public void keres(Targy keresettTargy){}
+    public void keres(Kotel keresettTargy){
 
-    public void testhotCsokkent(int n){}
+        Program.writeToBuffer("Karakter.keres()");
+    }
+
+    public void testhotCsokkent(int n){
+
+        Program.writeToBuffer("Karakter.testhotCsokkent()");
+    }
 
     //TODO: Szkeleton után átírni boolean-ra a visszatérést
-    public void munkaCsokkent(){}
+    public void munkaCsokkent(){
+
+        Program.writeToBuffer("Karakter.munkatCsokkent()");
+    }
 }

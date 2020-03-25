@@ -1,19 +1,17 @@
 package Szkeleton.Menus.MenuPoints.LesserMenuPoints;
 
-import Karakterek.Karakter;
-import Mezok.Lyuk;
 import Mezok.Mezo;
 import Mezok.StabilJegtabla;
 import Szkeleton.Menus.MenuPoints.MenuPoint;
 import Szkeleton.Program;
-import Targyak.Kotel;
+import Targyak.Lapat;
 
-public class CharachterSavedFromWater extends MenuPoint {
+public class CharacterDigsWithoutShovel extends MenuPoint {
 
     /**
      * @param displayedText Ez a szöveg jelenik meg a menüponthoz.
      */
-    public CharachterSavedFromWater(String displayedText) {
+    public CharacterDigsWithoutShovel(String displayedText) {
         super(displayedText);
     }
 
@@ -21,11 +19,10 @@ public class CharachterSavedFromWater extends MenuPoint {
     public void function() {
 
         //Init
-        Kotel rope = new Kotel();
-        Mezo from = new Lyuk();
+        Mezo target = new StabilJegtabla();
 
         //Action
-        rope.hasznal(from);
+        target.havatCsokkent(1);
 
         //End
         Program.endScenario();

@@ -1,7 +1,11 @@
 package Szkeleton.Menus.MenuPoints.LesserMenuPoints;
 
+import Karakterek.Karakter;
+import Mezok.Mezo;
+import Mezok.StabilJegtabla;
 import Szkeleton.Menus.Menu;
 import Szkeleton.Menus.MenuPoints.MenuPoint;
+import Szkeleton.Program;
 
 public class CharacterNeedsHelpInWater extends MenuPoint {
 
@@ -14,6 +18,13 @@ public class CharacterNeedsHelpInWater extends MenuPoint {
 
     @Override
     public void function() {
+
+        //Init
+        Karakter character = new Karakter();
+        Mezo field = new StabilJegtabla();
+
+        //Action
+        field.segitseg(character);
 
         //Question
         Menu options = new Menu("Kimentik-e a karaktert a vízből");

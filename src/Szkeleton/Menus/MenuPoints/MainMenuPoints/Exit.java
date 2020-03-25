@@ -14,6 +14,7 @@ public class Exit extends MenuPoint {
     @Override
     public void function() {
 
+        //End
         System.exit(0);
     }
 }

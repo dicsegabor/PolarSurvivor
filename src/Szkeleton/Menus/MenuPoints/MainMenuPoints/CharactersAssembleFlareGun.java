@@ -14,5 +14,6 @@ public class CharactersAssembleFlareGun extends MenuPoint {
     @Override
     public void function() {
 
+        //Question
     }
 }

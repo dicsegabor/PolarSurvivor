@@ -19,16 +19,13 @@ public class CharacterStepsOnStableIce extends MenuPoint {
     public void function() {
 
         //Init
-        Program.write = false;
         Karakter character = new Karakter();
         Jegtabla to = new StabilJegtabla();
 
         //Action
-        Program.write = true;
         character.lep(to);
 
         //End
-        Program.indent = 0;
-        waitForKey();
+        Program.endScenario();
     }
 }

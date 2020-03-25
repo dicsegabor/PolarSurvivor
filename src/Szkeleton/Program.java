@@ -3,10 +3,12 @@ package Szkeleton;
 import Szkeleton.Menus.*;
 import Szkeleton.Menus.MenuPoints.MainMenuPoints.*;
 
+import java.util.Scanner;
+
 public class Program {
 
     public static int indent = 0;
-    public static boolean write = true;
+    public static String buffer = "";
 
     public static void main(String[] args){
 
@@ -38,14 +40,43 @@ public class Program {
         mainMenu.start();
     }
 
-    public static void write(String string){
+    public static void writeToBuffer(String string){
 
-        if(write) {
+        for (int i = 0; i < indent; i++)
+            buffer += "     ";
+
+        buffer += string + "\n";
+    }
+
+    public static void endScenario(){
+
+        while (indent-- > 0){
 
             for (int i = 0; i < indent; i++)
-                System.out.print("  ");
+                buffer += "     ";
 
-            System.out.print(string + "\n");
+            buffer += "}\n";
         }
+        System.out.print(Program.buffer);
+        buffer = "";
+        indent = 0;
+
+        waitForKey();
+    }
+
+    private static void waitForKey(){
+
+        Scanner scan = new Scanner(System.in);
+        System.out.print("Nyomjon meg egy gombot a folytatáshoz . . .");
+        scan.nextLine();
+        clearScreen();
+    }
+
+    /**
+     * Ezt a kódot csak úgy találtam.
+     */
+    private static void clearScreen() {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
     }
 }

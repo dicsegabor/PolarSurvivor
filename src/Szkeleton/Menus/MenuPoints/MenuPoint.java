@@ -26,23 +26,4 @@ public abstract class MenuPoint {
      * Lásd példának CharacterSteps, CharacterStepsOnStableIce
      */
     public abstract void function();
-
-    /**
-     * Addig vár amíg nem kap bármi bemenetet.
-     */
-    protected void waitForKey() {
-
-        Scanner scan = new Scanner(System.in);
-        System.out.print("Nyomjon meg egy gombot a folytatáshoz . . .");
-        scan.nextLine();
-        clearScreen();
-    }
-
-    /**
-     * Ezt a kódot csak úgy találtam.
-     */
-    private static void clearScreen() {
-        System.out.print("\033[H\033[2J");
-        System.out.flush();
-    }
 }

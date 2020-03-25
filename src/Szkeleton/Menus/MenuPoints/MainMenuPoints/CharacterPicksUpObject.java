@@ -14,5 +14,6 @@ public class CharacterPicksUpObject extends MenuPoint {
     @Override
     public void function() {
 
+        //Question
     }
 }

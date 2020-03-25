@@ -22,18 +22,12 @@ public class CharacterStepsOnHole extends MenuPoint {
 
         //Init
         Karakter character = new Karakter();
-        Jegtabla from = new StabilJegtabla();
         Mezo to = new Lyuk();
-        from.befogad(character);
-        from.setSzomszed(to);
-        to.setSzomszed(from);
 
         //Action
         character.lep(to);
-        from.szomszedE(to);
-        from.kiad(character);
-        to.befogad(character);
 
+        //Question?
         new CharacterFallsInWater("").function();
     }
 }

@@ -1,5 +1,8 @@
 package Szkeleton.Menus.MenuPoints.MainMenuPoints;
 
+import Szkeleton.Menus.Menu;
+import Szkeleton.Menus.MenuPoints.LesserMenuPoints.CharacterDigsWithShovel;
+import Szkeleton.Menus.MenuPoints.LesserMenuPoints.CharacterDigsWithoutShovel;
 import Szkeleton.Menus.MenuPoints.MenuPoint;
 
 public class CharacterDigs extends MenuPoint {
@@ -14,5 +17,10 @@ public class CharacterDigs extends MenuPoint {
     @Override
     public void function() {
 
+        //Question
+        Menu options = new Menu("Van-e lapátja a karakternek?");
+        options.addMenuPoint(new CharacterDigsWithShovel("Igen"));
+        options.addMenuPoint(new CharacterDigsWithoutShovel("Nem"));
+        options.start();
     }
 }

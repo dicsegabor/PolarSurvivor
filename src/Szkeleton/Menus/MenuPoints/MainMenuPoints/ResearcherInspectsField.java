@@ -14,5 +14,6 @@ public class ResearcherInspectsField extends MenuPoint {
     @Override
     public void function() {
 
+        //Question
     }
 }

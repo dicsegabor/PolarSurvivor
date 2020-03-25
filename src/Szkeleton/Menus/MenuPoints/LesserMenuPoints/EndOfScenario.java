@@ -1,6 +1,7 @@
 package Szkeleton.Menus.MenuPoints.LesserMenuPoints;
 
 import Szkeleton.Menus.MenuPoints.MenuPoint;
+import Szkeleton.Program;
 
 public class EndOfScenario extends MenuPoint {
 
@@ -14,6 +15,7 @@ public class EndOfScenario extends MenuPoint {
     @Override
     public void function() {
 
-        waitForKey();
+        //End
+        Program.endScenario();
     }
 }

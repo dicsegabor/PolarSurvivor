@@ -18,6 +18,7 @@ public class CharacterSteps extends MenuPoint {
     @Override
     public void function() {
 
+        //Question
         Menu stepOptions = new Menu("Milyen pályaelemre lép a karakter?");
         stepOptions.addMenuPoint(new CharacterStepsOnStableIce("Stabil jégtáblára"));
         stepOptions.addMenuPoint(new CharacterStepsOnUnstableIce("Instabil jégtáblára"));
