@@ -87,8 +87,7 @@ public class Menu {
         if ("-?(0|[1-9]\\d*)".matches(input)) {
 
             int chosen = Integer.parseInt(input);
-            if (chosen > 0 && chosen <= menuPoints.size())
-                return true;
+            return chosen > 0 && chosen <= menuPoints.size();
         }
 
         return false;
