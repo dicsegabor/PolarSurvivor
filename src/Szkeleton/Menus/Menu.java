@@ -35,6 +35,7 @@ public class Menu {
         menuPoints.add(menuPoint);
     }
 
+
     /**
      * Kiíratja a menüt, valamint a menüpont kiválasztását és végrehajtását is kezeli.
      */
