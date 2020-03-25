@@ -9,7 +9,7 @@ import java.util.Scanner;
 /**
  * Ez az osztály szolgál a konzolon megjelenő menük alapjául.
  */
-public class Menu {
+public class Menu {bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
 
     /**
      * Tárolja, hogy mit ír ki a menü megjelenéskor.
