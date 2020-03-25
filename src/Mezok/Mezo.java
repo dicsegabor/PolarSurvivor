@@ -1,6 +1,7 @@
 package Mezok;
 
 import Karakterek.Karakter;
+import Szkeletonjajaj.Program;
 
 import java.util.List;
 
@@ -20,11 +21,14 @@ public abstract class Mezo {
     public abstract void befogad(Karakter karakter);
 
     //TODO: Szkeleton után átírni Karakter-re a visszatérést
-    public void kiad(Karakter karakter){}
+    public void kiad(Karakter karakter){
+
+        Program.write("Mezo.kiad()");
+    }
 
     //TODO: Szkeleton után átírni boolean-ra a visszatérést
     public void szomszedE(Mezo mezo){
 
-        System.out.println("Mezo.szomszedE()");
+        Program.write("Mezo.szomszedE()");
     }
 }

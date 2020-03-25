@@ -1,6 +1,9 @@
 package Karakterek;
 
 import Mezok.Mezo;
+import Mezok.StabilJegtabla;
+import Szkeletonjajaj.Menus.Menu;
+import Szkeletonjajaj.Program;
 import Targyak.Targy;
 
 import java.util.List;
@@ -9,14 +12,23 @@ public class Karakter {
 
     private int testho;
     private int munka;
-    private Mezo mezo;
+    private Mezo mezo = new StabilJegtabla();
     private List<Targy> targyak;
 
     public void felvesz(){}
 
     public void meghal(){}
 
-    public void lep(Mezo mezo){}
+    public void lep(Mezo mezo){
+
+        Program.write("Karakter.lep(){");
+        Program.indent++;
+        this.mezo.szomszedE(mezo);
+        this.mezo.kiad(this);
+        mezo.befogad(this);
+        Program.indent--;
+        Program.write("}");
+    }
 
     public void as(){}
 
