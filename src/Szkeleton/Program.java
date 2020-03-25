@@ -1,6 +1,6 @@
 package Szkeleton;
 
-import Szkeleton.Menus.*;
+import Szkeleton.Menus.Menu;
 import Szkeleton.Menus.MenuPoints.MainMenuPoints.*;
 
 import java.util.Scanner;
@@ -16,14 +16,15 @@ public class Program {
             startMainMenu();
     }
 
+    /**
+     * A főmenüt építi fel és indítja el.
+     */
     private static void startMainMenu(){
 
         Menu mainMenu = new Menu("Az alább található opciók forgatókönyvek közül válasszon egyet\n" +
                 "a kívánt elemhez tartozó számnak a begépelésével, majd nyomjon entert!");
 
-        //TODO: Gábor
         mainMenu.addMenuPoint(new CharacterSteps("Karakter lép"));
-        //TODO: Áron
         mainMenu.addMenuPoint(new CharacterFallsInWater("Karakter vízbe esik"));
         //TODO: Csaba
         mainMenu.addMenuPoint(new EskimoBuildsIglu("Eszkimó iglut épít"));
@@ -31,7 +32,6 @@ public class Program {
         mainMenu.addMenuPoint(new ResearcherInspectsField("Sarkkutató szomszédos mezőt néz"));
         //TODO: Dávid
         mainMenu.addMenuPoint(new CharacterPicksUpObject("Karakter tárgyat vesz fel"));
-        //TODO: Gábor
         mainMenu.addMenuPoint(new CharacterDigs("Karakter ás"));
         //TODO: Áron
         mainMenu.addMenuPoint(new CharactersAssembleFlareGun("Karakterek összeszerelik a jelzőrakétát"));
@@ -40,6 +40,10 @@ public class Program {
         mainMenu.start();
     }
 
+    /**
+     * A paraméterül kapoot sztringet egy bufferbe írja be.
+     * @param string Ezt rja be a bufferbe.
+     */
     public static void writeToBuffer(String string){
 
         for (int i = 0; i < indent; i++)
@@ -48,6 +52,11 @@ public class Program {
         buffer += string + "\n";
     }
 
+    /**
+     * Lezárja a kapcsos zárójeleket, valamint kiírja a buffer tartalmát a konzolra.
+     * Nem kell sehol csökkenteni az indentálást, mert ez a függvény elintézi.
+     * Vár a következő leütött billentyűig.
+     */
     public static void endScenario(){
 
         while (indent-- > 0){
@@ -64,6 +73,9 @@ public class Program {
         waitForKey();
     }
 
+    /**
+     * Vár a következő leütött billentyűig.
+     */
     private static void waitForKey(){
 
         Scanner scan = new Scanner(System.in);
@@ -73,7 +85,7 @@ public class Program {
     }
 
     /**
-     * Ezt a kódot csak úgy találtam.
+     * Ezt a kódot csak úgy találtam. Törli a konzolt.
      */
     private static void clearScreen() {
         System.out.print("\033[H\033[2J");

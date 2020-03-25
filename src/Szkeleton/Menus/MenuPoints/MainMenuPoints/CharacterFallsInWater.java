@@ -1,8 +1,7 @@
 package Szkeleton.Menus.MenuPoints.MainMenuPoints;
 
 import Szkeleton.Menus.Menu;
-import Szkeleton.Menus.MenuPoints.LesserMenuPoints.CharacterNeedsHelpInWater;
-import Szkeleton.Menus.MenuPoints.LesserMenuPoints.EndOfScenario;
+import Szkeleton.Menus.MenuPoints.LesserMenuPoints.*;
 import Szkeleton.Menus.MenuPoints.MenuPoint;
 
 public class CharacterFallsInWater extends MenuPoint {

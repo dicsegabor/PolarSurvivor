@@ -1,7 +1,5 @@
 package Szkeleton.Menus.MenuPoints;
 
-import java.util.Scanner;
-
 /**
  * Ez az osztály jelképezi a menüpontokat.
  */
@@ -23,7 +21,6 @@ public abstract class MenuPoint {
     /**
      * Itt kell megvalósítani a menüponthoz tartozó funkciót.
      * Pl.: Csinál egy új menüt, Függvényeket hív a programból
-     * Lásd példának CharacterSteps, CharacterStepsOnStableIce
      */
     public abstract void function();
 }
