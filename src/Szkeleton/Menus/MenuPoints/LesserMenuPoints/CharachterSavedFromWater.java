@@ -1,6 +1,6 @@
-package Szkeletonjajaj.Menus.MenuPoints.LesserMenuPoints;
+package Szkeleton.Menus.MenuPoints.LesserMenuPoints;
 
-import Szkeletonjajaj.Menus.MenuPoints.MenuPoint;
+import Szkeleton.Menus.MenuPoints.MenuPoint;
 
 public class CharachterSavedFromWater extends MenuPoint {
 

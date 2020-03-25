@@ -1,7 +1,7 @@
 package Mezok;
 
 import Karakterek.Karakter;
-import Szkeletonjajaj.Program;
+import Szkeleton.Program;
 
 import java.util.List;
 

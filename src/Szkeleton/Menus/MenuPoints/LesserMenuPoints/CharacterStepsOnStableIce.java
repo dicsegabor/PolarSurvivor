@@ -1,10 +1,10 @@
-package Szkeletonjajaj.Menus.MenuPoints.LesserMenuPoints;
+package Szkeleton.Menus.MenuPoints.LesserMenuPoints;
 
 import Karakterek.Karakter;
 import Mezok.Jegtabla;
 import Mezok.StabilJegtabla;
-import Szkeletonjajaj.Menus.MenuPoints.MenuPoint;
-import Szkeletonjajaj.Program;
+import Szkeleton.Menus.MenuPoints.MenuPoint;
+import Szkeleton.Program;
 
 public class CharacterStepsOnStableIce extends MenuPoint {
 

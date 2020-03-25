@@ -2,8 +2,7 @@ package Karakterek;
 
 import Mezok.Mezo;
 import Mezok.StabilJegtabla;
-import Szkeletonjajaj.Menus.Menu;
-import Szkeletonjajaj.Program;
+import Szkeleton.Program;
 import Targyak.Targy;
 
 import java.util.List;

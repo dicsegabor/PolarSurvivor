@@ -1,4 +1,4 @@
-package Szkeletonjajaj.Menus.MenuPoints;
+package Szkeleton.Menus.MenuPoints;
 
 import java.util.Scanner;
 

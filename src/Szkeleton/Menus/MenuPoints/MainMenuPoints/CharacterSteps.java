@@ -1,10 +1,10 @@
-package Szkeletonjajaj.Menus.MenuPoints.MainMenuPoints;
+package Szkeleton.Menus.MenuPoints.MainMenuPoints;
 
-import Szkeletonjajaj.Menus.Menu;
-import Szkeletonjajaj.Menus.MenuPoints.LesserMenuPoints.CharacterStepsOnHole;
-import Szkeletonjajaj.Menus.MenuPoints.LesserMenuPoints.CharacterStepsOnStableIce;
-import Szkeletonjajaj.Menus.MenuPoints.LesserMenuPoints.CharacterStepsOnUnstableIce;
-import Szkeletonjajaj.Menus.MenuPoints.MenuPoint;
+import Szkeleton.Menus.Menu;
+import Szkeleton.Menus.MenuPoints.LesserMenuPoints.CharacterStepsOnHole;
+import Szkeleton.Menus.MenuPoints.LesserMenuPoints.CharacterStepsOnStableIce;
+import Szkeleton.Menus.MenuPoints.LesserMenuPoints.CharacterStepsOnUnstableIce;
+import Szkeleton.Menus.MenuPoints.MenuPoint;
 
 public class CharacterSteps extends MenuPoint {
 

@@ -1,7 +1,7 @@
-package Szkeletonjajaj.Menus.MenuPoints.LesserMenuPoints;
+package Szkeleton.Menus.MenuPoints.LesserMenuPoints;
 
-import Szkeletonjajaj.Menus.Menu;
-import Szkeletonjajaj.Menus.MenuPoints.MenuPoint;
+import Szkeleton.Menus.Menu;
+import Szkeleton.Menus.MenuPoints.MenuPoint;
 
 public class CharacterNeedsHelpInWater extends MenuPoint {
 

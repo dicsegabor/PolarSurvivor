@@ -1,10 +1,10 @@
-package Szkeletonjajaj.Menus.MenuPoints.LesserMenuPoints;
+package Szkeleton.Menus.MenuPoints.LesserMenuPoints;
 
 import Karakterek.Eszkimo;
 import Mezok.InstabilJegtabla;
-import Szkeletonjajaj.Menus.Menu;
-import Szkeletonjajaj.Menus.MenuPoints.MainMenuPoints.CharacterFallsInWater;
-import Szkeletonjajaj.Menus.MenuPoints.MenuPoint;
+import Szkeleton.Menus.Menu;
+import Szkeleton.Menus.MenuPoints.MainMenuPoints.CharacterFallsInWater;
+import Szkeleton.Menus.MenuPoints.MenuPoint;
 
 public class EskimoBuildsIgluOnUnstableIce extends MenuPoint {
 

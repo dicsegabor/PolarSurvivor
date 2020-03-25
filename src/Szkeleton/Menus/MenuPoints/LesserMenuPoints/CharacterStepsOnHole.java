@@ -1,12 +1,12 @@
-package Szkeletonjajaj.Menus.MenuPoints.LesserMenuPoints;
+package Szkeleton.Menus.MenuPoints.LesserMenuPoints;
 
 import Karakterek.Karakter;
 import Mezok.Jegtabla;
 import Mezok.Lyuk;
 import Mezok.Mezo;
 import Mezok.StabilJegtabla;
-import Szkeletonjajaj.Menus.MenuPoints.MainMenuPoints.CharacterFallsInWater;
-import Szkeletonjajaj.Menus.MenuPoints.MenuPoint;
+import Szkeleton.Menus.MenuPoints.MainMenuPoints.CharacterFallsInWater;
+import Szkeleton.Menus.MenuPoints.MenuPoint;
 
 public class CharacterStepsOnHole extends MenuPoint {
 

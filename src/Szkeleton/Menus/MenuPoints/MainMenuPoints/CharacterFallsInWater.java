@@ -1,9 +1,9 @@
-package Szkeletonjajaj.Menus.MenuPoints.MainMenuPoints;
+package Szkeleton.Menus.MenuPoints.MainMenuPoints;
 
-import Szkeletonjajaj.Menus.Menu;
-import Szkeletonjajaj.Menus.MenuPoints.LesserMenuPoints.CharacterNeedsHelpInWater;
-import Szkeletonjajaj.Menus.MenuPoints.LesserMenuPoints.EndOfScenario;
-import Szkeletonjajaj.Menus.MenuPoints.MenuPoint;
+import Szkeleton.Menus.Menu;
+import Szkeleton.Menus.MenuPoints.LesserMenuPoints.CharacterNeedsHelpInWater;
+import Szkeleton.Menus.MenuPoints.LesserMenuPoints.EndOfScenario;
+import Szkeleton.Menus.MenuPoints.MenuPoint;
 
 public class CharacterFallsInWater extends MenuPoint {
 

@@ -1,8 +1,8 @@
-package Szkeletonjajaj.Menus.MenuPoints.LesserMenuPoints;
+package Szkeleton.Menus.MenuPoints.LesserMenuPoints;
 
 import Karakterek.Eszkimo;
 import Mezok.StabilJegtabla;
-import Szkeletonjajaj.Menus.MenuPoints.MenuPoint;
+import Szkeleton.Menus.MenuPoints.MenuPoint;
 
 public class EskimoBuildsIgluOnStableIce extends MenuPoint {
 

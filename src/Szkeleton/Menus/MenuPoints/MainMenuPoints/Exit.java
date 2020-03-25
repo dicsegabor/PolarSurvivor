@@ -1,6 +1,6 @@
-package Szkeletonjajaj.Menus.MenuPoints.MainMenuPoints;
+package Szkeleton.Menus.MenuPoints.MainMenuPoints;
 
-import Szkeletonjajaj.Menus.MenuPoints.MenuPoint;
+import Szkeleton.Menus.MenuPoints.MenuPoint;
 
 public class Exit extends MenuPoint {
 
