@@ -32,7 +32,7 @@ public class Menu {
 
     public void addMenuPoint(MenuPoint menuPoint){
 
-        menuPoints.add(menuPoint);
+        menuPoints.add(menuPoint);a
     }
 
     /**
