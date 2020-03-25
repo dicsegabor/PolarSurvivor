@@ -14,7 +14,7 @@ public class Menu {
     /**
      * Tárolja, hogy mit ír ki a menü megjelenéskor.
      */
-    private String menuText;
+    private String menuText;aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 
     /**
      * Tárolja a menüpontokat.
