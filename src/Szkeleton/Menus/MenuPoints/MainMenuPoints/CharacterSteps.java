@@ -22,7 +22,6 @@ public class CharacterSteps extends MenuPoint {
         stepOptions.addMenuPoint(new CharacterStepsOnStableIce("Stabil jégtáblára"));
         stepOptions.addMenuPoint(new CharacterStepsOnUnstableIce("Instabil jégtáblára"));
         stepOptions.addMenuPoint(new CharacterStepsOnHole("Lyukra"));
-
         stepOptions.start();
     }
 }

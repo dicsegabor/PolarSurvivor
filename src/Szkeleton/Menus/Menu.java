@@ -84,7 +84,7 @@ public class Menu {
      */
     private boolean testProperInput(String input){
 
-        if (input.matches("-?(0|[1-9]\\d*)")) {
+        if ("-?(0|[1-9]\\d*)".matches(input)) {
 
             int chosen = Integer.parseInt(input);
             if (chosen > 0 && chosen <= menuPoints.size())
@@ -109,6 +109,7 @@ public class Menu {
      * Ezt a kódot csak úgy találtam.
      */
     private static void clearScreen() {
+
         System.out.print("\033[H\033[2J");
         System.out.flush();
     }
