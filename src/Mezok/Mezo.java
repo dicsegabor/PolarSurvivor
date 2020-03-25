@@ -23,5 +23,8 @@ public abstract class Mezo {
     public void kiad(Karakter karakter){}
 
     //TODO: Szkeleton után átírni boolean-ra a visszatérést
-    public void szomszedE(Mezo mezo){}
+    public void szomszedE(Mezo mezo){
+
+        System.out.println("Mezo.szomszedE()");
+    }
 }
