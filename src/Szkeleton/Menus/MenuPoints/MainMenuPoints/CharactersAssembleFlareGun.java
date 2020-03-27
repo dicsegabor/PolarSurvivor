@@ -16,6 +16,10 @@ public class CharactersAssembleFlareGun extends MenuPoint {
     @Override
     public void function() {
 
+        //sikeres az osszeszereles?
+        Menu optionsTargyak=new Menu("a karakternel vannak a jelzopisztolyhoz szukseges targyak (pisztoly, jelzofeny, patron)?");
+        optionsTargyak.addMenuPoint(new EndOfScenario("igen"));
+        optionsTargyak.start();
         //Question
     }
 }
