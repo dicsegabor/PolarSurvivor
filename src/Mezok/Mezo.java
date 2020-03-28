@@ -44,4 +44,6 @@ public abstract class Mezo implements VizbeesesListener {
         Program.indent++;
         karakter.keres(new Kotel());
     }
+
+    public abstract void setIgluzott(boolean igluzott);
 }
