@@ -11,12 +11,16 @@ public abstract class Mezo implements VizbeesesListener {
 
     private int horeteg;
     protected int kapacitas;
-    //TODO: Beleírni a modellváltozást (igluzott)
+    //TODO: Beleírni a modellváltozást (igluzott a mező attribútuma lett)
     protected boolean igluzott;
     private List<Karakter> karakterek = new ArrayList<>();
     private List<Mezo> szomszedok;
 
-    public abstract void vihar();
+    //TODO: Beleírni a modellváltozást (vihar nem absztrakt már)
+    public void vihar(){
+
+        Program.writeToBuffer("Mezo.vihar()");
+    }
 
     public void setSzomszed(Mezo mezo){}
 

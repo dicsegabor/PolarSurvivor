@@ -33,6 +33,8 @@ public class Program {
         mainMenu.addMenuPoint(new CharacterPicksUpObject("Karakter tárgyat vesz fel"));
         mainMenu.addMenuPoint(new CharacterDigs("Karakter ás"));
         mainMenu.addMenuPoint(new CharactersTryToAssembleFlareGun("Karakterek összeszerelik a jelzőrakétát"));
+        //TODO: Beleírni a modellváltozást (Vihar)
+        mainMenu.addMenuPoint(new Storm("Vihar"));
         mainMenu.addMenuPoint(new Exit("Kilépés"));
 
         mainMenu.start();

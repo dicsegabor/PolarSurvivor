@@ -12,12 +12,6 @@ public abstract class Jegtabla extends Mezo {
     //TODO: Szkeleton után átírni Targy-ra a visszatérést
     public void getTargy(){}
 
-    @Override
-    public void vihar(){
-
-        Program.writeToBuffer("Jegtabla.vihar()");
-    }
-
     public abstract void befogad(Karakter karakter);
 
     @Override

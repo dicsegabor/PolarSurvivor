@@ -66,7 +66,7 @@ public class Karakter {
 
     public void testhotCsokkent(int n){
 
-        Program.writeToBuffer("Karakter.testhotCsokkent()");
+        Program.writeToBuffer("Karakter.testhotCsokkent(" + n + ")");
     }
 
     //TODO: Szkeleton után átírni boolean-ra a visszatérést
