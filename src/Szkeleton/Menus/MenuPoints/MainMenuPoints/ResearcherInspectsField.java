@@ -17,5 +17,11 @@ public class ResearcherInspectsField extends MenuPoint {
     public void function() {
 
         //Question
+
+        Menu opt = new Menu("Milyen típusú mezőt nézünk meg?");
+        opt.addMenuPoint(new CharacterViewsStableIce("Stabil jégtábla"));
+        opt.addMenuPoint(new CharacterViewsUnstableIce("Instabil jégtábla"));
+        opt.addMenuPoint(new CharacterViewsHole("Lyuk"));
+        opt.start();
     }
 }
