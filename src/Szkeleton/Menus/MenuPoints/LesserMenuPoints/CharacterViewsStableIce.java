@@ -16,6 +16,7 @@ public class CharacterViewsStableIce extends MenuPoint {
 
     @Override
     public void function() {
+
         //init
         Kutato kut = new Kutato();
         StabilJegtabla sjeg = new StabilJegtabla();
@@ -23,8 +24,7 @@ public class CharacterViewsStableIce extends MenuPoint {
         //action
         kut.jegetNez(sjeg);
 
-//End
+        //End
         Program.endScenario();
-
     }
 }

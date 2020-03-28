@@ -3,16 +3,17 @@ package Szkeleton.Menus.MenuPoints.LesserMenuPoints;
 import Karakterek.Karakter;
 import Mezok.Mezo;
 import Mezok.StabilJegtabla;
+import Szkeleton.Menus.Menu;
 import Szkeleton.Menus.MenuPoints.MenuPoint;
 import Szkeleton.Program;
-import Targyak.Lapat;
+import Targyak.Buvarruha;
 
-public class CharacterDigsWithShovel extends MenuPoint {
+public class CharacterUsesDivingSuit extends MenuPoint {
 
     /**
      * @param displayedText Ez a szöveg jelenik meg a menüponthoz.
      */
-    public CharacterDigsWithShovel(String displayedText) {
+    public CharacterUsesDivingSuit(String displayedText) {
         super(displayedText);
     }
 
@@ -20,11 +21,11 @@ public class CharacterDigsWithShovel extends MenuPoint {
     public void function() {
 
         //Init
-        Lapat shovel = new Lapat();
-        Mezo target = new StabilJegtabla();
+        Buvarruha divingSuit = new Buvarruha();
+        Mezo field = new StabilJegtabla();
 
         //Action
-        shovel.hasznal(target);
+        divingSuit.hasznal(field);
 
         //End
         Program.endScenario();

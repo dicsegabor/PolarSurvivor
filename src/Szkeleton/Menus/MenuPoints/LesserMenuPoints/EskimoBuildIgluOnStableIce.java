@@ -1,31 +1,28 @@
 package Szkeleton.Menus.MenuPoints.LesserMenuPoints;
 
-import Karakterek.Kutato;
-import Mezok.InstabilJegtabla;
-import Mezok.Lyuk;
+import Karakterek.Eszkimo;
 import Szkeleton.Menus.MenuPoints.MenuPoint;
 import Szkeleton.Program;
 
-public class CharacterViewsHole extends MenuPoint {
+public class EskimoBuildIgluOnStableIce extends MenuPoint {
+
     /**
      * @param displayedText Ez a szöveg jelenik meg a menüponthoz.
      */
-    public CharacterViewsHole(String displayedText) {
+    public EskimoBuildIgluOnStableIce(String displayedText) {
         super(displayedText);
     }
 
     @Override
     public void function() {
 
-        //init
-        Kutato kut = new Kutato();
-        Lyuk lyuk = new Lyuk();
+        // Init
+        Eszkimo e = new Eszkimo();
 
-        //action
-        kut.jegetNez(lyuk);
+        // Action
+        e.iglutEpit();
 
         //End
         Program.endScenario();
-
     }
 }

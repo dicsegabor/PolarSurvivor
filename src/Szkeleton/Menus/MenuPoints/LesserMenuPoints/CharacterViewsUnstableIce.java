@@ -27,7 +27,6 @@ public class CharacterViewsUnstableIce extends MenuPoint {
         //action
         kut.jegetNez(isjeg);
 
-
         //End
         Program.endScenario();
 

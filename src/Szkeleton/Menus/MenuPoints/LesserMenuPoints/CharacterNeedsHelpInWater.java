@@ -5,7 +5,6 @@ import Mezok.Mezo;
 import Mezok.StabilJegtabla;
 import Szkeleton.Menus.Menu;
 import Szkeleton.Menus.MenuPoints.MenuPoint;
-import Szkeleton.Program;
 
 public class CharacterNeedsHelpInWater extends MenuPoint {
 

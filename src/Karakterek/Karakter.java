@@ -3,8 +3,7 @@ package Karakterek;
 import Mezok.Mezo;
 import Mezok.StabilJegtabla;
 import Szkeleton.Program;
-import Targyak.Kotel;
-import Targyak.Targy;
+import Targyak.*;
 
 import java.util.List;
 
@@ -12,10 +11,15 @@ public class Karakter {
 
     private int testho;
     private int munka;
-    private Mezo mezo = new StabilJegtabla();
+    protected Mezo mezo = new StabilJegtabla();
     private List<Targy> targyak;
 
-    public void felvesz(){}
+    public void felvesz(){
+
+        Program.writeToBuffer("Karakter.felvesz()");
+        Program.indent++;
+        munkaCsokkent();
+    }
 
     public void meghal(){
 
@@ -29,20 +33,33 @@ public class Karakter {
         this.mezo.szomszedE(mezo);
         this.mezo.kiad(this);
         mezo.befogad(this);
+        munkaCsokkent();
     }
 
     public void as(){
 
-        Program.writeToBuffer("Karakter.as()");
+        Program.writeToBuffer("Karakter.as(){");
+        Program.indent++;
+        munkaCsokkent();
     }
 
     public void kombinal(){
 
-        Program.writeToBuffer("Karakter.kombinal()");
+        Pisztoly gun = new Pisztoly();
+        Patron cartridge = new Patron();
+        Jelzofeny flare = new Jelzofeny();
+        Mezo field = new StabilJegtabla();
+
+        Program.writeToBuffer("Karakter.kombinal(){");
+        Program.indent++;
+        gun.hasznal(field);
+        cartridge.hasznal(field);
+        flare.hasznal(field);
+        munkaCsokkent();
     }
 
     //TODO: Szkeleton után átírni Targy-ra a visszatérést
-    public void keres(Kotel keresettTargy){
+    public void keres(Targytipus keresettTargy){
 
         Program.writeToBuffer("Karakter.keres()");
     }

@@ -1,5 +1,6 @@
 package Szkeleton.Menus.MenuPoints.LesserMenuPoints;
 
+import Karakterek.Karakter;
 import Mezok.Mezo;
 import Mezok.StabilJegtabla;
 import Szkeleton.Menus.MenuPoints.MenuPoint;

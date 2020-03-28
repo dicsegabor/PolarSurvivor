@@ -2,7 +2,7 @@ package Mezok;
 
 import Karakterek.Karakter;
 import Szkeleton.Program;
-import Targyak.Kotel;
+import Targyak.Targytipus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +11,8 @@ public abstract class Mezo implements VizbeesesListener {
 
     private int horeteg;
     protected int kapacitas;
+    //TODO: Beleírni a modellváltozást (igluzott)
+    protected boolean igluzott;
     private List<Karakter> karakterek = new ArrayList<>();
     private List<Mezo> szomszedok;
 
@@ -42,7 +44,7 @@ public abstract class Mezo implements VizbeesesListener {
 
         Program.writeToBuffer("Mezo.segitseg(){");
         Program.indent++;
-        karakter.keres(new Kotel());
+        karakter.keres(Targytipus.KOTEL);
     }
 
     public abstract void setIgluzott(boolean igluzott);

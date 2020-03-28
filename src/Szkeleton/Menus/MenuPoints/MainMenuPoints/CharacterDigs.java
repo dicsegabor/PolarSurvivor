@@ -1,5 +1,6 @@
 package Szkeleton.Menus.MenuPoints.MainMenuPoints;
 
+import Karakterek.Karakter;
 import Szkeleton.Menus.Menu;
 import Szkeleton.Menus.MenuPoints.LesserMenuPoints.*;
 import Szkeleton.Menus.MenuPoints.MenuPoint;
@@ -15,6 +16,12 @@ public class CharacterDigs extends MenuPoint {
 
     @Override
     public void function() {
+
+        //Init
+        Karakter digger = new Karakter();
+
+        //Action
+        digger.as();
 
         //Question
         Menu options = new Menu("Van-e lapátja a karakternek?");

@@ -1,9 +1,6 @@
 package Mezok;
 
 import Karakterek.Karakter;
-import Szkeleton.Menus.Menu;
-import Szkeleton.Menus.MenuPoints.LesserMenuPoints.EndOfScenario;
-import Szkeleton.Menus.MenuPoints.MainMenuPoints.CharacterFallsInWater;
 import Szkeleton.Program;
 import Targyak.Targy;
 
@@ -16,12 +13,16 @@ public abstract class Jegtabla extends Mezo {
     public void getTargy(){}
 
     @Override
-    public void vihar(){}
+    public void vihar(){
+
+        Program.writeToBuffer("Jegtabla.vihar()");
+    }
 
     public abstract void befogad(Karakter karakter);
 
+    @Override
     public void setIgluzott(boolean igluzott){
-        Program.writeToBuffer("Jegtabla.setIgluzott(){");
-        Program.writeToBuffer("}");
+
+        Program.writeToBuffer("Jegtabla.setIgluzott()");
     }
 }

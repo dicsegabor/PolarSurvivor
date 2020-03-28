@@ -1,18 +1,15 @@
 package Szkeleton.Menus.MenuPoints.LesserMenuPoints;
 
 import Karakterek.Karakter;
-import Mezok.Mezo;
-import Mezok.StabilJegtabla;
 import Szkeleton.Menus.MenuPoints.MenuPoint;
 import Szkeleton.Program;
-import Targyak.Lapat;
 
-public class CharacterDigsWithShovel extends MenuPoint {
+public class CharacterAssemblesFlareGun extends MenuPoint {
 
     /**
      * @param displayedText Ez a szöveg jelenik meg a menüponthoz.
      */
-    public CharacterDigsWithShovel(String displayedText) {
+    public CharacterAssemblesFlareGun(String displayedText) {
         super(displayedText);
     }
 
@@ -20,13 +17,13 @@ public class CharacterDigsWithShovel extends MenuPoint {
     public void function() {
 
         //Init
-        Lapat shovel = new Lapat();
-        Mezo target = new StabilJegtabla();
+        Karakter character = new Karakter();
 
         //Action
-        shovel.hasznal(target);
+        character.kombinal();
 
         //End
         Program.endScenario();
     }
 }
+

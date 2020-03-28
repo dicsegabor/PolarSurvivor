@@ -27,15 +27,12 @@ public class Program {
 
         mainMenu.addMenuPoint(new CharacterSteps("Karakter lép"));
         mainMenu.addMenuPoint(new CharacterFallsInWater("Karakter vízbe esik"));
-        //TODO: Csaba
         mainMenu.addMenuPoint(new EskimoBuildsIglu("Eszkimó iglut épít"));
-        //TODO: Marci
         mainMenu.addMenuPoint(new ResearcherInspectsField("Sarkkutató szomszédos mezőt néz"));
         //TODO: Dávid
         mainMenu.addMenuPoint(new CharacterPicksUpObject("Karakter tárgyat vesz fel"));
         mainMenu.addMenuPoint(new CharacterDigs("Karakter ás"));
-        //TODO: Áron
-        mainMenu.addMenuPoint(new CharactersAssembleFlareGun("Karakterek összeszerelik a jelzőrakétát"));
+        mainMenu.addMenuPoint(new CharactersTryToAssembleFlareGun("Karakterek összeszerelik a jelzőrakétát"));
         mainMenu.addMenuPoint(new Exit("Kilépés"));
 
         mainMenu.start();

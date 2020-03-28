@@ -4,12 +4,12 @@ import Szkeleton.Menus.Menu;
 import Szkeleton.Menus.MenuPoints.LesserMenuPoints.*;
 import Szkeleton.Menus.MenuPoints.MenuPoint;
 
-public class CharacterFallsInWater extends MenuPoint {
+public class CharactersTryToAssembleFlareGun extends MenuPoint {
 
     /**
      * @param displayedText Ez a szöveg jelenik meg a menüponthoz.
      */
-    public CharacterFallsInWater(String displayedText) {
+    public CharactersTryToAssembleFlareGun(String displayedText) {
         super(displayedText);
     }
 
@@ -17,9 +17,9 @@ public class CharacterFallsInWater extends MenuPoint {
     public void function() {
 
         //Question
-        Menu options = new Menu("Van-e a karakteren búvárruha");
-        options.addMenuPoint(new CharacterUsesDivingSuit("Igen"));
-        options.addMenuPoint(new CharacterNeedsHelpInWater("Nem"));
+        Menu options = new Menu("A karakternel vannak a jelzopisztolyhoz szukseges targyak (pisztoly, jelzofeny, patron)?");
+        options.addMenuPoint(new CharacterAssemblesFlareGun("Igen"));
+        options.addMenuPoint(new EndOfScenario("Nem"));
         options.start();
     }
 }

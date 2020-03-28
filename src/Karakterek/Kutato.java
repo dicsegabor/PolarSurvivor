@@ -7,8 +7,9 @@ public class Kutato extends Karakter {
 
     public void jegetNez(Mezo mezo){
 
-        Program.writeToBuffer("kutato.jegetNez(mezo){");
+        Program.writeToBuffer("Kutato.jegetNez(){");
         Program.indent++;
+        munkaCsokkent();
     }
 
 

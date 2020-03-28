@@ -15,6 +15,9 @@ public class EndOfScenario extends MenuPoint {
     @Override
     public void function() {
 
+        //Action
+        Program.writeToBuffer("Nincs további akció");
+
         //End
         Program.endScenario();
     }

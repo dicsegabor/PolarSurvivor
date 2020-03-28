@@ -1,5 +1,6 @@
 package Targyak;
 
+import Karakterek.Karakter;
 import Mezok.Mezo;
 import Szkeleton.Program;
 
@@ -7,6 +8,8 @@ public class Lapat implements Targy {
 
     @Override
     public void hasznal(Mezo mezo) {
+
+        Karakter user = new Karakter();
 
         Program.writeToBuffer("Lapat.hasznal(){");
         Program.indent++;
