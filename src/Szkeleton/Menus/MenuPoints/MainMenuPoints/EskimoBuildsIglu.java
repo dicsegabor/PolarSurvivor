@@ -1,6 +1,9 @@
 package Szkeleton.Menus.MenuPoints.MainMenuPoints;
 
+import Karakterek.Eszkimo;
+import Mezok.InstabilJegtabla;
 import Szkeleton.Menus.MenuPoints.MenuPoint;
+import Szkeleton.Program;
 
 public class EskimoBuildsIglu extends MenuPoint {
 
@@ -13,7 +16,13 @@ public class EskimoBuildsIglu extends MenuPoint {
 
     @Override
     public void function() {
+        // Init
+        Eszkimo e = new Eszkimo();
 
-        //Question
+        // Action
+        e.iglutEpit();
+
+        // End
+        Program.endScenario();
     }
 }

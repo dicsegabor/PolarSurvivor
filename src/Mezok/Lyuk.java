@@ -13,4 +13,7 @@ public class Lyuk extends Mezo {
 
         Program.writeToBuffer("Lyuk.befogad()");
     }
+
+    @Override
+    public void setIgluzott(boolean igluzott) {}
 }

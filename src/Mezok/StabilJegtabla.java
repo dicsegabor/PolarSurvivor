@@ -7,7 +7,6 @@ public class StabilJegtabla extends  Jegtabla {
 
     @Override
     public void befogad(Karakter karakter) {
-
         Program.writeToBuffer("StabilJegtabla.befogad()");
     }
 }
