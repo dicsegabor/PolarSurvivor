@@ -1,7 +1,6 @@
 package Szkeleton;
 
 import Szkeleton.Menu.Menu;
-import Szkeleton.Menu.MenuPoints.LesserUseCases.PlayMusic;
 import Szkeleton.Menu.MenuPoints.MainUseCases.*;
 
 
@@ -30,7 +29,6 @@ public class Program {
         mainMenu.addMenuPoint(new CharactersTryToAssembleFlareGun("Karakterek összeszerelik a jelzőrakétát"));
         //TODO: Beleírni a modellváltozást (Vihar)
         mainMenu.addMenuPoint(new Storm("Vihar"));
-        mainMenu.addMenuPoint(new PlayMusic("Zene"));
         mainMenu.addMenuPoint(new Exit("Kilépés"));
 
         mainMenu.start();
