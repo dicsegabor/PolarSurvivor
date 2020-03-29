@@ -12,21 +12,10 @@ public class MethodCallHandler {
     private static String buffer = "";
 
     /**
-     * A paraméterül kapoot sztringet egy bufferbe írja be.
-     * @param methodName Ez fog megjelenni a képernyőn, mint a függvény.
-     * @param withInnerMethodCalls Azt jelzi, hogy a meghívott függvényeden belül fogsz-e használni más függvényeket.
+     * Ez a függvény kiírja a konzolra a függvény nevét és az őt megvalósító osztály nevét ponttal elválasztva.
+     * @param from Az osztály, amiben megtalálható a függvény
+     * @param methodName A függvény neve
      */
-    public static void callMethod(String methodName, boolean withInnerMethodCalls){
-
-        for (int i = 0; i < indent; i++)
-            buffer += "\t";
-
-        buffer += methodName + "\n";
-
-        if(withInnerMethodCalls)
-            innerMethodCalls();
-    }
-
     public static void callMethod(Class from, String methodName){
 
         Method method = null;
@@ -39,6 +28,13 @@ public class MethodCallHandler {
         buffer += method.getDeclaringClass().getSimpleName() + "." + method.getName() + "()\n";
     }
 
+    /**
+     * Ez a függvény kiírja a konzolra a függvény nevét és az őt megvalósító osztály nevét ponttal elválasztva
+     * és a függvénynek lehet egy paramétert adni.
+     * @param from Az osztály, amiben megtalálható a függvény
+     * @param methodName A függvény neve
+     * @param parameter A függvény paramétere
+     */
     public static void callMethod(Class from, String methodName, String parameter){
 
         Method method = null;
@@ -52,7 +48,7 @@ public class MethodCallHandler {
     }
 
     /**
-     * Függvényen belüli függvényhívást "rajzol".
+     * Hívd meg mielőtt egy függvényen belül hívsz függvényeket.
      */
     public static void innerMethodCalls(){
 

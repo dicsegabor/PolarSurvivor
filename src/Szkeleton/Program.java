@@ -7,7 +7,7 @@ import Szkeleton.Menu.MenuPoints.MainUseCases.*;
 
 public class Program {
 
-    public static void main(String[] args) throws NoSuchMethodException {
+    public static void main(String[] args) {
 
         while (true)
             startMainMenu();
