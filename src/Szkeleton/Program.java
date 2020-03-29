@@ -1,26 +1,22 @@
 package Szkeleton;
 
-import Szkeleton.Menus.Menu;
-import Szkeleton.Menus.MenuPoints.MainMenuPoints.*;
+import Szkeleton.Menu.Menu;
+import Szkeleton.Menu.MenuPoints.LesserUseCases.PlayMusic;
+import Szkeleton.Menu.MenuPoints.MainUseCases.*;
 
-import java.util.Scanner;
 
 public class Program {
 
+    public static void main(String[] args) throws NoSuchMethodException {
 
-    public static int indent = 0;
-    public static String buffer = "";
-
-    public static void main(String[] args){
-
-        while(true)
+        while (true)
             startMainMenu();
     }
 
     /**
      * A főmenüt építi fel és indítja el.
      */
-    private static void startMainMenu(){
+    private static void startMainMenu() {
 
         Menu mainMenu = new Menu("Az alább található opciók forgatókönyvek közül válasszon egyet\n" +
                 "a kívánt elemhez tartozó számnak a begépelésével, majd nyomjon entert!");
@@ -29,66 +25,14 @@ public class Program {
         mainMenu.addMenuPoint(new CharacterFallsInWater("Karakter vízbe esik"));
         mainMenu.addMenuPoint(new EskimoBuildsIglu("Eszkimó iglut épít"));
         mainMenu.addMenuPoint(new ResearcherInspectsField("Sarkkutató szomszédos mezőt néz"));
-        //TODO: Dávid
-        mainMenu.addMenuPoint(new CharacterPicksUpObject("Karakter tárgyat vesz fel"));
+        mainMenu.addMenuPoint(new CharacterPicksUpItem("Karakter tárgyat vesz fel"));
         mainMenu.addMenuPoint(new CharacterDigs("Karakter ás"));
         mainMenu.addMenuPoint(new CharactersTryToAssembleFlareGun("Karakterek összeszerelik a jelzőrakétát"));
         //TODO: Beleírni a modellváltozást (Vihar)
         mainMenu.addMenuPoint(new Storm("Vihar"));
+        mainMenu.addMenuPoint(new PlayMusic("Zene"));
         mainMenu.addMenuPoint(new Exit("Kilépés"));
 
         mainMenu.start();
-    }
-
-    /**
-     * A paraméterül kapoot sztringet egy bufferbe írja be.
-     * @param string Ezt rja be a bufferbe.
-     */
-    public static void writeToBuffer(String string){
-
-        for (int i = 0; i < indent; i++)
-            buffer += "     ";
-
-        buffer += string + "\n";
-    }
-
-    /**
-     * Lezárja a kapcsos zárójeleket, valamint kiírja a buffer tartalmát a konzolra.
-     * Nem kell sehol csökkenteni az indentálást, mert ez a függvény elintézi.
-     * Vár a következő leütött billentyűig.
-     */
-    public static void endScenario(){
-
-        while (indent-- > 0){
-
-            for (int i = 0; i < indent; i++)
-                buffer += "     ";
-
-            buffer += "}\n";
-        }
-        System.out.print(Program.buffer);
-        buffer = "";
-        indent = 0;
-
-        waitForKey();
-    }
-
-    /**
-     * Vár a következő leütött billentyűig.
-     */
-    private static void waitForKey(){
-
-        Scanner scan = new Scanner(System.in);
-        System.out.print("Nyomjon meg egy gombot a folytatáshoz . . .");
-        scan.nextLine();
-        clearScreen();
-    }
-
-    /**
-     * Ezt a kódot csak úgy találtam. Törli a konzolt.
-     */
-    private static void clearScreen() {
-        System.out.print("\033[H\033[2J");
-        System.out.flush();
     }
 }
