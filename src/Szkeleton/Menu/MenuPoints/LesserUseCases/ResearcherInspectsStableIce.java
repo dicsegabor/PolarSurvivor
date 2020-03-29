@@ -13,7 +13,10 @@ public class ResearcherInspectsStableIce extends MenuPoint {
 
     }
 
-
+    /**
+     * A menüponthoz tartozó funkciót itt kell megvalósítani
+     * A szekveniciadiagramok alapján megírt kódot tartalmazza.
+     */
     @Override
     public void function() {
 

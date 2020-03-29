@@ -1,6 +1,5 @@
 package Szkeleton.Menu.MenuPoints.LesserUseCases;
 
-import Karakter.Karakter;
 import Mezo.Mezo;
 import Szkeleton.Menu.MenuPoints.MenuPoint;
 import Szkeleton.MethodCallHandler;
@@ -15,6 +14,10 @@ public class CharachterSavedFromWater extends MenuPoint {
         super(displayedText);
     }
 
+    /**
+     * A menüponthoz tartozó funkciót itt kell megvalósítani
+     * A szekveniciadiagramok alapján megírt kódot tartalmazza.
+     */
     @Override
     public void function() {
 

@@ -12,6 +12,10 @@ public class EndOfScenario extends MenuPoint {
         super(displayedText);
     }
 
+    /**
+     * A menüponthoz tartozó funkciót itt kell megvalósítani
+     * A szekveniciadiagramok alapján megírt kódot tartalmazza.
+     */
     @Override
     public void function() {
 
