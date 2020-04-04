@@ -3,28 +3,28 @@ package Mezo;
 import Targy.Targy;
 
 /**
- * A jégtáblát jelképezi. Tárolhat tárgyat.
- * Absztrakt osztály, belőle származik le a stbil és instabil jégtábla.
+ * A jegtablat jelkepezi. Tarolhat targyat.
+ * Absztrakt osztaly, belole szarmazik le a stbil es instabil jegtabla.
  */
 public abstract class Jegtabla extends Mezo {
 
     /**
-     * A mező által tárol tárgy, amit a karakter felvehet.
+     * A mezo altal tarol targy, amit a karakter felvehet.
      */
     private Targy targy;
 
     /**
-     * Kiadja a tárolt tárgyat.
+     * Kiadja a tarolt targyat.
      */
     public void getTargy(){}
 
     /**
-     * Berak egy karaktert a karakterlistájába.
+     * Berak egy karaktert a karakterlistajaba.
      */
     public abstract void befogad();
 
     /**
-     * Beállítja a mező igluzott attribútumát a kapott értékre.
+     * Beallitja a mezo igluzott attributumat a kapott ertekre.
      */
     @Override
     public void setIgluzott(){}

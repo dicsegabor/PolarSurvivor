@@ -9,15 +9,15 @@ import Szkeleton.MethodCallHandler;
 public class CharacterStepsOnStableIce extends MenuPoint {
 
     /**
-     * @param displayedText Ez a szöveg jelenik meg a menüponthoz.
+     * @param displayedText Ez a szoveg jelenik meg a menuponthoz.
      */
     public CharacterStepsOnStableIce(String displayedText) {
         super(displayedText);
     }
 
     /**
-     * A menüponthoz tartozó funkciót itt kell megvalósítani
-     * A szekveniciadiagramok alapján megírt kódot tartalmazza.
+     * A menuponthoz tartozo funkciot itt kell megvalositani
+     * A szekveniciadiagramok alapjan megirt kodot tartalmazza.
      */
     @Override
     public void function() {

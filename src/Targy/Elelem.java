@@ -1,18 +1,18 @@
 package Targy;
 
 /**
- * Ha egy karakter elfogyasztja, akkor egyel nő a testhője.
+ * Ha egy karakter elfogyasztja, akkor egyel no a testhoje.
  */
 public class Elelem implements Targy {
 
     /**
-     * Megvalósítja a tárgy funkcionalitását.
+     * Megvalositja a targy funkcionalitasat.
      */
     @Override
     public void hasznal() {}
 
     /**
-     * Visszatér a tárgy típusával.
+     * Visszater a targy tipusaval.
      */
     @Override
     public void tipus() {}

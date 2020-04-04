@@ -1,12 +1,12 @@
 package Mezo;
 
 /**
- * A karakterek vízből való kimetését teszi lehetővé.
+ * A karakterek vizbol valo kimeteset teszi lehetove.
  */
 public interface VizbeesesListener {
 
     /**
-     * Ha beesik a vízbe egy karakter, akkor meghívódik a függvény.
+     * Ha beesik a vizbe egy karakter, akkor meghivodik a fuggveny.
      */
     void segitseg();
 }

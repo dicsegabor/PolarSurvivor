@@ -1,12 +1,12 @@
 package Mezo;
 
 /**
- * Az stabil jégtáblát jelképezi.
+ * Az stabil jegtablat jelkepezi.
  */
 public class StabilJegtabla extends  Jegtabla {
 
     /**
-     * Berak egy karaktert a karakterlistájába.
+     * Berak egy karaktert a karakterlistajaba.
      */
     @Override
     public void befogad() {}

@@ -1,17 +1,17 @@
 package Targy;
 
 /**
- *A jégtáblákban található tárgyakat jelképezi.
+ *A jegtablakban talalhato targyakat jelkepezi.
  */
 public interface Targy {
 
     /**
-     * Megvalósítja a tárgy funkcionalitását.
+     * Megvalositja a targy funkcionalitasat.
      */
     void hasznal();
 
     /**
-     * Visszatér a tárgy típusával.
+     * Visszater a targy tipusaval.
      */
     void tipus();
 }

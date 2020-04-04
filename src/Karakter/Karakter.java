@@ -6,72 +6,72 @@ import Targy.*;
 import java.util.List;
 
 /**
- * A játékban megvalósított karakterek (Kutató, Eszkimó) alapja.
+ * A jatekban megvalositott karakterek (Kutato, Eszkimo) alapja.
  */
 public class Karakter {
 
     /**
-     * A karakter életereje gyakorlatilag. Ha elfogy és a karakter meghal, akkor vége a játéknak.
+     * A karakter eletereje gyakorlatilag. Ha elfogy es a karakter meghal, akkor vege a jateknak.
      */
     private int testho;
 
     /**
-     * Bármilyen cselekvés munkát emészt fel. Ha elfogy, akkor a karakter nem tud semmit csinálni, és véget ér a köre.
-     * A munnka a körök végén újratöltődik.
+     * Barmilyen cselekves munkat emeszt fel. Ha elfogy, akkor a karakter nem tud semmit csinalni, es veget er a kore.
+     * A munnka a korok vegen ujratoltodik.
      */
     private int munka;
 
     /**
-     * Tárolja, hogy a karakter éppen melyik mezőn áll.
+     * Tarolja, hogy a karakter eppen melyik mezon all.
      */
     protected Mezo mezo;
 
     /**
-     * A karakter tárgylistája, ebben tárolja a tárgyakat, amiket a karakter használni tud.
+     * A karakter targylistaja, ebben tarolja a targyakat, amiket a karakter hasznalni tud.
      */
     private List<Targy> targyak;
 
     /**
-     * A karakter felveszi az őt tartalmazó mezőben található tárgyat
-     * és hozzáadja a tárgylistájához.
-     * Amennyiben a tárgy élelem, akkor el is fogyasztja azt.
+     * A karakter felveszi az ot tartalmazo mezoben talalhato targyat
+     * es hozzaadja a targylistajahoz.
+     * Amennyiben a targy elelem, akkor el is fogyasztja azt.
      */
     public void felvesz(){}
 
     /**
-     * A karakternek a teshője nullára csökken, és véget ér a játék.
+     * A karakternek a teshoje nullara csokken, es veget er a jatek.
      */
     public void meghal(){}
 
     /**
-     * A karakter átlép egyik mezőből a másikba.
-     * Csökken egyel a munka.
+     * A karakter atlep egyik mezobol a masikba.
+     * Csokken egyel a munka.
      */
     public void lep(){}
 
     /**
-     * A karakter eltávolít valamennyi havat a mezőről.
-     * Csökken egyel a munka.
+     * A karakter eltavolit valamennyi havat a mezorol.
+     * Csokken egyel a munka.
      */
     public void as(){}
 
     /**
-     * A karakter osszerakja a jelzőrakétát és véget ér a játék.
+     * A karakter osszerakja a jelzoraketat es veget er a jatek.
      */
     public void kombinal(){}
 
     /**
-     * A karakter kikeres egy tárgyat a tárgylistájából.
+     * A karakter kikeres egy targyat a targylistajabol.
      */
     public void keres(){}
 
     /**
-     * A karakter testhője lecsökken egyel.
+     * A karakter testhoje lecsokken egyel.
      */
     public void testhotCsokkent(){}
 
     /**
-     * A karakter munkája lecsökken egyel.
+     * A karakter munkaja lecsokken egyel.
      */
     public void munkaCsokkent(){}
 }

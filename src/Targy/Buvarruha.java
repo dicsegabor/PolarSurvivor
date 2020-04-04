@@ -1,18 +1,18 @@
 package Targy;
 
 /**
- * Ha egy karakter a vízbe esik, akkor nem történik vele semmi.
+ * Ha egy karakter a vizbe esik, akkor nem tortenik vele semmi.
  */
 public class Buvarruha implements Targy {
 
     /**
-     * Megvalósítja a tárgy funkcionalitását.
+     * Megvalositja a targy funkcionalitasat.
      */
     @Override
     public void hasznal() {}
 
     /**
-     * Visszatér a tárgy típusával.
+     * Visszater a targy tipusaval.
      */
     @Override
     public void tipus() {}

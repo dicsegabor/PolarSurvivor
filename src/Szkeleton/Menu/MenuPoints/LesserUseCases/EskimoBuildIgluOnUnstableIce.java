@@ -10,15 +10,15 @@ import Szkeleton.MethodCallHandler;
 public class EskimoBuildIgluOnUnstableIce extends MenuPoint {
 
     /**
-     * @param displayedText Ez a szöveg jelenik meg a menüponthoz.
+     * @param displayedText Ez a szoveg jelenik meg a menuponthoz.
      */
     public EskimoBuildIgluOnUnstableIce(String displayedText) {
         super(displayedText);
     }
 
     /**
-     * A menüponthoz tartozó funkciót itt kell megvalósítani
-     * A szekveniciadiagramok alapján megírt kódot tartalmazza.
+     * A menuponthoz tartozo funkciot itt kell megvalositani
+     * A szekveniciadiagramok alapjan megirt kodot tartalmazza.
      */
     @Override
     public void function() {
@@ -27,7 +27,7 @@ public class EskimoBuildIgluOnUnstableIce extends MenuPoint {
             MethodCallHandler.callMethod(StabilJegtabla.class, "setIgluzott", "true");
 
         //Question
-        Menu optionsMenu = new Menu("Túllépi-e ezzel a mező kapacitását?");
+        Menu optionsMenu = new Menu("Tullepi-e ezzel a mezo kapacitasat?");
         optionsMenu.addMenuPoint(new CharacterFallsInWater("Igen"));
         optionsMenu.addMenuPoint(new EndOfScenario("Nem"));
         optionsMenu.start();

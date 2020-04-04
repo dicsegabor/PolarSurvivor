@@ -1,7 +1,7 @@
 package Targy;
 
 /**
- * Tárolja a tárgyak típusait.
+ * Tarolja a targyak tipusait.
  */
 public enum Targytipus {
 

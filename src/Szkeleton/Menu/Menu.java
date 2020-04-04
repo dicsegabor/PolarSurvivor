@@ -8,22 +8,22 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- * Ez az osztály szolgál a konzolon megjelenő menük alapjául.
+ * Ez az osztaly szolgal a konzolon megjeleno menuk alapjaul.
  */
 public class Menu {
 
     /**
-     * Tárolja, hogy mit ír ki a menü megjelenéskor (általában a kérdést).
+     * Tarolja, hogy mit ir ki a menu megjeleneskor (altalaban a kerdest).
      */
     private String menuText;
 
     /**
-     * Tárolja a menüpontokat.
+     * Tarolja a menupontokat.
      */
     private List<MenuPoint> menuPoints;
 
     /**
-     * @param menuText Ez a paraméter adja meg, hogy mit ír ki a menü megjelenésekor.
+     * @param menuText Ez a parameter adja meg, hogy mit ir ki a menu megjelenesekor.
      */
     public Menu(String menuText){
 
@@ -37,7 +37,7 @@ public class Menu {
     }
 
     /**
-     * Kiíratja a menüt, valamint a menüpont kiválasztását és végrehajtását is kezeli.
+     * Kiiratja a menut, valamint a menupont kivalasztasat es vegrehajtasat is kezeli.
      */
     public void start(){
 
@@ -46,8 +46,8 @@ public class Menu {
     }
 
     /**
-     * Megejeleníti a menüt a konzolon. Kiírja a "menuText"-ben található szöveget,
-     * majd növekvő számozással egyesével a menüpontokat.
+     * Megejeleniti a menut a konzolon. Kiirja a "menuText"-ben talalhato szoveget,
+     * majd novekvo szamozassal egyesevel a menupontokat.
      */
     private void display(){
 
@@ -59,18 +59,18 @@ public class Menu {
     }
 
     /**
-     * Megkéri a felhasználót, hogy adjon meg egy bemenetet, valamint leellenőrzi azt.
-     * Ha a kapott bemenet helyes, akkor kválasztja az adott menüpontot.
+     * Megkeri a felhasznalot, hogy adjon meg egy bemenetet, valamint leellenorzi azt.
+     * Ha a kapott bemenet helyes, akkor kvalasztja az adott menupontot.
      */
     private void requestInput(){
 
-        System.out.println("Kérem írja be a választott számot!");
+        System.out.println("Kerem irja be a valasztott szamot!");
         Scanner input = new Scanner(System.in);
         String inputValue = input.nextLine();
 
         while(!testProperInput(inputValue)) {
 
-            System.out.println("Kérem írjon be egy helyes értéket!");
+            System.out.println("Kerem irjon be egy helyes erteket!");
             inputValue = input.nextLine();
         }
 
@@ -78,9 +78,9 @@ public class Menu {
     }
 
     /**
-     * Leellenőrzi, hogy a kapott bemenet megfelel-e.
+     * Leellenorzi, hogy a kapott bemenet megfelel-e.
      * @param input Kapott bemenet.
-     * @return Igazzal tér vissza, ha a bemenet egy 0 és a menüpontok száma közti szám.
+     * @return Igazzal ter vissza, ha a bemenet egy 0 es a menupontok szama kozti szam.
      */
     private boolean testProperInput(String input){
 
@@ -94,8 +94,8 @@ public class Menu {
     }
 
     /**
-     * Végrehjatja a kiválasztott menüponthoz tartozó utasítást, valamint letörli a konzolt.
-     * @param number A választott menüpont sorszáma.
+     * Vegrehjatja a kivalasztott menuponthoz tartozo utasitast, valamint letorli a konzolt.
+     * @param number A valasztott menupont sorszama.
      */
     private void chooseMenuPoint(int number){
 

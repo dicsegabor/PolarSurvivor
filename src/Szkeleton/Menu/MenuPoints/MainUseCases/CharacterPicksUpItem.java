@@ -8,23 +8,23 @@ import Szkeleton.Menu.MenuPoints.MenuPoint;
 public class CharacterPicksUpItem extends MenuPoint {
 
     /**
-     * @param displayedText Ez a szöveg jelenik meg a menüponthoz.
+     * @param displayedText Ez a szoveg jelenik meg a menuponthoz.
      */
     public CharacterPicksUpItem(String displayedText) {
         super(displayedText);
     }
 
     /**
-     * A menüponthoz tartozó funkciót itt kell megvalósítani
-     * A szekveniciadiagramok alapján megírt kódot tartalmazza.
+     * A menuponthoz tartozo funkciot itt kell megvalositani
+     * A szekveniciadiagramok alapjan megirt kodot tartalmazza.
      */
     @Override
     public void function() {
 
         //Question
-        Menu options = new Menu("Milyen tárgyat vesz fel a karakter?");
-        options.addMenuPoint(new CharacterPicksUpFood("Élelem"));
-        options.addMenuPoint(new CharacterPicksUpNonFoodItem("Más tárgy"));
+        Menu options = new Menu("Milyen targyat vesz fel a karakter?");
+        options.addMenuPoint(new CharacterPicksUpFood("elelem"));
+        options.addMenuPoint(new CharacterPicksUpNonFoodItem("Mas targy"));
         options.start();
     }
 }

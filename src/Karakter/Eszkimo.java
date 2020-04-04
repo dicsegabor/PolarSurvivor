@@ -1,14 +1,14 @@
 package Karakter;
 
 /**
- * Az eszkimó típusú karaktert jelképezi a játékban.
- * Több testhővel indul, mint a kutató, és képes iglut építeni.
+ * Az eszkimo tipusu karaktert jelkepezi a jatekban.
+ * Tobb testhovel indul, mint a kutato, es kepes iglut epiteni.
  */
 public class Eszkimo extends Karakter {
 
     /**
-     * Iglut épít a jégtáblára amin, áll, így elkerülve a vihar hatásait.
-     * Átállítja, az őt tartalmazó jégtábla "igluzott" értékét true-ra.
+     * Iglut epit a jegtablara amin, all, igy elkerulve a vihar hatasait.
+     * atallitja, az ot tartalmazo jegtabla "igluzott" erteket true-ra.
      */
     public void iglutEpit(){}
 }

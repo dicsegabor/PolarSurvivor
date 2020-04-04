@@ -7,23 +7,23 @@ import Szkeleton.Menu.MenuPoints.MenuPoint;
 public class ResearcherInspectsField extends MenuPoint {
 
     /**
-     * @param displayedText Ez a szöveg jelenik meg a menüponthoz.
+     * @param displayedText Ez a szoveg jelenik meg a menuponthoz.
      */
     public ResearcherInspectsField(String displayedText) {
         super(displayedText);
     }
 
     /**
-     * A menüponthoz tartozó funkciót itt kell megvalósítani
-     * A szekveniciadiagramok alapján megírt kódot tartalmazza.
+     * A menuponthoz tartozo funkciot itt kell megvalositani
+     * A szekveniciadiagramok alapjan megirt kodot tartalmazza.
      */
     @Override
     public void function() {
 
         //Question
-        Menu opt = new Menu("Milyen típusú mezőt nézünk meg?");
-        opt.addMenuPoint(new ResearcherInspectsStableIce("Stabil jégtábla"));
-        opt.addMenuPoint(new ResearcherInspectsUnstableIce("Instabil jégtábla"));
+        Menu opt = new Menu("Milyen tipusu mezot nezunk meg?");
+        opt.addMenuPoint(new ResearcherInspectsStableIce("Stabil jegtabla"));
+        opt.addMenuPoint(new ResearcherInspectsUnstableIce("Instabil jegtabla"));
         opt.addMenuPoint(new ResearcherInspectsHole("Lyuk"));
         opt.start();
     }

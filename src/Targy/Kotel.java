@@ -1,18 +1,18 @@
 package Targy;
 
 /**
- * Segítségével ki lehet húzni egy karaktert a vízből.
+ * Segitsegevel ki lehet huzni egy karaktert a vizbol.
  */
 public class Kotel implements Targy {
 
     /**
-     * Megvalósítja a tárgy funkcionalitását.
+     * Megvalositja a targy funkcionalitasat.
      */
     @Override
     public void hasznal() {}
 
     /**
-     * Visszatér a tárgy típusával.
+     * Visszater a targy tipusaval.
      */
     @Override
     public void tipus() {}

@@ -10,15 +10,15 @@ import Szkeleton.MethodCallHandler;
 public class CharacterDigs extends MenuPoint {
 
     /**
-     * @param displayedText Ez a szöveg jelenik meg a menüponthoz.
+     * @param displayedText Ez a szoveg jelenik meg a menuponthoz.
      */
     public CharacterDigs(String displayedText) {
         super(displayedText);
     }
 
     /**
-     * A menüponthoz tartozó funkciót itt kell megvalósítani
-     * A szekveniciadiagramok alapján megírt kódot tartalmazza.
+     * A menuponthoz tartozo funkciot itt kell megvalositani
+     * A szekveniciadiagramok alapjan megirt kodot tartalmazza.
      */
     @Override
     public void function() {
@@ -28,7 +28,7 @@ public class CharacterDigs extends MenuPoint {
             MethodCallHandler.callMethod(Karakter.class, "munkaCsokkent");
 
         //Question
-        Menu options = new Menu("Van-e lapátja a karakternek?");
+        Menu options = new Menu("Van-e lapatja a karakternek?");
         options.addMenuPoint(new CharacterDigsWithShovel("Igen"));
         options.addMenuPoint(new CharacterDigsWithoutShovel("Nem"));
         options.start();

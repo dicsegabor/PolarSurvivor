@@ -9,15 +9,15 @@ import Szkeleton.MethodCallHandler;
 public class Storm extends MenuPoint {
 
     /**
-     * @param displayedText Ez a szöveg jelenik meg a menüponthoz.
+     * @param displayedText Ez a szoveg jelenik meg a menuponthoz.
      */
     public Storm(String displayedText) {
         super(displayedText);
     }
 
     /**
-     * A menüponthoz tartozó funkciót itt kell megvalósítani
-     * A szekveniciadiagramok alapján megírt kódot tartalmazza.
+     * A menuponthoz tartozo funkciot itt kell megvalositani
+     * A szekveniciadiagramok alapjan megirt kodot tartalmazza.
      */
     @Override
     public void function() {
@@ -27,9 +27,10 @@ public class Storm extends MenuPoint {
         MethodCallHandler.innerMethodCalls();
 
         //Question
-        Menu stepOptions = new Menu("Elkap-e valakit a vihar?");
-        stepOptions.addMenuPoint(new StromStrikesCharacter("Igen"));
-        stepOptions.addMenuPoint(new EndOfScenario("Nem"));
-        stepOptions.start();
+        Menu options = new Menu("Mit kap el a vihar?");
+        options.addMenuPoint(new StromStrikesCharacter("Karaktert"));
+        options.addMenuPoint(new StormStrikesIglu("Iglut"));
+        options.addMenuPoint(new EndOfScenario("Semmit"));
+        options.start();
     }
 }

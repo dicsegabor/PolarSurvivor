@@ -1,14 +1,14 @@
 package Mezo;
 
 /**
- * Az instabil jégtáblát jelképezi.
- * Ha túllépik a kapacíitását, akkor a rajta álló karakterek vízbe esnek.
+ * Az instabil jegtablat jelkepezi.
+ * Ha tullepik a kapaciitasat, akkor a rajta allo karakterek vizbe esnek.
  */
 public class InstabilJegtabla extends Jegtabla {
 
     /**
-     * Berak egy karaktert a karakterlistájába.
-     * Megvizsgálja, hogy túllépik-e a kapacitást.
+     * Berak egy karaktert a karakterlistajaba.
+     * Megvizsgalja, hogy tullepik-e a kapacitast.
      */
     @Override
     public void befogad() {}

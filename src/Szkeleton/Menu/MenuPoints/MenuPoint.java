@@ -1,17 +1,17 @@
 package Szkeleton.Menu.MenuPoints;
 
 /**
- * Ez az osztály jelképezi a menüpontokat.
+ * Ez az osztaly jelkepezi a menupontokat.
  */
 public abstract class MenuPoint {
 
     /**
-     * Tárolja, hogy milyen szöveg jelenik meg a menüponthoz.
+     * Tarolja, hogy milyen szoveg jelenik meg a menuponthoz.
      */
     public String displayedText;
 
     /**
-     * @param displayedText Ez a szöveg jelenik meg a menüponthoz.
+     * @param displayedText Ez a szoveg jelenik meg a menuponthoz.
      */
     public MenuPoint(String displayedText){
 
@@ -19,12 +19,12 @@ public abstract class MenuPoint {
     }
 
     /**
-     * Itt kell megvalósítani a menüponthoz tartozó funkciót.
-     * Ez négy részre oszolhat:
-     * Init: Létrehozzuk a használni kívánt objektumokat
-     * Action: Meghívjuk az létrehozott objektumok kívánt függvényeit
-     * Question: Új menüt nyitunk
-     * End: Vége van az adott forgatókönyvnek és meghívjuk a program lezáró függvényét
+     * Itt kell megvalositani a menuponthoz tartozo funkciot.
+     * Ez negy reszre oszolhat:
+     * Init: Letrehozzuk a hasznalni kivant objektumokat
+     * Action: Meghivjuk az letrehozott objektumok kivant fuggvenyeit
+     * Question: uj menut nyitunk
+     * End: Vege van az adott forgatokonyvnek es meghivjuk a program lezaro fuggvenyet
      */
     public abstract void function();
 }

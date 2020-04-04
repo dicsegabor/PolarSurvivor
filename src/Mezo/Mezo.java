@@ -6,91 +6,91 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Absztrakt mező osztály. Ez jelképezi a lépthető mezüket a játékban.
+ * Absztrakt mezo osztaly. Ez jelkepezi a leptheto mezuket a jatekban.
  */
 public abstract class Mezo implements VizbeesesListener {
 
     /**
-     * A mezőn található hómennyiséget jelképezi.
-     * Ha 0 értékű, akkor látszik, hogy a mező lyuk-e.
+     * A mezon talalhato homennyiseget jelkepezi.
+     * Ha 0 erteku, akkor latszik, hogy a mezo lyuk-e.
      */
     private int horeteg;
 
     /**
-     * A mező kapacitását jelképezi.
-     * Ha a mező stabil jégtábla, akkor végtelen.
-     * Ha a mező instabil jégtábla, akkor véges és ha túllépik, akkor a rajta álló karakterek vízbe esnek.
-     * Ha a mező lyuk, akkor nulla, és a karakterek, amik rálépnek egyből vízbe esnek.
+     * A mezo kapacitasat jelkepezi.
+     * Ha a mezo stabil jegtabla, akkor vegtelen.
+     * Ha a mezo instabil jegtabla, akkor veges es ha tullepik, akkor a rajta allo karakterek vizbe esnek.
+     * Ha a mezo lyuk, akkor nulla, es a karakterek, amik ralepnek egybol vizbe esnek.
      */
     protected int kapacitas;
 
-    //TODO: Beleírni a modellváltozást (igluzott a mező attribútuma lett)
+    //TODO: Beleirni a modellvaltozast (igluzott a mezo attributuma lett)
     /**
-     * Jelzi, hogy a jégtáblán áll-e iglu.
-     * Ha igen, akkor a rajta álló karaktereknek a vihar nem csökkenti a testhőjét.
+     * Jelzi, hogy a jegtablan all-e iglu.
+     * Ha igen, akkor a rajta allo karaktereknek a vihar nem csokkenti a testhojet.
      */
     protected boolean igluzott;
 
     /**
-     * A mező karakterlistája. Itt tárolja a tartalmazott karaktereket
+     * A mezo karakterlistaja. Itt tarolja a tartalmazott karaktereket
      */
     private List<Karakter> karakterek = new ArrayList<>();
 
     /**
-     * A mező szomszédos mezőket tároló listája.
+     * A mezo szomszedos mezoket tarolo listaja.
      */
     private List<Mezo> szomszedok;
 
-    //TODO: Beleírni a modellváltozást (vihar nem absztrakt már)
+    //TODO: Beleirni a modellvaltozast (vihar nem absztrakt mar)
 
     /**
-     * A játékban a vihart jelképezi.
-     * Növlei véletlenszerű mennyiséggel a havat,
-     * és a mezőn álló karakterek testhőjét csökkenti egyel.
+     * A jatekban a vihart jelkepezi.
+     * Novlei veletlenszeru mennyiseggel a havat,
+     * es a mezon allo karakterek testhojet csokkenti egyel.
      */
     public void vihar(){}
 
     /**
-     * Beállítja a mező szomszédját.
-     * Hozzáadja a szomszéd listához.
+     * Beallitja a mezo szomszedjat.
+     * Hozzaadja a szomszed listahoz.
      */
     public void setSzomszed(){}
 
     /**
-     * Visszatér a mező kapacitásával.
+     * Visszater a mezo kapacitasaval.
      */
     public void getKapacitas(){}
 
     /**
-     * Csökkenti a horéteget a megadott mennyiséggel.
+     * Csokkenti a horeteget a megadott mennyiseggel.
      */
     public void havatCsokkent(){}
 
     /**
-     * Berak egy karaktert a karakterlistájába.
+     * Berak egy karaktert a karakterlistajaba.
      */
     public abstract void befogad();
 
     /**
-     * Kivesz egy karaktert a karakterlistájából és visszatér azzal.
+     * Kivesz egy karaktert a karakterlistajabol es visszater azzal.
      */
     public void kiad(){}
 
     /**
-     * Ellenőrzi, hogy a megadott mező szomszédos-e.
+     * Ellenorzi, hogy a megadott mezo szomszedos-e.
      */
     public void szomszedE(){}
 
     /**
-     * Ha a szomszédos mezők egyikén van karakter kötéllel, akkor az kimenti a vízbe esett karaktereket.
+     * Ha a szomszedos mezok egyiken van karakter kotellel, akkor az kimenti a vizbe esett karaktereket.
      */
     @Override
     public void segitseg(){}
 
-    //TODO: Beleírni a modellváltozást (megjelent a függvény)
+    //TODO: Beleirni a modellvaltozast (megjelent a fuggveny)
 
     /**
-     * Beállítja a mező igluzott attribútumát a kapott értékre.
+     * Beallitja a mezo igluzott attributumat a kapott ertekre.
      */
     public abstract void setIgluzott();
 }

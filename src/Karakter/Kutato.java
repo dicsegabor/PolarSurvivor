@@ -1,10 +1,10 @@
 package Karakter;
 
 /**
- * Az kutató típusú karaktert jelképezi a játékban.
- * Képes megvizsgálni a szmszédos mezők kapacitását.
+ * Az kutato tipusu karaktert jelkepezi a jatekban.
+ * Kepes megvizsgalni a szmszedos mezok kapacitasat.
  */
 public class Kutato extends Karakter {
 
-    public void jegetNez(){}
+    public void jegetNez() {}
 }

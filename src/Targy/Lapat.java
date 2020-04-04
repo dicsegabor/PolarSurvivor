@@ -1,18 +1,18 @@
 package Targy;
 
 /**
- * Segítségével két réteg havat ehet eltávolítani a mezőről.
+ * Segitsegevel ket reteg havat ehet eltavolitani a mezorol.
  */
 public class Lapat implements Targy {
 
     /**
-     * Megvalósítja a tárgy funkcionalitását.
+     * Megvalositja a targy funkcionalitasat.
      */
     @Override
     public void hasznal() {}
 
     /**
-     * Visszatér a tárgy típusával.
+     * Visszater a targy tipusaval.
      */
     @Override
     public void tipus() {}

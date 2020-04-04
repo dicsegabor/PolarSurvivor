@@ -2,10 +2,12 @@ package Szkeleton;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 /**
- * Ez az osztály felel a függvényhívások szép megjelenítéséért.
+ * Ez az osztaly felel a fuggvenyhivasok szep megjeleniteseert.
  */
 public class MethodCallHandler {
 
@@ -13,43 +15,65 @@ public class MethodCallHandler {
     private static String buffer = "";
 
     /**
-     * Ez a függvény kiírja a konzolra a függvény nevét és az őt megvalósító osztály nevét ponttal elválasztva.
-     * @param from Az osztály, amiben megtalálható a függvény
-     * @param methodName A függvény neve
+     * Ez a fuggveny kiirja a konzolra a fuggveny nevet es az ot megvalosito osztaly nevet ponttal elvalasztva.
+     * @param from Az osztaly, amiben megtalalhato a fuggveny
+     * @param methodName A fuggveny neve
      */
     public static void callMethod(Class from, String methodName){
 
         Method method = null;
-        try { method = from.getMethod(methodName); }
-        catch (NoSuchMethodException e) { System.out.println("Nincs ilyen metódus!(" + from.getSimpleName() + "." + methodName + ")"); }
 
-        for (int i = 0; i < indent; i++)
-            buffer += "\t";
+        Method[] methods = from.getMethods();
 
-        buffer += method.getDeclaringClass().getSimpleName() + "." + method.getName() + "()\n";
+        for(Method m : methods){
+            if(m.getName().equals(methodName))
+                method = m;
+        }
+
+        if(method != null) {
+
+            for (int i = 0; i < indent; i++)
+                buffer += "\t";
+
+            buffer += method.getDeclaringClass().getSimpleName() + "." + method.getName() + "()\n";
+        }
+
+        else
+            System.out.println("Nincs ilyen metodus!(" + from.getSimpleName() + "." + methodName + ")");
     }
 
     /**
-     * Ez a függvény kiírja a konzolra a függvény nevét és az őt megvalósító osztály nevét ponttal elválasztva
-     * és a függvénynek lehet egy paramétert adni.
-     * @param from Az osztály, amiben megtalálható a függvény
-     * @param methodName A függvény neve
-     * @param parameter A függvény paramétere
+     * Ez a fuggveny kiirja a konzolra a fuggveny nevet es az ot megvalosito osztaly nevet ponttal elvalasztva
+     * es a fuggvenynek lehet egy parametert adni.
+     * @param from Az osztaly, amiben megtalalhato a fuggveny
+     * @param methodName A fuggveny neve
+     * @param parameter A fuggveny parametere
      */
     public static void callMethod(Class from, String methodName, String parameter){
 
         Method method = null;
-        try { method = from.getMethod(methodName); }
-        catch (NoSuchMethodException e) { System.out.println("Nincs ilyen metódus!(" + from.getSimpleName() + "." + methodName + ")"); }
 
-        for (int i = 0; i < indent; i++)
-            buffer += "\t";
+        Method[] methods = from.getMethods();
 
-        buffer += method.getDeclaringClass().getSimpleName() + "." + method.getName() + "(" + parameter + ")\n";
+        for(Method m : methods){
+            if(m.getName().equals(methodName))
+                method = m;
+        }
+
+        if(method != null) {
+
+            for (int i = 0; i < indent; i++)
+                buffer += "\t";
+
+            buffer += method.getDeclaringClass().getSimpleName() + "." + method.getName() + "(" + parameter + ")\n";
+        }
+
+        else
+            System.out.println("Nincs ilyen metodus!(" + from.getSimpleName() + "." + methodName + ")");
     }
 
     /**
-     * Hívd meg mielőtt egy függvényen belül hívsz függvényeket.
+     * Hivd meg mielott egy fuggvenyen belul hivsz fuggvenyeket.
      */
     public static void innerMethodCalls(){
 
@@ -61,7 +85,7 @@ public class MethodCallHandler {
     }
 
     /**
-     * Hívd meg miután egy függvényen belül hívsz függvényeket.
+     * Hivd meg miutan egy fuggvenyen belul hivsz fuggvenyeket.
      */
     public static void endOfInnerMethodCalls(){
 
@@ -74,8 +98,8 @@ public class MethodCallHandler {
     }
 
     /**
-     * Lezárja a kapcsos zárójeleket, valamint kiírja a buffer tartalmát a konzolra.
-     * Vár a következő leütött billentyűig.
+     * Lezarja a kapcsos zarojeleket, valamint kiirja a buffer tartalmat a konzolra.
+     * Var a kovetkezo leutott billentyuig.
      */
     public static void endScenario(){
 
@@ -101,18 +125,18 @@ public class MethodCallHandler {
     }
 
     /**
-     * Vár a következő leütött billentyűig.
+     * Var a kovetkezo leutott billentyuig.
      */
     private static void waitForKey(){
 
         Scanner scan = new Scanner(System.in);
-        System.out.print("Nyomjon entert a folytatáshoz . . .");
+        System.out.print("Nyomjon entert a folytatashoz . . .");
         scan.nextLine();
         clearScreen();
     }
 
     /**
-     * Törli a konzol tartalmát.
+     * Torli a konzol tartalmat.
      */
     public static void clearScreen() {
 

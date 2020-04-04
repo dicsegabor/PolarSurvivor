@@ -1,19 +1,19 @@
 package Targy;
 
 /**
- * Használatával megvizsgálja, hogy a mezőn található-e a többi komponens,
- * és ha igen akkor vége a játéknak.
+ * Hasznalataval megvizsgalja, hogy a mezon talalhato-e a tobbi komponens,
+ * es ha igen akkor vege a jateknak.
  */
 public class Pisztoly implements Targy {
 
     /**
-     * Megvalósítja a tárgy funkcionalitását.
+     * Megvalositja a targy funkcionalitasat.
      */
     @Override
     public void hasznal() {}
 
     /**
-     * Visszatér a tárgy típusával.
+     * Visszater a targy tipusaval.
      */
     @Override
     public void tipus() {}
