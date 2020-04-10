@@ -22,7 +22,7 @@ public class SkeletonProgram {
 
         mainMenu.addMenuPoint(new CharacterSteps("Karakter lep"));
         mainMenu.addMenuPoint(new CharacterFallsInWater("Karakter vizbe esik"));
-        mainMenu.addMenuPoint(new EskimoBuildsIglu("Eszkimo iglut epit"));
+        mainMenu.addMenuPoint(new EskimoBuildsIgloo("Eszkimo iglut epit"));
         mainMenu.addMenuPoint(new ResearcherInspectsField("Sarkkutato szomszedos mezot nez"));
         mainMenu.addMenuPoint(new CharacterPicksUpItem("Karakter targyat vesz fel"));
         mainMenu.addMenuPoint(new CharacterDigs("Karakter as"));

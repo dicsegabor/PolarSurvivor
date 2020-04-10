@@ -29,7 +29,7 @@ public class Storm extends MenuPoint {
         //Question
         Menu options = new Menu("Mit kap el a vihar?");
         options.addMenuPoint(new StromStrikesCharacter("Karaktert"));
-        options.addMenuPoint(new StormStrikesIglu("Iglut"));
+        options.addMenuPoint(new StormStrikesIgloo("Iglut"));
         options.addMenuPoint(new EndOfScenario("Semmit"));
         options.start();
     }
