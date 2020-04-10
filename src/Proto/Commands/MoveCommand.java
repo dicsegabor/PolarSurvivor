@@ -1,7 +1,7 @@
 package Proto.Commands;
 
 import Proto.Commander.Commands.Command;
-import Proto.Exceptions.WrongArgumentException;
+import Proto.Commander.Exceptions.WrongArgumentException;
 
 import java.util.ArrayList;
 import java.util.List;

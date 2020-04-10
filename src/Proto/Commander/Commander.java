@@ -1,8 +1,8 @@
 package Proto.Commander;
 
 import Proto.Commander.Commands.*;
-import Proto.Comparators.CommandNameComparator;
-import Proto.Exceptions.*;
+import Proto.Commander.Comparators.CommandNameComparator;
+import Proto.Commander.Exceptions.*;
 
 import java.io.InputStream;
 import java.util.*;

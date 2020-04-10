@@ -1,4 +1,4 @@
-package Proto.Comparators;
+package Proto.Commander.Comparators;
 
 import Proto.Commander.Commands.Command;
 

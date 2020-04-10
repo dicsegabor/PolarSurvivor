@@ -1,7 +1,7 @@
 package Proto.Commander.Commands;
 
 import Proto.Commander.Commander;
-import Proto.Exceptions.WrongArgumentException;
+import Proto.Commander.Exceptions.WrongArgumentException;
 
 import java.util.List;
 

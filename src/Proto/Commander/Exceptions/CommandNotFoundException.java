@@ -1,4 +1,4 @@
-package Proto.Exceptions;
+package Proto.Commander.Exceptions;
 
 public class CommandNotFoundException extends Exception {
 
