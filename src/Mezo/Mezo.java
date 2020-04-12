@@ -1,6 +1,9 @@
 package Mezo;
 
-import Karakter.Karakter;
+import Mozgathato.Jegesmedve;
+import Mozgathato.Karakter;
+import Mozgathato.Mozgathato;
+import Program.Game;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,37 +27,42 @@ public abstract class Mezo implements VizbeesesListener {
      */
     protected int kapacitas;
 
-    //TODO: Beleirni a modellvaltozast (igluzott a mezo attributuma lett)
-    /**
-     * Jelzi, hogy a jegtablan all-e iglu.
-     * Ha igen, akkor a rajta allo karaktereknek a vihar nem csokkenti a testhojet.
-     */
-    protected boolean igluzott;
+    protected Jegesmedve jegesmedve;
 
     /**
      * A mezo karakterlistaja. Itt tarolja a tartalmazott karaktereket
      */
-    private List<Karakter> karakterek = new ArrayList<>();
+    protected List<Karakter> karakterek;
 
     /**
      * A mezo szomszedos mezoket tarolo listaja.
      */
-    private List<Mezo> szomszedok;
-
-    //TODO: Beleirni a modellvaltozast (vihar nem absztrakt mar)
+    private List<Mezo> szomszedok = new ArrayList<Mezo>();
 
     /**
      * A jatekban a vihart jelkepezi.
      * Novlei veletlenszeru mennyiseggel a havat,
      * es a mezon allo karakterek testhojet csokkenti egyel.
      */
-    public void vihar(){}
+    public void vihar(){
+
+        horeteg += Game.getRandomNumber(5);
+    }
 
     /**
      * Beallitja a mezo szomszedjat.
      * Hozzaadja a szomszed listahoz.
      */
-    public void setSzomszed(){}
+    public void setSzomszed(Mezo mezo){
+
+        if(!szomszedE(mezo)) {
+
+            szomszedok.add(mezo);
+
+            if (!mezo.szomszedE(this))
+                mezo.setSzomszed(this);
+        }
+    }
 
     /**
      * Visszater a mezo kapacitasaval.
@@ -64,33 +72,46 @@ public abstract class Mezo implements VizbeesesListener {
     /**
      * Csokkenti a horeteget a megadott mennyiseggel.
      */
-    public void havatCsokkent(){}
+    public void havatCsokkent(int retegSzam){
+
+        horeteg -= retegSzam;
+    }
 
     /**
      * Berak egy karaktert a karakterlistajaba.
      */
-    public abstract void befogad();
+    public void befogad(Mozgathato mozgathato) {
+
+        if(mozgathato.getClass().equals(Jegesmedve.class))
+            jegesmedve = (Jegesmedve) mozgathato;
+
+        else
+            karakterek.add((Karakter) mozgathato);
+    }
 
     /**
      * Kivesz egy karaktert a karakterlistajabol es visszater azzal.
      */
-    public void kiad(){}
+    public void kiad(Mozgathato mozgathato){
+
+        if(mozgathato.getClass().equals(Jegesmedve.class))
+            jegesmedve = null;
+
+        else
+            karakterek.remove(mozgathato);
+    }
 
     /**
      * Ellenorzi, hogy a megadott mezo szomszedos-e.
      */
-    public void szomszedE(){}
+    public boolean szomszedE(Mezo mezo){
+
+        return szomszedok.contains(mezo);
+    }
 
     /**
      * Ha a szomszedos mezok egyiken van karakter kotellel, akkor az kimenti a vizbe esett karaktereket.
      */
     @Override
     public void segitseg(){}
-
-    //TODO: Beleirni a modellvaltozast (megjelent a fuggveny)
-
-    /**
-     * Beallitja a mezo igluzott attributumat a kapott ertekre.
-     */
-    public abstract void setIgluzott();
 }

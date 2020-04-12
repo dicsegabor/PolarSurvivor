@@ -1,7 +1,6 @@
 package Szkeleton.Menu.MenuPoints.LesserUseCases;
 
-import Karakter.Karakter;
-import Karakter.Kutato;
+import Mozgathato.Kutato;
 import Mezo.Lyuk;
 import Szkeleton.Menu.MenuPoints.MenuPoint;
 import Szkeleton.MethodCallHandler;

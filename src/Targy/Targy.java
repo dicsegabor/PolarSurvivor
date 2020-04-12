@@ -13,5 +13,5 @@ public interface Targy {
     /**
      * Visszater a targy tipusaval.
      */
-    void tipus();
+    Targytipus tipus();
 }

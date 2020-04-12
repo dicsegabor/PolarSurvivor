@@ -1,6 +1,5 @@
 package Szkeleton.Menu.MenuPoints.LesserUseCases;
 
-import Karakter.Eszkimo;
 import Mezo.StabilJegtabla;
 import Szkeleton.Menu.Menu;
 import Szkeleton.Menu.MenuPoints.MainUseCases.CharacterFallsInWater;

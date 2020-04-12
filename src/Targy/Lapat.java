@@ -15,5 +15,8 @@ public class Lapat implements Targy {
      * Visszater a targy tipusaval.
      */
     @Override
-    public void tipus() {}
+    public Targytipus tipus() {
+
+        return Targytipus.LAPAT;
+    }
 }

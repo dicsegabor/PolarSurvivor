@@ -1,5 +1,7 @@
 package Mezo;
 
+import Mozgathato.Mozgathato;
+
 /**
  * Az instabil jegtablat jelkepezi.
  * Ha tullepik a kapaciitasat, akkor a rajta allo karakterek vizbe esnek.
@@ -12,4 +14,9 @@ public class InstabilJegtabla extends Jegtabla {
      */
     @Override
     public void befogad() {}
+
+    @Override
+    public void befogad(Mozgathato mozgathato) {
+
+    }
 }

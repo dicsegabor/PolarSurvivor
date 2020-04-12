@@ -75,7 +75,6 @@ public class Commander {
                     fullCmd.add(matcher.group().trim());
             }
 
-
         return fullCmd.toArray(String[]::new);
     }
 

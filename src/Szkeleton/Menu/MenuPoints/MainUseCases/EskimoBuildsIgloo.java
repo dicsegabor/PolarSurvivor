@@ -1,7 +1,6 @@
 package Szkeleton.Menu.MenuPoints.MainUseCases;
 
-import Karakter.Eszkimo;
-import Karakter.Karakter;
+import Mozgathato.Eszkimo;
 import Szkeleton.Menu.Menu;
 import Szkeleton.Menu.MenuPoints.LesserUseCases.EskimoBuildIgluOnStableIce;
 import Szkeleton.Menu.MenuPoints.LesserUseCases.EskimoBuildIgluOnUnstableIce;

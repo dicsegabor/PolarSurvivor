@@ -1,10 +1,9 @@
 package Szkeleton.Menu.MenuPoints.LesserUseCases;
 
-import Karakter.Karakter;
+import Mozgathato.Karakter;
 import Szkeleton.Menu.MenuPoints.MenuPoint;
 import Szkeleton.MethodCallHandler;
 import Targy.Jelzofeny;
-import Targy.Pisztoly;
 
 public class StartFlareGunWithCartridge extends MenuPoint {
 

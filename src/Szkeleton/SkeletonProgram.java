@@ -27,7 +27,6 @@ public class SkeletonProgram {
         mainMenu.addMenuPoint(new CharacterPicksUpItem("Karakter targyat vesz fel"));
         mainMenu.addMenuPoint(new CharacterDigs("Karakter as"));
         mainMenu.addMenuPoint(new CharactersTryToAssembleFlareGun("Karakterek osszeszerelik a jelzoraketat"));
-        //TODO: Beleirni a modellvaltozast (Vihar)
         mainMenu.addMenuPoint(new Storm("Vihar"));
         mainMenu.addMenuPoint(new Exit("Kilepes"));
 

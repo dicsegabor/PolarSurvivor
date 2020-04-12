@@ -1,5 +1,7 @@
 package Mezo;
 
+import Epulet.Epulet;
+import Mozgathato.Mozgathato;
 import Targy.Targy;
 
 /**
@@ -14,18 +16,36 @@ public abstract class Jegtabla extends Mezo {
     private Targy targy;
 
     /**
+     * A mezon talalhato epulet, ami befolyasolja a karakterek viszonyulasat a kornyezethez.
+     */
+    private Epulet epulet;
+
+    @Override
+    public void vihar(){
+
+        super.vihar();
+
+        if(epulet.equals(null))
+            karakterek.forEach(k -> k.testhotCsokkent(1));
+
+        else
+            epulet = null;
+    }
+
+    /**
      * Kiadja a tarolt targyat.
      */
-    public void getTargy(){}
+    public Targy getTargy(){
+
+        Targy targy = this.targy;
+
+        this.targy = null;
+
+        return targy;
+    }
 
     /**
      * Berak egy karaktert a karakterlistajaba.
      */
-    public abstract void befogad();
-
-    /**
-     * Beallitja a mezo igluzott attributumat a kapott ertekre.
-     */
-    @Override
-    public void setIgluzott(){}
+    public abstract void befogad(Mozgathato mozgathato);
 }

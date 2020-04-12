@@ -1,8 +1,7 @@
 package Szkeleton.Menu.MenuPoints.LesserUseCases;
 
-import Karakter.Karakter;
+import Mozgathato.Karakter;
 import Mezo.InstabilJegtabla;
-import Mezo.Jegtabla;
 import Mezo.Mezo;
 import Szkeleton.Menu.Menu;
 import Szkeleton.Menu.MenuPoints.MainUseCases.CharacterFallsInWater;

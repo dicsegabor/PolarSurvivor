@@ -1,7 +1,6 @@
 package Szkeleton.Menu.MenuPoints.MainUseCases;
 
-import Karakter.Karakter;
-import Mezo.Jegtabla;
+import Mozgathato.Karakter;
 import Szkeleton.Menu.Menu;
 import Szkeleton.Menu.MenuPoints.LesserUseCases.*;
 import Szkeleton.Menu.MenuPoints.MenuPoint;

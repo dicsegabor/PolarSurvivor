@@ -1,6 +1,5 @@
 package Szkeleton.Menu.MenuPoints.LesserUseCases;
 
-import Karakter.Eszkimo;
 import Mezo.StabilJegtabla;
 import Szkeleton.Menu.MenuPoints.MenuPoint;
 import Szkeleton.MethodCallHandler;

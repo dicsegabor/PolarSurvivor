@@ -1,10 +1,7 @@
 package Szkeleton.Menu.MenuPoints.LesserUseCases;
 
-import Karakter.Karakter;
-import Mezo.Jegtabla;
 import Szkeleton.Menu.Menu;
 import Szkeleton.Menu.MenuPoints.MenuPoint;
-import Szkeleton.MethodCallHandler;
 
 public class CharactersAssembleFlareGun extends MenuPoint {
 
