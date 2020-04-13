@@ -2,8 +2,14 @@ package Targy;
 
 import Mozgathato.Karakter;
 
+/**
+ * Segitsegevel ket reteg havat ehet eltavolitani a mezorol, viszont harom hasznalat utan eltorik.
+ */
 public class TorekenyLapat extends Lapat implements Targy {
 
+    /**
+     * Azt tarolja, hogy meg hanyszor hasznalhato a targy.
+     */
     private int hasznalhato;
 
     public TorekenyLapat(){

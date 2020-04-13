@@ -15,7 +15,10 @@ import java.util.regex.Pattern;
  */
 public class Commander {
 
-    boolean endOfListening;
+    /**
+     * Ezt az attributumot allitva allitjuk le a figyelest.
+     */
+    private boolean endOfListening;
 
     /**
      * Ebben a listaban tarolja a parancsokat.
