@@ -11,7 +11,7 @@ import Targy.Targy;
 public abstract class Jegtabla extends Mezo {
 
     /**
-     * A mezo altal tarol targy, amit a karakter felvehet.
+     * A mezo altal tarolt targy, amit a karakter felvehet.
      */
     private Targy targy;
 
@@ -20,6 +20,11 @@ public abstract class Jegtabla extends Mezo {
      */
     private Epulet epulet;
 
+    /**
+     * Meghivja a mezo viharat, valamint teszteli, hogy van-e epulet.
+     * Ha van, akkor nem csokken a karakterek testhoje, viszint elpusztul az epulet.
+     * Ha nincs, akkor csokken a testhojuk egyel.
+     */
     @Override
     public void vihar(){
 
@@ -33,7 +38,7 @@ public abstract class Jegtabla extends Mezo {
     }
 
     /**
-     * Kiadja a tarolt targyat.
+     * Kiadja a tarolt targyat es eltavolitja a mezorol.
      */
     public Targy getTargy(){
 

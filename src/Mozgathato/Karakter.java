@@ -40,21 +40,25 @@ public class Karakter implements Mozgathato {
      * es hozzaadja a targylistajahoz.
      * Amennyiben a targy elelem, akkor el is fogyasztja azt.
      */
-    public void felvesz(){
+    public void felvesz() {
 
         Targy targy = ((Jegtabla)mezo).getTargy();
 
         if(targy.tipus().equals(Targytipus.ELELEM))
-            targy.hasznal();
+            targy.hasznal(this);
 
         else
             targyak.add(targy);
     }
 
     /**
-     * A karakternek a teshoje nullara csokken, es veget er a jatek.
+     * A karakternek a teshoje nullara csokken vagy megeszi a medve,
+     * akkor meghivodik, kiirja a halaluzenetet es veget er a jatek.
+     * @param halalUzenet Ezt irja ki.
      */
-    public void meghal(){
+    public void meghal(String halalUzenet){
+
+        //TODO: halalkiiras megvalositasa
 
         Game.endGame();
     }
@@ -74,16 +78,17 @@ public class Karakter implements Mozgathato {
     }
 
     /**
-     * A karakter eltavolit valamennyi havat a mezorol.
+     * A karakter keres lapatot, vag torekeny lapatot, és ha van, akkor hasznalja.
+     * Amennyiben nincs csak egyel csokkenti a havat.
      * Csokken egyel a munka.
      */
     public void as(){
 
-        try { keres(Targytipus.LAPAT).hasznal(); }
+        try { keres(Targytipus.LAPAT).hasznal(this); }
 
         catch (ItemNotFoundException e) {
 
-            try { keres(Targytipus.TOREKENYASO).hasznal(); }
+            try { keres(Targytipus.TOREKENYLAPAT).hasznal(this); }
 
             catch (ItemNotFoundException ex) {
 
@@ -95,12 +100,15 @@ public class Karakter implements Mozgathato {
     }
 
     /**
-     * A karakter osszerakja a jelzoraketat es veget er a jatek.
+     * A karakter megkerdezi a mezot, hogy a rajta allo
+     * karaktereknel ott van-e a tobbi elem es van-e eleg mukajuk.
+     * Ha igen, akkor veget er a jatek.
      */
     public void kombinal(){}
 
     /**
      * A karakter kikeres egy targyat a targylistajabol.
+     * @throws ItemNotFoundException Ha nincs az adoot targy a listaban ilyen kivetelt dob.
      */
     public Targy keres(Targytipus targytipus) throws ItemNotFoundException {
 
@@ -118,19 +126,19 @@ public class Karakter implements Mozgathato {
     }
 
     /**
-     * A karakter testhoje lecsokken egyel.
+     * A karakter testhoje lecsokken egyel. Ha nullara csokken, akkor meghal.
      */
     public void testhotCsokkent(int mennyiseg){
 
         if(testho - mennyiseg <= 0)
-            meghal();
+            meghal("Megfagytam");
 
         else
             testho -= mennyiseg;
     }
 
     /**
-     * A karakter munkaja lecsokken egyel.
+     * A karakter munkaja lecsokken egyel. Ha nullara csokken, akkor veget er a kore.
      */
     public void munkaCsokkent(int mennyiseg){
 

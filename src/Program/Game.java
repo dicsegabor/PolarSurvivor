@@ -7,7 +7,7 @@ public class Game {
     /**
      * Megvizsgalja, hogy van-e egy mezon jegesmedve es karakter, mert ha igen, akkor vege a jatkenak.
      */
-    public static void checkForDeaths(){
+    public static void checkForDeaths() {
 
 
     }

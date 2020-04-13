@@ -23,6 +23,6 @@ public class TorekenyLapat extends Lapat implements Targy {
     @Override
     public Targytipus tipus() {
 
-        return Targytipus.TOREKENYASO;
+        return Targytipus.TOREKENYLAPAT;
     }
 }

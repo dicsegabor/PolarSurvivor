@@ -27,6 +27,9 @@ public abstract class Mezo implements VizbeesesListener {
      */
     protected int kapacitas;
 
+    /**
+     * A mezon allo jegesmedvet jelkepezi.
+     */
     protected Jegesmedve jegesmedve;
 
     /**
@@ -38,6 +41,29 @@ public abstract class Mezo implements VizbeesesListener {
      * A mezo szomszedos mezoket tarolo listaja.
      */
     private List<Mezo> szomszedok = new ArrayList<Mezo>();
+
+    public Jegesmedve getJegesmedve(){
+
+        return jegesmedve;
+    }
+
+    public List<Karakter> getKarakterek() {
+
+        return karakterek;
+    }
+
+    public int getHoreteg(){
+
+        return horeteg;
+    }
+
+    /**
+     * Visszater a mezo kapacitasaval.
+     */
+    public int getKapacitas(){
+
+        return kapacitas;
+    }
 
     /**
      * A jatekban a vihart jelkepezi.
@@ -51,7 +77,8 @@ public abstract class Mezo implements VizbeesesListener {
 
     /**
      * Beallitja a mezo szomszedjat.
-     * Hozzaadja a szomszed listahoz.
+     * Hozzaadja a szomszedlistajahoz, ha meg nem szomszedja,
+     * valamint a celmezo szomszedjanak beallitja sajat magat.
      */
     public void setSzomszed(Mezo mezo){
 
@@ -65,11 +92,6 @@ public abstract class Mezo implements VizbeesesListener {
     }
 
     /**
-     * Visszater a mezo kapacitasaval.
-     */
-    public void getKapacitas(){}
-
-    /**
      * Csokkenti a horeteget a megadott mennyiseggel.
      */
     public void havatCsokkent(int retegSzam){
@@ -78,11 +100,11 @@ public abstract class Mezo implements VizbeesesListener {
     }
 
     /**
-     * Berak egy karaktert a karakterlistajaba.
+     * Ha karaktert kap azt a karakterlistaba rakja, ha medvet, akkor a medvebe.
      */
     public void befogad(Mozgathato mozgathato) {
 
-        if(mozgathato.getClass().equals(Jegesmedve.class))
+        if(mozgathato.getClass().equals(Jegesmedve.class)) //TODO: megjavitani
             jegesmedve = (Jegesmedve) mozgathato;
 
         else
@@ -90,11 +112,11 @@ public abstract class Mezo implements VizbeesesListener {
     }
 
     /**
-     * Kivesz egy karaktert a karakterlistajabol es visszater azzal.
+     * Kiveszi a megadott karakter/medvet a mezobol.
      */
     public void kiad(Mozgathato mozgathato){
 
-        if(mozgathato.getClass().equals(Jegesmedve.class))
+        if(mozgathato.getClass().equals(Jegesmedve.class)) //TODO: megjavitani
             jegesmedve = null;
 
         else
