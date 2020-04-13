@@ -2,7 +2,14 @@ package Mozgathato;
 
 import Mezo.Mezo;
 
+/**
+ * Interface, ami az objektumok mozgatasat teszi lehetove.
+ */
 public interface Mozgathato {
 
-    void lep(Mezo mezo);
+    /**
+     * Lepteti a leptetheto dolgot mezon.
+     * @param mezo
+     */
+    public void lep(Mezo mezo);
 }

@@ -4,8 +4,15 @@ import Epulet.*;
 import Mezo.Jegtabla;
 import Mozgathato.Karakter;
 
+/**
+ * Olyan epulet, mely egy hasznalat utan szetesik, nem ved meg a medvetol.
+ * Egyben egy targykent is viselkedik.
+ */
 public class Sator implements Epulet, Targy {
 
+    /**
+     * Visszater az epulet tipusaval.
+     */
     @Override
     public Epulettipus epulettipus() {
 
@@ -22,6 +29,9 @@ public class Sator implements Epulet, Targy {
         //karakter.((Jegtabla)getMezo()).epit(new Sator());
     }
 
+    /**
+     * Visszater a targy tipusaval.
+     */
     @Override
     public Targytipus tipus() {
 
