@@ -1,15 +1,17 @@
 package Targy;
 
+import Mozgathato.Karakter;
+
 /**
  * Ha egy karakter a vizbe esik, akkor nem tortenik vele semmi.
  */
 public class Buvarruha implements Targy {
 
     /**
-     * Megvalositja a targy funkcionalitasat.
+     * Van
      */
     @Override
-    public void hasznal() {}
+    public void hasznal(Karakter karakter) {}
 
     /**
      * Visszater a targy tipusaval.

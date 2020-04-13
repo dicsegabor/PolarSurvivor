@@ -2,16 +2,24 @@ package Proto.Commands;
 
 import Proto.Commander.Commands.Command;
 import Proto.Commander.Exceptions.WrongArgumentException;
+import Proto.Jatek;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MoveCommand extends Command {
 
+    private Jatek jatek;
+
+    public MoveCommand(Jatek jatek){
+
+        this.jatek = jatek;
+    }
+
     @Override
     public void execute(String[] args) throws WrongArgumentException {
 
-        //TODO: Megvalositani a funkciot
+        jatek.lep();
     }
 
     @Override

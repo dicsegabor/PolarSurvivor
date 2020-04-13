@@ -3,7 +3,7 @@ package Mezo;
 import Mozgathato.Jegesmedve;
 import Mozgathato.Karakter;
 import Mozgathato.Mozgathato;
-import Program.Game;
+import Proto.Jatek;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -72,7 +72,7 @@ public abstract class Mezo implements VizbeesesListener {
      */
     public void vihar(){
 
-        horeteg += Game.getRandomNumber(5);
+        horeteg += Jatek.getRandomNumber(5);
     }
 
     /**

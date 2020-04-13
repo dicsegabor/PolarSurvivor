@@ -9,12 +9,9 @@ import Mozgathato.Mozgathato;
 public class InstabilJegtabla extends Jegtabla {
 
     /**
-     * Berak egy karaktert a karakterlistajaba.
+     * Berak egy karaktert vagy medvet a mezobe.
      * Megvizsgalja, hogy tullepik-e a kapacitast.
      */
-    @Override
-    public void befogad() {}
-
     @Override
     public void befogad(Mozgathato mozgathato) {
 

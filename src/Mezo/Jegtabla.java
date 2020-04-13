@@ -38,6 +38,16 @@ public abstract class Jegtabla extends Mezo {
     }
 
     /**
+     * A jegtablara rak egy epuletet, ha nincs meg rajta.
+     * @param epulet
+     */
+    public void epit(Epulet epulet){
+
+        if(epulet != null)
+            this.epulet = epulet;
+    }
+
+    /**
      * Kiadja a tarolt targyat es eltavolitja a mezorol.
      */
     public Targy getTargy(){

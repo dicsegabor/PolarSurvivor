@@ -3,7 +3,7 @@ package Mozgathato;
 import Exceptions.ItemNotFoundException;
 import Mezo.Mezo;
 import Mezo.Jegtabla;
-import Program.Game;
+import Proto.Jatek;
 import Targy.*;
 
 import java.util.ArrayList;
@@ -35,6 +35,11 @@ public class Karakter implements Mozgathato {
      */
     private List<Targy> targyak = new ArrayList<Targy>();
 
+    public Mezo getMezo() {
+
+        return mezo;
+    }
+
     /**
      * A karakter felveszi az ot tartalmazo mezoben talalhato targyat
      * es hozzaadja a targylistajahoz.
@@ -60,7 +65,7 @@ public class Karakter implements Mozgathato {
 
         //TODO: halalkiiras megvalositasa
 
-        Game.endGame();
+        Jatek.jatekVege();
     }
 
     /**
@@ -143,7 +148,7 @@ public class Karakter implements Mozgathato {
     public void munkaCsokkent(int mennyiseg){
 
         if(munka - mennyiseg <= 0)
-            Game.nextCharacter();
+            Jatek.kovetkezoKarakter();
 
         munka -= mennyiseg;
     }

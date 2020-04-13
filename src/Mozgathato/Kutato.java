@@ -15,7 +15,10 @@ public class Kutato extends Karakter {
         this.mezo = mezo;
     }
 
-    public void jegetNez() {
+    /**
+     * Lekerdezi a mezotol a kapacitasat.
+     */
+    public void jegetNez(Mezo mezo) {
 
         mezo.getKapacitas();
     }

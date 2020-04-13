@@ -8,11 +8,8 @@ import Mozgathato.Mozgathato;
 public class StabilJegtabla extends  Jegtabla {
 
     /**
-     * Berak egy karaktert a karakterlistajaba.
+     * Berak egy karaktert vagy medvet a mezobe.
      */
-    @Override
-    public void befogad() {}
-
     @Override
     public void befogad(Mozgathato mozgathato) {
 

@@ -1,6 +1,8 @@
 package Mozgathato;
 
+import Epulet.Iglu;
 import Mezo.Mezo;
+import Mezo.Jegtabla;
 
 /**
  * Az eszkimo tipusu karaktert jelkepezi a jatekban.
@@ -17,7 +19,9 @@ public class Eszkimo extends Karakter {
 
     /**
      * Iglut epit a jegtablara amin, all, igy elkerulve a vihar hatasait.
-     * atallitja, az ot tartalmazo jegtabla "igluzott" erteket true-ra.
      */
-    public void iglutEpit(){}
+    public void iglutEpit(){
+
+        ((Jegtabla)mezo).epit(new Iglu());
+    }
 }

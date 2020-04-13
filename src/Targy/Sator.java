@@ -1,6 +1,8 @@
 package Targy;
 
 import Epulet.*;
+import Mezo.Jegtabla;
+import Mozgathato.Karakter;
 
 public class Sator implements Epulet, Targy {
 
@@ -10,9 +12,14 @@ public class Sator implements Epulet, Targy {
         return Epulettipus.SATOR;
     }
 
+    /**
+     * Epit egy satrat a karakter mezejere.
+     * @param karakter A karakter, aki hasznalja
+     */
     @Override
-    public void hasznal() {
+    public void hasznal(Karakter karakter) {
 
+        //karakter.((Jegtabla)getMezo()).epit(new Sator());
     }
 
     @Override

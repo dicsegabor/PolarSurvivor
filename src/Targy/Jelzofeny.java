@@ -1,5 +1,7 @@
 package Targy;
 
+import Mozgathato.Karakter;
+
 /**
  * Hasznalataval megvizsgalja, hogy a mezon talalhato-e a tobbi komponens,
  * es ha igen akkor vege a jateknak.
@@ -7,10 +9,11 @@ package Targy;
 public class Jelzofeny implements Targy {
 
     /**
-     * Megvalositja a targy funkcionalitasat.
+     * A mezon, amin a karakter all, megekeresi, hogy megvannak-e a targyak,
+     * valamint, hogy van-e eleg munkaja a karaktereknek.
      */
     @Override
-    public void hasznal() {}
+    public void hasznal(Karakter karakter) {}
 
     /**
      * Visszater a targy tipusaval.
