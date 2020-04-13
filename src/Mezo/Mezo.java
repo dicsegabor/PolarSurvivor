@@ -135,5 +135,5 @@ public abstract class Mezo implements VizbeesesListener {
      * Ha a szomszedos mezok egyiken van karakter kotellel, akkor az kimenti a vizbe esett karaktereket.
      */
     @Override
-    public void segitseg(){}
+    public void segitseg(Karakter karakter){}
 }

@@ -8,7 +8,7 @@ import Mozgathato.Karakter;
 public class Elelem implements Targy {
 
     /**
-     * Megvalositja a targy funkcionalitasat.
+     * Egyel noveli a megadott karakter testhojet.
      */
     @Override
     public void hasznal(Karakter karakter) {
