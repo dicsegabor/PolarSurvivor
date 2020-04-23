@@ -10,6 +10,9 @@ import Proto.LogAndTesting.Tester;
 import java.util.HashMap;
 import java.util.Random;
 
+/**
+ * Ez tarolja a jatekot, mezoket es karaktereket.
+ */
 public class Jatek {
 
     /**
@@ -27,39 +30,51 @@ public class Jatek {
      */
     private Jegesmedve jegesmedve;
 
+<<<<<<< HEAD
+=======
     /**
-     *  Létrehoz egy karaktert a paraméterben megadott azonosítóval,
-     *  típussal a megadott mezõn a megadott tárgyakkal és beteszi a karakterlistaba.
+     * main fv
+     * @param args
+     */
+    public static void main(String[] args){
+
+
+    }
+
+>>>>>>> 7e2e70243c387cffcac7a07519cfaa3e94f8c9b1
+    /**
+     *  Letrehoz egy karaktert a parameterben megadott azonositoval,
+     *  tipussal a megadott mezon a megadott targyakkal es beteszi a karakterlistaba.
      */
     public void letrehozKarakter(){}
 
     /**
-     * A paraméterül megadott mezõt ellátja megfelelõ számú hó réteggel és kapacitással és egy tárggyal.
+     * A parameterul megadott mezot ellatja megfelelo szamu ho reteggel es kapacitassal es egy targgyal.
      */
     public void beallitMezot(){}
 
     /**
-     * A paraméterül kapott mezõrõl a sarkkutató megállapítja a mezõ kapacitását.
+     * A parameterul kapott mezorol a sarkkutato megallapatja a mezo kapacitasat.
      */
     public void megvizsgal(){}
 
     /**
-     * A paraméterben megadott karakter/jegesmedvét a megadott mezõre lépteti.
+     * A parameterben megadott karakter/jegesmedvet a megadott mezore lepteti.
      */
     public void lep(){}
 
     /**
-     * A paraméterül kapott karakter felveszi a mezõn lévõ tárgyat.
+     * A parameterul kapott karakter felveszi a mezon levo targyat.
      */
     public void felvesz(){}
 
     /**
-     * A paraméterül kapott karakter 1 egység munka fejében ás
+     * A parameterul kapott karakter 1 egyseg munka fejeben as
      */
     public void as(){}
 
     /**
-     * A paraméterül kapott mezõn összeszerelni próbál.
+     * A parameterul kapott mezon osszeszerelni probal.
      */
     public void kombinal(){}
 
@@ -69,18 +84,18 @@ public class Jatek {
     public void kor(){}
 
     /**
-     * A paraméterül kapott karakter a tartózkodási helyén épít.
+     * A parameterul kapott karakter a tartozkodasi helyen epit.
      */
     public void epit(){}
 
     /**
-     * A paraméterben megkapott, a bemeneti nyelv kifejezéseit tartalmazó fájlból
-     * beolvasott utasításokat hajtja végre.
+     * A parameterben megkapott, a bemeneti nyelv kifejezeseit tartalmazo fajlbol
+     * beolvasott utasitasokat hajtja vegre.
      */
     public void beolvas(){}
 
     /**
-     * A paraméterben kapott karakter tulajdonságait írja a képernyõre.
+     * A paramï¿½terben kapott karakter tulajdonsï¿½gait ï¿½rja a kï¿½pernyï¿½re.
      */
     public void allapot(){}
 
@@ -104,11 +119,17 @@ public class Jatek {
         return random.nextInt(max);
     }
 
+    /**
+     * jatek veget jelzi
+     */
     public static void jatekVege(){
 
         //TODO: Kitalalni a jatekveget
     }
 
+    /**
+     * kovetkezo karakterre leptet
+     */
     public static void kovetkezoKarakter(){
 
         //TODO: Kitalalni a korveget
