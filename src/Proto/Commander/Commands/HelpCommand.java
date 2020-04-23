@@ -1,6 +1,7 @@
 package Proto.Commander.Commands;
 
 import Proto.Commander.Exceptions.WrongArgumentException;
+import Proto.LogAndTesting.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +17,8 @@ public class HelpCommand extends Command {
 
     @Override
     public void execute(String[] args) throws WrongArgumentException {
+
+        Logger.log();
 
         if(args.length == 0) {
 

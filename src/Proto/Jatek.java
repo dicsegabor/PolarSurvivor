@@ -3,6 +3,9 @@ package Proto;
 import Mezo.Mezo;
 import Mozgathato.Jegesmedve;
 import Mozgathato.Karakter;
+import Proto.Commander.Commander;
+import Proto.Commands.LoadMapCommand;
+import Proto.LogAndTesting.Tester;
 
 import java.util.HashMap;
 import java.util.Random;
@@ -23,11 +26,6 @@ public class Jatek {
      * A jegesmedve.
      */
     private Jegesmedve jegesmedve;
-
-    public static void main(String[] args){
-
-
-    }
 
     /**
      *  Létrehoz egy karaktert a paraméterben megadott azonosítóval,
@@ -114,5 +112,27 @@ public class Jatek {
     public static void kovetkezoKarakter(){
 
         //TODO: Kitalalni a korveget
+    }
+
+    private static void loadCommands(Commander commander){
+
+        commander.addCommand(new LoadMapCommand());
+    }
+
+    public static void main(String[] args) {
+
+        //init commander
+        Commander commander = new Commander();
+        loadCommands(commander);
+
+        if (args.length > 0) {
+
+            System.out.println("/////////////////////// Starting test: " + args[0] + " ///////////////////////");
+            Tester tester = new Tester(args[0], commander);
+            tester.runTest();
+            System.out.println("/////////////////////// End of test: " + args[0] + " ///////////////////////");
+        }
+
+        commander.listen(System.in);
     }
 }

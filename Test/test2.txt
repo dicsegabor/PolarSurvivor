@@ -1,0 +1,5 @@
+asd; sda
+rad; dar
+help
+help help
+exit

@@ -1,6 +1,7 @@
 package Targy;
 
 import Mozgathato.Karakter;
+import Proto.LogAndTesting.Logger;
 
 /**
  * Segitsegevel ket reteg havat ehet eltavolitani a mezorol.
@@ -11,13 +12,19 @@ public class Lapat implements Targy {
      * Ket reteg havat takarit el a mezorol.
      */
     @Override
-    public void hasznal(Karakter karakter) {}
+    public void hasznal(Karakter karakter) {
+
+        Logger.log();
+
+    }
 
     /**
      * Visszater a targy tipusaval.
      */
     @Override
     public Targytipus tipus() {
+
+        Logger.log();
 
         return Targytipus.LAPAT;
     }

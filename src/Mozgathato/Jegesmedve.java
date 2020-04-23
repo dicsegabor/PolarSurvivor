@@ -1,6 +1,7 @@
 package Mozgathato;
 
 import Mezo.Mezo;
+import Proto.LogAndTesting.Logger;
 
 /**
  * A palyan koszalo jegesmedvet jelkepezi a jatekban. Ha egy mezore kerul egy karakterrel, akkor vege a jateknak.
@@ -14,6 +15,8 @@ public class Jegesmedve implements Mozgathato {
 
     public Jegesmedve(Mezo mezo){
 
+        Logger.log();
+
         this.mezo = mezo;
     }
 
@@ -23,6 +26,8 @@ public class Jegesmedve implements Mozgathato {
      */
     @Override
     public void lep(Mezo mezo){
+
+        Logger.log();
 
         //TODO: Jegesmedve lepesenek randolmizalasa
 

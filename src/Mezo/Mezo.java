@@ -4,6 +4,7 @@ import Mozgathato.Jegesmedve;
 import Mozgathato.Karakter;
 import Mozgathato.Mozgathato;
 import Proto.Jatek;
+import Proto.LogAndTesting.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,15 +45,21 @@ public abstract class Mezo implements VizbeesesListener {
 
     public Jegesmedve getJegesmedve(){
 
+        Logger.log();
+
         return jegesmedve;
     }
 
     public List<Karakter> getKarakterek() {
 
+        Logger.log();
+
         return karakterek;
     }
 
     public int getHoreteg(){
+
+        Logger.log();
 
         return horeteg;
     }
@@ -61,6 +68,8 @@ public abstract class Mezo implements VizbeesesListener {
      * Visszater a mezo kapacitasaval.
      */
     public int getKapacitas(){
+
+        Logger.log();
 
         return kapacitas;
     }
@@ -72,6 +81,8 @@ public abstract class Mezo implements VizbeesesListener {
      */
     public void vihar(){
 
+        Logger.log();
+
         horeteg += Jatek.getRandomNumber(5);
     }
 
@@ -81,6 +92,8 @@ public abstract class Mezo implements VizbeesesListener {
      * valamint a celmezo szomszedjanak beallitja sajat magat.
      */
     public void setSzomszed(Mezo mezo){
+
+        Logger.log();
 
         if(!szomszedE(mezo)) {
 
@@ -96,6 +109,8 @@ public abstract class Mezo implements VizbeesesListener {
      */
     public void havatCsokkent(int retegSzam){
 
+        Logger.log();
+
         horeteg -= retegSzam;
     }
 
@@ -103,6 +118,8 @@ public abstract class Mezo implements VizbeesesListener {
      * Ha karaktert kap azt a karakterlistaba rakja, ha medvet, akkor a medvebe.
      */
     public void befogad(Mozgathato mozgathato) {
+
+        Logger.log();
 
         if(mozgathato.getClass().equals(Jegesmedve.class)) //TODO: megjavitani
             jegesmedve = (Jegesmedve) mozgathato;
@@ -116,6 +133,8 @@ public abstract class Mezo implements VizbeesesListener {
      */
     public void kiad(Mozgathato mozgathato){
 
+        Logger.log();
+
         if(mozgathato.getClass().equals(Jegesmedve.class)) //TODO: megjavitani
             jegesmedve = null;
 
@@ -128,6 +147,8 @@ public abstract class Mezo implements VizbeesesListener {
      */
     public boolean szomszedE(Mezo mezo){
 
+        Logger.log();
+
         return szomszedok.contains(mezo);
     }
 
@@ -135,5 +156,9 @@ public abstract class Mezo implements VizbeesesListener {
      * Ha a szomszedos mezok egyiken van karakter kotellel, akkor az kimenti a vizbe esett karaktereket.
      */
     @Override
-    public void segitseg(Karakter karakter){}
+    public void segitseg(Karakter karakter){
+
+        Logger.log();
+
+    }
 }

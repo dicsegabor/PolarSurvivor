@@ -2,6 +2,7 @@ package Mezo;
 
 import Epulet.Epulet;
 import Mozgathato.Mozgathato;
+import Proto.LogAndTesting.Logger;
 import Targy.Targy;
 
 /**
@@ -28,6 +29,8 @@ public abstract class Jegtabla extends Mezo {
     @Override
     public void vihar(){
 
+        Logger.log();
+
         super.vihar();
 
         if(epulet.equals(null))
@@ -43,6 +46,8 @@ public abstract class Jegtabla extends Mezo {
      */
     public void epit(Epulet epulet){
 
+        Logger.log();
+
         if(epulet != null)
             this.epulet = epulet;
     }
@@ -51,6 +56,8 @@ public abstract class Jegtabla extends Mezo {
      * Kiadja a tarolt targyat es eltavolitja a mezorol.
      */
     public Targy getTargy(){
+
+        Logger.log();
 
         Targy targy = this.targy;
 

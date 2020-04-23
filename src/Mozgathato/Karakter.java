@@ -4,6 +4,7 @@ import Exceptions.ItemNotFoundException;
 import Mezo.Mezo;
 import Mezo.Jegtabla;
 import Proto.Jatek;
+import Proto.LogAndTesting.Logger;
 import Targy.*;
 
 import java.util.ArrayList;
@@ -37,6 +38,8 @@ public class Karakter implements Mozgathato {
 
     public Mezo getMezo() {
 
+        Logger.log();
+
         return mezo;
     }
 
@@ -46,6 +49,8 @@ public class Karakter implements Mozgathato {
      * Amennyiben a targy elelem, akkor el is fogyasztja azt.
      */
     public void felvesz() {
+
+        Logger.log();
 
         Targy targy = ((Jegtabla)mezo).getTargy();
 
@@ -63,6 +68,8 @@ public class Karakter implements Mozgathato {
      */
     public void meghal(String halalUzenet){
 
+        Logger.log();
+
         //TODO: halalkiiras megvalositasa
 
         Jatek.jatekVege();
@@ -74,6 +81,8 @@ public class Karakter implements Mozgathato {
      */
     @Override
     public void lep(Mezo mezo){
+
+        Logger.log();
 
         this.mezo.kiad(this);
 
@@ -88,6 +97,8 @@ public class Karakter implements Mozgathato {
      * Csokken egyel a munka.
      */
     public void as(){
+
+        Logger.log();
 
         try { keres(Targytipus.LAPAT).hasznal(this); }
 
@@ -117,6 +128,8 @@ public class Karakter implements Mozgathato {
      */
     public Targy keres(Targytipus targytipus) throws ItemNotFoundException {
 
+        Logger.log();
+
         int index = 0;
 
         for(Targy t : targyak){
@@ -135,6 +148,8 @@ public class Karakter implements Mozgathato {
      */
     public void testhotCsokkent(int mennyiseg){
 
+        Logger.log();
+
         if(testho - mennyiseg <= 0)
             meghal("Megfagytam");
 
@@ -146,6 +161,8 @@ public class Karakter implements Mozgathato {
      * A karakter munkaja lecsokken egyel. Ha nullara csokken, akkor veget er a kore.
      */
     public void munkaCsokkent(int mennyiseg){
+
+        Logger.log();
 
         if(munka - mennyiseg <= 0)
             Jatek.kovetkezoKarakter();

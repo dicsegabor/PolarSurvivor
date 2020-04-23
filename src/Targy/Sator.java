@@ -3,6 +3,7 @@ package Targy;
 import Epulet.*;
 import Mezo.Jegtabla;
 import Mozgathato.Karakter;
+import Proto.LogAndTesting.Logger;
 
 public class Sator implements Epulet, Targy {
 
@@ -19,11 +20,15 @@ public class Sator implements Epulet, Targy {
     @Override
     public void hasznal(Karakter karakter) {
 
-        //karakter.((Jegtabla)getMezo()).epit(new Sator());
+        Logger.log();
+
+        ((Jegtabla)karakter.getMezo()).epit(new Sator());
     }
 
     @Override
     public Targytipus tipus() {
+
+        Logger.log();
 
         return Targytipus.SATOR;
     }

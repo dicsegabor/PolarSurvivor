@@ -1,6 +1,7 @@
 package Mezo;
 
 import Mozgathato.Mozgathato;
+import Proto.LogAndTesting.Logger;
 
 /**
  * Az stabil jegtablat jelkepezi.
@@ -12,6 +13,8 @@ public class StabilJegtabla extends  Jegtabla {
      */
     @Override
     public void befogad(Mozgathato mozgathato) {
+
+        Logger.log();
 
     }
 }

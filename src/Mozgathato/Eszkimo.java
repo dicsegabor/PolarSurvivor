@@ -3,6 +3,7 @@ package Mozgathato;
 import Epulet.Iglu;
 import Mezo.Mezo;
 import Mezo.Jegtabla;
+import Proto.LogAndTesting.Logger;
 
 /**
  * Az eszkimo tipusu karaktert jelkepezi a jatekban.
@@ -11,6 +12,8 @@ import Mezo.Jegtabla;
 public class Eszkimo extends Karakter {
 
     public Eszkimo(Mezo mezo) {
+
+        Logger.log();
 
         this.testho = 5;
         this.munka = 4;
@@ -21,6 +24,8 @@ public class Eszkimo extends Karakter {
      * Iglut epit a jegtablara amin, all, igy elkerulve a vihar hatasait.
      */
     public void iglutEpit(){
+
+        Logger.log();
 
         ((Jegtabla)mezo).epit(new Iglu());
     }

@@ -1,6 +1,7 @@
 package Targy;
 
 import Mozgathato.Karakter;
+import Proto.LogAndTesting.Logger;
 
 /**
  * Segitsegevel ket reteg havat ehet eltavolitani a mezorol, viszont harom hasznalat utan eltorik.
@@ -14,6 +15,8 @@ public class TorekenyLapat extends Lapat implements Targy {
 
     public TorekenyLapat(){
 
+        Logger.log();
+
         hasznalhato = 3;
     }
 
@@ -23,6 +26,8 @@ public class TorekenyLapat extends Lapat implements Targy {
      */
     @Override
     public void hasznal(Karakter karakter) {
+
+        Logger.log();
 
         super.hasznal(karakter);
 
@@ -34,6 +39,8 @@ public class TorekenyLapat extends Lapat implements Targy {
 
     @Override
     public Targytipus tipus() {
+
+        Logger.log();
 
         return Targytipus.TOREKENYLAPAT;
     }

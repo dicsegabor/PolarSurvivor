@@ -1,6 +1,7 @@
 package Targy;
 
 import Mozgathato.Karakter;
+import Proto.LogAndTesting.Logger;
 
 /**
  * Ha egy karakter elfogyasztja, akkor egyel no a testhoje.
@@ -13,6 +14,8 @@ public class Elelem implements Targy {
     @Override
     public void hasznal(Karakter karakter) {
 
+        Logger.log();
+
         karakter.testhotCsokkent(-1);
     }
 
@@ -21,6 +24,8 @@ public class Elelem implements Targy {
      */
     @Override
     public Targytipus tipus() {
+
+        Logger.log();
 
         return Targytipus.ELELEM;
     }

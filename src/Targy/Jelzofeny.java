@@ -1,6 +1,7 @@
 package Targy;
 
 import Mozgathato.Karakter;
+import Proto.LogAndTesting.Logger;
 
 /**
  * Hasznalataval megvizsgalja, hogy a mezon talalhato-e a tobbi komponens,
@@ -13,13 +14,19 @@ public class Jelzofeny implements Targy {
      * valamint, hogy van-e eleg munkaja a karaktereknek.
      */
     @Override
-    public void hasznal(Karakter karakter) {}
+    public void hasznal(Karakter karakter) {
+
+        Logger.log();
+
+    }
 
     /**
      * Visszater a targy tipusaval.
      */
     @Override
     public Targytipus tipus() {
+
+        Logger.log();
 
         return Targytipus.JELZOFENY;
     }

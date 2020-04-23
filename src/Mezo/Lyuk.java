@@ -2,6 +2,7 @@ package Mezo;
 
 import Mozgathato.Karakter;
 import Mozgathato.Mozgathato;
+import Proto.LogAndTesting.Logger;
 
 /**
  * Az lyukat jelkepezi.
@@ -14,5 +15,9 @@ public class Lyuk extends Mezo {
      * A ralepo karakterek egybel a vizbe esnek, es eltunik rola a ho.
      */
     @Override
-    public void befogad(Mozgathato mozgathato) {}
+    public void befogad(Mozgathato mozgathato) {
+
+        Logger.log();
+
+    }
 }
