@@ -3,5 +3,5 @@ Proto.Commander.Commands.HelpCommand.execute
 Unexpected
 Proto.Commander.Commands.HelpCommand.execute
 Commands
-help
+help asdas
 exit

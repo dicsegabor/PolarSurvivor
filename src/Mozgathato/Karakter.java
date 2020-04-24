@@ -34,7 +34,7 @@ public class Karakter implements Mozgathato {
     /**
      * A karakter targylistaja, ebben tarolja a targyakat, amiket a karakter hasznalni tud.
      */
-    private List<Targy> targyak = new ArrayList<Targy>();
+    protected List<Targy> targyak = new ArrayList<Targy>();
 
     public Mezo getMezo() {
 

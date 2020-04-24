@@ -1,13 +1,19 @@
 package Proto;
 
 import Mezo.Mezo;
+import Mezo.Jegtabla;
+import Mozgathato.Eszkimo;
 import Mozgathato.Jegesmedve;
 import Mozgathato.Karakter;
+import Mozgathato.Kutato;
 import Proto.Commander.Commander;
+import Proto.Commander.Exceptions.WrongArgumentException;
 import Proto.Commands.LoadMapCommand;
 import Proto.LogAndTesting.Tester;
+import Targy.Targy;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -19,6 +25,11 @@ public class Jatek {
      * A jatek karakterlistaja.
      */
     private HashMap<String, Karakter> karakterek;
+
+    /**
+     * A jatek mozgathatolistaja.
+     */
+    private HashMap<String, Karakter> mozgathatok;
 
     /**
      * A jatek mezolistaja.
@@ -34,27 +45,79 @@ public class Jatek {
      *  Letrehoz egy karaktert a parameterben megadott azonositoval,
      *  tipussal a megadott mezon a megadott targyakkal es beteszi a karakterlistaba.
      */
-    public void letrehozKarakter(){}
+    public void letrehozKarakter(String azonosito, String tipus, String mezo, List<Targy> targyak){
+
+        String karakterNev = tipus + azonosito;
+        Karakter karakter = null;
+
+        switch (tipus){
+
+            case "e": karakter = new Eszkimo(mezok.get(mezo), targyak); break;
+            case "k": karakter = new Kutato(mezok.get(mezo), targyak); break;
+        }
+
+        karakterek.putIfAbsent(karakterNev, karakter);
+        mozgathatok.putIfAbsent(karakterNev, karakter);
+        mezok.get(mezo).addKarakter(karakterek.get(karakterNev));
+    }
 
     /**
      * A parameterul megadott mezot ellatja megfelelo szamu ho reteggel es kapacitassal es egy targgyal.
      */
-    public void beallitMezot(){}
+    public void beallitInstabilJegtablat(String azonosito, int horeteg, int kapacitas, Targy targy) throws WrongArgumentException {
+
+        if(!mezok.containsKey(azonosito))
+            throw new WrongArgumentException("A(z) '" + azonosito + "' nevu mezo nem talalhato!");
+
+        mezok.get(azonosito).setHoreteg(horeteg);
+        mezok.get(azonosito).setKapacitas(kapacitas);
+        ((Jegtabla)mezok.get(azonosito)).setTargy(targy);
+    }
+
+    public void beallitStabilJegtablat(String azonosito, int horeteg, Targy targy) throws WrongArgumentException {
+
+        if(!mezok.containsKey(azonosito))
+            throw new WrongArgumentException("A(z) '" + azonosito + "' nevu mezo nem talalhato!");
+
+        mezok.get(azonosito).setHoreteg(horeteg);
+        ((Jegtabla)mezok.get(azonosito)).setTargy(targy);
+    }
 
     /**
      * A parameterul kapott mezorol a sarkkutato megallapatja a mezo kapacitasat.
      */
-    public void megvizsgal(){}
+    public void megvizsgal(String karakter, String mezo) throws WrongArgumentException {
+
+        if(!karakterek.containsKey(mezo))
+            throw new WrongArgumentException("A(z) '" + mezo + "' nevu karakter nem talalhato!");
+
+        int ertek = ((Kutato)karakterek.get(karakter)).jegetNez(mezok.get(mezo));
+
+        System.out.println("A(z) " + karakter + " altal megvizsgalt mezo kapacitasa: " + ertek);
+    }
 
     /**
      * A parameterben megadott karakter/jegesmedvet a megadott mezore lepteti.
      */
-    public void lep(){}
+    public void lep(String mozgathato, String mezo) throws WrongArgumentException {
+
+        if(!mezok.containsKey(mezo))
+            throw new WrongArgumentException("A(z) '" + mezo + "' nevu mezo nem talalhato!");
+
+        if (!mozgathatok.containsKey(mozgathato))
+            throw new WrongArgumentException("A(z) '" + mozgathato + "' nevu mozgathato nem talalhato!");
+
+        mozgathatok.get(mozgathato).lep(mezok.get(mezo));
+    }
 
     /**
      * A parameterul kapott karakter felveszi a mezon levo targyat.
      */
-    public void felvesz(){}
+    public void felvesz(String karakter) throws WrongArgumentException {
+
+        if (!mozgathatok.containsKey(karakter))
+            throw new WrongArgumentException("A(z) '" + karakter + "' nevu mozgathato nem talalhato!");
+    }
 
     /**
      * A parameterul kapott karakter 1 egyseg munka fejeben as
@@ -137,6 +200,7 @@ public class Jatek {
         if (args.length > 0) {
 
             System.out.println("/////////////////////// Starting test: " + args[0] + " ///////////////////////");
+            commander.exitOnMistake = true;
             Tester tester = new Tester(args[0], commander);
             tester.runTest();
             System.out.println("/////////////////////// End of test: " + args[0] + " ///////////////////////");
