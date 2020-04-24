@@ -50,6 +50,9 @@ public abstract class Jegtabla extends Mezo {
 
         if(epulet != null)
             this.epulet = epulet;
+
+        else
+            System.out.println("Mar van epulet a mezon!");
     }
 
     public void setTargy(Targy targy) {

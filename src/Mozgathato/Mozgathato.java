@@ -11,5 +11,7 @@ public interface Mozgathato {
      * Lepteti a leptetheto dolgot mezon.
      * @param mezo
      */
-    public void lep(Mezo mezo);
+    void lep(Mezo mezo);
+
+    MozgathatoTipus tipus();
 }

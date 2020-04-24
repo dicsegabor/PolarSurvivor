@@ -1,6 +1,7 @@
 package Mozgathato;
 
 import Mezo.Mezo;
+import Proto.Jatek;
 import Proto.LogAndTesting.Logger;
 
 /**
@@ -29,10 +30,20 @@ public class Jegesmedve implements Mozgathato {
 
         Logger.log();
 
-        //TODO: Jegesmedve lepesenek randolmizalasa
-
         this.mezo.kiad(this);
 
-        mezo.befogad(this);
+        if(mezo == null)
+            mezo.getRandomSzomszed().befogad(this);
+
+        else
+            mezo.befogad(this);
+
+        Jatek.halalEllorzes();
+    }
+
+    @Override
+    public MozgathatoTipus tipus(){
+
+        return MozgathatoTipus.JEGESMEDVE;
     }
 }

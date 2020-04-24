@@ -15,5 +15,5 @@ public interface Targy {
     /**
      * Visszater a targy tipusaval.
      */
-    Targytipus tipus();
+    Targytipus tipus() ;
 }

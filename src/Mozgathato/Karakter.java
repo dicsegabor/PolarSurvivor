@@ -36,6 +36,11 @@ public class Karakter implements Mozgathato {
      */
     protected List<Targy> targyak = new ArrayList<Targy>();
 
+    public int getMunka() {
+
+        return munka;
+    }
+
     public Mezo getMezo() {
 
         Logger.log();
@@ -70,9 +75,7 @@ public class Karakter implements Mozgathato {
 
         Logger.log();
 
-        //TODO: halalkiiras megvalositasa
-
-        Jatek.jatekVege();
+        Jatek.jatekVege("Meghalt a karakter!");
     }
 
     /**
@@ -87,6 +90,8 @@ public class Karakter implements Mozgathato {
         this.mezo.kiad(this);
 
         mezo.befogad(this);
+
+        Jatek.halalEllorzes();
 
         munkaCsokkent(1);
     }
@@ -117,10 +122,20 @@ public class Karakter implements Mozgathato {
 
     /**
      * A karakter megkerdezi a mezot, hogy a rajta allo
-     * karaktereknel ott van-e a tobbi elem es van-e eleg mukajuk.
+     * karaktereknel ott van-e a tobbi elem es van-e eleg munkajuk.
      * Ha igen, akkor veget er a jatek.
      */
-    public void kombinal(){}
+    public void kombinal(){
+
+        if(mezo.tudnakEOsszeszerlni())
+            Jatek.jatekVege("Sikerult! Megmenekult mindenki!");
+
+        else {
+
+            System.out.println("Nincsenek meg a szukseges targyak!");
+            return;
+        }
+    }
 
     /**
      * A karakter kikeres egy targyat a targylistajabol.
@@ -141,6 +156,11 @@ public class Karakter implements Mozgathato {
         }
 
         throw new ItemNotFoundException("Nincs ilyen targy a karakternel: " + targytipus);
+    }
+
+    public void eldob(Targy targy){
+
+        targyak.remove(targy);
     }
 
     /**
@@ -168,5 +188,15 @@ public class Karakter implements Mozgathato {
             Jatek.kovetkezoKarakter();
 
         munka -= mennyiseg;
+    }
+
+    public void munkatVisszaallit(){
+
+        munka = 4;
+    }
+
+    public MozgathatoTipus tipus(){
+
+        return null;
     }
 }

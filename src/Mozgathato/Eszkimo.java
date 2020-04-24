@@ -42,4 +42,10 @@ public class Eszkimo extends Karakter {
 
         ((Jegtabla)mezo).epit(new Iglu());
     }
+
+    @Override
+    public MozgathatoTipus tipus(){
+
+        return MozgathatoTipus.ESZKIMO;
+    }
 }

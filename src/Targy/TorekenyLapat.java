@@ -33,8 +33,8 @@ public class TorekenyLapat extends Lapat implements Targy {
 
         hasznalhato--;
 
-        if(hasznalhato == 0);
-            //TODO: Kitalalni, hogy hogyan tunik el a lapat.
+        if(hasznalhato == 0)
+            karakter.eldob(this);
     }
 
     @Override

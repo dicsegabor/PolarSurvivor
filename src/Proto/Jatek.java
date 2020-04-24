@@ -1,11 +1,11 @@
 package Proto;
 
+import Epulet.Epulettipus;
+import Exceptions.ItemNotFoundException;
 import Mezo.Mezo;
 import Mezo.Jegtabla;
-import Mozgathato.Eszkimo;
-import Mozgathato.Jegesmedve;
-import Mozgathato.Karakter;
-import Mozgathato.Kutato;
+import Targy.Targytipus;
+import Mozgathato.*;
 import Proto.Commander.Commander;
 import Proto.Commander.Exceptions.WrongArgumentException;
 import Proto.Commands.LoadMapCommand;
@@ -14,6 +14,7 @@ import Targy.Targy;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 /**
@@ -24,22 +25,22 @@ public class Jatek {
     /**
      * A jatek karakterlistaja.
      */
-    private HashMap<String, Karakter> karakterek;
+    private static HashMap<String, Karakter> karakterek = new HashMap<>();
 
     /**
      * A jatek mozgathatolistaja.
      */
-    private HashMap<String, Karakter> mozgathatok;
+    private static HashMap<String, Karakter> mozgathatok = new HashMap<>();
 
     /**
      * A jatek mezolistaja.
      */
-    private HashMap<String, Mezo> mezok;
+    private static HashMap<String, Mezo> mezok = new HashMap<>();
 
     /**
      * A jegesmedve.
      */
-    private Jegesmedve jegesmedve;
+    private static Jegesmedve jegesmedve;
 
     /**
      *  Letrehoz egy karaktert a parameterben megadott azonositoval,
@@ -115,47 +116,109 @@ public class Jatek {
      */
     public void felvesz(String karakter) throws WrongArgumentException {
 
-        if (!mozgathatok.containsKey(karakter))
-            throw new WrongArgumentException("A(z) '" + karakter + "' nevu mozgathato nem talalhato!");
+        if (!karakterek.containsKey(karakter))
+            throw new WrongArgumentException("A(z) '" + karakter + "' nevu karakter nem talalhato!");
+
+        karakterek.get(karakter).felvesz();
     }
 
     /**
      * A parameterul kapott karakter 1 egyseg munka fejeben as
      */
-    public void as(){}
+    public void as(String karakter) throws WrongArgumentException {
+
+        if (!karakterek.containsKey(karakter))
+            throw new WrongArgumentException("A(z) '" + karakter + "' nevu karakter nem talalhato!");
+
+        karakterek.get(karakter).as();
+    }
 
     /**
      * A parameterul kapott mezon osszeszerelni probal.
      */
-    public void kombinal(){}
+    public void kombinal(String karakter) throws WrongArgumentException {
+
+        if (!karakterek.containsKey(karakter))
+            throw new WrongArgumentException("A(z) '" + karakter + "' nevu karakter nem talalhato!");
+
+        for(Map.Entry<String, Karakter> k : karakterek.entrySet())
+            if(!karakterek.get(karakter).getMezo().equals(k.getValue().getMezo())) {
+
+                System.out.println("A karakterek nincsenek ugyanazon a mezon!");
+                return;
+            }
+
+        karakterek.get(karakter).kombinal();
+    }
 
     /**
      * Veget er egy kor.
      */
-    public void kor(){}
+    public void kor(){
+
+        for(Map.Entry<String, Mezo> mezo : mezok.entrySet())
+            mezo.getValue().vihar();
+
+        jegesmedve.lep(null);
+
+        for(Map.Entry<String, Karakter> karakter : karakterek.entrySet())
+            karakter.getValue().munkatVisszaallit();
+    }
 
     /**
      * A parameterul kapott karakter a tartozkodasi helyen epit.
      */
-    public void epit(){}
+    public void epit(String karakter, Epulettipus epulettipus) throws WrongArgumentException {
+
+        if (!karakterek.containsKey(karakter))
+            throw new WrongArgumentException("A(z) '" + karakter + "' nevu karakter nem talalhato!");
+
+        if(epulettipus.equals(Epulettipus.IGLU) && karakterek.get(karakter).tipus().equals(MozgathatoTipus.ESZKIMO))
+            ((Eszkimo)karakterek.get(karakter)).iglutEpit();
+
+        if (epulettipus.equals(Epulettipus.SATOR)){
+            try { karakterek.get(karakter).keres(Targytipus.SATOR).hasznal(karakterek.get(karakter)); }
+            catch (ItemNotFoundException e) { System.out.println(e.getMessage()); }
+        }
+    }
 
     /**
      * A parameterben megkapott, a bemeneti nyelv kifejezeseit tartalmazo fajlbol
      * beolvasott utasitasokat hajtja vegre.
      */
-    public void beolvas(){}
+    public void beolvas(){
+
+
+    }
 
     /**
      * A param�terben kapott karakter tulajdons�gait �rja a k�perny�re.
      */
-    public void allapot(){}
+    public void allapot(String azonosito) throws WrongArgumentException {
+
+        if(mozgathatok.containsKey(azonosito)){
+
+            //TODO: Mindent kitalalni
+        }
+
+        else if(mezok.containsKey(azonosito)){
+
+
+        }
+
+        else
+            throw new WrongArgumentException("A(z) '" + azonosito + "' nevu objektum nem talalhato!");
+
+    }
 
     /**
      * Megvizsgalja, hogy van-e egy mezon jegesmedve es karakter, mert ha igen, akkor vege a jatkenak.
      */
-    public void halalEllorzes() {
+    public static void halalEllorzes() {
 
-
+        for(Map.Entry<String, Mezo> mezoEntry : mezok.entrySet())
+            if(mezoEntry.getValue().halalE())
+                jatekVege("A medve nyert!");
     }
 
     /**
@@ -173,7 +236,7 @@ public class Jatek {
     /**
      * jatek veget jelzi
      */
-    public static void jatekVege(){
+    public static void jatekVege(String uzenet){
 
         //TODO: Kitalalni a jatekveget
     }

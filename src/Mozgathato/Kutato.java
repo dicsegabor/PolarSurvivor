@@ -42,4 +42,16 @@ public class Kutato extends Karakter {
 
         return mezo.getKapacitas();
     }
+
+    @Override
+    public MozgathatoTipus tipus(){
+
+        return MozgathatoTipus.KUTATO;
+    }
+
+    @Override
+    public String toString(){
+
+        return "";
+    }
 }

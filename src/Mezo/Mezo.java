@@ -1,10 +1,12 @@
 package Mezo;
 
+import Exceptions.ItemNotFoundException;
 import Mozgathato.Jegesmedve;
 import Mozgathato.Karakter;
-import Mozgathato.Mozgathato;
+import Mozgathato.*;
 import Proto.Jatek;
 import Proto.LogAndTesting.Logger;
+import Targy.Targytipus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -89,6 +91,26 @@ public abstract class Mezo implements VizbeesesListener {
         return kapacitas;
     }
 
+    public boolean tudnakEOsszeszerlni(){
+
+        for(Karakter k : karakterek){
+            try { k.keres(Targytipus.JELZOFENY); }
+            catch (ItemNotFoundException e) { return false; }
+        }
+
+        for(Karakter k : karakterek){
+            try { k.keres(Targytipus.PATRON); }
+            catch (ItemNotFoundException e) { return false; }
+        }
+
+        for(Karakter k : karakterek){
+            try { k.keres(Targytipus.PISZTOLY); }
+            catch (ItemNotFoundException e) { return false; }
+        }
+
+        return true;
+    }
+
     /**
      * A jatekban a vihart jelkepezi.
      * Novlei veletlenszeru mennyiseggel a havat,
@@ -119,6 +141,11 @@ public abstract class Mezo implements VizbeesesListener {
         }
     }
 
+    public Mezo getRandomSzomszed(){
+
+        return szomszedok.get(Jatek.getRandomNumber(szomszedok.size()));
+    }
+
     /**
      * Csokkenti a horeteget a megadott mennyiseggel.
      */
@@ -136,7 +163,7 @@ public abstract class Mezo implements VizbeesesListener {
 
         Logger.log();
 
-        if(mozgathato.getClass().equals(Jegesmedve.class)) //TODO: megjavitani
+        if(mozgathato.tipus().equals(MozgathatoTipus.JEGESMEDVE))
             jegesmedve = (Jegesmedve) mozgathato;
 
         else
@@ -150,11 +177,16 @@ public abstract class Mezo implements VizbeesesListener {
 
         Logger.log();
 
-        if(mozgathato.getClass().equals(Jegesmedve.class)) //TODO: megjavitani
+        if(mozgathato.tipus().equals(MozgathatoTipus.JEGESMEDVE))
             jegesmedve = null;
 
         else
             karakterek.remove(mozgathato);
+    }
+
+    public boolean halalE(){
+
+        return jegesmedve != null && !karakterek.isEmpty();
     }
 
     /**
