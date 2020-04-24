@@ -19,7 +19,7 @@ public class MoveCommand extends Command {
     @Override
     public void execute(String[] args) throws WrongArgumentException {
 
-        jatek.lep();
+        //jatek.lep();
     }
 
     @Override

@@ -2,6 +2,9 @@ package Mozgathato;
 
 import Mezo.Mezo;
 import Proto.LogAndTesting.Logger;
+import Targy.Targy;
+
+import java.util.List;
 
 /**
  * Az kutato tipusu karaktert jelkepezi a jatekban.
@@ -18,13 +21,25 @@ public class Kutato extends Karakter {
         this.mezo = mezo;
     }
 
-    /**
-     * Lekerdezi a mezotol a kapacitasat.
-     */
-    public void jegetNez(Mezo mezo) {
+    public Kutato(Mezo mezo, List<Targy> targyak) {
 
         Logger.log();
 
-        mezo.getKapacitas();
+        this.testho = 4;
+        this.munka = 4;
+        this.mezo = mezo;
+        this.targyak.addAll(targyak);
+    }
+
+    /**
+     * Lekerdezi a mezotol a kapacitasat.
+     */
+    public int jegetNez(Mezo mezo) {
+
+        Logger.log();
+
+        munkaCsokkent(1);
+
+        return mezo.getKapacitas();
     }
 }

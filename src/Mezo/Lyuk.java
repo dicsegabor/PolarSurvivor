@@ -1,6 +1,5 @@
 package Mezo;
 
-import Mozgathato.Karakter;
 import Mozgathato.Mozgathato;
 import Proto.LogAndTesting.Logger;
 

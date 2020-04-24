@@ -4,6 +4,9 @@ import Epulet.Iglu;
 import Mezo.Mezo;
 import Mezo.Jegtabla;
 import Proto.LogAndTesting.Logger;
+import Targy.Targy;
+
+import java.util.List;
 
 /**
  * Az eszkimo tipusu karaktert jelkepezi a jatekban.
@@ -18,6 +21,16 @@ public class Eszkimo extends Karakter {
         this.testho = 5;
         this.munka = 4;
         this.mezo = mezo;
+    }
+
+    public Eszkimo(Mezo mezo, List<Targy> targyak) {
+
+        Logger.log();
+
+        this.testho = 5;
+        this.munka = 4;
+        this.mezo = mezo;
+        this.targyak.addAll(targyak);
     }
 
     /**

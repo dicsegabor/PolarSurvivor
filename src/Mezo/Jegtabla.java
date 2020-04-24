@@ -52,6 +52,11 @@ public abstract class Jegtabla extends Mezo {
             this.epulet = epulet;
     }
 
+    public void setTargy(Targy targy) {
+
+        this.targy = targy;
+    }
+
     /**
      * Kiadja a tarolt targyat es eltavolitja a mezorol.
      */

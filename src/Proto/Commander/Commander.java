@@ -15,6 +15,8 @@ import java.util.regex.Pattern;
  */
 public class Commander {
 
+    public boolean exitOnMistake;
+
     /**
      * Ezt az attributumot allitva allitjuk le a figyelest.
      */
@@ -30,6 +32,7 @@ public class Commander {
      */
     public Commander(){
 
+        exitOnMistake = false;
         commands.add(new ExitCommand(this));
         commands.add(new HelpCommand(commands));
     }
@@ -108,10 +111,16 @@ public class Commander {
 
             System.out.println("A(z) '" + e.getMessage() + "' nevu parancs nem talalhato. " +
                     "A parancsok listajanak megtekintesehez, kerjuk hasznalja a help parancsot!");
+
+            if(exitOnMistake)
+                System.exit(1);
         }
         catch (WrongArgumentException e) {
 
             System.out.println(e.getMessage());
+
+            if(exitOnMistake)
+                System.exit(1);
         }
     }
 
