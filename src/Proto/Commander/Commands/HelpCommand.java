@@ -18,8 +18,6 @@ public class HelpCommand extends Command {
     @Override
     public void execute(String[] args) throws WrongArgumentException {
 
-        Logger.log();
-
         if(args.length == 0) {
 
             System.out.println("-----------------------------------------------------------------------------------------------------");

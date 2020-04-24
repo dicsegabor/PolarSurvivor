@@ -1,2 +1,1 @@
 Proto.Commander.Commands.HelpCommand.execute
-Proto.Commander.Commands.HelpCommand.execute

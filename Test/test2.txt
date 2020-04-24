@@ -1,5 +1,7 @@
-asd; sda
-rad; dar
+Expected
+Proto.Commander.Commands.HelpCommand.execute
+Unexpected
+Proto.Commander.Commands.HelpCommand.execute
+Commands
 help
-help help
 exit

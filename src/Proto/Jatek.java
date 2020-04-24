@@ -140,6 +140,7 @@ public class Jatek {
             Tester tester = new Tester(args[0], commander);
             tester.runTest();
             System.out.println("/////////////////////// End of test: " + args[0] + " ///////////////////////");
+            System.exit(0);
         }
 
         commander.listen(System.in);
