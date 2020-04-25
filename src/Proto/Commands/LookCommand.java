@@ -5,29 +5,21 @@ import Mozgathato.Karakter;
 import Mozgathato.Kutato;
 import Proto.Commander.Commands.Command;
 import Proto.Commander.Exceptions.WrongArgumentException;
+import Proto.Jatek;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 public class LookCommand extends Command {
-    HashMap<String, Karakter> karakterek;
-    HashMap<String, Mezo> mezok;
-
-    public LookCommand(HashMap<String, Karakter> karakterek, HashMap<String, Mezo> mezok) {
-        this.karakterek = karakterek;
-        this.mezok = mezok;
-    }
 
     @Override
     public void execute(String[] args) throws WrongArgumentException {
-        if(args.length < 2)
-            throw new WrongArgumentException("Tul keves parameter volt megadva");
-        if(!karakterek.containsKey(args[0]))
-            throw new WrongArgumentException("A megadott karakter nem letezik.");
-        if(!mezok.containsKey(args[1]))
-            throw new WrongArgumentException("A megadott mezo nem letezik.");
 
-        ((Kutato)karakterek.get(args[0])).jegetNez(mezok.get(args[1]));
+        if(args.length < 2)
+            throw new WrongArgumentException("Nincs eleg megadott adat!");
+
+        Jatek.megvizsgal(args[0], args[1]);
     }
 
     @Override
@@ -42,12 +34,19 @@ public class LookCommand extends Command {
 
     @Override
     protected List<String> argumentsHelp() {
-        return null;
+
+        return new ArrayList<>(){
+            {
+                add(String.format("%-30s%s", "[karakter]", "A karakter azonositoja, aki megnezi a mezot."));
+                add(String.format("%-30s%s", "[mezo]", "A mezo, amit megvizsgal a kutato."));
+            }
+        };
     }
 
     @Override
     protected String otherInfo() {
-        return "Pl.: look k2 m2";
+
+        return "Pl.: look KUTATO_2 STABIL_2_3";
     }
 
     @Override

@@ -1,7 +1,9 @@
 package Proto.Commands;
 
+import Epulet.Epulettipus;
 import Proto.Commander.Commands.Command;
 import Proto.Commander.Exceptions.WrongArgumentException;
+import Proto.Jatek;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +12,12 @@ public class BuildCommand extends Command {
 
     @Override
     public void execute(String[] args) throws WrongArgumentException {
-        //TODO: Megvalositani a funkciot
+
+        if(args.length < 2)
+            throw new WrongArgumentException("Nincs eleg megadott adat!");
+
+        try { Jatek.epit(args[0], Epulettipus.valueOf(args[1])); }
+        catch (IllegalArgumentException e) { throw new WrongArgumentException("Nincs ilyen epulettipus: " + args[1]); }
     }
 
     @Override
@@ -30,7 +37,8 @@ public class BuildCommand extends Command {
 
         return new ArrayList<>(){
             {
-                add(String.format("%-30s%s", "[fajlnev]", "A fajlnak a neve, ami a betoltheto terkepet tartalmazza"));
+                add(String.format("%-30s%s", "[karakter]", "A karakter azonositoja, aki epit."));
+                add(String.format("%-30s%s", "[epulet]", "Az epulettipus, amit epit. Pl.: IGLU, SATOR..."));
             }
         };
     }
@@ -38,26 +46,12 @@ public class BuildCommand extends Command {
     @Override
     protected String otherInfo() {
 
-        return "Pl.: loadmap map.txt\n" +
-                "\n" +
-                "A palya leirasa:\n" +
-                "Az oszlopok kozott tabulator, a sor vegen pedig enter.\n" +
-                "A kivant palya felepiteset egy vele megegyezo strukturaju rendezett\n" +
-                "karakterhalmaz irja majd le, mind a konzolra iraskor, mind a fajlbol olvasaskor.\n" +
-                "Ennek felepiteset az alabbi sorok szemleltetik:\n" +
-                "6 5\n" +
-                "v v v v v v\n" +
-                "v i s s l v\n" +
-                "v i s l i v\n" +
-                "v i s s i v\n" +
-                "v v v v v v\n" +
-                "Ahol az egyes betuk jelentese: v: viz ami lyuk 0 hoval, i: instabil jegtabla, s:\n" +
-                "stabil jegtabla, l: lyuk.";
+        return "Pl.: build ESZKIMO_1 IGLU";
     }
 
     @Override
     public String getDescription() {
 
-        return "A megadott karakter epit egy iglut vagy egy satrat.";
+        return "A paraméterül kapott karakter a tartózkodási helyén épít egy epuletet.";
     }
 }

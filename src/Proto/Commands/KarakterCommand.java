@@ -56,13 +56,12 @@ public class KarakterCommand extends Command {
     @Override
     protected String otherInfo() {
 
-        return "Pl.: karakter 1 e m1 kotel aso";
+        return "Pl.: karakter ESZKIMO STABIL_1_2 LAPAT";
     }
 
     @Override
     public String getDescription() {
 
-        return "Letrehoz egy karaktert a parameterben megadott " +
-               "azonositoval, tipussal a megadott mezon a megadott targyakkal.";
+        return "Letrehoz egy karaktert a parameterben megadott tipussal a megadott mezon a megadott targyakkal.";
     }
 }

@@ -4,13 +4,11 @@ import Epulet.Epulettipus;
 import Exceptions.ItemNotFoundException;
 import Mezo.Mezo;
 import Mezo.Jegtabla;
-import Proto.Commands.KarakterCommand;
-import Proto.Commands.SetFieldCommand;
+import Proto.Commands.*;
 import Targy.Targytipus;
 import Mozgathato.*;
 import Proto.Commander.Commander;
 import Proto.Commander.Exceptions.WrongArgumentException;
-import Proto.Commands.LoadMapCommand;
 import Proto.LogAndTesting.Tester;
 import Targy.Targy;
 
@@ -54,13 +52,13 @@ public class Jatek {
             throw new WrongArgumentException("A(z) '" + mezo + "' nevu mezo nem talalhato!");
 
         String karakterNev = tipus + "_" + karakterek.size();
-        Karakter karakter = null;
+        Karakter karakter;
 
         if(targyak.isEmpty())
             karakter = MozgathatoTipus.letrehoz(MozgathatoTipus.valueOf(tipus), mezok.get(mezo));
 
         else
-            MozgathatoTipus.letrehoz(MozgathatoTipus.valueOf(tipus), mezok.get(mezo), targyak);
+            karakter = MozgathatoTipus.letrehoz(MozgathatoTipus.valueOf(tipus), mezok.get(mezo), targyak);
 
         karakterek.putIfAbsent(karakterNev, karakter);
         mozgathatok.putIfAbsent(karakterNev, karakter);
@@ -110,9 +108,14 @@ public class Jatek {
         if(!karakterek.containsKey(mezo))
             throw new WrongArgumentException("A(z) '" + mezo + "' nevu karakter nem talalhato!");
 
-        int ertek = ((Kutato)karakterek.get(karakter)).jegetNez(mezok.get(mezo));
+        if(karakterek.get(karakter).tipus().equals(MozgathatoTipus.KUTATO)) {
 
-        System.out.println("A(z) " + karakter + " altal megvizsgalt mezo kapacitasa: " + ertek);
+            int ertek = ((Kutato) karakterek.get(karakter)).jegetNez(mezok.get(mezo));
+            System.out.println("A(z) " + karakter + " altal megvizsgalt mezo kapacitasa: " + ertek);
+        }
+
+        else
+            throw new WrongArgumentException("A(z) '" + mezo + "' nevu karakter nem kutato!");
     }
 
     /**
@@ -272,6 +275,17 @@ public class Jatek {
 
         commander.addCommand(new LoadMapCommand());
         commander.addCommand(new KarakterCommand());
+        commander.addCommand(new JegesmedveCommand());
+        commander.addCommand(new SetFieldCommand());
+        commander.addCommand(new MoveCommand());
+        commander.addCommand(new LookCommand());
+        commander.addCommand(new PickUpCommand());
+        commander.addCommand(new DigCommand());
+        commander.addCommand(new CombineCommand());
+        commander.addCommand(new TurnCommand());
+        commander.addCommand(new BuildCommand());
+        //commander.addCommand(new ScriptCommand());
+        //commander.addCommand(new StatCommand());
     }
 
     public static void main(String[] args) {

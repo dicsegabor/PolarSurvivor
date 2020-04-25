@@ -6,6 +6,7 @@ import Proto.Jatek;
 import Targy.Targy;
 import Targy.Targytipus;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SetFieldCommand extends Command {
@@ -69,19 +70,26 @@ public class SetFieldCommand extends Command {
     @Override
     protected String usage() {
 
-        return "setmezo [mezõ azonosító] [hóréteg] [kapacitás] [tárgy]";
+        return "setmezo [mezõ] [hóréteg] [kapacitás] [tárgy]";
     }
 
     @Override
     protected List<String> argumentsHelp() {
 
-        return null;
+        return new ArrayList<>(){
+            {
+                add(String.format("%-30s%s", "[mezõ]", "A mezo azonositoja, amit szerkesztunk."));
+                add(String.format("%-30s%s", "[hóréteg]", "A kivant ho mennyisege."));
+                add(String.format("%-30s%s", "[kapacitás]", "A mezo kivant kapacitasa"));
+                add(String.format("%-30s%s", "[tárgy]", "A mezore rakott targy"));
+            }
+        };
     }
 
     @Override
     protected String otherInfo() {
 
-        return "Pl.: setmezo m4 4 3 kotel";
+        return "Pl.: setfield STABIL_2_2 3 KOTEL";
     }
 
     @Override

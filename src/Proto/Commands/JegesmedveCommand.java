@@ -1,13 +1,10 @@
 package Proto.Commands;
 
-import Mezo.Mezo;
-import Mozgathato.Jegesmedve;
-import Mozgathato.Mozgathato;
 import Proto.Commander.Commands.Command;
 import Proto.Commander.Exceptions.WrongArgumentException;
 import Proto.Jatek;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
 
 public class JegesmedveCommand extends Command {
@@ -33,12 +30,17 @@ public class JegesmedveCommand extends Command {
 
     @Override
     protected List<String> argumentsHelp() {
-        return null;
+
+        return new ArrayList<>(){
+            {
+                add(String.format("%-30s%s", "[mezo]", "A mezo, amire szeretnenk tenni a jegesmedvet."));
+            }
+        };
     }
 
     @Override
     protected String otherInfo() {
-        return "Pl.: jegesmedve m12";
+        return "Pl.: jegesmedve STABIL_1_1";
     }
 
     @Override

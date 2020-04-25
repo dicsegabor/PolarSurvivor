@@ -2,13 +2,19 @@ package Proto.Commands;
 
 import Proto.Commander.Commands.Command;
 import Proto.Commander.Exceptions.WrongArgumentException;
+import Proto.Jatek;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CombineCommand extends Command {
     @Override
     public void execute(String[] args) throws WrongArgumentException {
-        //TODO: funkció megvalósítása
+
+        if(args.length < 2)
+            throw new WrongArgumentException("Nincs eleg megadott adat!");
+
+        Jatek.kombinal(args[0]);
     }
 
     @Override
@@ -23,12 +29,17 @@ public class CombineCommand extends Command {
 
     @Override
     protected List<String> argumentsHelp() {
-        return null;
+
+        return new ArrayList<>(){
+            {
+                add(String.format("%-30s%s", "[karakter]", "A karakter azonositoja, aki kombinal."));
+            }
+        };
     }
 
     @Override
     protected String otherInfo() {
-        return "Pl.: combine e2";
+        return "Pl.: combine ESZKIMO_1";
     }
 
     @Override

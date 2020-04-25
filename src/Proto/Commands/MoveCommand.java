@@ -9,17 +9,13 @@ import java.util.List;
 
 public class MoveCommand extends Command {
 
-    private Jatek jatek;
-
-    public MoveCommand(Jatek jatek){
-
-        this.jatek = jatek;
-    }
-
     @Override
     public void execute(String[] args) throws WrongArgumentException {
         
-        //jatek.lep();
+        if(args.length < 2)
+            throw new WrongArgumentException("Nincs eleg megadott adat!");
+
+        Jatek.lep(args[0], args[1]);
     }
 
     @Override
@@ -29,7 +25,7 @@ public class MoveCommand extends Command {
 
     @Override
     protected String usage() {
-        return "move [mozgathato azonosito] [mezo azonosito]";
+        return "move [mozgathato] [mezo]";
     }
 
     @Override
@@ -37,15 +33,15 @@ public class MoveCommand extends Command {
 
         return new ArrayList<>(){
             {
-                add(String.format("%-30s%s", "[mozgathato azonosito]", "Barmilyen mozgathato dolognak az azonositoja. Pl.: karakter, jegesmedve."));
-                add(String.format("%-30s%s", "[mezo azonosito]", "A mezo azonositoja, ahova mozgatni szeretnenk."));
+                add(String.format("%-30s%s", "[mozgathato]", "Barmilyen mozgathato dolognak az azonositoja."));
+                add(String.format("%-30s%s", "[mezo]", "A mezo azonositoja, ahova mozgatni szeretnenk."));
             }
         };
     }
 
     @Override
     protected String otherInfo() {
-        return "Pl.: move k1 m1";
+        return "Pl.: move KUTATO_1 STABIL_1_1";
     }
 
     @Override
