@@ -65,6 +65,7 @@ public class KarakterCommand extends Command {
 
     @Override
     public String getDescription() {
-        return "Letrehoz egy karaktert a megadott parameterekkel.";
+        return "Letrehoz egy karaktert a parameterben megadott " +
+               "azonositoval, tipussal a megadott mezon a megadott targyakkal.";
     }
 }
