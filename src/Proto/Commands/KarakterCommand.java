@@ -2,7 +2,7 @@ package Proto.Commands;
 
 import Proto.Commander.Commands.Command;
 import Proto.Commander.Exceptions.WrongArgumentException;
-import Proto.Jatek;
+import Proto.ProtoProgram;
 import Targy.*;
 
 import java.util.ArrayList;
@@ -23,10 +23,10 @@ public class KarakterCommand extends Command {
             for(int i = 2; i <= args.length; i++)
                 targyak.add(Targytipus.letrehoz(Targytipus.valueOf(args[i])));
 
-            Jatek.letrehozKarakter(args[0], args[1], targyak);
+            ProtoProgram.letrehozKarakter(args[0], args[1], targyak);
         }
 
-        Jatek.letrehozKarakter(args[0], args[1], new ArrayList<>());
+        ProtoProgram.letrehozKarakter(args[0], args[1], new ArrayList<>());
     }
 
     @Override

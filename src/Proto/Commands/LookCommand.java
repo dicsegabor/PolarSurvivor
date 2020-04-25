@@ -1,14 +1,10 @@
 package Proto.Commands;
 
-import Mezo.Mezo;
-import Mozgathato.Karakter;
-import Mozgathato.Kutato;
 import Proto.Commander.Commands.Command;
 import Proto.Commander.Exceptions.WrongArgumentException;
-import Proto.Jatek;
+import Proto.ProtoProgram;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class LookCommand extends Command {
@@ -19,7 +15,7 @@ public class LookCommand extends Command {
         if(args.length < 2)
             throw new WrongArgumentException("Nincs eleg megadott adat!");
 
-        Jatek.megvizsgal(args[0], args[1]);
+        ProtoProgram.megvizsgal(args[0], args[1]);
     }
 
     @Override

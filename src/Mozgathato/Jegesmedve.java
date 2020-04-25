@@ -1,7 +1,7 @@
 package Mozgathato;
 
 import Mezo.Mezo;
-import Proto.Jatek;
+import Proto.ProtoProgram;
 import Proto.LogAndTesting.Logger;
 
 /**
@@ -38,7 +38,7 @@ public class Jegesmedve implements Mozgathato {
         else
             mezo.befogad(this);
 
-        Jatek.halalEllorzes();
+        ProtoProgram.halalEllorzes();
     }
 
     @Override

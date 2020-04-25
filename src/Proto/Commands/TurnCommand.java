@@ -2,7 +2,7 @@ package Proto.Commands;
 
 import Proto.Commander.Commands.Command;
 import Proto.Commander.Exceptions.WrongArgumentException;
-import Proto.Jatek;
+import Proto.ProtoProgram;
 
 import java.util.List;
 
@@ -14,7 +14,7 @@ public class TurnCommand extends Command {
         if(args.length > 0)
             throw new WrongArgumentException("Ennek a parancsnak nincsenek argumentumai!");
 
-        Jatek.kor();
+        ProtoProgram.kor();
     }
 
     @Override

@@ -3,7 +3,7 @@ package Mozgathato;
 import Exceptions.ItemNotFoundException;
 import Mezo.Mezo;
 import Mezo.Jegtabla;
-import Proto.Jatek;
+import Proto.ProtoProgram;
 import Proto.LogAndTesting.Logger;
 import Targy.*;
 
@@ -75,7 +75,7 @@ public class Karakter implements Mozgathato {
 
         Logger.log();
 
-        Jatek.jatekVege("Meghalt a karakter!");
+        ProtoProgram.jatekVege("Meghalt a karakter!");
     }
 
     /**
@@ -91,7 +91,7 @@ public class Karakter implements Mozgathato {
 
         mezo.befogad(this);
 
-        Jatek.halalEllorzes();
+        ProtoProgram.halalEllorzes();
 
         munkaCsokkent(1);
     }
@@ -128,7 +128,7 @@ public class Karakter implements Mozgathato {
     public void kombinal(){
 
         if(mezo.tudnakEOsszeszerlni())
-            Jatek.jatekVege("Sikerult! Megmenekult mindenki!");
+            ProtoProgram.jatekVege("Sikerult! Megmenekult mindenki!");
 
         else {
 
@@ -185,7 +185,7 @@ public class Karakter implements Mozgathato {
         Logger.log();
 
         if(munka - mennyiseg <= 0)
-            Jatek.kovetkezoKarakter();
+            ProtoProgram.kovetkezoKarakter();
 
         munka -= mennyiseg;
     }

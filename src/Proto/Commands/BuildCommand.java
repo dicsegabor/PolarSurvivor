@@ -3,7 +3,7 @@ package Proto.Commands;
 import Epulet.Epulettipus;
 import Proto.Commander.Commands.Command;
 import Proto.Commander.Exceptions.WrongArgumentException;
-import Proto.Jatek;
+import Proto.ProtoProgram;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +16,7 @@ public class BuildCommand extends Command {
         if(args.length < 2)
             throw new WrongArgumentException("Nincs eleg megadott adat!");
 
-        try { Jatek.epit(args[0], Epulettipus.valueOf(args[1])); }
+        try { ProtoProgram.epit(args[0], Epulettipus.valueOf(args[1])); }
         catch (IllegalArgumentException e) { throw new WrongArgumentException("Nincs ilyen epulettipus: " + args[1]); }
     }
 

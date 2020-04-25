@@ -20,7 +20,7 @@ import java.util.Random;
 /**
  * Ez tarolja a jatekot, mezoket es karaktereket.
  */
-public class Jatek {
+public class ProtoProgram {
 
     /**
      * A jatek karakterlistaja.

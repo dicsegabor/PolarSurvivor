@@ -4,7 +4,7 @@ import Exceptions.ItemNotFoundException;
 import Mozgathato.Jegesmedve;
 import Mozgathato.Karakter;
 import Mozgathato.*;
-import Proto.Jatek;
+import Proto.ProtoProgram;
 import Proto.LogAndTesting.Logger;
 import Targy.Targytipus;
 
@@ -125,7 +125,7 @@ public abstract class Mezo implements VizbeesesListener {
 
         Logger.log();
 
-        horeteg += Jatek.getRandomNumber(5);
+        horeteg += ProtoProgram.getRandomNumber(5);
     }
 
     /**
@@ -148,7 +148,7 @@ public abstract class Mezo implements VizbeesesListener {
 
     public Mezo getRandomSzomszed(){
 
-        return szomszedok.get(Jatek.getRandomNumber(szomszedok.size()));
+        return szomszedok.get(ProtoProgram.getRandomNumber(szomszedok.size()));
     }
 
     /**

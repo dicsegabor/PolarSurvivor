@@ -2,7 +2,7 @@ package Proto.Commands;
 
 import Proto.Commander.Commands.Command;
 import Proto.Commander.Exceptions.WrongArgumentException;
-import Proto.Jatek;
+import Proto.ProtoProgram;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +14,7 @@ public class CombineCommand extends Command {
         if(args.length < 2)
             throw new WrongArgumentException("Nincs eleg megadott adat!");
 
-        Jatek.kombinal(args[0]);
+        ProtoProgram.kombinal(args[0]);
     }
 
     @Override

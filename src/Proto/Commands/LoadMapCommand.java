@@ -42,8 +42,6 @@ public class LoadMapCommand extends Command {
 
         else
             setSzomszedok();
-
-        System.out.println("");
     }
 
     private void setSzomszedok(){
@@ -54,24 +52,24 @@ public class LoadMapCommand extends Command {
                     mezoEntry.getValue().setSzomszed(mezoEntry2.getValue());
     }
 
-    private boolean szomszedE(String mezo1, String mezo2){
+    private boolean szomszedE(String mezo_1, String mezo_2){
 
-        mezo1 = mezo1.substring(mezo1.length() - 4);
-        mezo2 = mezo2.substring(mezo2.length() - 4);
+        mezo_1 = mezo_1.substring(mezo_1.length() - 4);
+        mezo_2 = mezo_2.substring(mezo_2.length() - 4);
 
-        int sor1, oszlop1;
-        sor1 = Integer.parseInt(String.valueOf(mezo1.charAt(1)));
-        oszlop1 = Integer.parseInt(String.valueOf(mezo1.charAt(3)));
+        int mezo_1_sor, mezo_1_oszlop;
+        mezo_1_sor = Integer.parseInt(String.valueOf(mezo_1.charAt(1)));
+        mezo_1_oszlop = Integer.parseInt(String.valueOf(mezo_1.charAt(3)));
 
-        int sor2, oszlop2;
-        sor2 = Integer.parseInt(String.valueOf(mezo2.charAt(1)));
-        oszlop2 = Integer.parseInt(String.valueOf(mezo2.charAt(3)));
+        int mezo_2_sor, mezo_2_oszlop;
+        mezo_2_sor = Integer.parseInt(String.valueOf(mezo_2.charAt(1)));
+        mezo_2_oszlop = Integer.parseInt(String.valueOf(mezo_2.charAt(3)));
 
-        if(oszlop1 == oszlop2 && sor1 == sor2)
+        if(mezo_1_oszlop == mezo_2_oszlop && mezo_1_sor == mezo_2_sor)
             return false;
 
-        return (Math.abs(sor1 - sor2) < 2 && (oszlop1 - oszlop2) == 0 ||
-               (sor1 - sor2) == 0 && Math.abs(oszlop1 - oszlop2) < 2);
+        return (Math.abs(mezo_1_sor - mezo_2_sor) < 2 && (mezo_1_oszlop - mezo_2_oszlop) == 0 ||
+               (mezo_1_sor - mezo_2_sor) == 0 && Math.abs(mezo_1_oszlop - mezo_2_oszlop) < 2);
     }
 
     private Mezo letrehoz(String tipus){

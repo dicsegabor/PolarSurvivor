@@ -2,7 +2,7 @@ package Proto.Commands;
 
 import Proto.Commander.Commands.Command;
 import Proto.Commander.Exceptions.WrongArgumentException;
-import Proto.Jatek;
+import Proto.ProtoProgram;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +15,7 @@ public class JegesmedveCommand extends Command {
         if(args.length < 1)
             throw new WrongArgumentException("A jegesmedvehez nem volt mezo megadva.");
 
-        Jatek.letrehozJegesmedve(args[0]);
+        ProtoProgram.letrehozJegesmedve(args[0]);
     }
 
     @Override

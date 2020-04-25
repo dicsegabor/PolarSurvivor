@@ -2,7 +2,7 @@ package Proto.Commands;
 
 import Proto.Commander.Commands.Command;
 import Proto.Commander.Exceptions.WrongArgumentException;
-import Proto.Jatek;
+import Proto.ProtoProgram;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +15,7 @@ public class PickUpCommand extends Command {
         if(args.length < 1)
             throw new WrongArgumentException("Nincs eleg megadott adat!");
 
-        Jatek.felvesz(args[0]);
+        ProtoProgram.felvesz(args[0]);
     }
 
     @Override

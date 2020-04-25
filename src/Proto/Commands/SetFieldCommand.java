@@ -2,7 +2,7 @@ package Proto.Commands;
 
 import Proto.Commander.Commands.Command;
 import Proto.Commander.Exceptions.WrongArgumentException;
-import Proto.Jatek;
+import Proto.ProtoProgram;
 import Targy.Targy;
 import Targy.Targytipus;
 
@@ -27,10 +27,10 @@ public class SetFieldCommand extends Command {
         if(args[0].matches("STABIL.*")){
 
             if(args.length == 2)
-                Jatek.beallitStabilJegtablat(args[0], horeteg, null);
+                ProtoProgram.beallitStabilJegtablat(args[0], horeteg, null);
 
             else if(args.length == 3)
-                Jatek.beallitStabilJegtablat(args[0], horeteg, Targytipus.letrehoz(Targytipus.valueOf(args[2])));
+                ProtoProgram.beallitStabilJegtablat(args[0], horeteg, Targytipus.letrehoz(Targytipus.valueOf(args[2])));
 
             else
                 throw new WrongArgumentException("Tul sok adat van megadva!");
@@ -48,10 +48,10 @@ public class SetFieldCommand extends Command {
             Targy targy;
 
             if(args.length == 3)
-                Jatek.beallitInstabilJegtablat(args[0], horeteg, kapacitas, null);
+                ProtoProgram.beallitInstabilJegtablat(args[0], horeteg, kapacitas, null);
 
             if(args.length == 4)
-                Jatek.beallitInstabilJegtablat(args[0], horeteg, kapacitas, Targytipus.letrehoz(Targytipus.valueOf(args[3])));
+                ProtoProgram.beallitInstabilJegtablat(args[0], horeteg, kapacitas, Targytipus.letrehoz(Targytipus.valueOf(args[3])));
 
             else
                 throw new WrongArgumentException("Tul sok adat van megadva!");

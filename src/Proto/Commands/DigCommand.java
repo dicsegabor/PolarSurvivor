@@ -1,13 +1,10 @@
 package Proto.Commands;
 
-import Mezo.Mezo;
-import Mozgathato.Karakter;
 import Proto.Commander.Commands.Command;
 import Proto.Commander.Exceptions.WrongArgumentException;
-import Proto.Jatek;
+import Proto.ProtoProgram;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class DigCommand extends Command {
@@ -18,7 +15,7 @@ public class DigCommand extends Command {
         if(args.length < 1)
             throw new WrongArgumentException("Nincs eleg megadott adat!");
 
-        Jatek.as(args[0]);
+        ProtoProgram.as(args[0]);
     }
 
     @Override
