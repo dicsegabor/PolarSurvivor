@@ -45,6 +45,11 @@ public abstract class Mezo implements VizbeesesListener {
      */
     private List<Mezo> szomszedok = new ArrayList<Mezo>();
 
+    public void setJegesmedve(Jegesmedve jegesmedve){
+
+        this.jegesmedve = jegesmedve;
+    }
+
     public void addKarakter(Karakter karakter){
 
         karakterek.add(karakter);

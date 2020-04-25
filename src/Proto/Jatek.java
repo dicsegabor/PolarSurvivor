@@ -50,7 +50,10 @@ public class Jatek {
      */
     public static void letrehozKarakter(String tipus, String mezo, List<Targy> targyak) throws WrongArgumentException {
 
-        String karakterNev = tipus + karakterek.size();
+        if(!mezok.containsKey(mezo))
+            throw new WrongArgumentException("A(z) '" + mezo + "' nevu mezo nem talalhato!");
+
+        String karakterNev = tipus + "_" + karakterek.size();
         Karakter karakter = null;
 
         if(targyak.isEmpty())
@@ -62,6 +65,19 @@ public class Jatek {
         karakterek.putIfAbsent(karakterNev, karakter);
         mozgathatok.putIfAbsent(karakterNev, karakter);
         mezok.get(mezo).addKarakter(karakterek.get(karakterNev));
+    }
+
+    public static void letrehozJegesmedve(String mezo) throws WrongArgumentException {
+
+        if(jegesmedve != null)
+            throw new WrongArgumentException("Mar van jegesmedve a palyan!");
+
+        if(!mezok.containsKey(mezo))
+            throw new WrongArgumentException("A(z) '" + mezo + "' nevu mezo nem talalhato!");
+
+        jegesmedve = new Jegesmedve(mezok.get(mezo));
+        mozgathatok.putIfAbsent("JEGESMEDVE", jegesmedve);
+        mezok.get(mezo).setJegesmedve(jegesmedve);
     }
 
     /**
