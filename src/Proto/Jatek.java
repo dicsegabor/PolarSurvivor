@@ -4,6 +4,8 @@ import Epulet.Epulettipus;
 import Exceptions.ItemNotFoundException;
 import Mezo.Mezo;
 import Mezo.Jegtabla;
+import Proto.Commands.KarakterCommand;
+import Proto.Commands.SetFieldCommand;
 import Targy.Targytipus;
 import Mozgathato.*;
 import Proto.Commander.Commander;
@@ -30,7 +32,7 @@ public class Jatek {
     /**
      * A jatek mozgathatolistaja.
      */
-    private static HashMap<String, Karakter> mozgathatok = new HashMap<>();
+    private static HashMap<String, Mozgathato> mozgathatok = new HashMap<>();
 
     /**
      * A jatek mezolistaja.
@@ -252,6 +254,7 @@ public class Jatek {
     private static void loadCommands(Commander commander){
 
         commander.addCommand(new LoadMapCommand());
+        commander.addCommand(new KarakterCommand(karakterek, mozgathatok, mezok));
     }
 
     public static void main(String[] args) {
