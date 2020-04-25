@@ -26,7 +26,7 @@ public class KarakterCommand extends Command {
             Jatek.letrehozKarakter(args[0], args[1], targyak);
         }
 
-        Jatek.letrehozKarakter(args[0], args[1], null);
+        Jatek.letrehozKarakter(args[0], args[1], new ArrayList<>());
     }
 
     @Override

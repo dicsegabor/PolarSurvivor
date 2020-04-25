@@ -9,6 +9,15 @@ import Proto.LogAndTesting.Logger;
  */
 public class Lyuk extends Mezo {
 
+    public Lyuk(boolean fedett){
+
+        if(fedett)
+            horeteg = 1;
+
+        else
+            horeteg = 0;
+    }
+
     /**
      * Berak egy karaktert a karakterlistajaba.
      * A ralepo karakterek egybel a vizbe esnek, es eltunik rola a ho.

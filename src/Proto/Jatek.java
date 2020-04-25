@@ -273,7 +273,7 @@ public class Jatek {
 
     private static void loadCommands(Commander commander){
 
-        commander.addCommand(new LoadMapCommand());
+        commander.addCommand(new LoadMapCommand(mezok));
         commander.addCommand(new KarakterCommand());
         commander.addCommand(new JegesmedveCommand());
         commander.addCommand(new SetFieldCommand());

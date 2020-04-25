@@ -20,7 +20,7 @@ public abstract class Mezo implements VizbeesesListener {
      * A mezon talalhato homennyiseget jelkepezi.
      * Ha 0 erteku, akkor latszik, hogy a mezo lyuk-e.
      */
-    private int horeteg;
+    protected int horeteg;
 
     /**
      * A mezo kapacitasat jelkepezi.
@@ -43,7 +43,7 @@ public abstract class Mezo implements VizbeesesListener {
     /**
      * A mezo szomszedos mezoket tarolo listaja.
      */
-    private List<Mezo> szomszedok = new ArrayList<Mezo>();
+    protected List<Mezo> szomszedok = new ArrayList<Mezo>();
 
     public void setJegesmedve(Jegesmedve jegesmedve){
 
