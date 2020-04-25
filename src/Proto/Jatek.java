@@ -48,16 +48,16 @@ public class Jatek {
      *  Letrehoz egy karaktert a parameterben megadott azonositoval,
      *  tipussal a megadott mezon a megadott targyakkal es beteszi a karakterlistaba.
      */
-    public void letrehozKarakter(String azonosito, String tipus, String mezo, List<Targy> targyak){
+    public static void letrehozKarakter(String tipus, String mezo, List<Targy> targyak) throws WrongArgumentException {
 
-        String karakterNev = tipus + azonosito;
+        String karakterNev = tipus + karakterek.size();
         Karakter karakter = null;
 
-        switch (tipus){
+        if(targyak.isEmpty())
+            karakter = MozgathatoTipus.letrehoz(MozgathatoTipus.valueOf(tipus), mezok.get(mezo));
 
-            case "e": karakter = new Eszkimo(mezok.get(mezo), targyak); break;
-            case "k": karakter = new Kutato(mezok.get(mezo), targyak); break;
-        }
+        else
+            MozgathatoTipus.letrehoz(MozgathatoTipus.valueOf(tipus), mezok.get(mezo), targyak);
 
         karakterek.putIfAbsent(karakterNev, karakter);
         mozgathatok.putIfAbsent(karakterNev, karakter);
@@ -67,7 +67,7 @@ public class Jatek {
     /**
      * A parameterul megadott mezot ellatja megfelelo szamu ho reteggel es kapacitassal es egy targgyal.
      */
-    public void beallitInstabilJegtablat(String azonosito, int horeteg, int kapacitas, Targy targy) throws WrongArgumentException {
+    public static void beallitInstabilJegtablat(String azonosito, int horeteg, int kapacitas, Targy targy) throws WrongArgumentException {
 
         if(!mezok.containsKey(azonosito))
             throw new WrongArgumentException("A(z) '" + azonosito + "' nevu mezo nem talalhato!");
@@ -77,7 +77,7 @@ public class Jatek {
         ((Jegtabla)mezok.get(azonosito)).setTargy(targy);
     }
 
-    public void beallitStabilJegtablat(String azonosito, int horeteg, Targy targy) throws WrongArgumentException {
+    public static void beallitStabilJegtablat(String azonosito, int horeteg, Targy targy) throws WrongArgumentException {
 
         if(!mezok.containsKey(azonosito))
             throw new WrongArgumentException("A(z) '" + azonosito + "' nevu mezo nem talalhato!");
@@ -89,7 +89,7 @@ public class Jatek {
     /**
      * A parameterul kapott mezorol a sarkkutato megallapatja a mezo kapacitasat.
      */
-    public void megvizsgal(String karakter, String mezo) throws WrongArgumentException {
+    public static void megvizsgal(String karakter, String mezo) throws WrongArgumentException {
 
         if(!karakterek.containsKey(mezo))
             throw new WrongArgumentException("A(z) '" + mezo + "' nevu karakter nem talalhato!");
@@ -102,7 +102,7 @@ public class Jatek {
     /**
      * A parameterben megadott karakter/jegesmedvet a megadott mezore lepteti.
      */
-    public void lep(String mozgathato, String mezo) throws WrongArgumentException {
+    public static void lep(String mozgathato, String mezo) throws WrongArgumentException {
 
         if(!mezok.containsKey(mezo))
             throw new WrongArgumentException("A(z) '" + mezo + "' nevu mezo nem talalhato!");
@@ -116,7 +116,7 @@ public class Jatek {
     /**
      * A parameterul kapott karakter felveszi a mezon levo targyat.
      */
-    public void felvesz(String karakter) throws WrongArgumentException {
+    public static void felvesz(String karakter) throws WrongArgumentException {
 
         if (!karakterek.containsKey(karakter))
             throw new WrongArgumentException("A(z) '" + karakter + "' nevu karakter nem talalhato!");
@@ -127,7 +127,7 @@ public class Jatek {
     /**
      * A parameterul kapott karakter 1 egyseg munka fejeben as
      */
-    public void as(String karakter) throws WrongArgumentException {
+    public static void as(String karakter) throws WrongArgumentException {
 
         if (!karakterek.containsKey(karakter))
             throw new WrongArgumentException("A(z) '" + karakter + "' nevu karakter nem talalhato!");
@@ -138,7 +138,7 @@ public class Jatek {
     /**
      * A parameterul kapott mezon osszeszerelni probal.
      */
-    public void kombinal(String karakter) throws WrongArgumentException {
+    public static void kombinal(String karakter) throws WrongArgumentException {
 
         if (!karakterek.containsKey(karakter))
             throw new WrongArgumentException("A(z) '" + karakter + "' nevu karakter nem talalhato!");
@@ -156,7 +156,7 @@ public class Jatek {
     /**
      * Veget er egy kor.
      */
-    public void kor(){
+    public static void kor(){
 
         for(Map.Entry<String, Mezo> mezo : mezok.entrySet())
             mezo.getValue().vihar();
@@ -170,7 +170,7 @@ public class Jatek {
     /**
      * A parameterul kapott karakter a tartozkodasi helyen epit.
      */
-    public void epit(String karakter, Epulettipus epulettipus) throws WrongArgumentException {
+    public static void epit(String karakter, Epulettipus epulettipus) throws WrongArgumentException {
 
         if (!karakterek.containsKey(karakter))
             throw new WrongArgumentException("A(z) '" + karakter + "' nevu karakter nem talalhato!");
@@ -188,7 +188,7 @@ public class Jatek {
      * A parameterben megkapott, a bemeneti nyelv kifejezeseit tartalmazo fajlbol
      * beolvasott utasitasokat hajtja vegre.
      */
-    public void beolvas(){
+    public static void beolvas(){
 
 
     }
@@ -196,7 +196,7 @@ public class Jatek {
     /**
      * A param�terben kapott karakter tulajdons�gait �rja a k�perny�re.
      */
-    public void allapot(String azonosito) throws WrongArgumentException {
+    public static void allapot(String azonosito) throws WrongArgumentException {
 
         if(mozgathatok.containsKey(azonosito)){
 
@@ -240,7 +240,8 @@ public class Jatek {
      */
     public static void jatekVege(String uzenet){
 
-        //TODO: Kitalalni a jatekveget
+        System.out.println("A jatek veget ert! " + uzenet);
+        System.exit(0);
     }
 
     /**
@@ -254,7 +255,7 @@ public class Jatek {
     private static void loadCommands(Commander commander){
 
         commander.addCommand(new LoadMapCommand());
-        commander.addCommand(new KarakterCommand(karakterek, mozgathatok, mezok));
+        commander.addCommand(new KarakterCommand());
     }
 
     public static void main(String[] args) {
