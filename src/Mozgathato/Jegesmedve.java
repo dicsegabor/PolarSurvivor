@@ -42,6 +42,13 @@ public class Jegesmedve implements Mozgathato {
     }
 
     @Override
+    public Mezo getMezo() {
+
+        return mezo;
+    }
+
+
+    @Override
     public MozgathatoTipus tipus(){
 
         return MozgathatoTipus.JEGESMEDVE;

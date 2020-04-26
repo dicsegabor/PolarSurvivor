@@ -15,7 +15,6 @@ public class Buvarruha implements Targy {
     public void hasznal(Karakter karakter) {
 
         Logger.log();
-
     }
 
     /**

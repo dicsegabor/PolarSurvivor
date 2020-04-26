@@ -17,7 +17,6 @@ public class Patron implements Targy {
     public void hasznal(Karakter karakter) {
 
         Logger.log();
-
     }
 
     /**

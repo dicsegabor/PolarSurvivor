@@ -2,8 +2,7 @@ package Proto;
 
 import Epulet.Epulettipus;
 import Exceptions.ItemNotFoundException;
-import Mezo.Mezo;
-import Mezo.Jegtabla;
+import Mezo.*;
 import Proto.Commands.*;
 import Targy.Targytipus;
 import Mozgathato.*;
@@ -12,10 +11,7 @@ import Proto.Commander.Exceptions.WrongArgumentException;
 import Proto.LogAndTesting.Tester;
 import Targy.Targy;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 
 /**
  * Ez tarolja a jatekot, mezoket es karaktereket.
@@ -41,6 +37,15 @@ public class ProtoProgram {
      * A jegesmedve.
      */
     private static Jegesmedve jegesmedve;
+
+    public static <T, E> T getKeyByValue(Map<T, E> map, E value) {
+
+        for (Map.Entry<T, E> entry : map.entrySet())
+            if (Objects.equals(value, entry.getValue()))
+                return entry.getKey();
+
+        return null;
+    }
 
     /**
      *  Letrehoz egy karaktert a parameterben megadott azonositoval,
@@ -224,19 +229,50 @@ public class ProtoProgram {
      */
     public static void allapot(String azonosito) throws WrongArgumentException {
 
+        StringBuilder stat = new StringBuilder();
+
         if(mozgathatok.containsKey(azonosito)){
 
-            //TODO: Mindent kitalalni
+            if(mozgathatok.get(azonosito).tipus().equals(MozgathatoTipus.JEGESMEDVE)){
+
+                String mezonev = getKeyByValue(mezok, jegesmedve.getMezo());
+                stat.append("Mezo: ").append(mezonev);
+            }
+
+            else {
+
+                Karakter karakter = (Karakter) mozgathatok.get(azonosito);
+
+                stat.append("Azonosito: ").append(azonosito);
+                String mezonev = getKeyByValue(mezok, karakter.getMezo());
+                stat.append("Mezo: ").append(mezonev);
+                stat.append("Tesho: ").append(karakter.getTestho());
+                stat.append("Munka: ").append(karakter.getMunka());
+            }
         }
 
         else if(mezok.containsKey(azonosito)){
 
+            if(azonosito.matches(".*[JEGTABLA].*")) {
 
+                Jegtabla mezo = (Jegtabla) mezok.get(azonosito);
+                stat.append("Horeteg: ").append(mezo.getHoreteg());
+                stat.append("Kapacitas: ").append(mezo.getKapacitas());
+                stat.append("Targy: ").append(mezo.getTargy().tipus());
+            }
+
+            else {
+
+                Lyuk mezo = (Lyuk) mezok.get(azonosito);
+                stat.append("Horeteg: ").append(mezo.getHoreteg());
+                stat.append("Kapacitas: ").append(mezo.getKapacitas());
+            }
         }
 
         else
             throw new WrongArgumentException("A(z) '" + azonosito + "' nevu objektum nem talalhato!");
 
+        System.out.println(stat.toString());
     }
 
     /**

@@ -1,7 +1,9 @@
 package Mezo;
 
-import Mozgathato.Mozgathato;
+import Exceptions.ItemNotFoundException;
+import Mozgathato.*;
 import Proto.LogAndTesting.Logger;
+import Targy.Targytipus;
 
 /**
  * Az instabil jegtablat jelkepezi.
@@ -18,5 +20,17 @@ public class InstabilJegtabla extends Jegtabla {
 
         Logger.log();
 
+        if(mozgathato.tipus().equals(MozgathatoTipus.JEGESMEDVE))
+            jegesmedve = (Jegesmedve)mozgathato;
+
+        else
+            karakterek.add((Karakter)mozgathato);
+
+        if(osszsuly() > kapacitas)
+            for(Karakter k : karakterek) {
+
+                try { k.keres(Targytipus.BUVARRUHA).hasznal(k); }
+                catch (ItemNotFoundException e) { segitseg(k); }
+            }
     }
 }

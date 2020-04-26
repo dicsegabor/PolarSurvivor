@@ -1,6 +1,6 @@
 package Mezo;
 
-import Mozgathato.Mozgathato;
+import Mozgathato.*;
 import Proto.LogAndTesting.Logger;
 
 /**
@@ -16,5 +16,10 @@ public class StabilJegtabla extends Jegtabla {
 
         Logger.log();
 
+        if(mozgathato.tipus().equals(MozgathatoTipus.JEGESMEDVE))
+            jegesmedve = (Jegesmedve)mozgathato;
+
+        else
+            karakterek.add((Karakter)mozgathato);
     }
 }

@@ -41,6 +41,11 @@ public class Karakter implements Mozgathato {
         return munka;
     }
 
+    public int getTestho() {
+
+        return testho;
+    }
+
     public Mezo getMezo() {
 
         Logger.log();

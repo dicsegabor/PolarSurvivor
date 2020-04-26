@@ -16,6 +16,7 @@ public class Lapat implements Targy {
 
         Logger.log();
 
+        karakter.getMezo().havatCsokkent(2);
     }
 
     /**

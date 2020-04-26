@@ -27,6 +27,7 @@ public class Kotel implements Targy {
 
         Logger.log();
 
+        aldozat.lep(megmento.getMezo());
     }
 
     /**

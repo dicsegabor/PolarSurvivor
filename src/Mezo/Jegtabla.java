@@ -14,12 +14,12 @@ public abstract class Jegtabla extends Mezo {
     /**
      * A mezo altal tarolt targy, amit a karakter felvehet.
      */
-    private Targy targy;
+    protected Targy targy;
 
     /**
      * A mezon talalhato epulet, ami befolyasolja a karakterek viszonyulasat a kornyezethez.
      */
-    private Epulet epulet;
+    protected Epulet epulet;
 
     /**
      * Meghivja a mezo viharat, valamint teszteli, hogy van-e epulet.
@@ -72,6 +72,18 @@ public abstract class Jegtabla extends Mezo {
         this.targy = null;
 
         return targy;
+    }
+
+    public int osszsuly(){
+
+        int suly = karakterek.size();
+        if(jegesmedve != null)
+            suly++;
+
+        if (epulet != null)
+            suly++;
+
+        return suly;
     }
 
     /**

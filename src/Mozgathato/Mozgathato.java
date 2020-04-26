@@ -13,5 +13,7 @@ public interface Mozgathato {
      */
     void lep(Mezo mezo);
 
+    Mezo getMezo();
+
     MozgathatoTipus tipus();
 }

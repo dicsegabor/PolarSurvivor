@@ -6,6 +6,7 @@ import Mozgathato.Karakter;
 import Mozgathato.*;
 import Proto.ProtoProgram;
 import Proto.LogAndTesting.Logger;
+import Targy.Targy;
 import Targy.Targytipus;
 
 import java.util.ArrayList;
@@ -99,21 +100,32 @@ public abstract class Mezo implements VizbeesesListener {
     public boolean tudnakEOsszeszerlni(){
 
         for(Karakter k : karakterek){
-            try { k.keres(Targytipus.JELZOFENY); }
+            try { k.keres(Targytipus.JELZOFENY).hasznal(k); }
             catch (ItemNotFoundException e) { return false; }
         }
 
         for(Karakter k : karakterek){
-            try { k.keres(Targytipus.PATRON); }
+            try { k.keres(Targytipus.PATRON).hasznal(k); }
             catch (ItemNotFoundException e) { return false; }
         }
 
         for(Karakter k : karakterek){
-            try { k.keres(Targytipus.PISZTOLY); }
+            try { k.keres(Targytipus.PISZTOLY).hasznal(k); }
             catch (ItemNotFoundException e) { return false; }
         }
 
         return true;
+    }
+
+    public boolean probalMenteni(Karakter karakter){
+
+        for(Karakter k : karakterek){
+
+            try { k.keres(Targytipus.KOTEL).hasznal(karakter); }
+            catch (ItemNotFoundException ignored) {}
+        }
+
+        return false;
     }
 
     /**
@@ -212,5 +224,8 @@ public abstract class Mezo implements VizbeesesListener {
 
         Logger.log();
 
+        for(Mezo m : szomszedok)
+            if(m.probalMenteni(karakter))
+                break;
     }
 }
