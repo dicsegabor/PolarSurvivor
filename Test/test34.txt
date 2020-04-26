@@ -1,0 +1,12 @@
+Expected
+
+Unexpected
+
+Commands
+loadmap map.txt
+setfield INSTABIL_2_1 1 2
+karakter ESZKIMO INSTABIL_2_1
+build ESZKIMO_0 IGLU
+stat INSTABIL_2_1
+stat ESZKIMO_0
+exit
