@@ -1,9 +1,0 @@
-Expected
-Mezo.Mezo.setSzomszed, Mezo.Mezo.szomszedE, Mezo.Mezo.getHoreteg, Mezo.Mezo.getKapacitas, Mezo.Jegtabla.getTargy, Targy.Kotel.tipus
-Unexpected
-Mozgathato.Karakter.meghal
-Commands
-loadmap map.txt
-setfield INSTABIL_2_2 4 3 KOTEL
-stat INSTABIL_2_2
-exit
