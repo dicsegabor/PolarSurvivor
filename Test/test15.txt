@@ -1,0 +1,15 @@
+Expected
+
+Unexpected
+
+Commands
+loadmap map.txt
+setfield STABIL_2_3 2
+setfield STABIL_2_4 2
+karakter ESZKIMO STABIL_2_3
+jegesmedve STABIL_2_4
+build ESZKIMO_0 IGLU
+move JEGESMEDVE STABIL_2_3
+stat STABIL_2_3
+stat JEGESMEDVE
+exit

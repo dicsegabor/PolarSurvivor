@@ -1,0 +1,10 @@
+Expected
+Unexpected
+Commands
+loadmap map.txt
+setfield STABIL_2_4 3
+karakter ESZKIMO STABIL_2_4 TOREKENYASO
+dig ESZKIMO
+stat STABIL_2_4
+stat ESZKIMO
+exit

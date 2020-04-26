@@ -1,0 +1,12 @@
+Expected
+Unexpected
+Commands
+loadmap map.txt
+setfield s_2_4 3
+karakter ESZKIMO ESZKIMO_2_4 PISZTOLY PATRON
+karakter ESZKIMO STABIL_2_4
+combine ESZKIMO_0
+stat STABIL_2_4
+stat ESZKIMO_0
+stat ESZKIMO_1
+exit
