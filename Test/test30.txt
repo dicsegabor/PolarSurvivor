@@ -1,0 +1,10 @@
+Expected
+
+Unexpected
+
+Commands
+loadmap map.txt
+setfield STABIL_2_3 2
+turn
+stat STABIL_2_3
+exit
