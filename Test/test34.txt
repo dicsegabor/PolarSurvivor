@@ -1,3 +1,7 @@
+Expected
+
+Unexpected
+
 Commands
 loadmap map.txt
 setfield INSTABIL_2_1 1 2
