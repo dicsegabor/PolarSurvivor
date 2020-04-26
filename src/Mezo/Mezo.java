@@ -38,7 +38,7 @@ public abstract class Mezo implements VizbeesesListener {
     /**
      * A mezo karakterlistaja. Itt tarolja a tartalmazott karaktereket
      */
-    protected List<Karakter> karakterek;
+    protected List<Karakter> karakterek = new ArrayList<Karakter>();
 
     /**
      * A mezo szomszedos mezoket tarolo listaja.

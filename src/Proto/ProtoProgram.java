@@ -51,14 +51,21 @@ public class ProtoProgram {
         if(!mezok.containsKey(mezo))
             throw new WrongArgumentException("A(z) '" + mezo + "' nevu mezo nem talalhato!");
 
+        MozgathatoTipus mozgathatoTipus;
+        try {
+            mozgathatoTipus = MozgathatoTipus.valueOf(tipus);
+        } catch (IllegalArgumentException e) {
+            throw new WrongArgumentException("A parameterul kapott tipus nem megfelelo!");
+        }
+
         String karakterNev = tipus + "_" + karakterek.size();
         Karakter karakter;
 
         if(targyak.isEmpty())
-            karakter = MozgathatoTipus.letrehoz(MozgathatoTipus.valueOf(tipus), mezok.get(mezo));
+            karakter = MozgathatoTipus.letrehoz(mozgathatoTipus, mezok.get(mezo));
 
         else
-            karakter = MozgathatoTipus.letrehoz(MozgathatoTipus.valueOf(tipus), mezok.get(mezo), targyak);
+            karakter = MozgathatoTipus.letrehoz(mozgathatoTipus, mezok.get(mezo), targyak);
 
         karakterek.putIfAbsent(karakterNev, karakter);
         mozgathatok.putIfAbsent(karakterNev, karakter);
