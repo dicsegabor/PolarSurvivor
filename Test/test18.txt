@@ -1,0 +1,13 @@
+Expected
+
+Unexpected
+
+Commands
+loadmap map.txt
+setfield STABIL_2_4 2
+setfield LYUK_2_5 1 0
+karakter ESZKIMO STABIL_2_4
+move ESZKIMO_0 LYUK_2_5
+stat LYUK_2_5
+stat ESZKIMO_0
+exit
