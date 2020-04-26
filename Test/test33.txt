@@ -7,6 +7,6 @@ loadmap map.txt
 setfield INSTABIL_2_2 1 1
 karakter ESZKIMO INSTABIL_2_2
 build ESZKIMO_0 IGLU
-stat INSTABIL_2_1 
+stat INSTABIL_2_2 
 stat ESZKIMO_0
 exit

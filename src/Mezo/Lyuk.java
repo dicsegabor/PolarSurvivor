@@ -1,7 +1,9 @@
 package Mezo;
 
-import Mozgathato.Mozgathato;
+import Exceptions.ItemNotFoundException;
+import Mozgathato.*;
 import Proto.LogAndTesting.Logger;
+import Targy.Targytipus;
 
 /**
  * Az lyukat jelkepezi.
@@ -10,6 +12,8 @@ import Proto.LogAndTesting.Logger;
 public class Lyuk extends Mezo {
 
     public Lyuk(boolean fedett){
+
+        Logger.log();
 
         if(fedett)
             horeteg = 1;
@@ -27,5 +31,16 @@ public class Lyuk extends Mezo {
 
         Logger.log();
 
+        if(mozgathato.tipus().equals(MozgathatoTipus.JEGESMEDVE))
+            jegesmedve = (Jegesmedve)mozgathato;
+
+        else
+            karakterek.add((Karakter)mozgathato);
+
+        for(Karakter k : karakterek) {
+
+            try { k.keres(Targytipus.BUVARRUHA).hasznal(k); }
+            catch (ItemNotFoundException e) { segitseg(k); }
+        }
     }
 }

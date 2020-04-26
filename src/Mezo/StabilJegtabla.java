@@ -8,6 +8,11 @@ import Proto.LogAndTesting.Logger;
  */
 public class StabilJegtabla extends Jegtabla {
 
+    public StabilJegtabla(){
+
+        kapacitas = Integer.MAX_VALUE;
+    }
+
     /**
      * Berak egy karaktert vagy medvet a mezobe.
      */

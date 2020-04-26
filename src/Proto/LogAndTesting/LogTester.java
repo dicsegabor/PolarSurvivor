@@ -81,7 +81,7 @@ public class LogTester {
                 break;
             }
 
-        System.out.println("/////////////////////// Test result ///////////////////////");
+        System.out.println("                        Test result");
         if(success)
             System.out.println("Test OK!");
 

@@ -50,11 +50,8 @@ public class SetFieldCommand extends Command {
             if(args.length == 3)
                 ProtoProgram.beallitInstabilJegtablat(args[0], horeteg, kapacitas, null);
 
-            if(args.length == 4)
-                ProtoProgram.beallitInstabilJegtablat(args[0], horeteg, kapacitas, Targytipus.letrehoz(Targytipus.valueOf(args[3])));
-
             else
-                throw new WrongArgumentException("Tul sok adat van megadva!");
+                ProtoProgram.beallitInstabilJegtablat(args[0], horeteg, kapacitas, Targytipus.letrehoz(Targytipus.valueOf(args[3])));
         }
 
         else

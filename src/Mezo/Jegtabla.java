@@ -33,7 +33,7 @@ public abstract class Jegtabla extends Mezo {
 
         super.vihar();
 
-        if(epulet.equals(null))
+        if(epulet == null)
             karakterek.forEach(k -> k.testhotCsokkent(1));
 
         else
@@ -57,13 +57,15 @@ public abstract class Jegtabla extends Mezo {
 
     public void setTargy(Targy targy) {
 
+        Logger.log();
+
         this.targy = targy;
     }
 
     /**
      * Kiadja a tarolt targyat es eltavolitja a mezorol.
      */
-    public Targy getTargy(){
+    public Targy felvesz(){
 
         Logger.log();
 
@@ -74,7 +76,16 @@ public abstract class Jegtabla extends Mezo {
         return targy;
     }
 
+    public Targy getTargy() {
+
+        Logger.log();
+
+        return targy;
+    }
+
     public int osszsuly(){
+
+        Logger.log();
 
         int suly = karakterek.size();
         if(jegesmedve != null)

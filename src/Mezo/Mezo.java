@@ -48,20 +48,28 @@ public abstract class Mezo implements VizbeesesListener {
 
     public void setJegesmedve(Jegesmedve jegesmedve){
 
+        Logger.log();
+
         this.jegesmedve = jegesmedve;
     }
 
     public void addKarakter(Karakter karakter){
+
+        Logger.log();
 
         karakterek.add(karakter);
     }
 
     public void setHoreteg(int horeteg) {
 
+        Logger.log();
+
         this.horeteg = horeteg;
     }
 
     public void setKapacitas(int kapacitas) {
+
+        Logger.log();
 
         this.kapacitas = kapacitas;
     }
@@ -99,25 +107,31 @@ public abstract class Mezo implements VizbeesesListener {
 
     public boolean tudnakEOsszeszerlni(){
 
+        Logger.log();
+
+        boolean jelzofeny = false, raketa = false, patron = false;
+
         for(Karakter k : karakterek){
-            try { k.keres(Targytipus.JELZOFENY).hasznal(k); }
-            catch (ItemNotFoundException e) { return false; }
+            try { k.keres(Targytipus.JELZOFENY).hasznal(k); jelzofeny = true; }
+            catch (ItemNotFoundException ignored) {}
         }
 
         for(Karakter k : karakterek){
-            try { k.keres(Targytipus.PATRON).hasznal(k); }
-            catch (ItemNotFoundException e) { return false; }
+            try { k.keres(Targytipus.PATRON).hasznal(k); patron = true; }
+            catch (ItemNotFoundException ignored) {}
         }
 
         for(Karakter k : karakterek){
-            try { k.keres(Targytipus.PISZTOLY).hasznal(k); }
-            catch (ItemNotFoundException e) { return false; }
+            try { k.keres(Targytipus.PISZTOLY).hasznal(k); raketa = true; }
+            catch (ItemNotFoundException ignored) {}
         }
 
-        return true;
+        return raketa && patron && jelzofeny;
     }
 
     public boolean probalMenteni(Karakter karakter){
+
+        Logger.log();
 
         for(Karakter k : karakterek){
 
@@ -159,6 +173,8 @@ public abstract class Mezo implements VizbeesesListener {
     }
 
     public Mezo getRandomSzomszed(){
+
+        Logger.log();
 
         return szomszedok.get(ProtoProgram.getRandomNumber(szomszedok.size()));
     }
@@ -202,6 +218,8 @@ public abstract class Mezo implements VizbeesesListener {
     }
 
     public boolean halalE(){
+
+        Logger.log();
 
         return jegesmedve != null && !karakterek.isEmpty();
     }

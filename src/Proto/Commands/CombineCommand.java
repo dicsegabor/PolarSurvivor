@@ -11,7 +11,7 @@ public class CombineCommand extends Command {
     @Override
     public void execute(String[] args) throws WrongArgumentException {
 
-        if(args.length < 2)
+        if(args.length < 1)
             throw new WrongArgumentException("Nincs eleg megadott adat!");
 
         ProtoProgram.kombinal(args[0]);

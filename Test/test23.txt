@@ -1,9 +1,11 @@
 Expected
+
 Unexpected
+asd
 Commands
 loadmap map.txt
-setfield s_2_4 3
-karakter ESZKIMO ESZKIMO_2_4 PISZTOLY PATRON
+setfield STABIL_2_4 3
+karakter ESZKIMO STABIL_2_4 PISZTOLY PATRON
 karakter ESZKIMO STABIL_2_4
 combine ESZKIMO_0
 stat STABIL_2_4

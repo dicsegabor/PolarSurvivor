@@ -62,7 +62,7 @@ public class Karakter implements Mozgathato {
 
         Logger.log();
 
-        Targy targy = ((Jegtabla)mezo).getTargy();
+        Targy targy = ((Jegtabla)mezo).felvesz();
 
         if(targy.tipus().equals(Targytipus.ELELEM))
             targy.hasznal(this);

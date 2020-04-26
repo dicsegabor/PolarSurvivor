@@ -121,7 +121,7 @@ public class ProtoProgram {
         if(elfaradtKarakterek.contains(karakter))
             throw new WrongArgumentException("A(z) '" + karakter + "' nevu karakter elfaradt!");
 
-        if(!karakterek.containsKey(mezo))
+        if(!mezok.containsKey(mezo))
             throw new WrongArgumentException("A(z) '" + mezo + "' nevu mezo nem talalhato!");
 
         if(karakterek.get(karakter).tipus().equals(MozgathatoTipus.KUTATO)) {
@@ -208,7 +208,8 @@ public class ProtoProgram {
         for(Map.Entry<String, Mezo> mezo : mezok.entrySet())
             mezo.getValue().vihar();
 
-        jegesmedve.lep(null);
+        if(jegesmedve != null)
+            jegesmedve.lep(null);
 
         for(Map.Entry<String, Karakter> karakter : karakterek.entrySet())
             karakter.getValue().munkatVisszaallit();
@@ -227,8 +228,14 @@ public class ProtoProgram {
         if (!karakterek.containsKey(karakter))
             throw new WrongArgumentException("A(z) '" + karakter + "' nevu karakter nem talalhato!");
 
-        if(epulettipus.equals(Epulettipus.IGLU) && karakterek.get(karakter).tipus().equals(MozgathatoTipus.ESZKIMO))
-            ((Eszkimo)karakterek.get(karakter)).iglutEpit();
+        if(epulettipus.equals(Epulettipus.IGLU)) {
+
+            if(karakterek.get(karakter).tipus().equals(MozgathatoTipus.ESZKIMO))
+                ((Eszkimo) karakterek.get(karakter)).iglutEpit();
+
+            else
+                throw new WrongArgumentException("A(z) '" + karakter + "' nevu karakter nem eszkimo!");
+        }
 
         if (epulettipus.equals(Epulettipus.SATOR)){
             try { karakterek.get(karakter).keres(Targytipus.SATOR).hasznal(karakterek.get(karakter)); }
@@ -266,13 +273,14 @@ public class ProtoProgram {
 
         else if(mezok.containsKey(azonosito)){
 
-            if(azonosito.matches(".*[JEGTABLA].*")) {
+            if(azonosito.matches(".*(STABIL).*")) {
 
                 stat.append("Azonosito: ").append(azonosito).append("\n");
                 Jegtabla mezo = (Jegtabla) mezok.get(azonosito);
                 stat.append("Horeteg: ").append(mezo.getHoreteg()).append("\n");
                 stat.append("Kapacitas: ").append(mezo.getKapacitas()).append("\n");
-                stat.append("Targy: ").append(mezo.getTargy().tipus());
+                if(mezo.getTargy() != null)
+                    stat.append("Targy: ").append(mezo.getTargy().tipus());
             }
 
             else {
@@ -318,7 +326,6 @@ public class ProtoProgram {
     public static void jatekVege(String uzenet){
 
         System.out.println("A jatek veget ert! " + uzenet);
-        System.exit(0);
     }
 
     /**

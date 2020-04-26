@@ -1,10 +1,12 @@
 Expected
+
 Unexpected
+asd
 Commands
 loadmap map.txt
 setfield STABIL_2_4 3
-karakter ESZKIMO STABIL_2_4 TOREKENYASO
-dig ESZKIMO
+karakter ESZKIMO STABIL_2_4 TOREKENYLAPAT
+dig ESZKIMO_0
 stat STABIL_2_4
-stat ESZKIMO
+stat ESZKIMO_0
 exit

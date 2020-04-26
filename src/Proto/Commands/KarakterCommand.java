@@ -20,13 +20,14 @@ public class KarakterCommand extends Command {
 
             List<Targy> targyak = new ArrayList<>();
 
-            for(int i = 2; i <= args.length; i++)
+            for(int i = 2; i < args.length; i++)
                 targyak.add(Targytipus.letrehoz(Targytipus.valueOf(args[i])));
 
             ProtoProgram.letrehozKarakter(args[0], args[1], targyak);
         }
 
-        ProtoProgram.letrehozKarakter(args[0], args[1], new ArrayList<>());
+        else
+            ProtoProgram.letrehozKarakter(args[0], args[1], new ArrayList<>());
     }
 
     @Override
