@@ -35,18 +35,19 @@ public class StatCommand extends Command {
 
         return new ArrayList<>(){
             {
-                add(String.format("%-30s%s", "[karakter]", "A karakter azonositoja, aki as."));
+                add(String.format("%-30s%s", "[entitas azonosito]", "Az entitas azonositoja, amit vizsgalunk."));
             }
         };
     }
 
     @Override
     protected String otherInfo() {
-        return null;
+
+        return "stat JEGESMEDVE";
     }
 
     @Override
     public String getDescription() {
-        return null;
+        return "A paraméterben kapott karakter tulajdonságait írja a képernyõre.";
     }
 }

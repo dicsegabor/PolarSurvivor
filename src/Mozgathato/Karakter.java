@@ -190,7 +190,7 @@ public class Karakter implements Mozgathato {
         Logger.log();
 
         if(munka - mennyiseg <= 0)
-            ProtoProgram.kovetkezoKarakter();
+            ProtoProgram.kovetkezoKarakter(this);
 
         munka -= mennyiseg;
     }

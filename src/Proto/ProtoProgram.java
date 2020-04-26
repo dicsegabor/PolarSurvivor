@@ -22,6 +22,7 @@ public class ProtoProgram {
      * A jatek karakterlistaja.
      */
     private static HashMap<String, Karakter> karakterek = new HashMap<>();
+    private static List<String> elfaradtKarakterek = new ArrayList<>();
 
     /**
      * A jatek mozgathatolistaja.
@@ -117,8 +118,11 @@ public class ProtoProgram {
      */
     public static void megvizsgal(String karakter, String mezo) throws WrongArgumentException {
 
+        if(elfaradtKarakterek.contains(karakter))
+            throw new WrongArgumentException("A(z) '" + karakter + "' nevu karakter elfaradt!");
+
         if(!karakterek.containsKey(mezo))
-            throw new WrongArgumentException("A(z) '" + mezo + "' nevu karakter nem talalhato!");
+            throw new WrongArgumentException("A(z) '" + mezo + "' nevu mezo nem talalhato!");
 
         if(karakterek.get(karakter).tipus().equals(MozgathatoTipus.KUTATO)) {
 
@@ -127,13 +131,16 @@ public class ProtoProgram {
         }
 
         else
-            throw new WrongArgumentException("A(z) '" + mezo + "' nevu karakter nem kutato!");
+            throw new WrongArgumentException("A(z) '" + karakter + "' nevu karakter nem kutato!");
     }
 
     /**
      * A parameterben megadott karakter/jegesmedvet a megadott mezore lepteti.
      */
     public static void lep(String mozgathato, String mezo) throws WrongArgumentException {
+
+        if(elfaradtKarakterek.contains(mozgathato))
+            throw new WrongArgumentException("A(z) '" + mozgathato + "' nevu karakter elfaradt!");
 
         if(!mezok.containsKey(mezo))
             throw new WrongArgumentException("A(z) '" + mezo + "' nevu mezo nem talalhato!");
@@ -149,6 +156,9 @@ public class ProtoProgram {
      */
     public static void felvesz(String karakter) throws WrongArgumentException {
 
+        if(elfaradtKarakterek.contains(karakter))
+            throw new WrongArgumentException("A(z) '" + karakter + "' nevu karakter elfaradt!");
+
         if (!karakterek.containsKey(karakter))
             throw new WrongArgumentException("A(z) '" + karakter + "' nevu karakter nem talalhato!");
 
@@ -160,6 +170,9 @@ public class ProtoProgram {
      */
     public static void as(String karakter) throws WrongArgumentException {
 
+        if(elfaradtKarakterek.contains(karakter))
+            throw new WrongArgumentException("A(z) '" + karakter + "' nevu karakter elfaradt!");
+
         if (!karakterek.containsKey(karakter))
             throw new WrongArgumentException("A(z) '" + karakter + "' nevu karakter nem talalhato!");
 
@@ -170,6 +183,9 @@ public class ProtoProgram {
      * A parameterul kapott mezon osszeszerelni probal.
      */
     public static void kombinal(String karakter) throws WrongArgumentException {
+
+        if(elfaradtKarakterek.contains(karakter))
+            throw new WrongArgumentException("A(z) '" + karakter + "' nevu karakter elfaradt!");
 
         if (!karakterek.containsKey(karakter))
             throw new WrongArgumentException("A(z) '" + karakter + "' nevu karakter nem talalhato!");
@@ -196,12 +212,17 @@ public class ProtoProgram {
 
         for(Map.Entry<String, Karakter> karakter : karakterek.entrySet())
             karakter.getValue().munkatVisszaallit();
+
+        elfaradtKarakterek.clear();
     }
 
     /**
      * A parameterul kapott karakter a tartozkodasi helyen epit.
      */
     public static void epit(String karakter, Epulettipus epulettipus) throws WrongArgumentException {
+
+        if(elfaradtKarakterek.contains(karakter))
+            throw new WrongArgumentException("A(z) '" + karakter + "' nevu karakter elfaradt!");
 
         if (!karakterek.containsKey(karakter))
             throw new WrongArgumentException("A(z) '" + karakter + "' nevu karakter nem talalhato!");
@@ -216,15 +237,6 @@ public class ProtoProgram {
     }
 
     /**
-     * A parameterben megkapott, a bemeneti nyelv kifejezeseit tartalmazo fajlbol
-     * beolvasott utasitasokat hajtja vegre.
-     */
-    public static void beolvas(){
-
-
-    }
-
-    /**
      * A param�terben kapott karakter tulajdons�gait �rja a k�perny�re.
      */
     public static void allapot(String azonosito) throws WrongArgumentException {
@@ -235,6 +247,7 @@ public class ProtoProgram {
 
             if(mozgathatok.get(azonosito).tipus().equals(MozgathatoTipus.JEGESMEDVE)){
 
+                stat.append("Azonosito: ").append(azonosito).append("\n");
                 String mezonev = getKeyByValue(mezok, jegesmedve.getMezo());
                 stat.append("Mezo: ").append(mezonev);
             }
@@ -243,10 +256,10 @@ public class ProtoProgram {
 
                 Karakter karakter = (Karakter) mozgathatok.get(azonosito);
 
-                stat.append("Azonosito: ").append(azonosito);
+                stat.append("Azonosito: ").append(azonosito).append("\n");
                 String mezonev = getKeyByValue(mezok, karakter.getMezo());
-                stat.append("Mezo: ").append(mezonev);
-                stat.append("Tesho: ").append(karakter.getTestho());
+                stat.append("Mezo: ").append(mezonev).append("\n");
+                stat.append("Tesho: ").append(karakter.getTestho()).append("\n");
                 stat.append("Munka: ").append(karakter.getMunka());
             }
         }
@@ -255,16 +268,18 @@ public class ProtoProgram {
 
             if(azonosito.matches(".*[JEGTABLA].*")) {
 
+                stat.append("Azonosito: ").append(azonosito).append("\n");
                 Jegtabla mezo = (Jegtabla) mezok.get(azonosito);
-                stat.append("Horeteg: ").append(mezo.getHoreteg());
-                stat.append("Kapacitas: ").append(mezo.getKapacitas());
+                stat.append("Horeteg: ").append(mezo.getHoreteg()).append("\n");
+                stat.append("Kapacitas: ").append(mezo.getKapacitas()).append("\n");
                 stat.append("Targy: ").append(mezo.getTargy().tipus());
             }
 
             else {
 
+                stat.append("Azonosito: ").append(azonosito).append("\n");
                 Lyuk mezo = (Lyuk) mezok.get(azonosito);
-                stat.append("Horeteg: ").append(mezo.getHoreteg());
+                stat.append("Horeteg: ").append(mezo.getHoreteg()).append("\n");
                 stat.append("Kapacitas: ").append(mezo.getKapacitas());
             }
         }
@@ -309,9 +324,9 @@ public class ProtoProgram {
     /**
      * kovetkezo karakterre leptet
      */
-    public static void kovetkezoKarakter(){
+    public static void kovetkezoKarakter(Karakter karakter){
 
-        //TODO: Kitalalni a korveget
+        elfaradtKarakterek.add(getKeyByValue(karakterek, karakter));
     }
 
     private static void loadCommands(Commander commander){
@@ -327,8 +342,8 @@ public class ProtoProgram {
         commander.addCommand(new CombineCommand());
         commander.addCommand(new TurnCommand());
         commander.addCommand(new BuildCommand());
-        //commander.addCommand(new ScriptCommand());
-        //commander.addCommand(new StatCommand());
+        commander.addCommand(new ScriptCommand(commander));
+        commander.addCommand(new StatCommand());
         //TODO:irni olyan parancso, ami kilistazza az enumokat
     }
 

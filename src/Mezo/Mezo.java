@@ -121,7 +121,7 @@ public abstract class Mezo implements VizbeesesListener {
 
         for(Karakter k : karakterek){
 
-            try { k.keres(Targytipus.KOTEL).hasznal(karakter); }
+            try { k.keres(Targytipus.KOTEL).hasznal(karakter); break; }
             catch (ItemNotFoundException ignored) {}
         }
 

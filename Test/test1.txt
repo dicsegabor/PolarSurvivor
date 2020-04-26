@@ -1,7 +1,9 @@
 Expected
-Proto.Commander.Commands.HelpCommand.execute
+Mezo.Mezo.setSzomszed, Mezo.Mezo.szomszedE, Mezo.Mezo.getHoreteg, Mezo.Mezo.getKapacitas, Mezo.Jegtabla.getTargy, Targy.Kotel.tipus
 Unexpected
-Proto.Commander.Commands.HelpCommand.execute
+Mozgathato.Karakter.meghal
 Commands
-help asdas
+loadmap map.txt
+setfield INSTABIL_2_2 4 3 KOTEL
+stat INSTABIL_2_2
 exit
