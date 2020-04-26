@@ -4,8 +4,8 @@ Unexpected
 
 Commands
 loadmap map.txt
-setfield STABIL_2_3 2 INFINITE
-setfield STABIL_4_3 3 INFINITE
+setfield STABIL_2_3 2
+setfield STABIL_4_3 3
 karakter ESZKIMO STABIL_2_3
 move ESZKIMO_0 STABIL_4_3
 stat STABIL_2_3

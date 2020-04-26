@@ -4,7 +4,7 @@ Unexpected
 
 Commands
 loadmap map.txt
-setfield STABIL_2_4 0 INFINITE KOTEL
+setfield STABIL_2_4 0 KOTEL
 karakter ESZKIMO STABIL_2_4
 pickup ESZKIMO_0
 stat STABIL_2_4
