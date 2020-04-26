@@ -1,0 +1,14 @@
+Expected
+Mezo.Mezo.setSzomszed, Mezo.Mezo.szomszedE, Mezo.Mezo.addKarakter, Mozgathato.Karakter.lep, Mezo.Mezo.kiad, Mezo.StabilJegtabla.befogad, Mezo.Mezo.halalE, Mozgathato.Karakter.munkaCsokkent
+Unexpected
+Mozgathato.Karakter.meghal
+Commands
+loadmap map.txt
+setfield STABIL_2_3 2
+setfield STABIL_2_4 3
+karakter ESZKIMO STABIL_2_3 
+move ESZKIMO_0 STABIL_2_4
+
+stat STABIL_2_4
+stat ESZKIMO_0
+exit

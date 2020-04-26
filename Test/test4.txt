@@ -1,0 +1,15 @@
+Expected
+
+Unexpected
+
+Commands
+loadmap map.txt
+setfield STABIL_2_3 2
+setfield INSTABIL_2_2 3 1
+karakter ESZKIMO STABIL_2_3
+karakter KUTATO STABIL_2_3
+move ESZKIMO_0 INSTABIL_2_2
+
+stat STABIL_2_3
+stat ESZKIMO_0
+exit
