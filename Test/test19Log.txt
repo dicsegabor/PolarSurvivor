@@ -426,8 +426,7 @@ Mezo.Mezo.probalMenteni
 Mozgathato.Karakter.keres
 Targy.Kotel.tipus
 Targy.Kotel.hasznal
-Mezo.Mezo.probalMenteni
-Mezo.Mezo.probalMenteni
+Proto.ProtoProgram.halalEllorzes
 Mezo.Mezo.halalE
 Mezo.Mezo.halalE
 Mezo.Mezo.halalE

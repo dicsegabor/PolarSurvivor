@@ -421,6 +421,7 @@ Mezo.Mezo.setJegesmedve
 Mozgathato.Karakter.lep
 Mezo.Mezo.kiad
 Mezo.StabilJegtabla.befogad
+Proto.ProtoProgram.halalEllorzes
 Mezo.Mezo.halalE
 Mezo.Mezo.halalE
 Mezo.Mezo.halalE
@@ -435,6 +436,7 @@ Mezo.Mezo.halalE
 Mezo.Mezo.halalE
 Mezo.Mezo.halalE
 Mezo.Mezo.halalE
+Proto.ProtoProgram.jatekVege
 Mezo.Mezo.halalE
 Mezo.Mezo.halalE
 Mezo.Mezo.halalE

@@ -420,6 +420,7 @@ Mezo.Lyuk.befogad
 Mozgathato.Karakter.keres
 Targy.Buvarruha.tipus
 Targy.Buvarruha.hasznal
+Proto.ProtoProgram.halalEllorzes
 Mezo.Mezo.halalE
 Mezo.Mezo.halalE
 Mezo.Mezo.halalE

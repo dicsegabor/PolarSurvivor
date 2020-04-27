@@ -421,6 +421,7 @@ Mozgathato.Karakter.lep
 Mezo.Mezo.kiad
 Mezo.InstabilJegtabla.befogad
 Mezo.Jegtabla.osszsuly
+Proto.ProtoProgram.halalEllorzes
 Mezo.Mezo.halalE
 Mezo.Mezo.halalE
 Mezo.Mezo.halalE

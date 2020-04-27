@@ -4,6 +4,7 @@ import Epulet.Epulettipus;
 import Exceptions.ItemNotFoundException;
 import Mezo.*;
 import Proto.Commands.*;
+import Proto.LogAndTesting.Logger;
 import Targy.Targytipus;
 import Mozgathato.*;
 import Proto.Commander.Commander;
@@ -303,6 +304,8 @@ public class ProtoProgram {
      */
     public static void halalEllorzes() {
 
+        Logger.log();
+
         for(Map.Entry<String, Mezo> mezoEntry : mezok.entrySet())
             if(mezoEntry.getValue().halalE())
                 jatekVege("A medve nyert!");
@@ -325,6 +328,8 @@ public class ProtoProgram {
      */
     public static void jatekVege(String uzenet){
 
+        Logger.log();
+
         System.out.println("A jatek veget ert! " + uzenet);
     }
 
@@ -332,6 +337,8 @@ public class ProtoProgram {
      * kovetkezo karakterre leptet
      */
     public static void kovetkezoKarakter(Karakter karakter){
+
+        Logger.log();
 
         elfaradtKarakterek.add(getKeyByValue(karakterek, karakter));
     }

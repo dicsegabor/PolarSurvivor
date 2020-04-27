@@ -135,7 +135,7 @@ public abstract class Mezo implements VizbeesesListener {
 
         for(Karakter k : karakterek){
 
-            try { k.keres(Targytipus.KOTEL).hasznal(karakter); break; }
+            try { k.keres(Targytipus.KOTEL).hasznal(karakter); return true; }
             catch (ItemNotFoundException ignored) {}
         }
 
@@ -243,7 +243,10 @@ public abstract class Mezo implements VizbeesesListener {
         Logger.log();
 
         for(Mezo m : szomszedok)
-            if(m.probalMenteni(karakter))
-                break;
+            if(m.probalMenteni(karakter)) {
+                return;
+            }
+
+        karakter.meghal("A karakter megfulladt!");
     }
 }

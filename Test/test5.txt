@@ -1,14 +1,14 @@
 Expected
-
+Mezo.Mezo.segitseg, Mezo.Jegtabla.osszsuly, Mozgathato.Karakter.lep, Mozgathato.Karakter.munkaCsokkent
 Unexpected
-
+Mozgathato.Karakter.meghal
 Commands
 loadmap map.txt
 setfield STABIL_2_3 2
 setfield INSTABIL_2_2 3 1
 karakter ESZKIMO STABIL_2_3
 karakter ESZKIMO STABIL_2_3 KOTEL
-karakter KUTATO STABIL_2_3
+karakter KUTATO INSTABIL_2_2
 move ESZKIMO_0 INSTABIL_2_2
 
 stat STABIL_2_3

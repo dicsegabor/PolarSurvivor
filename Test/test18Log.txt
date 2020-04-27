@@ -423,6 +423,9 @@ Mezo.Mezo.probalMenteni
 Mezo.Mezo.probalMenteni
 Mezo.Mezo.probalMenteni
 Mezo.Mezo.probalMenteni
+Mozgathato.Karakter.meghal
+Proto.ProtoProgram.jatekVege
+Proto.ProtoProgram.halalEllorzes
 Mezo.Mezo.halalE
 Mezo.Mezo.halalE
 Mezo.Mezo.halalE

@@ -1,7 +1,7 @@
 Expected
-
+Mozgathato.Karakter.lep, Mozgathato.Karakter.munkaCsokkent
 Unexpected
-
+Mozgathato.Karakter.meghal, Mezo.Mezo.segitseg
 Commands
 loadmap map.txt
 setfield STABIL_2_4 2

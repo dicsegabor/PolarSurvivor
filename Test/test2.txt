@@ -1,7 +1,7 @@
 Expected
 Mezo.Mezo.setSzomszed, Mezo.Mezo.szomszedE, Mezo.Mezo.addKarakter, Mozgathato.Karakter.lep, Mezo.Mezo.kiad, Mezo.StabilJegtabla.befogad, Mezo.Mezo.halalE, Mozgathato.Karakter.munkaCsokkent
 Unexpected
-Mozgathato.Karakter.meghal
+
 Commands
 loadmap map.txt
 setfield STABIL_2_3 2

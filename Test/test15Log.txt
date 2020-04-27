@@ -423,6 +423,7 @@ Mezo.Jegtabla.epit
 Mozgathato.Jegesmedve.lep
 Mezo.Mezo.kiad
 Mezo.StabilJegtabla.befogad
+Proto.ProtoProgram.halalEllorzes
 Mezo.Mezo.halalE
 Mezo.Mezo.halalE
 Mezo.Mezo.halalE
@@ -437,6 +438,7 @@ Mezo.Mezo.halalE
 Mezo.Mezo.halalE
 Mezo.Mezo.halalE
 Mezo.Mezo.halalE
+Proto.ProtoProgram.jatekVege
 Mezo.Mezo.halalE
 Mezo.Mezo.halalE
 Mezo.Mezo.halalE

@@ -415,6 +415,10 @@ Mezo.Jegtabla.setTargy
 Mozgathato.Eszkimo.<init>
 Mezo.Mezo.addKarakter
 Mozgathato.Karakter.keres
+Targy.Sator.tipus
+Targy.Sator.hasznal
+Mozgathato.Karakter.getMezo
+Mezo.Jegtabla.epit
 Mezo.Mezo.vihar
 Mezo.Mezo.vihar
 Mezo.Mezo.vihar
@@ -430,7 +434,6 @@ Mezo.Mezo.vihar
 Mezo.Mezo.vihar
 Mezo.Jegtabla.vihar
 Mezo.Mezo.vihar
-Mozgathato.Karakter.testhotCsokkent
 Mezo.Mezo.vihar
 Mezo.Jegtabla.vihar
 Mezo.Mezo.vihar
