@@ -6,6 +6,7 @@ for %%f in (test???.txt) do (
 	if ERRORLEVEL 1 set /a failed+=1
 	set /a all+= 1
 )
+set /a succesful=%all%-%failed%
 echo Test results:
-echo %all% / %failed% tests were successful.
+echo %all% / %succesful% tests were successful.
 pause

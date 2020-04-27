@@ -302,13 +302,13 @@ public class ProtoProgram {
     /**
      * Megvizsgalja, hogy van-e egy mezon jegesmedve es karakter, mert ha igen, akkor vege a jatkenak.
      */
-    public static void halalEllorzes() {
+    public static void halalEllorzes(Mezo mezo) {
 
         Logger.log();
 
-        for(Map.Entry<String, Mezo> mezoEntry : mezok.entrySet())
-            if(mezoEntry.getValue().halalE())
-                jatekVege("A medve nyert!");
+        if(mezo.halalE())
+            for(Karakter k : mezo.getKarakterek())
+                k.meghal("A medve megette a karaktereket!");
     }
 
     /**

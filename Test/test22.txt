@@ -1,7 +1,7 @@
 Expected
-
+Mozgathato.Karakter.eldob, Targy.Lapat.hasznal, Targy.TorekenyLapat.hasznal, Mezo.Mezo.havatCsokkent
 Unexpected
-asd
+
 Commands
 loadmap map.txt
 setfield STABIL_2_4 6

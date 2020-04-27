@@ -1,6 +1,6 @@
 package Mezo;
 
-import Epulet.Epulet;
+import Epulet.*;
 import Mozgathato.Mozgathato;
 import Proto.LogAndTesting.Logger;
 import Targy.Targy;
@@ -76,11 +76,36 @@ public abstract class Jegtabla extends Mezo {
         return targy;
     }
 
+    public Epulet getEpulet() {
+
+        return epulet;
+    }
+
     public Targy getTargy() {
 
         Logger.log();
 
         return targy;
+    }
+
+    @Override
+    public boolean halalE(){
+
+        Logger.log();
+
+        if(jegesmedve != null) {
+
+            if (epulet != null) {
+
+                if (!epulet.epulettipus().equals(Epulettipus.IGLU))
+                    return super.halalE();
+            }
+
+            else
+                return super.halalE();
+        }
+
+        return false;
     }
 
     public int osszsuly(){
