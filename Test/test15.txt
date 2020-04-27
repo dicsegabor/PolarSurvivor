@@ -1,7 +1,7 @@
 Expected
-
+Mozgathato.Jegesmedve.lep
 Unexpected
-
+Mozgathato.Karakter.meghal
 Commands
 loadmap map.txt
 setfield STABIL_2_3 2

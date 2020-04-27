@@ -1,6 +1,8 @@
 package Mozgathato;
 
-import Mezo.Mezo;
+import Epulet.Epulet;
+import Epulet.Epulettipus;
+import Mezo.*;
 import Proto.ProtoProgram;
 import Proto.LogAndTesting.Logger;
 
@@ -32,13 +34,26 @@ public class Jegesmedve implements Mozgathato {
 
         this.mezo.kiad(this);
 
-        if(mezo == null)
-            mezo.getRandomSzomszed().befogad(this);
+        if(mezo == null) {
 
-        else
+            mezo = this.mezo.getRandomSzomszed();
+
+            mezo.befogad(this);
+        }
+
+        else {
             mezo.befogad(this);
 
-        ProtoProgram.halalEllorzes();
+            if(mezo.getKapacitas() != 0) {
+
+                Epulet epulet = ((Jegtabla) mezo).getEpulet();
+
+                if (epulet != null && epulet.epulettipus().equals(Epulettipus.IGLU))
+                    lep(null);
+            }
+        }
+
+        ProtoProgram.halalEllorzes(mezo);
     }
 
     @Override

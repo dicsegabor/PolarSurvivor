@@ -1,7 +1,7 @@
 Expected
-
+Mozgathato.Karakter.meghal, Proto.ProtoProgram.jatekVege, Mozgathato.Karakter.lep
 Unexpected
-
+Targy.Kotel.hasznal
 Commands
 loadmap map.txt
 setfield STABIL_2_4 2

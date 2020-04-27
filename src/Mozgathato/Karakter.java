@@ -96,7 +96,7 @@ public class Karakter implements Mozgathato {
 
         mezo.befogad(this);
 
-        ProtoProgram.halalEllorzes();
+        ProtoProgram.halalEllorzes(mezo);
 
         munkaCsokkent(1);
     }
@@ -164,6 +164,8 @@ public class Karakter implements Mozgathato {
     }
 
     public void eldob(Targy targy){
+
+        Logger.log();
 
         targyak.remove(targy);
     }

@@ -1,7 +1,7 @@
 Expected
-
+Targy.Buvarruha.hasznal
 Unexpected
-
+Mozgathato.Karakter.meghal, Proto.ProtoProgram.jatekVege
 Commands
 loadmap map.txt
 setfield STABIL_2_3 2

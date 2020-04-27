@@ -444,6 +444,7 @@ Targy.TorekenyLapat.hasznal
 Targy.Lapat.hasznal
 Mozgathato.Karakter.getMezo
 Mezo.Mezo.havatCsokkent
+Mozgathato.Karakter.eldob
 Mozgathato.Karakter.munkaCsokkent
 Mezo.Mezo.getHoreteg
 Mezo.Mezo.getKapacitas

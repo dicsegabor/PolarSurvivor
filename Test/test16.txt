@@ -1,7 +1,7 @@
 Expected
-
+Mozgathato.Karakter.meghal, Proto.ProtoProgram.jatekVege, Mezo.Jegtabla.halalE
 Unexpected
-
+Epulet.Iglu.epulettipus
 Commands
 loadmap map.txt
 setfield STABIL_2_3 2
