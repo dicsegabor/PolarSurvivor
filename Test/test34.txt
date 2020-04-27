@@ -1,5 +1,5 @@
 Expected
-Mozgathato.Eszkimo.iglutEpit,Mezo.Mezo.addKarakter
+Mozgathato.Eszkimo.iglutEpit, Mezo.Mezo.addKarakter
 Unexpected
 Mozgathato.Karakter.meghal
 Commands
