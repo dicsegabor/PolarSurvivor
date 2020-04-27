@@ -1,14 +1,11 @@
 @echo off
-for %%f in (test?.txt) do (
+set /a all=0
+set /a failed=0
+for %%f in (test???.txt) do (
 	java -jar PolarSurvivor.jar %%f
+	if ERRORLEVEL 1 set /a failed+=1
+	set /a all+= 1
 )
-for %%f in (test1?.txt) do (
-	java -jar PolarSurvivor.jar %%f
-)
-for %%f in (test2?.txt) do (
-	java -jar PolarSurvivor.jar %%f
-)
-for %%f in (test3?.txt) do (
-	java -jar PolarSurvivor.jar %%f
-)
+echo Test results:
+echo %all% / %failed% tests were successful.
 pause

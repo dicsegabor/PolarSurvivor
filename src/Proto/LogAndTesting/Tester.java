@@ -11,6 +11,7 @@ import java.util.*;
 public class Tester {
 
     private FileInputStream testFile;
+    private String fileName;
     private InputStream commands;
     private Logger logger;
     private LogTester logTester;
@@ -19,6 +20,8 @@ public class Tester {
     private List<String> unexpected;
 
     public Tester(String fileName, Commander commander){
+
+        this.fileName = fileName;
 
         this.commander = commander;
         try { testFile = new FileInputStream(fileName); }
@@ -38,8 +41,16 @@ public class Tester {
 
         if(getTestArguments()){
 
+            System.out.println("/////////////////////// Starting test: " + fileName + " ///////////////////////");
             commander.listen(commands);
-            logTester.testLog(expected, unexpected);
+            boolean success = logTester.testLog(expected, unexpected);
+            System.out.println("/////////////////////// End of test: " + fileName + " ///////////////////////");
+
+            if(success)
+                System.exit(0);
+
+            else
+                System.exit(1);
         }
     }
 

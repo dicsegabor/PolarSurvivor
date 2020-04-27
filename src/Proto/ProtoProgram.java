@@ -369,14 +369,12 @@ public class ProtoProgram {
 
         if (args.length > 0) {
 
-            System.out.println("/////////////////////// Starting test: " + args[0] + " ///////////////////////");
             commander.exitOnMistake = true;
             Tester tester = new Tester(args[0], commander);
             tester.runTest();
-            System.out.println("/////////////////////// End of test: " + args[0] + " ///////////////////////");
-            System.exit(0);
         }
 
+        Logger.logging = false;
         commander.listen(System.in);
     }
 }
