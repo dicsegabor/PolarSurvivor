@@ -1,5 +1,5 @@
 Expected
-
+Mozgathato.Karakter.munkaCsokkent, Mozgathato.Kutato.jegetNez, Mezo.Mezo.getKapacitas
 Unexpected
 
 Commands

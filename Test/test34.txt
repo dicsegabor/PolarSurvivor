@@ -1,7 +1,7 @@
 Expected
-
+Mozgathato.Eszkimo.iglutEpit, Mezo.Mezo.addKarakter
 Unexpected
-
+Mozgathato.Karakter.meghal
 Commands
 loadmap map.txt
 setfield INSTABIL_2_2 1 2

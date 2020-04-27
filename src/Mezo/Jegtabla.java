@@ -1,7 +1,7 @@
 package Mezo;
 
 import Epulet.*;
-import Mozgathato.Mozgathato;
+import Mozgathato.*;
 import Proto.LogAndTesting.Logger;
 import Targy.Targy;
 
@@ -48,8 +48,13 @@ public abstract class Jegtabla extends Mezo {
 
         Logger.log();
 
-        if(epulet != null)
+        if(epulet != null) {
+
             this.epulet = epulet;
+            if(osszsuly() > kapacitas)
+                for(Karakter k : karakterek)
+                    segitseg(k);
+        }
 
         else
             System.out.println("Mar van epulet a mezon!");

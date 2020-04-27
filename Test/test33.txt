@@ -1,7 +1,7 @@
 Expected
-
+Mozgathato.Karakter.meghal, Proto.ProtoProgram.jatekVege, Mozgathato.Eszkimo.iglutEpit, Mezo.Jegtabla.epit
 Unexpected
-
+Targy.Kotel.hasznal
 Commands
 loadmap map.txt
 setfield INSTABIL_2_2 1 1

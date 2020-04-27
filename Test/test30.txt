@@ -1,5 +1,5 @@
 Expected
-
+Mezo.Jegtabla.vihar, Mezo.Mezo.vihar, Mezo.Jegtabla.setTargy
 Unexpected
 
 Commands

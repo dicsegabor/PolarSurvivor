@@ -420,6 +420,7 @@ Mozgathato.Jegesmedve.<init>
 Mezo.Mezo.setJegesmedve
 Mozgathato.Eszkimo.iglutEpit
 Mezo.Jegtabla.epit
+Mezo.Jegtabla.osszsuly
 Mozgathato.Jegesmedve.lep
 Mezo.Mezo.kiad
 Mezo.StabilJegtabla.befogad

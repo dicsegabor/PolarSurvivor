@@ -1,7 +1,7 @@
 Expected
-
+Mezo.Jegtabla.setTargy, Mezo.Mezo.addKarakter
 Unexpected
-
+ProtoProgram.jatekVege
 Commands
 loadmap map.txt
 setfield STABIL_2_4 3
