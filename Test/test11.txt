@@ -1,7 +1,7 @@
 Expected
-
+Mezo.Mezo.setSzomszed, Mezo.Mezo.szomszedE, Mezo.Mezo.setHoreteg, Mezo.Jegtabla.setTargy, Mezo.Mezo.addKarakter, Mozgathato.Karakter.felvesz, Mezo.Jegtabla.felvesz, Targy.Elelem.tipus, Targy.Elelem.hasznal, Mozgathato.Karakter.testhotCsokkent, Mezo.Mezo.getHoreteg, Mezo.Mezo.getKapacitas, Mezo.Jegtabla.getTargy, Mozgathato.Karakter.getMezo 
 Unexpected
-
+Mozgathato.Karakter.meghal
 Commands
 loadmap map.txt
 setfield STABIL_2_4 1 ELELEM

@@ -1,5 +1,5 @@
 Expected
-
+Mezo.Mezo.setSzomszed, Mezo.Mezo.szomszedE, Mezo.Mezo.halalE, Mezo.Mezo.setHoreteg, Mezo.Jegtabla.setTargy, Mezo.Mezo.addKarakter, Mozgathato.Karakter.lep, Mezo.Mezo.kiad, Mezo.StabilJegtabla.befogad, Mozgathato.Karakter.munkaCsokkent, Mezo.Mezo.getHoreteg, Mezo.Mezo.getKapacitas, Mezo.Jegtabla.getTargy, Mozgathato.Karakter.getMezo
 Unexpected
 
 Commands
