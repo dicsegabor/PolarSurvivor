@@ -1,11 +1,11 @@
 Expected
-
+Mezo.Jegtabla.vihar, Mezo.Mezo.vihar 
 Unexpected
-
+Mozgathato.Karakter.testhotCsokkent
 Commands
 loadmap map.txt
 setfield STABIL_2_3 2 
-karakter ESZKIMO STABIL_2_3
+karakter ESZKIMO STABIL_2_3 SATOR
 build ESZKIMO_0 SATOR
 turn
 stat STABIL_2_3 

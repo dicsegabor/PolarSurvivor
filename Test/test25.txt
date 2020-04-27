@@ -1,7 +1,7 @@
 Expected
-
+Mezo.Mezo.setSzomszed, Mezo.Mezo.szomszedE, Mezo.Mezo.tudnakEOsszeszerlni, Targy.Pisztoly.tipus, Mozgathato.Karakter.keres
 Unexpected
-
+Mozgathato.Karakter.kombinal,Mozgathato.Karakter.munkaCsokkent
 Commands
 loadmap map.txt
 setfield STABIL_2_4 3

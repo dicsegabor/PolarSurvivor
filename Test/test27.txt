@@ -1,7 +1,7 @@
 Expected
-
+Mezo.Mezo.vihar, Mezo.Jegtabla.vihar, Mozgathato.Eszkimo.iglutEpit
 Unexpected
-
+Mozgathato.Karakter.meghal, Mozgathato.Karakter.testhotCsokkent
 Commands
 loadmap map.txt
 setfield STABIL_2_3 2 

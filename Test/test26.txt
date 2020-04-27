@@ -1,7 +1,7 @@
 Expected
-
+Mezo.Mezo.tudnakEOsszeszerlni, Targy.Patron.tipus, Targy.Patron.hasznal
 Unexpected
-
+Mozgathato.Karakter.meghal, Mozgathato.Karakter.lep
 Commands
 loadmap map.txt
 setfield STABIL_2_4 3 
