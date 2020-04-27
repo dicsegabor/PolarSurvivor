@@ -1,7 +1,7 @@
 Expected
-
+Targy.Sator.hasznal, Mezo.Jegtabla.epit
 Unexpected
-
+Mozgahthato.Karakter.testhotCsokkent
 Commands
 loadmap map.txt
 setfield STABIL_2_3 2 
