@@ -2,6 +2,7 @@ Expected
 Mozgathato.Eszkimo.iglutEpit, Mezo.Jegtabla.epit, Mezo.Mezo.addKarakter
 Unexpected
 Commands
+
 loadmap map.txt
 setfield STABIL_2_3 2
 karakter ESZKIMO STABIL_2_3
