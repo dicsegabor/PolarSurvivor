@@ -1,7 +1,7 @@
 Expected
-
+Mozgathato.Karakter.keres
 Unexpected
-asd
+ProtoProgram.jatekVege
 Commands
 loadmap map.txt
 setfield STABIL_2_4 3

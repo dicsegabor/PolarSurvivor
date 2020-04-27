@@ -417,6 +417,7 @@ Mozgathato.Eszkimo.<init>
 Mezo.Mezo.addKarakter
 Mozgathato.Eszkimo.iglutEpit
 Mezo.Jegtabla.epit
+Mezo.Jegtabla.osszsuly
 Mezo.Mezo.getHoreteg
 Mezo.Mezo.getKapacitas
 Mezo.Jegtabla.getTargy

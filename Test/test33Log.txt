@@ -417,6 +417,14 @@ Mozgathato.Eszkimo.<init>
 Mezo.Mezo.addKarakter
 Mozgathato.Eszkimo.iglutEpit
 Mezo.Jegtabla.epit
+Mezo.Jegtabla.osszsuly
+Mezo.Mezo.segitseg
+Mezo.Mezo.probalMenteni
+Mezo.Mezo.probalMenteni
+Mezo.Mezo.probalMenteni
+Mezo.Mezo.probalMenteni
+Mozgathato.Karakter.meghal
+Proto.ProtoProgram.jatekVege
 Mezo.Mezo.getHoreteg
 Mezo.Mezo.getKapacitas
 Mezo.Jegtabla.getTargy

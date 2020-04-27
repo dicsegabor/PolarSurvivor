@@ -419,6 +419,7 @@ Targy.Sator.tipus
 Targy.Sator.hasznal
 Mozgathato.Karakter.getMezo
 Mezo.Jegtabla.epit
+Mezo.Jegtabla.osszsuly
 Mezo.Mezo.vihar
 Mezo.Mezo.vihar
 Mezo.Mezo.vihar
