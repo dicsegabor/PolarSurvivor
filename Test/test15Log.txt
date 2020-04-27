@@ -429,9 +429,10 @@ Epulet.Iglu.epulettipus
 Mozgathato.Jegesmedve.lep
 Mezo.Mezo.kiad
 Mezo.Mezo.getRandomSzomszed
-Mezo.Lyuk.befogad
+Mezo.StabilJegtabla.befogad
 Proto.ProtoProgram.halalEllorzes
-Mezo.Mezo.halalE
+Mezo.Jegtabla.halalE
+Epulet.Iglu.epulettipus
 Proto.ProtoProgram.halalEllorzes
 Mezo.Jegtabla.halalE
 Epulet.Iglu.epulettipus
