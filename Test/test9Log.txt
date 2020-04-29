@@ -419,10 +419,10 @@ Mozgathato.Karakter.keres
 Mozgathato.Karakter.keres
 Mezo.Mezo.havatCsokkent
 Mozgathato.Karakter.munkaCsokkent
-Mozgathato.Karakter.felvesz
-Mezo.Jegtabla.felvesz
-Targy.Kotel.tipus
 Mezo.Mezo.getHoreteg
 Mezo.Mezo.getKapacitas
 Mezo.Jegtabla.getTargy
+Mezo.Mezo.getHoreteg
+Mezo.Jegtabla.getTargy
+Targy.Kotel.tipus
 Mozgathato.Karakter.getMezo

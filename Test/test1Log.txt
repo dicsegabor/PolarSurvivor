@@ -416,5 +416,4 @@ Mezo.Jegtabla.setTargy
 Mezo.Mezo.getHoreteg
 Mezo.Mezo.getKapacitas
 Mezo.Jegtabla.getTargy
-Mezo.Jegtabla.getTargy
-Targy.Kotel.tipus
+Mezo.Mezo.getHoreteg

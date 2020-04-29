@@ -422,4 +422,5 @@ Mozgathato.Karakter.munkaCsokkent
 Mezo.Mezo.getHoreteg
 Mezo.Mezo.getKapacitas
 Mezo.Jegtabla.getTargy
+Mezo.Mezo.getHoreteg
 Mozgathato.Karakter.getMezo

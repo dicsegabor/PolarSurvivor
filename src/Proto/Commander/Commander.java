@@ -46,6 +46,8 @@ public class Commander {
      */
     public void listen(InputStream is) {
 
+        System.out.println("A parancsok listájának megtekintéséhez kérem használja a 'help' parancsot!");
+
         endOfListening = false;
 
         Scanner scanner = new Scanner(is);

@@ -443,4 +443,7 @@ Mezo.Mezo.getHoreteg
 Mezo.Mezo.getKapacitas
 Mezo.Jegtabla.getTargy
 Mozgathato.Karakter.getMezo
+Targy.Pisztoly.tipus
+Targy.Patron.tipus
 Mozgathato.Karakter.getMezo
+Targy.Jelzofeny.tipus

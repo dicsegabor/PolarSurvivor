@@ -414,6 +414,11 @@ Mezo.Mezo.setHoreteg
 Mezo.Jegtabla.setTargy
 Mozgathato.Eszkimo.<init>
 Mezo.Mezo.addKarakter
+Mozgathato.Karakter.as
+Mozgathato.Karakter.keres
+Mozgathato.Karakter.keres
+Mezo.Mezo.havatCsokkent
+Mozgathato.Karakter.munkaCsokkent
 Mozgathato.Karakter.felvesz
 Mezo.Jegtabla.felvesz
 Targy.Elelem.tipus

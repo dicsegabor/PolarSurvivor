@@ -268,7 +268,14 @@ public class ProtoProgram {
                 String mezonev = getKeyByValue(mezok, karakter.getMezo());
                 stat.append("Mezo: ").append(mezonev).append("\n");
                 stat.append("Tesho: ").append(karakter.getTestho()).append("\n");
-                stat.append("Munka: ").append(karakter.getMunka());
+                stat.append("Munka: ").append(karakter.getMunka()).append("\n");
+                if(!karakter.getTargyak().isEmpty()){
+
+                    stat.append("Targyak: ");
+
+                    for (Targy t : karakter.getTargyak())
+                        stat.append(t.tipus()).append(" ");
+                }
             }
         }
 
@@ -280,7 +287,7 @@ public class ProtoProgram {
                 Jegtabla mezo = (Jegtabla) mezok.get(azonosito);
                 stat.append("Horeteg: ").append(mezo.getHoreteg()).append("\n");
                 stat.append("Kapacitas: ").append(mezo.getKapacitas()).append("\n");
-                if(mezo.getTargy() != null)
+                if(mezo.getTargy() != null && mezo.getHoreteg() == 0)
                     stat.append("Targy: ").append(mezo.getTargy().tipus());
             }
 

@@ -464,3 +464,4 @@ Mezo.Mezo.getHoreteg
 Mezo.Mezo.getKapacitas
 Mezo.Jegtabla.getTargy
 Mozgathato.Karakter.getMezo
+Targy.Sator.tipus

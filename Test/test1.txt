@@ -1,5 +1,5 @@
 Expected
-Mezo.Mezo.setSzomszed, Mezo.Mezo.szomszedE, Mezo.Mezo.getHoreteg, Mezo.Mezo.getKapacitas, Mezo.Jegtabla.getTargy, Targy.Kotel.tipus
+Mezo.Mezo.setSzomszed, Mezo.Mezo.szomszedE, Mezo.Mezo.getHoreteg, Mezo.Mezo.getKapacitas, Mezo.Jegtabla.getTargy
 Unexpected
 
 Commands

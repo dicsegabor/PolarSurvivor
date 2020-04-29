@@ -1,6 +1,0 @@
-Expected
-//Elvárt dolgok egy sorba ", " - vel elválasztva
-Unexpected
-//Nem elvárt dolgok egy sorba ", " - vel elválasztva
-Commands
-//Parancsok simán, mitha csak parancssorban kiadnád

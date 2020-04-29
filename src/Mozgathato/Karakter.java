@@ -53,6 +53,11 @@ public class Karakter implements Mozgathato {
         return mezo;
     }
 
+    public List<Targy> getTargyak() {
+
+        return targyak;
+    }
+
     /**
      * A karakter felveszi az ot tartalmazo mezoben talalhato targyat
      * es hozzaadja a targylistajahoz.
@@ -64,11 +69,14 @@ public class Karakter implements Mozgathato {
 
         Targy targy = ((Jegtabla)mezo).felvesz();
 
-        if(targy.tipus().equals(Targytipus.ELELEM))
-            targy.hasznal(this);
+        if(targy != null) {
 
-        else
-            targyak.add(targy);
+            if (targy.tipus().equals(Targytipus.ELELEM))
+                targy.hasznal(this);
+
+            else
+                targyak.add(targy);
+        }
     }
 
     /**
@@ -135,11 +143,8 @@ public class Karakter implements Mozgathato {
         if(mezo.tudnakEOsszeszerlni())
             ProtoProgram.jatekVege("Sikerult! Megmenekult mindenki!");
 
-        else {
-
+        else
             System.out.println("Nincsenek meg a szukseges targyak!");
-            return;
-        }
     }
 
     /**
@@ -155,7 +160,7 @@ public class Karakter implements Mozgathato {
         for(Targy t : targyak){
 
             if(t.tipus().equals(targytipus))
-                return targyak.get(index);;
+                return targyak.get(index);
 
             index++;
         }

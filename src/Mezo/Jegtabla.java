@@ -74,11 +74,15 @@ public abstract class Jegtabla extends Mezo {
 
         Logger.log();
 
-        Targy targy = this.targy;
+        if(horeteg == 0) {
+            Targy targy = this.targy;
 
-        this.targy = null;
+            this.targy = null;
 
-        return targy;
+            return targy;
+        }
+
+        return null;
     }
 
     public Epulet getEpulet() {

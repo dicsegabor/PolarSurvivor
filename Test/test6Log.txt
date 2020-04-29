@@ -426,3 +426,4 @@ Mozgathato.Karakter.munkaCsokkent
 Mezo.Mezo.getHoreteg
 Mezo.Mezo.getKapacitas
 Mozgathato.Karakter.getMezo
+Targy.Buvarruha.tipus
