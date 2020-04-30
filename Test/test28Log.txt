@@ -455,3 +455,6 @@ Mezo.Mezo.vihar
 Mezo.Mezo.getHoreteg
 Mezo.Mezo.getKapacitas
 Mezo.Jegtabla.getTargy
+Azonosito: STABIL_2_3
+Horeteg: 2
+Kapacitas: 2147483647

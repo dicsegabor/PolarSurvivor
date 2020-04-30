@@ -428,4 +428,11 @@ Proto.ProtoProgram.jatekVege
 Mezo.Mezo.getHoreteg
 Mezo.Mezo.getKapacitas
 Mezo.Jegtabla.getTargy
+Azonosito: INSTABIL_2_2
+Horeteg: 1
+Kapacitas: 1
 Mozgathato.Karakter.getMezo
+Azonosito: ESZKIMO_0
+Mezo: INSTABIL_2_2
+Tesho: 5
+Munka: 4

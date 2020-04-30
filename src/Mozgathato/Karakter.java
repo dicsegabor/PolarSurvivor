@@ -98,6 +98,7 @@ public class Karakter implements Mozgathato {
     @Override
     public void lep(Mezo mezo){
 
+        //TODO: megjavítani
         Logger.log();
 
         this.mezo.kiad(this);

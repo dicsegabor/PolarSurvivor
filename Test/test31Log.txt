@@ -420,4 +420,11 @@ Mezo.Jegtabla.osszsuly
 Mezo.Mezo.getHoreteg
 Mezo.Mezo.getKapacitas
 Mezo.Jegtabla.getTargy
+Azonosito: STABIL_2_3
+Horeteg: 2
+Kapacitas: 2147483647
 Mozgathato.Karakter.getMezo
+Azonosito: ESZKIMO_0
+Mezo: STABIL_2_3
+Tesho: 5
+Munka: 4

@@ -430,5 +430,13 @@ Mozgathato.Karakter.munkaCsokkent
 Mezo.Mezo.getHoreteg
 Mezo.Mezo.getKapacitas
 Mezo.Jegtabla.getTargy
+Azonosito: INSTABIL_2_2
+Horeteg: 1
+Kapacitas: 0
 Mozgathato.Karakter.getMezo
 Targy.Buvarruha.tipus
+Azonosito: ESZKIMO_0
+Mezo: STABIL_2_3
+Tesho: 5
+Munka: 3
+Targyak: BUVARRUHA 

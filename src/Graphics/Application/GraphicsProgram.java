@@ -4,13 +4,12 @@ import Graphics.View.ViewManager;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
-public class Main extends Application {
+public class GraphicsProgram extends Application {
 
     @Override
     public void start(Stage primaryStage) {
 
         ViewManager manager = new ViewManager();
-
         try {
             primaryStage = manager.getMainStage();
             primaryStage.show();

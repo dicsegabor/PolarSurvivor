@@ -417,3 +417,6 @@ Mezo.Mezo.getHoreteg
 Mezo.Mezo.getKapacitas
 Mezo.Jegtabla.getTargy
 Mezo.Mezo.getHoreteg
+Azonosito: INSTABIL_2_2
+Horeteg: 4
+Kapacitas: 3

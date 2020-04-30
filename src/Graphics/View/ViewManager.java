@@ -1,7 +1,6 @@
 package Graphics.View;
 
 import Graphics.Model.PolarButton;
-import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
@@ -14,23 +13,27 @@ import java.util.List;
 
 public class ViewManager {
 
-    final private int HEIGHT = 600;
-    final private int WIDTH = 800;
     private List<PolarButton> menuButtons;
     private AnchorPane mainPane;
     private Scene mainScene;
     private Stage mainStage;
 
-    final private static int MENU_BUTTONS_START_X = 300;
-    final private static int MENU_BUTTONS_START_Y = 175;
+    /*private static double ORIGINAL_HEIGHT = 1080;
+    private static double ORIGINAL_WIDTH = 1920;
+    public static double HEIGHT = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode().getHeight();
+    public static double WIDTH = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode().getWidth();
+    public final static double RATIO = Math.min((ORIGINAL_HEIGHT / HEIGHT), (ORIGINAL_WIDTH / WIDTH));
+    public final static Point2D CENTER = new Point2D(WIDTH / 2, HEIGHT / 2);*/
 
     public ViewManager(){
 
         menuButtons = new ArrayList<>();
         mainPane = new AnchorPane();
-        mainScene = new Scene(mainPane, WIDTH, HEIGHT);
+        mainScene = new Scene(mainPane, 800, 600);
         mainStage = new Stage();
+        mainStage.setResizable(false);
         mainStage.setScene(mainScene);
+        mainStage.getIcons().add(new Image("Graphics/View/Resources/Menu/PolarIcon.png"));
         createBackground();
         createButtons();
         createLogo();
@@ -43,8 +46,8 @@ public class ViewManager {
 
     private void addMenuButton(PolarButton button){
 
-        button.setLayoutX(MENU_BUTTONS_START_X);
-        button.setLayoutY(MENU_BUTTONS_START_Y + (menuButtons.size() * 85));
+        button.setLayoutX(100);
+        button.setLayoutY(175 + menuButtons.size() * 85);
         menuButtons.add(button);
         mainPane.getChildren().add(button);
     }
@@ -82,19 +85,19 @@ public class ViewManager {
         PolarButton exitButton = new PolarButton("EXIT");
         addMenuButton(exitButton);
 
-        exitButton.setOnMousePressed(mouseEvent -> Platform.exit());
+        exitButton.setOnMousePressed(mouseEvent -> mainStage.close());
     }
 
     private void createBackground(){
 
-        Image backgroundImage = new Image("Graphics/View/Resources/IceBackground.jpg", 256, 256, false, true);
+        Image backgroundImage = new Image("Graphics/View/Resources/Menu/IceBackground.jpg", 200, 200, false, true);
         BackgroundImage background = new BackgroundImage(backgroundImage, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT, null);
         mainPane.setBackground(new Background(background));
     }
 
     private void createLogo(){
 
-        ImageView logo = new ImageView("Graphics/View/Resources/Logo.png");
+        ImageView logo = new ImageView("Graphics/View/Resources/Menu/Logo.png");
         logo.setLayoutX(170);
         logo.setLayoutY(50);
 

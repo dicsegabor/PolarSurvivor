@@ -38,4 +38,14 @@ public class Logger {
             }
         }
     }
+
+    public static void log(String uzenet){
+
+        try {
+            logWriter.write(uzenet);
+            logWriter.flush();
+        } catch (IOException e) {
+            System.out.println("Can't write to file!");
+        }
+    }
 }

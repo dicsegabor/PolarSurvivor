@@ -275,6 +275,8 @@ public class ProtoProgram {
 
                     for (Targy t : karakter.getTargyak())
                         stat.append(t.tipus()).append(" ");
+
+                    stat.append( "\n");
                 }
             }
         }
@@ -288,7 +290,7 @@ public class ProtoProgram {
                 stat.append("Horeteg: ").append(mezo.getHoreteg()).append("\n");
                 stat.append("Kapacitas: ").append(mezo.getKapacitas()).append("\n");
                 if(mezo.getTargy() != null && mezo.getHoreteg() == 0)
-                    stat.append("Targy: ").append(mezo.getTargy().tipus());
+                    stat.append("Targy: ").append(mezo.getTargy().tipus() + "\n");
             }
 
             else {
@@ -296,7 +298,7 @@ public class ProtoProgram {
                 stat.append("Azonosito: ").append(azonosito).append("\n");
                 Lyuk mezo = (Lyuk) mezok.get(azonosito);
                 stat.append("Horeteg: ").append(mezo.getHoreteg()).append("\n");
-                stat.append("Kapacitas: ").append(mezo.getKapacitas());
+                stat.append("Kapacitas: ").append(mezo.getKapacitas() + "\n");
             }
         }
 
@@ -304,6 +306,7 @@ public class ProtoProgram {
             throw new WrongArgumentException("A(z) '" + azonosito + "' nevu objektum nem talalhato!");
 
         System.out.println(stat.toString());
+        Logger.log(stat.toString());
     }
 
     /**

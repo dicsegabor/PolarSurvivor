@@ -1,7 +1,7 @@
 Expected
-Mozgathato.Karakter.as, Mozgathato.Karakter.keres
+Mozgathato.Karakter.as, Mozgathato.Karakter.keres, Horeteg: 0
 Unexpected
-
+Horeteg: 1
 Commands
 loadmap map.txt
 setfield STABIL_2_4 1

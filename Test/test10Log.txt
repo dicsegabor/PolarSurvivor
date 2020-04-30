@@ -420,5 +420,13 @@ Targy.Kotel.tipus
 Mezo.Mezo.getHoreteg
 Mezo.Mezo.getKapacitas
 Mezo.Jegtabla.getTargy
+Azonosito: STABIL_2_4
+Horeteg: 0
+Kapacitas: 2147483647
 Mozgathato.Karakter.getMezo
 Targy.Kotel.tipus
+Azonosito: ESZKIMO_0
+Mezo: STABIL_2_4
+Tesho: 5
+Munka: 4
+Targyak: KOTEL 
