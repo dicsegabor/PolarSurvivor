@@ -17,16 +17,22 @@ public class GameModel {
         mozgathatok = new ArrayList<Mozgathato>();
         karakterek = new ArrayList<Karakter>();
         mezok = new ArrayList<Mezo>();
+
         mezok.add(new StabilJegtabla());
         mezok.add(new StabilJegtabla());
         mezok.add(new StabilJegtabla());
+
         mezok.get(0).setSzomszed(mezok.get(1));
         mezok.get(1).setSzomszed(mezok.get(0));
         mezok.get(1).setSzomszed(mezok.get(2));
         mezok.get(2).setSzomszed(mezok.get(1));
-        karakterek.add(new Eszkimo(mezok.get(1)));
+
+        Eszkimo e1 = new Eszkimo(mezok.get(1));
+        mezok.get(1).addKarakter(e1);
+        karakterek.add(e1);
     }
 
     public ArrayList<Mezo> getMezok() { return mezok; }
+    public ArrayList<Mozgathato> getMozgathatok() { return mozgathatok; }
     public Karakter getCurrentKarakter() { return karakterek.get(0); }
 }
