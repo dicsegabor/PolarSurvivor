@@ -1,9 +1,6 @@
 package MVC.View;
 
-import Graphics.View.ViewManager;
 import MVC.Controller.Controller;
-import MVC.Controller.GameController;
-import MVC.View.Menu.MenuView;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
