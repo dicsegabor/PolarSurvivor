@@ -24,6 +24,7 @@ public class MezoView extends JPanel {
     private HashMap<Object, JLabel> picLabels;
     private BufferedImage backgroundImage;
 
+    //TODO: mezoview entitiejienek a kirajzolását megcsinálni
     public MezoView(Mezo mezo){
 
         picLabels = new HashMap<>();

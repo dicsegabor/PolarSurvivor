@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class GamePanel extends JPanel {
 
-    private static Dimension DEFAULT_DIMENSION = new Dimension(800, 600);
+    private static Dimension DEFAULT_DIMENSION = new Dimension(1200, 1000);
 
     private ArrayList<MezoView> mezoViews;
 
@@ -23,6 +23,8 @@ public class GamePanel extends JPanel {
         setPreferredSize(DEFAULT_DIMENSION);
         setMinimumSize(DEFAULT_DIMENSION);
         setBackground(Color.BLACK);
+
+        //addMezoView(new MezoView(mezo));
 
         setVisible(true);
     }

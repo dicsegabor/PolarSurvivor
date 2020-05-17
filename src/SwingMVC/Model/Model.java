@@ -20,6 +20,7 @@ public class Model {
         init();
     }
 
+    //TODO: inicializálás
     private void init(){
 
         Mezo mezo = new StabilJegtabla();

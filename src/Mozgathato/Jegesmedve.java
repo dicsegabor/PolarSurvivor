@@ -23,6 +23,7 @@ public class Jegesmedve implements Mozgathato {
         this.mezo = mezo;
     }
 
+    //TODO:overloadosra átírni
     /**
      * A jegesmedve lepeset megvalosito fuggveny.
      * @param mezo
