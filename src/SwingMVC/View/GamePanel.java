@@ -1,5 +1,7 @@
 package SwingMVC.View;
 
+import Mezo.StabilJegtabla;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -20,15 +22,16 @@ public class GamePanel extends JPanel {
         layout.setVgap(5);
         setLayout(layout);
 
-        add(new MezoView(0));
-        add(new MezoView(0));
-        add(new MezoView(0));
-        add(new MezoView(0));
-        add(new MezoView(0));
-        add(new MezoView(0));
-        add(new MezoView(0));
-        add(new MezoView(0));
-        add(new MezoView(0));
+        add(new MezoView(new StabilJegtabla()));
+        add(new MezoView(new StabilJegtabla()));
+        add(new MezoView(new StabilJegtabla()));
+        add(new MezoView(new StabilJegtabla()));
+        add(new MezoView(new StabilJegtabla()));
+        add(new MezoView(new StabilJegtabla()));
+        add(new MezoView(new StabilJegtabla()));
+        add(new MezoView(new StabilJegtabla()));
+        add(new MezoView(new StabilJegtabla()));
+
 
         setVisible(true);
     }
