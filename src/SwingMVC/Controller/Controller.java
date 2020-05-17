@@ -5,11 +5,8 @@ import Mozgathato.Karakter;
 import SwingMVC.Eventhandling.Eventhandlers.AtfordulasEventListener;
 import SwingMVC.Eventhandling.Events.AtfordulasEvent;
 import SwingMVC.Model.Model;
-import javafx.event.Event;
 
 import javax.swing.event.EventListenerList;
-import java.util.EventListener;
-import java.util.EventObject;
 
 public class Controller {
 
