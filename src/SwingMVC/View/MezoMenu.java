@@ -1,7 +1,6 @@
 package SwingMVC.View;
 
 import SwingMVC.Controller.Controller;
-import javafx.scene.control.Button;
 
 import javax.swing.*;
 import java.awt.event.MouseEvent;

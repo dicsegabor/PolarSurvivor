@@ -6,6 +6,8 @@ import Mozgathato.Karakter;
 import Mozgathato.*;
 import Proto.ProtoProgram;
 import Proto.LogAndTesting.Logger;
+import SwingMVC.Controller.Controller;
+import SwingMVC.Eventhandling.Events.AtfordulasEvent;
 import Targy.Targy;
 import Targy.Targytipus;
 
@@ -239,6 +241,8 @@ public abstract class Mezo implements VizbeesesListener {
      */
     @Override
     public void segitseg(Karakter karakter){
+
+        Controller.getInstance().fireEvent(new AtfordulasEvent(this));
 
         Logger.log();
 

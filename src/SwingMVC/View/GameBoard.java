@@ -1,5 +1,9 @@
 package SwingMVC.View;
 
+import SwingMVC.Controller.Controller;
+import SwingMVC.Eventhandling.Eventhandlers.AtfordulasEventListener;
+import SwingMVC.Eventhandling.Events.AtfordulasEvent;
+
 import javax.swing.*;
 
 public class GameBoard extends JFrame {
@@ -11,6 +15,7 @@ public class GameBoard extends JFrame {
         super("Polar Survivor");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         gamePanel = new GamePanel();
+
         start();
     }
 

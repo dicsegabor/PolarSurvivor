@@ -20,16 +20,6 @@ public class Model {
         init();
     }
 
-    public Mezo getMezo(int ID){
-
-        return mezok.get(ID);
-    }
-
-    public Karakter getKarakter(int ID){
-
-        return karakterek.get(ID);
-    }
-
     private void init(){
 
         Mezo mezo = new StabilJegtabla();
@@ -40,5 +30,20 @@ public class Model {
 
         mezok.add(mezo);
         karakterek.add(karakter);
+    }
+
+    public Mezo getMezo(int ID){
+
+        return mezok.get(ID);
+    }
+
+    public Karakter getKarakter(int ID){
+
+        return karakterek.get(ID);
+    }
+
+    public void leptet(Karakter karakter, Mezo mezo){
+
+        karakter.lep(mezo);
     }
 }
