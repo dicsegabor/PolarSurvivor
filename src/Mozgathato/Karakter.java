@@ -105,6 +105,8 @@ public class Karakter implements Mozgathato {
 
         mezo.befogad(this);
 
+        this.mezo = mezo;
+
         ProtoProgram.halalEllorzes(mezo);
 
         munkaCsokkent(1);
