@@ -156,7 +156,6 @@ public class MezoView extends JPanel {
 
             }
 
-            //TODO: Mozgahthato képeket helyükre rakni
             @Override
             public void leptek(LepesEvent event, Mozgathato mozgathato) {
 

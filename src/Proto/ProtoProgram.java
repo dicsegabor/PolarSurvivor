@@ -368,7 +368,6 @@ public class ProtoProgram {
         commander.addCommand(new BuildCommand());
         commander.addCommand(new ScriptCommand(commander));
         commander.addCommand(new StatCommand());
-        //TODO:irni olyan parancso, ami kilistazza az enumokat
     }
 
     public static void main(String[] args) {

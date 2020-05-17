@@ -35,6 +35,11 @@ public class Controller {
         activeKarakter = model.getKarakter(0);
     }
 
+    public Karakter getActiveKarakter() {
+
+        return activeKarakter;
+    }
+
     public void lep(Mezo mezo){
 
         model.leptet(activeKarakter, mezo);
