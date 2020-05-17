@@ -13,7 +13,7 @@ public class EszkimoView extends MozgathatoView {
         super(mv);
         Image background = null;
         try {
-            background = new Image(new FileInputStream("src/MVC/View/Resources/eskimo.png"));
+            background = new Image(new FileInputStream("src/MVC/View/Resources/eszkimo.png"));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
