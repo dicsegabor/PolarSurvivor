@@ -1,25 +1,35 @@
 package SwingMVC.View;
 
+import Mozgathato.Eszkimo;
+
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.net.URL;
 
 public class EntityImage {
 
     private BufferedImage image;
-    private int ID;
+    private Object entity;
 
-    public EntityImage(String path, int ID){
+    public EntityImage(Object entity){
 
-        this.ID = ID;
-        try { image = ImageIO.read(new FileInputStream(path)); }
+        this.entity = entity;
+        getGraphics(entity);
+    }
+
+    private void getGraphics(Object entity){
+
+        URL path = entity.getClass().getResource(entity.getClass().getSimpleName() + ".png");
+
+        try { image = ImageIO.read(path); }
         catch (IOException e) { System.out.println("A fájl nem található: '" + path + "'");}
     }
 
-    public int getID() {
+    public Object getEntity() {
 
-        return ID;
+        return entity;
     }
 
     public BufferedImage getImage() {

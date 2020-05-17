@@ -1,6 +1,11 @@
 package SwingMVC.View;
 
-import Mezo.Mezo;
+import Mezo.*;
+import Mozgathato.*;
+import SwingMVC.Controller.Controller;
+import SwingMVC.Eventhandling.Eventhandlers.MezoEventListener;
+import SwingMVC.Eventhandling.Events.*;
+import Targy.Targy;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -10,12 +15,13 @@ import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.net.URL;
 import java.util.HashMap;
 
 public class MezoView extends JPanel {
 
     private Mezo mezo;
-    private HashMap<Integer, JLabel> picLabels;
+    private HashMap<Object, JLabel> picLabels;
     private BufferedImage backgroundImage;
 
     public MezoView(Mezo mezo){
@@ -23,7 +29,14 @@ public class MezoView extends JPanel {
         picLabels = new HashMap<>();
 
         this.mezo = mezo;
+        setBackgroundImage(mezo);
+        legyenHo();
         addMenuListener();
+
+        GridLayout layout = new GridLayout();
+        layout.setColumns(4);
+        layout.setRows(4);
+        setLayout(layout);
     }
 
     public Mezo getMezo() {
@@ -31,13 +44,47 @@ public class MezoView extends JPanel {
         return mezo;
     }
 
-    public void setBackgroundImage(String path){
+    public void setBackgroundImage(Object mezotipus){
 
-        try { backgroundImage = ImageIO.read(new FileInputStream(path)); }
+        URL path = mezotipus.getClass().getResource(mezotipus.getClass().getSimpleName() + ".png");
+
+        try { backgroundImage = ImageIO.read(path); }
         catch (IOException e) { System.out.println("A fájl nem található: '" + path + "'");}
         setPreferredSize(new Dimension(backgroundImage.getWidth(), backgroundImage.getHeight()));
         repaint();
         revalidate();
+    }
+
+    private void legyenHo(){
+
+        if(mezo.getHoreteg() != 0){
+
+            String path = "SwingMVC\\View\\Ho.png";
+
+            try { backgroundImage = ImageIO.read(new FileInputStream(path)); }
+            catch (IOException e) { System.out.println("A fájl nem található: '" + path + "'");}
+            setPreferredSize(new Dimension(backgroundImage.getWidth(), backgroundImage.getHeight()));
+
+            if(!mezo.getClass().equals(Lyuk.class)) {
+
+                Targy targy = ((Jegtabla) mezo).getTargy();
+                if(targy != null)
+                    removeEntityImage(targy);
+            }
+            repaint();
+            revalidate();
+        }
+
+        else {
+            setBackgroundImage(mezo);
+
+            if(!mezo.getClass().equals(Lyuk.class)) {
+
+                Targy targy = ((Jegtabla) mezo).getTargy();
+                if(targy != null)
+                    addEntityImage(new EntityImage(targy));
+            }
+        }
     }
 
     @Override
@@ -50,14 +97,14 @@ public class MezoView extends JPanel {
     private void addEntityImage(EntityImage image){
 
         JLabel picLabel = new JLabel(new ImageIcon(image.getImage()));
-        picLabels.putIfAbsent(image.getID(), picLabel);
+        picLabels.putIfAbsent(image.getEntity(), picLabel);
         add(picLabel);
     }
 
-    private void removeEntityImage(int ID){
+    private void removeEntityImage(Object entity){
 
-        remove(picLabels.get(ID));
-        picLabels.remove(ID);
+        remove(picLabels.get(entity));
+        picLabels.remove(entity);
     }
 
     private void addMenuListener(){
@@ -89,5 +136,38 @@ public class MezoView extends JPanel {
         };
 
         addMouseListener(listener);
+    }
+
+    private void setupMezoListener(){
+
+        MezoEventListener atfordulasEventListener = new MezoEventListener() {
+
+            @Override
+            public void atfordult(AtfordulasEvent event) {
+
+                if (mezo.equals(event.getSource()))
+                    MezoView.this.setBackgroundImage("Grafikák\\water.png");
+            }
+
+            @Override
+            public void astak(AsasEvent event) {
+
+                if (mezo.equals(event.getSource()));
+
+            }
+
+            //TODO: Mozgahthato képeket helyükre rakni
+            @Override
+            public void leptek(LepesEvent event, Mozgathato mozgathato) {
+
+                if (mezo.equals(event.getSource()))
+                    removeEntityImage(mozgathato);
+
+                else  if(mezo.equals(event.mezo))
+                    addEntityImage(new EntityImage(mozgathato));
+            }
+        };
+
+        Controller.getInstance().addListener(atfordulasEventListener);
     }
 }

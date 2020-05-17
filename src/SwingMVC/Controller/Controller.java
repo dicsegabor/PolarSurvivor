@@ -2,8 +2,10 @@ package SwingMVC.Controller;
 
 import Mezo.Mezo;
 import Mozgathato.Karakter;
-import SwingMVC.Eventhandling.Eventhandlers.AtfordulasEventListener;
+import SwingMVC.Eventhandling.Eventhandlers.MezoEventListener;
+import SwingMVC.Eventhandling.Events.AsasEvent;
 import SwingMVC.Eventhandling.Events.AtfordulasEvent;
+import SwingMVC.Eventhandling.Events.LepesEvent;
 import SwingMVC.Model.Model;
 
 import javax.swing.event.EventListenerList;
@@ -39,23 +41,43 @@ public class Controller {
     }
 
     //EventHandling
-    public void addListener(AtfordulasEventListener listener){
+    public void addListener(MezoEventListener listener){
 
-        listenerList.add(AtfordulasEventListener.class, listener);
+        listenerList.add(MezoEventListener.class, listener);
     }
 
-    public void removeListener(AtfordulasEventListener listener){
+    public void removeListener(MezoEventListener listener){
 
-        listenerList.remove(AtfordulasEventListener.class, listener);
+        listenerList.remove(MezoEventListener.class, listener);
     }
 
-    public void fireEvent(AtfordulasEvent eventObject){
+    public void atfordultEvent(AtfordulasEvent eventObject){
 
         Object[] listeners = listenerList.getListenerList();
         for(int i = 0; i < listeners.length; i += 2){
 
-            if(listeners[i] == AtfordulasEventListener.class)
-                ((AtfordulasEventListener)listeners[i + 1]).atfordult(eventObject);
+            if(listeners[i] == MezoEventListener.class)
+                ((MezoEventListener)listeners[i + 1]).atfordult(eventObject);
+        }
+    }
+
+    public void lepesEvent(LepesEvent eventObject){
+
+        Object[] listeners = listenerList.getListenerList();
+        for(int i = 0; i < listeners.length; i += 2){
+
+            if(listeners[i] == MezoEventListener.class)
+                ((MezoEventListener)listeners[i + 1]).leptek(eventObject, activeKarakter);
+        }
+    }
+
+    public void asasEvent(AsasEvent eventObject){
+
+        Object[] listeners = listenerList.getListenerList();
+        for(int i = 0; i < listeners.length; i += 2){
+
+            if(listeners[i] == MezoEventListener.class)
+                ((MezoEventListener)listeners[i + 1]).astak(eventObject);
         }
     }
 }
