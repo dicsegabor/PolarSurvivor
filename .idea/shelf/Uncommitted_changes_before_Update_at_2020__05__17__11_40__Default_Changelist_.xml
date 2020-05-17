@@ -1,0 +1,44 @@
+<changelist name="Uncommitted_changes_before_Update_at_2020__05__17__11_40_[Default_Changelist]" date="1589708437549" recycled="false" toDelete="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020__05__17__11_40_[Default_Changelist]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Update at 2020. 05. 17. 11:40 [Default Changelist]" />
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/PolarSurvivor/MVC/Controller/GameController.class" />
+    <option name="AFTER_PATH" value="out/production/PolarSurvivor/MVC/Controller/GameController.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020__05__17__11_40_[Default_Changelist]/GameController.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/PolarSurvivor/MVC/View/Game/Mezo/MezoTipusok/JegtablaView.class" />
+    <option name="AFTER_PATH" value="out/production/PolarSurvivor/MVC/View/Game/Mezo/MezoTipusok/JegtablaView.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020__05__17__11_40_[Default_Changelist]/JegtablaView.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/PolarSurvivor/MVC/View/Game/Mezo/MezoView.class" />
+    <option name="AFTER_PATH" value="out/production/PolarSurvivor/MVC/View/Game/Mezo/MezoView.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020__05__17__11_40_[Default_Changelist]/MezoView.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/PolarSurvivor/Mozgathato/Karakter.class" />
+    <option name="AFTER_PATH" value="out/production/PolarSurvivor/Mozgathato/Karakter.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020__05__17__11_40_[Default_Changelist]/Karakter.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/PolarSurvivor/MVC/View/Game/Mozgathato/MozgathatoView.class" />
+    <option name="AFTER_PATH" value="out/production/PolarSurvivor/MVC/View/Game/Mozgathato/MozgathatoView.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020__05__17__11_40_[Default_Changelist]/MozgathatoView.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/PolarSurvivor/MVC/Model/GameModel.class" />
+    <option name="AFTER_PATH" value="out/production/PolarSurvivor/MVC/Model/GameModel.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020__05__17__11_40_[Default_Changelist]/GameModel.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/PolarSurvivor/MVC/View/Game/GameView.class" />
+    <option name="AFTER_PATH" value="out/production/PolarSurvivor/MVC/View/Game/GameView.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020__05__17__11_40_[Default_Changelist]/GameView.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/PolarSurvivor/MVC/View/Game/Mozgathato/Karakterek/EszkimoView.class" />
+    <option name="AFTER_PATH" value="out/production/PolarSurvivor/MVC/View/Game/Mozgathato/Karakterek/EszkimoView.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020__05__17__11_40_[Default_Changelist]/EszkimoView.class" />
+  </binary>
+</changelist>
