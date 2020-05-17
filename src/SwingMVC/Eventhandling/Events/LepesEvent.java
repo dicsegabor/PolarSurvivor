@@ -14,7 +14,7 @@ public class LepesEvent extends EventObject {
      * @param source the object on which the Event initially occurred
      * @throws IllegalArgumentException if source is null
      */
-    public LepesEvent(Object source, Mezo hova) {
+    public LepesEvent(Mezo source, Mezo hova) {
 
         super(source);
         this.mezo = hova;

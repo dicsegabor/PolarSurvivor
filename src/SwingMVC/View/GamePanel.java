@@ -24,7 +24,7 @@ public class GamePanel extends JPanel {
         setMinimumSize(DEFAULT_DIMENSION);
         setBackground(Color.BLACK);
 
-        //addMezoView(new MezoView(mezo));
+        addMezoView(new MezoView(new StabilJegtabla()));
 
         setVisible(true);
     }

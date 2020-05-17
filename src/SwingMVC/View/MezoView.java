@@ -1,5 +1,6 @@
 package SwingMVC.View;
 
+import Epulet.Iglu;
 import Mezo.*;
 import Mozgathato.*;
 import SwingMVC.Controller.Controller;
@@ -38,6 +39,8 @@ public class MezoView extends JPanel {
         layout.setColumns(4);
         layout.setRows(4);
         setLayout(layout);
+
+        setupMezoListener();
     }
 
     public Mezo getMezo() {
@@ -153,8 +156,33 @@ public class MezoView extends JPanel {
             @Override
             public void astak(AsasEvent event) {
 
-                if (mezo.equals(event.getSource()));
+                if(((Karakter)event.getSource()).getMezo().equals(mezo))
+                    legyenHo();
+            }
 
+            @Override
+            public void eszkimoKepesseg(EszkimoKepessegEvent event) {
+
+                Mezo mezo = ((Eszkimo)event.getSource()).getMezo();
+
+                if(mezo.equals(MezoView.this.mezo))
+                    addEntityImage(new EntityImage(((Jegtabla)mezo).getEpulet()));
+            }
+
+            @Override
+            public void kimentettek(KimentesEvent event) {
+
+                if(event.megmentett.getMezo().equals(mezo))
+                    removeEntityImage(event.megmentett);
+
+                else if(event.megmento.getMezo().equals(mezo))
+                    addEntityImage(new EntityImage(event.megmentett));
+            }
+
+            @Override
+            public void kutatoKepesseg(KutatoKepessegEvent event) {
+
+                JOptionPane.showMessageDialog(null, "A mezo kapacitasa " + event.celpont.getKapacitas());
             }
 
             @Override
@@ -165,6 +193,21 @@ public class MezoView extends JPanel {
 
                 else  if(mezo.equals(event.mezo))
                     addEntityImage(new EntityImage(mozgathato));
+            }
+
+            @Override
+            public void targyfelvetel(TargyfelvetelEvent event) {
+
+                Targy targy = ((Jegtabla)((Karakter)event.getSource()).getMezo()).getTargy();
+
+                if(((Karakter)event.getSource()).getMezo().equals(mezo))
+                    removeEntityImage(targy);
+            }
+
+            @Override
+            public void vihar(ViharEvent event) {
+
+                legyenHo();
             }
         };
 
