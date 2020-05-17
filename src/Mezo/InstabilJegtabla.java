@@ -33,4 +33,16 @@ public class InstabilJegtabla extends Jegtabla {
                 catch (ItemNotFoundException e) { segitseg(k); }
             }
     }
+
+
+    public InstabilJegtabla(int kap){
+
+        this.setKapacitas(kap);
+
+    }
+
+
+
+
+
 }
