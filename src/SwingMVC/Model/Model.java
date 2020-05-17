@@ -5,8 +5,6 @@ import Mezo.*;
 import Mozgathato.Eszkimo;
 import Mozgathato.Jegesmedve;
 import Mozgathato.Karakter;
-import SwingMVC.View.MezoView;
-import Targy.Targy;
 import Targy.Targytipus;
 
 import java.io.File;
@@ -27,10 +25,7 @@ public class Model {
         init();
     }
 
-    //TODO: inicializalas
     private void init() {
-
-
 
         File text = new File("D:/temp/test.txt");
 
@@ -41,7 +36,6 @@ public class Model {
             System.out.println("lol");
         }
 
-
         int a,b;
         a = scanner.nextInt();
         b = scanner.nextInt();
@@ -50,11 +44,8 @@ public class Model {
 
         while(scanner.hasNextLine()){
 
-
         for (int i = 0; i < a; i++) {
             for (int j = 0; j < b ; j++) {
-
-
 
                     String tmp = scanner.nextLine();
                     String[] sor = tmp.split("\\t");
@@ -63,41 +54,28 @@ public class Model {
                         if(0 == Integer.parseInt(sor[2])){
                             palya[i][j] = new Lyuk(false);
                         }
+
                         else{
                             palya[i][j] = new Lyuk(true);
                         }
 
                     }
+
                     else if(sor[0].equals("STABIL")){
                         StabilJegtabla stabil = new StabilJegtabla();
                         stabil.setHoreteg(Integer.parseInt(sor[2]));
                         stabil.setTargy(Targytipus.letrehoz(Targytipus.valueOf(sor[3])));
                         palya[i][j] = stabil;
                     }
+
                     else if(sor[0].equals("INSTABIL")){
                         InstabilJegtabla instabil = new InstabilJegtabla(Integer.parseInt(sor[1]));
                         instabil.setHoreteg(Integer.parseInt(sor[2]));
                         palya[i][j] = instabil;
-
-
                     }
-
-
-
-
                 }
-
-
-
             }
         }
-
-
-
-
-
-
-
 
         Karakter karakter = new Eszkimo(palya[1][2]);
 
@@ -106,7 +84,6 @@ public class Model {
 
         for (int i = 0; i < a; i++) {            //először
             for (int j = 0; j < b ; j++) {
-
 
                 for (int k = 0; k < a; k++) {      //mégegyszer
                     for (int l = 0; l < b; l++) {
@@ -119,20 +96,12 @@ public class Model {
             }
         }
 
-
         for (int i = 0; i < a; i++) {
             for (int j = 0; j <b; j++) {
                 mezok.add(palya[i][j]);
             }
         }
-
-
     }
-
-
-
-
-
 
     public Mezo getMezo(int ID){
 
