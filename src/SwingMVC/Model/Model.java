@@ -1,13 +1,16 @@
 package SwingMVC.Model;
 
-import Exceptions.ItemNotFoundException;
 import Mezo.*;
 import Mozgathato.Eszkimo;
 import Mozgathato.Jegesmedve;
 import Mozgathato.Karakter;
+import SwingMVC.View.MezoView;
 import Targy.Targytipus;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Model {
 
@@ -22,18 +25,112 @@ public class Model {
         init();
     }
 
-    //TODO: inicializálás
-    private void init(){
+    //TODO: inicializalas
+    private void init() {
 
-        Mezo mezo = new StabilJegtabla();
-        Karakter karakter = new Eszkimo(mezo);
 
-        mezo.addKarakter(new Eszkimo(mezo));
-        mezo.setHoreteg(1);
 
-        mezok.add(mezo);
+        File text = new File("D:/temp/test.txt");
+
+        Scanner scanner = null;
+        try {
+            scanner = new Scanner(text);
+        } catch (FileNotFoundException e) {
+            System.out.println("lol");
+        }
+
+
+        int a,b;
+        a = scanner.nextInt();
+        b = scanner.nextInt();
+
+        Mezo[][] palya = new Mezo[a][b];
+
+        while(scanner.hasNextLine()){
+
+
+        for (int i = 0; i < a; i++) {
+            for (int j = 0; j < b ; j++) {
+
+
+
+                    String tmp = scanner.nextLine();
+                    String[] sor = tmp.split("\\t");
+
+                    if(sor[0].equals("LYUK")){
+                        if(0 == Integer.parseInt(sor[2])){
+                            palya[i][j] = new Lyuk(false);
+                        }
+                        else{
+                            palya[i][j] = new Lyuk(true);
+                        }
+
+                    }
+                    else if(sor[0].equals("STABIL")){
+                        StabilJegtabla stabil = new StabilJegtabla();
+                        stabil.setHoreteg(Integer.parseInt(sor[2]));
+                        stabil.setTargy(Targytipus.letrehoz(Targytipus.valueOf(sor[3])));
+                        palya[i][j] = stabil;
+                    }
+                    else if(sor[0].equals("INSTABIL")){
+                        InstabilJegtabla instabil = new InstabilJegtabla(Integer.parseInt(sor[1]));
+                        instabil.setHoreteg(Integer.parseInt(sor[2]));
+                        palya[i][j] = instabil;
+
+
+                    }
+
+
+
+
+                }
+
+
+
+            }
+        }
+
+
+
+
+
+
+
+
+        Karakter karakter = new Eszkimo(palya[1][2]);
+
+        palya[1][2].addKarakter(karakter);
         karakterek.add(karakter);
+
+        for (int i = 0; i < a; i++) {            //elÅ‘szÃ¶r
+            for (int j = 0; j < b ; j++) {
+
+
+                for (int k = 0; k < a; k++) {      //mÃ©gegyszer
+                    for (int l = 0; l < b; l++) {
+
+                        if(Math.abs(i-k) == 0 && Math.abs(j-l) == 1 || Math.abs(i-k) == 1 && Math.abs(j-l) == 0){
+                                    palya[i][j].setSzomszed(palya[k][l]);
+                        }
+                    }
+                }
+            }
+        }
+
+
+        for (int i = 0; i < a; i++) {
+            for (int j = 0; j <b; j++) {
+                mezok.add(palya[i][j]);
+            }
+        }
+
+
     }
+
+
+
+
+
 
     public Mezo getMezo(int ID){
 
@@ -45,36 +142,8 @@ public class Model {
         return karakterek.get(ID);
     }
 
-    // Menüpontok
     public void leptet(Karakter karakter, Mezo mezo){
 
         karakter.lep(mezo);
-    }
-
-    public void as(Karakter karakter) {
-
-        karakter.as();
-    }
-
-    public void targyatFelvesz(Karakter karakter) {
-        karakter.felvesz();
-    }
-
-    public void iglutEpit(Eszkimo eszkimo) {
-        eszkimo.iglutEpit();
-    }
-
-    public void satratEpit(Karakter karakter) {
-        try {
-            karakter.keres(Targytipus.SATOR).hasznal(karakter);
-        } catch (ItemNotFoundException e) {
-           //TODO: kell-e? mivel csak akkor jelenik meg a menüpont, ha van nála
-            e.printStackTrace();
-        }
-    }
-
-    public void osszeszerel(Karakter karakter) {
-
-        karakter.kombinal();
     }
 }
