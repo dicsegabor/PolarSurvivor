@@ -1,0 +1,428 @@
+Index: src/SwingMVC/View/MezoView.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package SwingMVC.View;\r\n\r\nimport Mezo.Mezo;\r\n\r\nimport javax.imageio.ImageIO;\r\nimport javax.swing.*;\r\nimport java.awt.*;\r\nimport java.awt.event.MouseEvent;\r\nimport java.awt.event.MouseListener;\r\nimport java.awt.image.BufferedImage;\r\nimport java.io.FileInputStream;\r\nimport java.io.IOException;\r\nimport java.util.HashMap;\r\n\r\npublic class MezoView extends JPanel {\r\n\r\n    private Mezo mezo;\r\n    private HashMap<Integer, JLabel> picLabels;\r\n    private BufferedImage backgroundImage;\r\n\r\n    public MezoView(Mezo mezo){\r\n\r\n        picLabels = new HashMap<>();\r\n\r\n        this.mezo = mezo;\r\n        addMenuListener();\r\n    }\r\n\r\n    public Mezo getMezo() {\r\n\r\n        return mezo;\r\n    }\r\n\r\n    public void setBackgroundImage(String path){\r\n\r\n        try { backgroundImage = ImageIO.read(new FileInputStream(path)); }\r\n        catch (IOException e) { System.out.println(\"A fájl nem található: '\" + path + \"'\");}\r\n        setPreferredSize(new Dimension(backgroundImage.getWidth(), backgroundImage.getHeight()));\r\n        repaint();\r\n        revalidate();\r\n    }\r\n\r\n    @Override\r\n    protected void paintComponent(Graphics g) {\r\n\r\n        super.paintComponent(g);\r\n        g.drawImage(backgroundImage , 0, 0, null);\r\n    }\r\n\r\n    private void addEntityImage(EntityImage image){\r\n\r\n        JLabel picLabel = new JLabel(new ImageIcon(image.getImage()));\r\n        picLabels.putIfAbsent(image.getID(), picLabel);\r\n        add(picLabel);\r\n    }\r\n\r\n    private void removeEntityImage(int ID){\r\n\r\n        remove(picLabels.get(ID));\r\n        picLabels.remove(ID);\r\n    }\r\n\r\n    private void addMenuListener(){\r\n\r\n        MezoView view = this;\r\n\r\n        MouseListener listener = new MouseListener() {\r\n            @Override\r\n            public void mouseClicked(MouseEvent e) {\r\n\r\n                if(SwingUtilities.isRightMouseButton(e)) {\r\n\r\n                    MezoMenu menu = new MezoMenu(view);\r\n                    menu.show(e.getComponent(), e.getX(), e.getY());\r\n                }\r\n            }\r\n\r\n            @Override\r\n            public void mousePressed(MouseEvent e) { }\r\n\r\n            @Override\r\n            public void mouseReleased(MouseEvent e) { }\r\n\r\n            @Override\r\n            public void mouseEntered(MouseEvent e) { }\r\n\r\n            @Override\r\n            public void mouseExited(MouseEvent e) { }\r\n        };\r\n\r\n        addMouseListener(listener);\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>windows-1250
+===================================================================
+--- src/SwingMVC/View/MezoView.java	(revision f0a70e27465504b0a2fe28088f46603d7d593e6c)
++++ src/SwingMVC/View/MezoView.java	(date 1589744131642)
+@@ -1,6 +1,10 @@
+ package SwingMVC.View;
+ 
+-import Mezo.Mezo;
++import Mezo.*;
++import Mozgathato.Mozgathato;
++import SwingMVC.Controller.Controller;
++import SwingMVC.Eventhandling.Eventhandlers.MezoEventListener;
++import SwingMVC.Eventhandling.Events.*;
+ 
+ import javax.imageio.ImageIO;
+ import javax.swing.*;
+@@ -10,12 +14,13 @@
+ import java.awt.image.BufferedImage;
+ import java.io.FileInputStream;
+ import java.io.IOException;
++import java.net.URL;
+ import java.util.HashMap;
+ 
+ public class MezoView extends JPanel {
+ 
+     private Mezo mezo;
+-    private HashMap<Integer, JLabel> picLabels;
++    private HashMap<Object, JLabel> picLabels;
+     private BufferedImage backgroundImage;
+ 
+     public MezoView(Mezo mezo){
+@@ -23,6 +28,7 @@
+         picLabels = new HashMap<>();
+ 
+         this.mezo = mezo;
++        setBackgroundImage(mezo);
+         addMenuListener();
+     }
+ 
+@@ -31,15 +37,35 @@
+         return mezo;
+     }
+ 
+-    public void setBackgroundImage(String path){
++    public void setBackgroundImage(Object mezotipus){
++
++        URL path = mezotipus.getClass().getResource(mezotipus.getClass().getSimpleName() + ".png");
++
++        try { backgroundImage = ImageIO.read(path); }
++        catch (IOException e) { System.out.println("A fájl nem található: '" + path + "'");}
++        setPreferredSize(new Dimension(backgroundImage.getWidth(), backgroundImage.getHeight()));
++        repaint();
++        revalidate();
++    }
++
++    private void legyenHo(){
++
++        if(mezo.getHoreteg() != 0){
++
++            String path = "SwingMVC\\View\\Ho.png";
+ 
+-        try { backgroundImage = ImageIO.read(new FileInputStream(path)); }
+-        catch (IOException e) { System.out.println("A fájl nem található: '" + path + "'");}
+-        setPreferredSize(new Dimension(backgroundImage.getWidth(), backgroundImage.getHeight()));
+-        repaint();
+-        revalidate();
+-    }
++            try { backgroundImage = ImageIO.read(new FileInputStream(path)); }
++            catch (IOException e) { System.out.println("A fájl nem található: '" + path + "'");}
++            setPreferredSize(new Dimension(backgroundImage.getWidth(), backgroundImage.getHeight()));
++            if(!mezo.getClass().equals(Lyuk.class))
++                removeEntityImage(((Jegtabla)mezo).getTargy());
++
++            repaint();
++            revalidate();
++        }
+ 
++    }
++
+     @Override
+     protected void paintComponent(Graphics g) {
+ 
+@@ -50,14 +76,14 @@
+     private void addEntityImage(EntityImage image){
+ 
+         JLabel picLabel = new JLabel(new ImageIcon(image.getImage()));
+-        picLabels.putIfAbsent(image.getID(), picLabel);
++        picLabels.putIfAbsent(image.getEntity(), picLabel);
+         add(picLabel);
+     }
+ 
+-    private void removeEntityImage(int ID){
++    private void removeEntityImage(Object entity){
+ 
+-        remove(picLabels.get(ID));
+-        picLabels.remove(ID);
++        remove(picLabels.get(entity));
++        picLabels.remove(entity);
+     }
+ 
+     private void addMenuListener(){
+@@ -90,4 +116,37 @@
+ 
+         addMouseListener(listener);
+     }
++
++    private void setupMezoListener(){
++
++        MezoEventListener atfordulasEventListener = new MezoEventListener() {
++
++            @Override
++            public void atfordult(AtfordulasEvent event) {
++
++                if (mezo.equals(event.getSource()))
++                    MezoView.this.setBackgroundImage("Grafikák\\water.png");
++            }
++
++            @Override
++            public void astak(AsasEvent event) {
++
++                if (mezo.equals(event.getSource()));
++
++            }
++
++            //TODO: Mozgahthato képeket helyükre rakni
++            @Override
++            public void leptek(LepesEvent event, Mozgathato mozgathato) {
++
++                if (mezo.equals(event.getSource()))
++                    removeEntityImage(mozgathato);
++
++                else  if(mezo.equals(event.mezo))
++                    addEntityImage(new EntityImage(mozgathato));
++            }
++        };
++
++        Controller.getInstance().addListener(atfordulasEventListener);
++    }
+ }
+Index: src/SwingMVC/Controller/Controller.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package SwingMVC.Controller;\r\n\r\nimport Mezo.Mezo;\r\nimport Mozgathato.Karakter;\r\nimport SwingMVC.Eventhandling.Eventhandlers.AtfordulasEventListener;\r\nimport SwingMVC.Eventhandling.Events.AtfordulasEvent;\r\nimport SwingMVC.Model.Model;\r\n\r\nimport javax.swing.event.EventListenerList;\r\n\r\npublic class Controller {\r\n\r\n    private static Controller instance;\r\n    private Model model;\r\n    private Karakter activeKarakter;\r\n\r\n    private EventListenerList listenerList;\r\n\r\n    public static Controller getInstance() {\r\n\r\n        if(instance == null)\r\n            return new Controller();\r\n\r\n        return instance;\r\n    }\r\n\r\n    public Controller(){\r\n\r\n        instance = this;\r\n\r\n        listenerList = new EventListenerList();\r\n        model = new Model();\r\n        activeKarakter = model.getKarakter(0);\r\n    }\r\n\r\n    public void lep(Mezo mezo){\r\n\r\n        model.leptet(activeKarakter, mezo);\r\n    }\r\n\r\n    //EventHandling\r\n    public void addListener(AtfordulasEventListener listener){\r\n\r\n        listenerList.add(AtfordulasEventListener.class, listener);\r\n    }\r\n\r\n    public void removeListener(AtfordulasEventListener listener){\r\n\r\n        listenerList.remove(AtfordulasEventListener.class, listener);\r\n    }\r\n\r\n    public void fireEvent(AtfordulasEvent eventObject){\r\n\r\n        Object[] listeners = listenerList.getListenerList();\r\n        for(int i = 0; i < listeners.length; i += 2){\r\n\r\n            if(listeners[i] == AtfordulasEventListener.class)\r\n                ((AtfordulasEventListener)listeners[i + 1]).atfordult(eventObject);\r\n        }\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>windows-1250
+===================================================================
+--- src/SwingMVC/Controller/Controller.java	(revision f0a70e27465504b0a2fe28088f46603d7d593e6c)
++++ src/SwingMVC/Controller/Controller.java	(date 1589741792522)
+@@ -2,8 +2,10 @@
+ 
+ import Mezo.Mezo;
+ import Mozgathato.Karakter;
+-import SwingMVC.Eventhandling.Eventhandlers.AtfordulasEventListener;
++import SwingMVC.Eventhandling.Eventhandlers.MezoEventListener;
++import SwingMVC.Eventhandling.Events.AsasEvent;
+ import SwingMVC.Eventhandling.Events.AtfordulasEvent;
++import SwingMVC.Eventhandling.Events.LepesEvent;
+ import SwingMVC.Model.Model;
+ 
+ import javax.swing.event.EventListenerList;
+@@ -39,23 +41,43 @@
+     }
+ 
+     //EventHandling
+-    public void addListener(AtfordulasEventListener listener){
++    public void addListener(MezoEventListener listener){
++
++        listenerList.add(MezoEventListener.class, listener);
++    }
++
++    public void removeListener(MezoEventListener listener){
++
++        listenerList.remove(MezoEventListener.class, listener);
++    }
++
++    public void atfordultEvent(AtfordulasEvent eventObject){
+ 
+-        listenerList.add(AtfordulasEventListener.class, listener);
++        Object[] listeners = listenerList.getListenerList();
++        for(int i = 0; i < listeners.length; i += 2){
++
++            if(listeners[i] == MezoEventListener.class)
++                ((MezoEventListener)listeners[i + 1]).atfordult(eventObject);
++        }
+     }
+ 
+-    public void removeListener(AtfordulasEventListener listener){
++    public void lepesEvent(LepesEvent eventObject){
+ 
+-        listenerList.remove(AtfordulasEventListener.class, listener);
++        Object[] listeners = listenerList.getListenerList();
++        for(int i = 0; i < listeners.length; i += 2){
++
++            if(listeners[i] == MezoEventListener.class)
++                ((MezoEventListener)listeners[i + 1]).leptek(eventObject, activeKarakter);
++        }
+     }
+ 
+-    public void fireEvent(AtfordulasEvent eventObject){
++    public void asasEvent(AsasEvent eventObject){
+ 
+         Object[] listeners = listenerList.getListenerList();
+         for(int i = 0; i < listeners.length; i += 2){
+ 
+-            if(listeners[i] == AtfordulasEventListener.class)
+-                ((AtfordulasEventListener)listeners[i + 1]).atfordult(eventObject);
++            if(listeners[i] == MezoEventListener.class)
++                ((MezoEventListener)listeners[i + 1]).astak(eventObject);
+         }
+     }
+ }
+Index: src/SwingMVC/View/GamePanel.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package SwingMVC.View;\r\n\r\nimport Mezo.Mezo;\r\nimport Mezo.StabilJegtabla;\r\nimport SwingMVC.Controller.Controller;\r\nimport SwingMVC.Eventhandling.Eventhandlers.AtfordulasEventListener;\r\nimport SwingMVC.Eventhandling.Events.AtfordulasEvent;\r\n\r\nimport javax.swing.*;\r\nimport java.awt.*;\r\nimport java.awt.event.MouseEvent;\r\nimport java.awt.event.MouseListener;\r\nimport java.util.ArrayList;\r\n\r\npublic class GamePanel extends JPanel {\r\n\r\n    private static Dimension DEFAULT_DIMENSION = new Dimension(800, 600);\r\n\r\n    private ArrayList<MezoView> mezoViews;\r\n\r\n    public GamePanel(){\r\n\r\n        super();\r\n\r\n        mezoViews = new ArrayList<>();\r\n\r\n        setPreferredSize(DEFAULT_DIMENSION);\r\n        setMinimumSize(DEFAULT_DIMENSION);\r\n        setBackground(Color.BLACK);\r\n\r\n        /*GridLayout layout = new GridLayout();\r\n        layout.setColumns(3);\r\n        layout.setRows(3);\r\n        layout.setHgap(5);\r\n        layout.setVgap(5);\r\n        setLayout(layout);*/\r\n\r\n        StabilJegtabla jegtabla = new StabilJegtabla();\r\n        MezoView mezoView = new MezoView(jegtabla);\r\n\r\n        mezoView.setBackgroundImage(\"Grafikák\\\\stable ice.png\");\r\n        addMezoView(mezoView);\r\n\r\n        addAtfordulasListener();\r\n        addListener(jegtabla);\r\n\r\n        setVisible(true);\r\n    }\r\n\r\n    private void addMezoView(MezoView mezoView){\r\n\r\n        mezoViews.add(mezoView);\r\n        add(mezoView);\r\n    }\r\n\r\n    private void addAtfordulasListener(){\r\n\r\n        AtfordulasEventListener atfordulasEventListener = event -> {\r\n\r\n            for(MezoView mv : mezoViews)\r\n                if(mv.getMezo().equals(event.getSource()))\r\n                    mv.setBackgroundImage(\"Grafikák\\\\water.png\");\r\n        };\r\n\r\n        Controller.getInstance().addListener(atfordulasEventListener);\r\n    }\r\n\r\n    private void addListener(StabilJegtabla jegtabla){\r\n\r\n        addMouseListener(new MouseListener() {\r\n            @Override\r\n            public void mouseClicked(MouseEvent e) {\r\n                if(SwingUtilities.isLeftMouseButton(e))\r\n                    Controller.getInstance().fireEvent(new AtfordulasEvent(jegtabla));\r\n            }\r\n\r\n            @Override\r\n            public void mousePressed(MouseEvent e) {\r\n\r\n            }\r\n\r\n            @Override\r\n            public void mouseReleased(MouseEvent e) {\r\n\r\n            }\r\n\r\n            @Override\r\n            public void mouseEntered(MouseEvent e) {\r\n\r\n            }\r\n\r\n            @Override\r\n            public void mouseExited(MouseEvent e) {\r\n\r\n            }\r\n        });\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>windows-1250
+===================================================================
+--- src/SwingMVC/View/GamePanel.java	(revision f0a70e27465504b0a2fe28088f46603d7d593e6c)
++++ src/SwingMVC/View/GamePanel.java	(date 1589743196922)
+@@ -1,15 +1,11 @@
+ package SwingMVC.View;
+ 
+-import Mezo.Mezo;
+ import Mezo.StabilJegtabla;
+ import SwingMVC.Controller.Controller;
+-import SwingMVC.Eventhandling.Eventhandlers.AtfordulasEventListener;
+-import SwingMVC.Eventhandling.Events.AtfordulasEvent;
++import SwingMVC.Eventhandling.Eventhandlers.MezoEventListener;
+ 
+ import javax.swing.*;
+ import java.awt.*;
+-import java.awt.event.MouseEvent;
+-import java.awt.event.MouseListener;
+ import java.util.ArrayList;
+ 
+ public class GamePanel extends JPanel {
+@@ -35,15 +31,6 @@
+         layout.setVgap(5);
+         setLayout(layout);*/
+ 
+-        StabilJegtabla jegtabla = new StabilJegtabla();
+-        MezoView mezoView = new MezoView(jegtabla);
+-
+-        mezoView.setBackgroundImage("Grafikák\\stable ice.png");
+-        addMezoView(mezoView);
+-
+-        addAtfordulasListener();
+-        addListener(jegtabla);
+-
+         setVisible(true);
+     }
+ 
+@@ -52,47 +39,4 @@
+         mezoViews.add(mezoView);
+         add(mezoView);
+     }
+-
+-    private void addAtfordulasListener(){
+-
+-        AtfordulasEventListener atfordulasEventListener = event -> {
+-
+-            for(MezoView mv : mezoViews)
+-                if(mv.getMezo().equals(event.getSource()))
+-                    mv.setBackgroundImage("Grafikák\\water.png");
+-        };
+-
+-        Controller.getInstance().addListener(atfordulasEventListener);
+-    }
+-
+-    private void addListener(StabilJegtabla jegtabla){
+-
+-        addMouseListener(new MouseListener() {
+-            @Override
+-            public void mouseClicked(MouseEvent e) {
+-                if(SwingUtilities.isLeftMouseButton(e))
+-                    Controller.getInstance().fireEvent(new AtfordulasEvent(jegtabla));
+-            }
+-
+-            @Override
+-            public void mousePressed(MouseEvent e) {
+-
+-            }
+-
+-            @Override
+-            public void mouseReleased(MouseEvent e) {
+-
+-            }
+-
+-            @Override
+-            public void mouseEntered(MouseEvent e) {
+-
+-            }
+-
+-            @Override
+-            public void mouseExited(MouseEvent e) {
+-
+-            }
+-        });
+-    }
+ }
+Index: src/SwingMVC/View/EntityImage.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package SwingMVC.View;\r\n\r\nimport javax.imageio.ImageIO;\r\nimport java.awt.image.BufferedImage;\r\nimport java.io.FileInputStream;\r\nimport java.io.IOException;\r\n\r\npublic class EntityImage {\r\n\r\n    private BufferedImage image;\r\n    private int ID;\r\n\r\n    public EntityImage(String path, int ID){\r\n\r\n        this.ID = ID;\r\n        try { image = ImageIO.read(new FileInputStream(path)); }\r\n        catch (IOException e) { System.out.println(\"A fájl nem található: '\" + path + \"'\");}\r\n    }\r\n\r\n    public int getID() {\r\n\r\n        return ID;\r\n    }\r\n\r\n    public BufferedImage getImage() {\r\n\r\n        return image;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>windows-1250
+===================================================================
+--- src/SwingMVC/View/EntityImage.java	(revision f0a70e27465504b0a2fe28088f46603d7d593e6c)
++++ src/SwingMVC/View/EntityImage.java	(date 1589742342666)
+@@ -1,25 +1,35 @@
+ package SwingMVC.View;
+ 
++import Mozgathato.Eszkimo;
++
+ import javax.imageio.ImageIO;
+ import java.awt.image.BufferedImage;
+ import java.io.FileInputStream;
+ import java.io.IOException;
++import java.net.URL;
+ 
+ public class EntityImage {
+ 
+     private BufferedImage image;
+-    private int ID;
++    private Object entity;
++
++    public EntityImage(Object entity){
+ 
+-    public EntityImage(String path, int ID){
++        this.entity = entity;
++        getGraphics(entity);
++    }
+ 
+-        this.ID = ID;
+-        try { image = ImageIO.read(new FileInputStream(path)); }
++    private void getGraphics(Object entity){
++
++        URL path = entity.getClass().getResource(entity.getClass().getSimpleName() + ".png");
++
++        try { image = ImageIO.read(path); }
+         catch (IOException e) { System.out.println("A fájl nem található: '" + path + "'");}
+     }
+ 
+-    public int getID() {
++    public Object getEntity() {
+ 
+-        return ID;
++        return entity;
+     }
+ 
+     public BufferedImage getImage() {
+Index: src/Mezo/Mezo.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Mezo;\r\n\r\nimport Exceptions.ItemNotFoundException;\r\nimport Mozgathato.Jegesmedve;\r\nimport Mozgathato.Karakter;\r\nimport Mozgathato.*;\r\nimport Proto.ProtoProgram;\r\nimport Proto.LogAndTesting.Logger;\r\nimport SwingMVC.Controller.Controller;\r\nimport SwingMVC.Eventhandling.Events.AtfordulasEvent;\r\nimport Targy.Targy;\r\nimport Targy.Targytipus;\r\n\r\nimport java.util.ArrayList;\r\nimport java.util.List;\r\n\r\n/**\r\n * Absztrakt mezo osztaly. Ez jelkepezi a leptheto mezuket a jatekban.\r\n */\r\npublic abstract class Mezo implements VizbeesesListener {\r\n\r\n    /**\r\n     * A mezon talalhato homennyiseget jelkepezi.\r\n     * Ha 0 erteku, akkor latszik, hogy a mezo lyuk-e.\r\n     */\r\n    protected int horeteg;\r\n\r\n    /**\r\n     * A mezo kapacitasat jelkepezi.\r\n     * Ha a mezo stabil jegtabla, akkor vegtelen.\r\n     * Ha a mezo instabil jegtabla, akkor veges es ha tullepik, akkor a rajta allo karakterek vizbe esnek.\r\n     * Ha a mezo lyuk, akkor nulla, es a karakterek, amik ralepnek egybol vizbe esnek.\r\n     */\r\n    protected int kapacitas;\r\n\r\n    /**\r\n     * A mezon allo jegesmedvet jelkepezi.\r\n     */\r\n    protected Jegesmedve jegesmedve;\r\n\r\n    /**\r\n     * A mezo karakterlistaja. Itt tarolja a tartalmazott karaktereket\r\n     */\r\n    protected List<Karakter> karakterek = new ArrayList<Karakter>();\r\n\r\n    /**\r\n     * A mezo szomszedos mezoket tarolo listaja.\r\n     */\r\n    protected List<Mezo> szomszedok = new ArrayList<Mezo>();\r\n\r\n    public void setJegesmedve(Jegesmedve jegesmedve){\r\n\r\n        Logger.log();\r\n\r\n        this.jegesmedve = jegesmedve;\r\n    }\r\n\r\n    public void addKarakter(Karakter karakter){\r\n\r\n        Logger.log();\r\n\r\n        karakterek.add(karakter);\r\n    }\r\n\r\n    public void setHoreteg(int horeteg) {\r\n\r\n        Logger.log();\r\n\r\n        this.horeteg = horeteg;\r\n    }\r\n\r\n    public void setKapacitas(int kapacitas) {\r\n\r\n        Logger.log();\r\n\r\n        this.kapacitas = kapacitas;\r\n    }\r\n\r\n    public Jegesmedve getJegesmedve(){\r\n\r\n        Logger.log();\r\n\r\n        return jegesmedve;\r\n    }\r\n\r\n    public List<Karakter> getKarakterek() {\r\n\r\n        Logger.log();\r\n\r\n        return karakterek;\r\n    }\r\n\r\n    public int getHoreteg(){\r\n\r\n        Logger.log();\r\n\r\n        return horeteg;\r\n    }\r\n\r\n    /**\r\n     * Visszater a mezo kapacitasaval.\r\n     */\r\n    public int getKapacitas(){\r\n\r\n        Logger.log();\r\n\r\n        return kapacitas;\r\n    }\r\n\r\n    public boolean tudnakEOsszeszerlni(){\r\n\r\n        Logger.log();\r\n\r\n        boolean jelzofeny = false, raketa = false, patron = false;\r\n\r\n        for(Karakter k : karakterek){\r\n            try { k.keres(Targytipus.JELZOFENY).hasznal(k); jelzofeny = true; }\r\n            catch (ItemNotFoundException ignored) {}\r\n        }\r\n\r\n        for(Karakter k : karakterek){\r\n            try { k.keres(Targytipus.PATRON).hasznal(k); patron = true; }\r\n            catch (ItemNotFoundException ignored) {}\r\n        }\r\n\r\n        for(Karakter k : karakterek){\r\n            try { k.keres(Targytipus.PISZTOLY).hasznal(k); raketa = true; }\r\n            catch (ItemNotFoundException ignored) {}\r\n        }\r\n\r\n        return raketa && patron && jelzofeny;\r\n    }\r\n\r\n    public boolean probalMenteni(Karakter karakter){\r\n\r\n        Logger.log();\r\n\r\n        for(Karakter k : karakterek){\r\n\r\n            try { k.keres(Targytipus.KOTEL).hasznal(karakter); return true; }\r\n            catch (ItemNotFoundException ignored) {}\r\n        }\r\n\r\n        return false;\r\n    }\r\n\r\n    /**\r\n     * A jatekban a vihart jelkepezi.\r\n     * Novlei veletlenszeru mennyiseggel a havat,\r\n     * es a mezon allo karakterek testhojet csokkenti egyel.\r\n     */\r\n    public void vihar(){\r\n\r\n        Logger.log();\r\n\r\n        horeteg += ProtoProgram.getRandomNumber(5);\r\n    }\r\n\r\n    /**\r\n     * Beallitja a mezo szomszedjat.\r\n     * Hozzaadja a szomszedlistajahoz, ha meg nem szomszedja,\r\n     * valamint a celmezo szomszedjanak beallitja sajat magat.\r\n     */\r\n    public void setSzomszed(Mezo mezo){\r\n\r\n        Logger.log();\r\n\r\n        if(!szomszedE(mezo)) {\r\n\r\n            szomszedok.add(mezo);\r\n\r\n            if (!mezo.szomszedE(this))\r\n                mezo.setSzomszed(this);\r\n        }\r\n    }\r\n\r\n    public Mezo getRandomSzomszed(){\r\n\r\n        Logger.log();\r\n\r\n        return szomszedok.get(ProtoProgram.getRandomNumber(szomszedok.size()));\r\n    }\r\n\r\n    /**\r\n     * Csokkenti a horeteget a megadott mennyiseggel.\r\n     */\r\n    public void havatCsokkent(int retegSzam){\r\n\r\n        Logger.log();\r\n\r\n        horeteg -= retegSzam;\r\n    }\r\n\r\n    /**\r\n     * Ha karaktert kap azt a karakterlistaba rakja, ha medvet, akkor a medvebe.\r\n     */\r\n    public void befogad(Mozgathato mozgathato) {\r\n\r\n        Logger.log();\r\n\r\n        if(mozgathato.tipus().equals(MozgathatoTipus.JEGESMEDVE))\r\n            jegesmedve = (Jegesmedve) mozgathato;\r\n\r\n        else\r\n            karakterek.add((Karakter) mozgathato);\r\n    }\r\n\r\n    /**\r\n     * Kiveszi a megadott karakter/medvet a mezobol.\r\n     */\r\n    public void kiad(Mozgathato mozgathato){\r\n\r\n        Logger.log();\r\n\r\n        if(mozgathato.tipus().equals(MozgathatoTipus.JEGESMEDVE))\r\n            jegesmedve = null;\r\n\r\n        else\r\n            karakterek.remove(mozgathato);\r\n    }\r\n\r\n    public boolean halalE(){\r\n\r\n        Logger.log();\r\n\r\n        return jegesmedve != null && !karakterek.isEmpty();\r\n    }\r\n\r\n    /**\r\n     * Ellenorzi, hogy a megadott mezo szomszedos-e.\r\n     */\r\n    public boolean szomszedE(Mezo mezo){\r\n\r\n        Logger.log();\r\n\r\n        return szomszedok.contains(mezo);\r\n    }\r\n\r\n    /**\r\n     * Ha a szomszedos mezok egyiken van karakter kotellel, akkor az kimenti a vizbe esett karaktereket.\r\n     */\r\n    @Override\r\n    public void segitseg(Karakter karakter){\r\n\r\n        Controller.getInstance().fireEvent(new AtfordulasEvent(this));\r\n\r\n        Logger.log();\r\n\r\n        for(Mezo m : szomszedok)\r\n            if(m.probalMenteni(karakter)) {\r\n                return;\r\n            }\r\n\r\n        karakter.meghal(\"A karakter megfulladt!\");\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>windows-1250
+===================================================================
+--- src/Mezo/Mezo.java	(revision f0a70e27465504b0a2fe28088f46603d7d593e6c)
++++ src/Mezo/Mezo.java	(date 1589739447493)
+@@ -8,7 +8,6 @@
+ import Proto.LogAndTesting.Logger;
+ import SwingMVC.Controller.Controller;
+ import SwingMVC.Eventhandling.Events.AtfordulasEvent;
+-import Targy.Targy;
+ import Targy.Targytipus;
+ 
+ import java.util.ArrayList;
+@@ -242,7 +241,7 @@
+     @Override
+     public void segitseg(Karakter karakter){
+ 
+-        Controller.getInstance().fireEvent(new AtfordulasEvent(this));
++        Controller.getInstance().atfordultEvent(new AtfordulasEvent(this));
+ 
+         Logger.log();
+ 
+Index: src/SwingMVC/Eventhandling/Eventhandlers/AtfordulasEventListener.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package SwingMVC.Eventhandling.Eventhandlers;\r\n\r\nimport SwingMVC.Eventhandling.Events.AtfordulasEvent;\r\n\r\nimport java.util.EventListener;\r\n\r\npublic interface AtfordulasEventListener extends EventListener {\r\n\r\n    void atfordult(AtfordulasEvent event);\r\n}\r\n
+===================================================================
+--- src/SwingMVC/Eventhandling/Eventhandlers/AtfordulasEventListener.java	(revision f0a70e27465504b0a2fe28088f46603d7d593e6c)
++++ src/SwingMVC/Eventhandling/Eventhandlers/MezoEventListener.java	(date 1589743196936)
+@@ -1,10 +1,17 @@
+ package SwingMVC.Eventhandling.Eventhandlers;
+ 
++import Mozgathato.*;
++import SwingMVC.Eventhandling.Events.AsasEvent;
+ import SwingMVC.Eventhandling.Events.AtfordulasEvent;
++import SwingMVC.Eventhandling.Events.LepesEvent;
+ 
+ import java.util.EventListener;
+ 
+-public interface AtfordulasEventListener extends EventListener {
++public interface MezoEventListener extends EventListener {
+ 
+     void atfordult(AtfordulasEvent event);
++
++    void astak(AsasEvent event);
++
++    void leptek(LepesEvent event, Mozgathato mozgathato);
+ }
+Index: src/SwingMVC/View/GameBoard.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package SwingMVC.View;\r\n\r\nimport SwingMVC.Controller.Controller;\r\nimport SwingMVC.Eventhandling.Eventhandlers.AtfordulasEventListener;\r\nimport SwingMVC.Eventhandling.Events.AtfordulasEvent;\r\n\r\nimport javax.swing.*;\r\n\r\npublic class GameBoard extends JFrame {\r\n\r\n    private GamePanel gamePanel;\r\n\r\n    public GameBoard(){\r\n\r\n        super(\"Polar Survivor\");\r\n        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);\r\n        gamePanel = new GamePanel();\r\n\r\n        start();\r\n    }\r\n\r\n    public void start(){\r\n\r\n        setVisible(true);\r\n        buildGUI();\r\n    }\r\n\r\n    private void buildGUI() {\r\n\r\n        add(gamePanel);\r\n        pack();\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>windows-1250
+===================================================================
+--- src/SwingMVC/View/GameBoard.java	(revision f0a70e27465504b0a2fe28088f46603d7d593e6c)
++++ src/SwingMVC/View/GameBoard.java	(date 1589739447540)
+@@ -1,9 +1,5 @@
+ package SwingMVC.View;
+ 
+-import SwingMVC.Controller.Controller;
+-import SwingMVC.Eventhandling.Eventhandlers.AtfordulasEventListener;
+-import SwingMVC.Eventhandling.Events.AtfordulasEvent;
+-
+ import javax.swing.*;
+ 
+ public class GameBoard extends JFrame {
