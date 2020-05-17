@@ -1,0 +1,433 @@
+Index: src/SwingMVC/View/MezoView.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package SwingMVC.View;\r\n\r\nimport Mezo.*;\r\nimport Mozgathato.*;\r\nimport SwingMVC.Controller.Controller;\r\nimport SwingMVC.Eventhandling.Eventhandlers.MezoEventListener;\r\nimport SwingMVC.Eventhandling.Events.*;\r\nimport Targy.Targy;\r\n\r\nimport javax.imageio.ImageIO;\r\nimport javax.swing.*;\r\nimport java.awt.*;\r\nimport java.awt.event.MouseEvent;\r\nimport java.awt.event.MouseListener;\r\nimport java.awt.image.BufferedImage;\r\nimport java.io.FileInputStream;\r\nimport java.io.IOException;\r\nimport java.net.URL;\r\nimport java.util.HashMap;\r\n\r\npublic class MezoView extends JPanel {\r\n\r\n    private Mezo mezo;\r\n    private HashMap<Object, JLabel> picLabels;\r\n    private BufferedImage backgroundImage;\r\n\r\n    //TODO: mezoview entitiejienek a kirajzolását megcsinálni\r\n    public MezoView(Mezo mezo){\r\n\r\n        picLabels = new HashMap<>();\r\n\r\n        this.mezo = mezo;\r\n        setBackgroundImage(mezo);\r\n        legyenHo();\r\n        addMenuListener();\r\n\r\n        GridLayout layout = new GridLayout();\r\n        layout.setColumns(4);\r\n        layout.setRows(4);\r\n        setLayout(layout);\r\n    }\r\n\r\n    public Mezo getMezo() {\r\n\r\n        return mezo;\r\n    }\r\n\r\n    public void setBackgroundImage(Object mezotipus){\r\n\r\n        URL path = mezotipus.getClass().getResource(mezotipus.getClass().getSimpleName() + \".png\");\r\n\r\n        try { backgroundImage = ImageIO.read(path); }\r\n        catch (IOException e) { System.out.println(\"A fájl nem található: '\" + path + \"'\");}\r\n        setPreferredSize(new Dimension(backgroundImage.getWidth(), backgroundImage.getHeight()));\r\n        repaint();\r\n        revalidate();\r\n    }\r\n\r\n    private void legyenHo(){\r\n\r\n        if(mezo.getHoreteg() != 0){\r\n\r\n            String path = \"SwingMVC\\\\View\\\\Ho.png\";\r\n\r\n            try { backgroundImage = ImageIO.read(new FileInputStream(path)); }\r\n            catch (IOException e) { System.out.println(\"A fájl nem található: '\" + path + \"'\");}\r\n            setPreferredSize(new Dimension(backgroundImage.getWidth(), backgroundImage.getHeight()));\r\n\r\n            if(!mezo.getClass().equals(Lyuk.class)) {\r\n\r\n                Targy targy = ((Jegtabla) mezo).getTargy();\r\n                if(targy != null)\r\n                    removeEntityImage(targy);\r\n            }\r\n            repaint();\r\n            revalidate();\r\n        }\r\n\r\n        else {\r\n            setBackgroundImage(mezo);\r\n\r\n            if(!mezo.getClass().equals(Lyuk.class)) {\r\n\r\n                Targy targy = ((Jegtabla) mezo).getTargy();\r\n                if(targy != null)\r\n                    addEntityImage(new EntityImage(targy));\r\n            }\r\n        }\r\n    }\r\n\r\n    @Override\r\n    protected void paintComponent(Graphics g) {\r\n\r\n        super.paintComponent(g);\r\n        g.drawImage(backgroundImage , 0, 0, null);\r\n    }\r\n\r\n    private void addEntityImage(EntityImage image){\r\n\r\n        JLabel picLabel = new JLabel(new ImageIcon(image.getImage()));\r\n        picLabels.putIfAbsent(image.getEntity(), picLabel);\r\n        add(picLabel);\r\n    }\r\n\r\n    private void removeEntityImage(Object entity){\r\n\r\n        remove(picLabels.get(entity));\r\n        picLabels.remove(entity);\r\n    }\r\n\r\n    private void addMenuListener(){\r\n\r\n        MezoView view = this;\r\n\r\n        MouseListener listener = new MouseListener() {\r\n            @Override\r\n            public void mouseClicked(MouseEvent e) {\r\n\r\n                if(SwingUtilities.isRightMouseButton(e)) {\r\n\r\n                    MezoMenu menu = new MezoMenu(view);\r\n                    menu.show(e.getComponent(), e.getX(), e.getY());\r\n                }\r\n            }\r\n\r\n            @Override\r\n            public void mousePressed(MouseEvent e) { }\r\n\r\n            @Override\r\n            public void mouseReleased(MouseEvent e) { }\r\n\r\n            @Override\r\n            public void mouseEntered(MouseEvent e) { }\r\n\r\n            @Override\r\n            public void mouseExited(MouseEvent e) { }\r\n        };\r\n\r\n        addMouseListener(listener);\r\n    }\r\n\r\n    private void setupMezoListener(){\r\n\r\n        MezoEventListener atfordulasEventListener = new MezoEventListener() {\r\n\r\n            @Override\r\n            public void atfordult(AtfordulasEvent event) {\r\n\r\n                if (mezo.equals(event.getSource()))\r\n                    MezoView.this.setBackgroundImage(\"Grafikák\\\\water.png\");\r\n            }\r\n\r\n            @Override\r\n            public void astak(AsasEvent event) {\r\n\r\n                if (mezo.equals(event.getSource()));\r\n\r\n            }\r\n\r\n            @Override\r\n            public void leptek(LepesEvent event, Mozgathato mozgathato) {\r\n\r\n                if (mezo.equals(event.getSource()))\r\n                    removeEntityImage(mozgathato);\r\n\r\n                else  if(mezo.equals(event.mezo))\r\n                    addEntityImage(new EntityImage(mozgathato));\r\n            }\r\n        };\r\n\r\n        Controller.getInstance().addListener(atfordulasEventListener);\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>windows-1250
+===================================================================
+--- src/SwingMVC/View/MezoView.java	(revision 9832fdb5a952c8058f2c4de87eeccacd6c14e99a)
++++ src/SwingMVC/View/MezoView.java	(date 1589749183125)
+@@ -1,5 +1,6 @@
+ package SwingMVC.View;
+ 
++import Epulet.Iglu;
+ import Mezo.*;
+ import Mozgathato.*;
+ import SwingMVC.Controller.Controller;
+@@ -38,6 +39,8 @@
+         layout.setColumns(4);
+         layout.setRows(4);
+         setLayout(layout);
++
++        setupMezoListener();
+     }
+ 
+     public Mezo getMezo() {
+@@ -153,8 +156,33 @@
+             @Override
+             public void astak(AsasEvent event) {
+ 
+-                if (mezo.equals(event.getSource()));
++                if(((Karakter)event.getSource()).getMezo().equals(mezo))
++                    legyenHo();
++            }
++
++            @Override
++            public void eszkimoKepesseg(EszkimoKepessegEvent event) {
++
++                Mezo mezo = ((Eszkimo)event.getSource()).getMezo();
++
++                if(mezo.equals(MezoView.this.mezo))
++                    addEntityImage(new EntityImage(((Jegtabla)mezo).getEpulet()));
++            }
+ 
++            @Override
++            public void kimentettek(KimentesEvent event) {
++
++                if(event.megmentett.getMezo().equals(mezo))
++                    removeEntityImage(event.megmentett);
++
++                else if(event.megmento.getMezo().equals(mezo))
++                    addEntityImage(new EntityImage(event.megmentett));
++            }
++
++            @Override
++            public void kutatoKepesseg(KutatoKepessegEvent event) {
++
++                JOptionPane.showMessageDialog(null, "A mezo kapacitasa " + event.celpont.getKapacitas());
+             }
+ 
+             @Override
+@@ -166,6 +194,17 @@
+                 else  if(mezo.equals(event.mezo))
+                     addEntityImage(new EntityImage(mozgathato));
+             }
++
++            @Override
++            public void targyfelvetel(TargyfelvetelEvent event) {
++
++
++            }
++
++            @Override
++            public void vihar(ViharEvent event) {
++
++            }
+         };
+ 
+         Controller.getInstance().addListener(atfordulasEventListener);
+Index: src/SwingMVC/View/GamePanel.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package SwingMVC.View;\r\n\r\nimport Mezo.StabilJegtabla;\r\nimport SwingMVC.Controller.Controller;\r\nimport SwingMVC.Eventhandling.Eventhandlers.MezoEventListener;\r\n\r\nimport javax.swing.*;\r\nimport java.awt.*;\r\nimport java.util.ArrayList;\r\n\r\npublic class GamePanel extends JPanel {\r\n\r\n    private static Dimension DEFAULT_DIMENSION = new Dimension(1200, 1000);\r\n\r\n    private ArrayList<MezoView> mezoViews;\r\n\r\n    public GamePanel(){\r\n\r\n        super();\r\n\r\n        mezoViews = new ArrayList<>();\r\n\r\n        setPreferredSize(DEFAULT_DIMENSION);\r\n        setMinimumSize(DEFAULT_DIMENSION);\r\n        setBackground(Color.BLACK);\r\n\r\n        //addMezoView(new MezoView(mezo));\r\n\r\n        setVisible(true);\r\n    }\r\n\r\n    private void addMezoView(MezoView mezoView){\r\n\r\n        mezoViews.add(mezoView);\r\n        add(mezoView);\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>windows-1250
+===================================================================
+--- src/SwingMVC/View/GamePanel.java	(revision 9832fdb5a952c8058f2c4de87eeccacd6c14e99a)
++++ src/SwingMVC/View/GamePanel.java	(date 1589746784909)
+@@ -24,7 +24,7 @@
+         setMinimumSize(DEFAULT_DIMENSION);
+         setBackground(Color.BLACK);
+ 
+-        //addMezoView(new MezoView(mezo));
++        addMezoView(new MezoView(new StabilJegtabla()));
+ 
+         setVisible(true);
+     }
+Index: src/SwingMVC/Eventhandling/Events/LepesEvent.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package SwingMVC.Eventhandling.Events;\r\n\r\nimport Mezo.Mezo;\r\n\r\nimport java.util.EventObject;\r\n\r\npublic class LepesEvent extends EventObject {\r\n\r\n    public Mezo mezo;\r\n\r\n    /**\r\n     * Constructs a prototypical Event.\r\n     *\r\n     * @param source the object on which the Event initially occurred\r\n     * @throws IllegalArgumentException if source is null\r\n     */\r\n    public LepesEvent(Object source, Mezo hova) {\r\n\r\n        super(source);\r\n        this.mezo = hova;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>windows-1250
+===================================================================
+--- src/SwingMVC/Eventhandling/Events/LepesEvent.java	(revision 9832fdb5a952c8058f2c4de87eeccacd6c14e99a)
++++ src/SwingMVC/Eventhandling/Events/LepesEvent.java	(date 1589748409171)
+@@ -14,7 +14,7 @@
+      * @param source the object on which the Event initially occurred
+      * @throws IllegalArgumentException if source is null
+      */
+-    public LepesEvent(Object source, Mezo hova) {
++    public LepesEvent(Mezo source, Mezo hova) {
+ 
+         super(source);
+         this.mezo = hova;
+Index: src/SwingMVC/Eventhandling/Eventhandlers/MezoEventListener.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package SwingMVC.Eventhandling.Eventhandlers;\r\n\r\nimport Mozgathato.*;\r\nimport SwingMVC.Eventhandling.Events.AsasEvent;\r\nimport SwingMVC.Eventhandling.Events.AtfordulasEvent;\r\nimport SwingMVC.Eventhandling.Events.LepesEvent;\r\n\r\nimport java.util.EventListener;\r\n\r\npublic interface MezoEventListener extends EventListener {\r\n\r\n    void atfordult(AtfordulasEvent event);\r\n\r\n    void astak(AsasEvent event);\r\n\r\n    void leptek(LepesEvent event, Mozgathato mozgathato);\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>windows-1250
+===================================================================
+--- src/SwingMVC/Eventhandling/Eventhandlers/MezoEventListener.java	(revision 9832fdb5a952c8058f2c4de87eeccacd6c14e99a)
++++ src/SwingMVC/Eventhandling/Eventhandlers/MezoEventListener.java	(date 1589748409325)
+@@ -1,9 +1,7 @@
+ package SwingMVC.Eventhandling.Eventhandlers;
+ 
+ import Mozgathato.*;
+-import SwingMVC.Eventhandling.Events.AsasEvent;
+-import SwingMVC.Eventhandling.Events.AtfordulasEvent;
+-import SwingMVC.Eventhandling.Events.LepesEvent;
++import SwingMVC.Eventhandling.Events.*;
+ 
+ import java.util.EventListener;
+ 
+@@ -13,5 +11,15 @@
+ 
+     void astak(AsasEvent event);
+ 
++    void eszkimoKepesseg(EszkimoKepessegEvent event);
++
++    void kimentettek(KimentesEvent event);
++
++    void kutatoKepesseg(KutatoKepessegEvent event);
++
+     void leptek(LepesEvent event, Mozgathato mozgathato);
++
++    void targyfelvetel(TargyfelvetelEvent event);
++
++    void vihar(ViharEvent event);
+ }
+Index: src/SwingMVC/Eventhandling/Events/AsasEvent.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package SwingMVC.Eventhandling.Events;\r\n\r\nimport java.util.EventObject;\r\n\r\npublic class AsasEvent extends EventObject {\r\n\r\n    public int horeteg;\r\n    /**\r\n     * Constructs a prototypical Event.\r\n     *\r\n     * @param source the object on which the Event initially occurred\r\n     * @throws IllegalArgumentException if source is null\r\n     */\r\n    public AsasEvent(Object source, int horeteg) {\r\n\r\n        super(source);\r\n        this.horeteg = horeteg;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>windows-1250
+===================================================================
+--- src/SwingMVC/Eventhandling/Events/AsasEvent.java	(revision 9832fdb5a952c8058f2c4de87eeccacd6c14e99a)
++++ src/SwingMVC/Eventhandling/Events/AsasEvent.java	(date 1589748409158)
+@@ -1,19 +1,19 @@
+ package SwingMVC.Eventhandling.Events;
+ 
++import Mozgathato.Karakter;
++
+ import java.util.EventObject;
+ 
+ public class AsasEvent extends EventObject {
+ 
+-    public int horeteg;
+     /**
+      * Constructs a prototypical Event.
+      *
+      * @param source the object on which the Event initially occurred
+      * @throws IllegalArgumentException if source is null
+      */
+-    public AsasEvent(Object source, int horeteg) {
++    public AsasEvent(Karakter source) {
+ 
+         super(source);
+-        this.horeteg = horeteg;
+     }
+ }
+Index: src/SwingMVC/Eventhandling/Events/KimentesEvent.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package SwingMVC.Eventhandling.Events;\r\n\r\npublic class KimentesEvent {\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>windows-1250
+===================================================================
+--- src/SwingMVC/Eventhandling/Events/KimentesEvent.java	(revision 9832fdb5a952c8058f2c4de87eeccacd6c14e99a)
++++ src/SwingMVC/Eventhandling/Events/KimentesEvent.java	(date 1589748409213)
+@@ -1,4 +1,24 @@
+ package SwingMVC.Eventhandling.Events;
+ 
+-public class KimentesEvent {
++import Mozgathato.Karakter;
++
++import java.util.EventObject;
++
++public class KimentesEvent extends EventObject {
++
++    public Karakter megmento;
++    public Karakter megmentett;
++
++    /**
++     * Constructs a prototypical Event.
++     *
++     * @param source the object on which the Event initially occurred
++     * @throws IllegalArgumentException if source is null
++     */
++    public KimentesEvent(Object source, Karakter megmento, Karakter megmentett) {
++
++        super(source);
++        this.megmentett = megmentett;
++        this.megmento = megmento;
++    }
+ }
+Index: src/SwingMVC/Eventhandling/Events/TargyfelvetelEvent.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package SwingMVC.Eventhandling.Events;\r\n\r\npublic class TargyfelvetelEvent {\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>windows-1250
+===================================================================
+--- src/SwingMVC/Eventhandling/Events/TargyfelvetelEvent.java	(revision 9832fdb5a952c8058f2c4de87eeccacd6c14e99a)
++++ src/SwingMVC/Eventhandling/Events/TargyfelvetelEvent.java	(date 1589748409350)
+@@ -1,4 +1,19 @@
+ package SwingMVC.Eventhandling.Events;
+ 
+-public class TargyfelvetelEvent {
++import Mozgathato.Karakter;
++
++import java.util.EventObject;
++
++public class TargyfelvetelEvent extends EventObject {
++
++    /**
++     * Constructs a prototypical Event.
++     *
++     * @param source the object on which the Event initially occurred
++     * @throws IllegalArgumentException if source is null
++     */
++    public TargyfelvetelEvent(Karakter source) {
++
++        super(source);
++    }
+ }
+Index: src/SwingMVC/View/MezoMenu.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package SwingMVC.View;\r\n\r\nimport SwingMVC.Controller.Controller;\r\n\r\nimport javax.swing.*;\r\nimport java.awt.event.MouseEvent;\r\n\r\n\r\npublic class MezoMenu extends JPopupMenu {\r\n\r\n    private MezoView mezoView;\r\n\r\n    public MezoMenu(MezoView mezoView){\r\n\r\n        super();\r\n        this.mezoView = mezoView;\r\n        addMoveMenupoint();\r\n    }\r\n\r\n    private void addMoveMenupoint(){\r\n\r\n        JMenuItem move = new JMenuItem(\"Lép\");\r\n        move.setMnemonic(MouseEvent.BUTTON1);\r\n        move.addActionListener((event) -> Controller.getInstance().lep(mezoView.getMezo()));\r\n        add(move);\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>windows-1250
+===================================================================
+--- src/SwingMVC/View/MezoMenu.java	(revision 9832fdb5a952c8058f2c4de87eeccacd6c14e99a)
++++ src/SwingMVC/View/MezoMenu.java	(date 1589748409195)
+@@ -20,7 +20,6 @@
+     private void addMoveMenupoint(){
+ 
+         JMenuItem move = new JMenuItem("Lép");
+-        move.setMnemonic(MouseEvent.BUTTON1);
+         move.addActionListener((event) -> Controller.getInstance().lep(mezoView.getMezo()));
+         add(move);
+     }
+Index: src/SwingMVC/Eventhandling/Events/AtfordulasEvent.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package SwingMVC.Eventhandling.Events;\r\n\r\nimport java.util.EventObject;\r\n\r\npublic class AtfordulasEvent extends EventObject {\r\n\r\n    public AtfordulasEvent(Object source) {\r\n\r\n        super(source);\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>windows-1250
+===================================================================
+--- src/SwingMVC/Eventhandling/Events/AtfordulasEvent.java	(revision 9832fdb5a952c8058f2c4de87eeccacd6c14e99a)
++++ src/SwingMVC/Eventhandling/Events/AtfordulasEvent.java	(date 1589748409130)
+@@ -1,10 +1,12 @@
+ package SwingMVC.Eventhandling.Events;
+ 
++import Mezo.Mezo;
++
+ import java.util.EventObject;
+ 
+ public class AtfordulasEvent extends EventObject {
+ 
+-    public AtfordulasEvent(Object source) {
++    public AtfordulasEvent(Mezo source) {
+ 
+         super(source);
+     }
+Index: src/SwingMVC/Eventhandling/Events/KutatoKepessegEvent.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package SwingMVC.Eventhandling.Events;\r\n\r\npublic class KutatoKepessegEvent {\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>windows-1250
+===================================================================
+--- src/SwingMVC/Eventhandling/Events/KutatoKepessegEvent.java	(revision 9832fdb5a952c8058f2c4de87eeccacd6c14e99a)
++++ src/SwingMVC/Eventhandling/Events/KutatoKepessegEvent.java	(date 1589748409368)
+@@ -1,4 +1,22 @@
+ package SwingMVC.Eventhandling.Events;
+ 
+-public class KutatoKepessegEvent {
++import Mezo.Mezo;
++import Mozgathato.Kutato;
++
++import java.util.EventObject;
++
++public class KutatoKepessegEvent extends EventObject {
++
++    public Mezo celpont;
++    /**
++     * Constructs a prototypical Event.
++     *
++     * @param source the object on which the Event initially occurred
++     * @throws IllegalArgumentException if source is null
++     */
++    public KutatoKepessegEvent(Kutato source, Mezo celpont) {
++
++        super(source);
++        this.celpont = celpont;
++    }
+ }
+Index: src/SwingMVC/Eventhandling/Events/TargyhasznalatEvent.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package SwingMVC.Eventhandling.Events;\r\n\r\npublic class TargyhasznalatEvent {\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>windows-1250
+===================================================================
+--- src/SwingMVC/Eventhandling/Events/TargyhasznalatEvent.java	(revision 9832fdb5a952c8058f2c4de87eeccacd6c14e99a)
++++ src/SwingMVC/Eventhandling/Events/TargyhasznalatEvent.java	(date 1589748409385)
+@@ -1,4 +1,16 @@
+ package SwingMVC.Eventhandling.Events;
+ 
+-public class TargyhasznalatEvent {
++import java.util.EventObject;
++
++public class TargyhasznalatEvent extends EventObject {
++
++    /**
++     * Constructs a prototypical Event.
++     *
++     * @param source the object on which the Event initially occurred
++     * @throws IllegalArgumentException if source is null
++     */
++    public TargyhasznalatEvent(Object source) {
++        super(source);
++    }
+ }
+Index: src/SwingMVC/Eventhandling/Events/EszkimoKepessegEvent.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package SwingMVC.Eventhandling.Events;\r\n\r\npublic class EszkimoKepessegEvent {\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>windows-1250
+===================================================================
+--- src/SwingMVC/Eventhandling/Events/EszkimoKepessegEvent.java	(revision 9832fdb5a952c8058f2c4de87eeccacd6c14e99a)
++++ src/SwingMVC/Eventhandling/Events/EszkimoKepessegEvent.java	(date 1589748409266)
+@@ -1,4 +1,19 @@
+ package SwingMVC.Eventhandling.Events;
+ 
+-public class EszkimoKepessegEvent {
++import Mozgathato.Eszkimo;
++
++import java.util.EventObject;
++
++public class EszkimoKepessegEvent extends EventObject {
++
++    /**
++     * Constructs a prototypical Event.
++     *
++     * @param source the object on which the Event initially occurred
++     * @throws IllegalArgumentException if source is null
++     */
++    public EszkimoKepessegEvent(Eszkimo source) {
++
++        super(source);
++    }
+ }
+Index: src/SwingMVC/Eventhandling/Events/ViharEvent.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package SwingMVC.Eventhandling.Events;\r\n\r\npublic class ViharEvent {\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>windows-1250
+===================================================================
+--- src/SwingMVC/Eventhandling/Events/ViharEvent.java	(revision 9832fdb5a952c8058f2c4de87eeccacd6c14e99a)
++++ src/SwingMVC/Eventhandling/Events/ViharEvent.java	(date 1589748409143)
+@@ -1,4 +1,18 @@
+ package SwingMVC.Eventhandling.Events;
+ 
+-public class ViharEvent {
++import Mezo.Mezo;
++
++import java.util.EventObject;
++
++public class ViharEvent extends EventObject {
++
++    /**
++     * Constructs a prototypical Event.
++     *
++     * @param source the object on which the Event initially occurred
++     * @throws IllegalArgumentException if source is null
++     */
++    public ViharEvent(Mezo source) {
++        super(source);
++    }
+ }
+Index: src/SwingMVC/Eventhandling/Events/JatekvegeEvent.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package SwingMVC.Eventhandling.Events;\r\n\r\npublic class JatekvegeEvent {\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>windows-1250
+===================================================================
+--- src/SwingMVC/Eventhandling/Events/JatekvegeEvent.java	(revision 9832fdb5a952c8058f2c4de87eeccacd6c14e99a)
++++ src/SwingMVC/Eventhandling/Events/JatekvegeEvent.java	(date 1589748409186)
+@@ -1,4 +1,16 @@
+ package SwingMVC.Eventhandling.Events;
+ 
+-public class JatekvegeEvent {
++import java.util.EventObject;
++
++public class JatekvegeEvent extends EventObject {
++
++    /**
++     * Constructs a prototypical Event.
++     *
++     * @param source the object on which the Event initially occurred
++     * @throws IllegalArgumentException if source is null
++     */
++    public JatekvegeEvent(Object source) {
++        super(source);
++    }
+ }

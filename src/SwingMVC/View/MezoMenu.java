@@ -3,8 +3,6 @@ package SwingMVC.View;
 import SwingMVC.Controller.Controller;
 
 import javax.swing.*;
-import java.awt.event.MouseEvent;
-
 
 public class MezoMenu extends JPopupMenu {
 
@@ -15,6 +13,11 @@ public class MezoMenu extends JPopupMenu {
         super();
         this.mezoView = mezoView;
         addMoveMenupoint();
+        addDigMenuPoint();
+        addPickupItemMenuPoint();
+        addBuildIgluMenuPoint();
+        addBuildTentMenuPoint();
+        addCombineMenuPoint();
     }
 
     private void addMoveMenupoint(){

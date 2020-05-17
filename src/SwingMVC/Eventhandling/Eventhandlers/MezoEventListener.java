@@ -22,4 +22,6 @@ public interface MezoEventListener extends EventListener {
     void targyfelvetel(TargyfelvetelEvent event);
 
     void vihar(ViharEvent event);
+
+    void targyhasznalat(TargyhasznalatEvent event);
 }

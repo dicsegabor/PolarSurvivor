@@ -1,5 +1,7 @@
 package SwingMVC.Eventhandling.Events;
 
+import Targy.Targy;
+
 import java.util.EventObject;
 
 public class TargyhasznalatEvent extends EventObject {
@@ -10,7 +12,8 @@ public class TargyhasznalatEvent extends EventObject {
      * @param source the object on which the Event initially occurred
      * @throws IllegalArgumentException if source is null
      */
-    public TargyhasznalatEvent(Object source) {
+    public TargyhasznalatEvent(Targy source) {
+
         super(source);
     }
 }

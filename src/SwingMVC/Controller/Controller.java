@@ -4,9 +4,7 @@ import Mezo.Mezo;
 import Mozgathato.Eszkimo;
 import Mozgathato.Karakter;
 import SwingMVC.Eventhandling.Eventhandlers.MezoEventListener;
-import SwingMVC.Eventhandling.Events.AsasEvent;
-import SwingMVC.Eventhandling.Events.AtfordulasEvent;
-import SwingMVC.Eventhandling.Events.LepesEvent;
+import SwingMVC.Eventhandling.Events.*;
 import SwingMVC.Model.Model;
 
 import javax.swing.event.EventListenerList;
@@ -109,6 +107,66 @@ public class Controller {
 
             if(listeners[i] == MezoEventListener.class)
                 ((MezoEventListener)listeners[i + 1]).astak(eventObject);
+        }
+    }
+
+    public void eszkimoKepessegEvent(EszkimoKepessegEvent eventObject){
+
+        Object[] listeners = listenerList.getListenerList();
+        for(int i = 0; i < listeners.length; i += 2){
+
+            if(listeners[i] == MezoEventListener.class)
+                ((MezoEventListener)listeners[i + 1]).eszkimoKepesseg(eventObject);
+        }
+    }
+
+    public void kimentesEvent(KimentesEvent eventObject){
+
+        Object[] listeners = listenerList.getListenerList();
+        for(int i = 0; i < listeners.length; i += 2){
+
+            if(listeners[i] == MezoEventListener.class)
+                ((MezoEventListener)listeners[i + 1]).kimentettek(eventObject);
+        }
+    }
+
+    public void kutatoKepessegEvent(KutatoKepessegEvent eventObject){
+
+        Object[] listeners = listenerList.getListenerList();
+        for(int i = 0; i < listeners.length; i += 2){
+
+            if(listeners[i] == MezoEventListener.class)
+                ((MezoEventListener)listeners[i + 1]).kutatoKepesseg(eventObject);
+        }
+    }
+
+    public void TargyfelvetelEvent(TargyfelvetelEvent eventObject){
+
+        Object[] listeners = listenerList.getListenerList();
+        for(int i = 0; i < listeners.length; i += 2){
+
+            if(listeners[i] == MezoEventListener.class)
+                ((MezoEventListener)listeners[i + 1]).targyfelvetel(eventObject);
+        }
+    }
+
+    public void TargyhasznalatEvent(TargyhasznalatEvent eventObject){
+
+        Object[] listeners = listenerList.getListenerList();
+        for(int i = 0; i < listeners.length; i += 2){
+
+            if(listeners[i] == MezoEventListener.class)
+                ((MezoEventListener)listeners[i + 1]).targyhasznalat(eventObject);
+        }
+    }
+
+    public void ViharEvent(ViharEvent eventObject){
+
+        Object[] listeners = listenerList.getListenerList();
+        for(int i = 0; i < listeners.length; i += 2){
+
+            if(listeners[i] == MezoEventListener.class)
+                ((MezoEventListener)listeners[i + 1]).vihar(eventObject);
         }
     }
 }

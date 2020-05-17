@@ -1,12 +1,11 @@
 package SwingMVC.View;
 
-import Epulet.Iglu;
 import Mezo.*;
 import Mozgathato.*;
 import SwingMVC.Controller.Controller;
 import SwingMVC.Eventhandling.Eventhandlers.MezoEventListener;
 import SwingMVC.Eventhandling.Events.*;
-import Targy.Targy;
+import Targy.*;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -25,14 +24,12 @@ public class MezoView extends JPanel {
     private HashMap<Object, JLabel> picLabels;
     private BufferedImage backgroundImage;
 
-    //TODO: mezoview entitiejienek a kirajzolását megcsinálni
     public MezoView(Mezo mezo){
 
         picLabels = new HashMap<>();
 
         this.mezo = mezo;
-        setBackgroundImage(mezo);
-        legyenHo();
+        setBackgroundImage();
         addMenuListener();
 
         GridLayout layout = new GridLayout();
@@ -40,12 +37,35 @@ public class MezoView extends JPanel {
         layout.setRows(4);
         setLayout(layout);
 
+        drawEntities();
+        legyenHo();
+
         setupMezoListener();
     }
 
     public Mezo getMezo() {
 
         return mezo;
+    }
+
+    private void drawEntities() {
+
+        for(Karakter k : mezo.getKarakterek())
+            addEntityImage(new EntityImage(k));
+
+        if(mezo.getJegesmedve() != null)
+            addEntityImage(new EntityImage(mezo.getJegesmedve()));
+    }
+
+    private void setBackgroundImage(){
+
+        URL path = mezo.getClass().getResource(mezo.getClass().getSimpleName() + ".png");
+
+        try { backgroundImage = ImageIO.read(path); }
+        catch (IOException e) { System.out.println("A fájl nem található: '" + path + "'");}
+        setPreferredSize(new Dimension(backgroundImage.getWidth(), backgroundImage.getHeight()));
+        repaint();
+        revalidate();
     }
 
     public void setBackgroundImage(Object mezotipus){
@@ -63,7 +83,7 @@ public class MezoView extends JPanel {
 
         if(mezo.getHoreteg() != 0){
 
-            String path = "SwingMVC\\View\\Ho.png";
+            String path = "src\\SwingMVC\\View\\Ho.png";
 
             try { backgroundImage = ImageIO.read(new FileInputStream(path)); }
             catch (IOException e) { System.out.println("A fájl nem található: '" + path + "'");}
@@ -107,8 +127,11 @@ public class MezoView extends JPanel {
 
     private void removeEntityImage(Object entity){
 
-        remove(picLabels.get(entity));
-        picLabels.remove(entity);
+        if(picLabels.get(entity) != null) {
+
+            remove(picLabels.get(entity));
+            picLabels.remove(entity);
+        }
     }
 
     private void addMenuListener(){
@@ -144,13 +167,15 @@ public class MezoView extends JPanel {
 
     private void setupMezoListener(){
 
-        MezoEventListener atfordulasEventListener = new MezoEventListener() {
+        MezoEventListener mezoEventListener = new MezoEventListener() {
 
             @Override
             public void atfordult(AtfordulasEvent event) {
 
-                if (mezo.equals(event.getSource()))
-                    MezoView.this.setBackgroundImage("Grafikák\\water.png");
+                if (mezo.equals(event.getSource())) {
+                    mezo = new Lyuk(false);
+                    setBackgroundImage();
+                }
             }
 
             @Override
@@ -200,8 +225,12 @@ public class MezoView extends JPanel {
 
                 Targy targy = ((Jegtabla)((Karakter)event.getSource()).getMezo()).getTargy();
 
-                if(((Karakter)event.getSource()).getMezo().equals(mezo))
+                if(((Karakter)event.getSource()).getMezo().equals(mezo)) {
+
                     removeEntityImage(targy);
+                    JOptionPane.showMessageDialog(null, "A " + targy.tipus() + " felvéve.");
+                }
+
             }
 
             @Override
@@ -209,8 +238,15 @@ public class MezoView extends JPanel {
 
                 legyenHo();
             }
+
+            @Override
+            public void targyhasznalat(TargyhasznalatEvent event) {
+
+                if(((Targy)event.getSource()).tipus().equals(Targytipus.ELELEM))
+                    JOptionPane.showMessageDialog(null, "Az elelem felhasznalva.");
+            }
         };
 
-        Controller.getInstance().addListener(atfordulasEventListener);
+        Controller.getInstance().addListener(mezoEventListener);
     }
 }

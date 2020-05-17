@@ -1,8 +1,12 @@
 package SwingMVC.View;
 
 import Mezo.StabilJegtabla;
+import Mozgathato.Eszkimo;
+import Mozgathato.Jegesmedve;
+import Mozgathato.Karakter;
 import SwingMVC.Controller.Controller;
 import SwingMVC.Eventhandling.Eventhandlers.MezoEventListener;
+import Targy.Lapat;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,7 +14,7 @@ import java.util.ArrayList;
 
 public class GamePanel extends JPanel {
 
-    private static Dimension DEFAULT_DIMENSION = new Dimension(1200, 1000);
+    private static final Dimension DEFAULT_DIMENSION = new Dimension(1200, 1000);
 
     private ArrayList<MezoView> mezoViews;
 
@@ -23,8 +27,6 @@ public class GamePanel extends JPanel {
         setPreferredSize(DEFAULT_DIMENSION);
         setMinimumSize(DEFAULT_DIMENSION);
         setBackground(Color.BLACK);
-
-        addMezoView(new MezoView(new StabilJegtabla()));
 
         setVisible(true);
     }
