@@ -1,6 +1,7 @@
 package SwingMVC.Controller;
 
 import Mezo.Mezo;
+import Mozgathato.Eszkimo;
 import Mozgathato.Karakter;
 import SwingMVC.Eventhandling.Eventhandlers.MezoEventListener;
 import SwingMVC.Eventhandling.Events.AsasEvent;
@@ -43,6 +44,31 @@ public class Controller {
     public void lep(Mezo mezo){
 
         model.leptet(activeKarakter, mezo);
+    }
+
+    public void as(){
+
+        model.as(activeKarakter);
+    }
+
+    public void targyatFelvesz(){
+
+        model.targyatFelvesz(activeKarakter);
+    }
+
+    public void iglutEpit(){
+
+        model.iglutEpit((Eszkimo)activeKarakter);
+    }
+
+    public void satratEpit(){
+
+        model.satratEpit(activeKarakter);
+    }
+
+    public void osszeszerel(){
+
+        model.osszeszerel(activeKarakter);
     }
 
     //EventHandling
