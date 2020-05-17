@@ -27,7 +27,7 @@ public class Model {
 
     private void init() {
 
-        File text = new File("D:/temp/test.txt");
+        File text = new File("src\\SwingMVC\\Model\\Map.txt");
 
         Scanner scanner = null;
         try {
@@ -41,6 +41,8 @@ public class Model {
         b = scanner.nextInt();
 
         Mezo[][] palya = new Mezo[a][b];
+
+        scanner.nextLine();
 
         while(scanner.hasNextLine()){
 
@@ -101,6 +103,11 @@ public class Model {
                 mezok.add(palya[i][j]);
             }
         }
+    }
+
+    public ArrayList<Mezo> getMezok() {
+
+        return mezok;
     }
 
     public Mezo getMezo(int ID){

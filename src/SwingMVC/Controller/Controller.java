@@ -34,6 +34,11 @@ public class Controller {
         activeKarakter = model.getKarakter(0);
     }
 
+    public Model getModel() {
+
+        return model;
+    }
+
     public Karakter getActiveKarakter() {
 
         return activeKarakter;

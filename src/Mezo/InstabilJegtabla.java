@@ -34,15 +34,13 @@ public class InstabilJegtabla extends Jegtabla {
             }
     }
 
+    public InstabilJegtabla(){
+
+    }
 
     public InstabilJegtabla(int kap){
 
         this.setKapacitas(kap);
 
     }
-
-
-
-
-
 }

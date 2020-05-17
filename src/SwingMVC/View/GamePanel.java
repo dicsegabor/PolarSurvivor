@@ -1,5 +1,6 @@
 package SwingMVC.View;
 
+import Mezo.Mezo;
 import Mezo.StabilJegtabla;
 import Mozgathato.Eszkimo;
 import Mozgathato.Jegesmedve;
@@ -27,6 +28,12 @@ public class GamePanel extends JPanel {
         setPreferredSize(DEFAULT_DIMENSION);
         setMinimumSize(DEFAULT_DIMENSION);
         setBackground(Color.BLACK);
+
+        GridLayout layout = new GridLayout(5, 6);
+        setLayout(layout);
+
+        for(Mezo m : Controller.getInstance().getModel().getMezok())
+            addMezoView(new MezoView(m));
 
         setVisible(true);
     }
