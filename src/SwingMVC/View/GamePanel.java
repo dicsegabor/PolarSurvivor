@@ -59,7 +59,7 @@ public class GamePanel extends JPanel {
 
             for(MezoView mv : mezoViews)
                 if(mv.getMezo().equals(event.getSource()))
-                    mv.setBackgroundImage("Grafikák\\Unstable ice.png");
+                    mv.setBackgroundImage("Grafikák\\water.png");
         };
 
         Controller.getInstance().addListener(atfordulasEventListener);
