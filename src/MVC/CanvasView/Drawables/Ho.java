@@ -1,8 +1,6 @@
-package MVC.CanvasView.Mezo;
+package MVC.CanvasView.Drawables;
 
 import MVC.CanvasView.Drawable;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 
 public class Ho extends Drawable {
     public Ho(String imageFileName) {

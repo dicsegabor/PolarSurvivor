@@ -21,7 +21,7 @@ public class JegtablaView extends MezoView {
         super(m);
         Image background = null;
         try {
-            background = new Image(new FileInputStream("src/MVC/View/Resources/ice.png"));
+            background = new Image(new FileInputStream("src/MVC/View/Resources/stabiljegtabla.png"));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -33,7 +33,7 @@ public class JegtablaView extends MezoView {
         this.getChildren().add(mezo);
         this.menu = new ContextMenu();
 
-        this.mezoImage = new Image("file:src/MVC/View/Resources/ice.png");
+        this.mezoImage = new Image("file:src/MVC/View/Resources/stabiljegtabla.png");
     }
 
     @Override

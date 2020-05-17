@@ -1,4 +1,9 @@
 package MVC.CanvasView.Drawables.Mozgathato;
 
-public class Mozgathato {
+import MVC.CanvasView.Drawable;
+
+public class Mozgathato extends Drawable {
+    public Mozgathato(String imageFileName) {
+        super(imageFileName);
+    }
 }
