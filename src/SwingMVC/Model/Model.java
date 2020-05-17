@@ -1,10 +1,12 @@
 package SwingMVC.Model;
 
+import Exceptions.ItemNotFoundException;
 import Mezo.*;
 import Mozgathato.Eszkimo;
 import Mozgathato.Jegesmedve;
 import Mozgathato.Karakter;
 import SwingMVC.View.MezoView;
+import Targy.Targy;
 import Targy.Targytipus;
 
 import java.io.File;
@@ -145,5 +147,28 @@ public class Model {
     public void leptet(Karakter karakter, Mezo mezo){
 
         karakter.lep(mezo);
+    }
+
+    public void as(Karakter activeKarakter) {
+
+        activeKarakter.as();
+    }
+
+    public void targyatFelvesz(Karakter activeKarakter) {
+        activeKarakter.felvesz();
+    }
+
+    public void iglutEpit(Eszkimo activeKarakter) {
+        activeKarakter.iglutEpit();
+    }
+
+    public void satratEpit(Karakter activeKarakter) {
+        try {
+            activeKarakter.keres(Targytipus.SATOR).hasznal(activeKarakter);
+        } catch (ItemNotFoundException ignored) { }
+    }
+
+    public void osszeszerel(Karakter activeKarakter) {
+        activeKarakter.kombinal();
     }
 }
