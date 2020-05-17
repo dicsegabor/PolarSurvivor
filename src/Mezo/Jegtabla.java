@@ -3,6 +3,8 @@ package Mezo;
 import Epulet.*;
 import Mozgathato.*;
 import Proto.LogAndTesting.Logger;
+import SwingMVC.Controller.Controller;
+import SwingMVC.Eventhandling.Events.ViharEvent;
 import Targy.Targy;
 
 /**
@@ -38,6 +40,8 @@ public abstract class Jegtabla extends Mezo {
 
         else
             epulet = null;
+
+        Controller.getInstance().viharEvent(new ViharEvent(this));
     }
 
     /**

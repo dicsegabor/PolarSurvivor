@@ -2,6 +2,8 @@ package Targy;
 
 import Mozgathato.Karakter;
 import Proto.LogAndTesting.Logger;
+import SwingMVC.Controller.Controller;
+import SwingMVC.Eventhandling.Events.TargyhasznalatEvent;
 
 /**
  * Segitsegevel ket reteg havat ehet eltavolitani a mezorol.
@@ -17,6 +19,7 @@ public class Lapat implements Targy {
         Logger.log();
 
         karakter.getMezo().havatCsokkent(2);
+        Controller.getInstance().targyhasznalatEvent(new TargyhasznalatEvent(this));
     }
 
     /**

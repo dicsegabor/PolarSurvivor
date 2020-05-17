@@ -2,6 +2,8 @@ package Targy;
 
 import Mozgathato.Karakter;
 import Proto.LogAndTesting.Logger;
+import SwingMVC.Controller.Controller;
+import SwingMVC.Eventhandling.Events.TargyhasznalatEvent;
 
 /**
  * Ha egy karakter a vizbe esik, akkor nem tortenik vele semmi.
@@ -15,6 +17,7 @@ public class Buvarruha implements Targy {
     public void hasznal(Karakter karakter) {
 
         Logger.log();
+        Controller.getInstance().targyhasznalatEvent(new TargyhasznalatEvent(this));
     }
 
     /**

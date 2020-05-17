@@ -11,6 +11,8 @@ public class GameBoard extends JFrame {
         super("Polar Survivor");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         gamePanel = new GamePanel();
+        JMenuBar menuBar = new JMenuBar();
+        add(menuBar);
 
         start();
     }

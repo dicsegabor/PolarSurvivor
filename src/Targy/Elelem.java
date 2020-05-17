@@ -2,6 +2,8 @@ package Targy;
 
 import Mozgathato.Karakter;
 import Proto.LogAndTesting.Logger;
+import SwingMVC.Controller.Controller;
+import SwingMVC.Eventhandling.Events.TargyhasznalatEvent;
 
 /**
  * Ha egy karakter elfogyasztja, akkor egyel no a testhoje.
@@ -17,6 +19,7 @@ public class Elelem implements Targy {
         Logger.log();
 
         karakter.testhotCsokkent(-1);
+        Controller.getInstance().targyhasznalatEvent(new TargyhasznalatEvent(this));
     }
 
     /**

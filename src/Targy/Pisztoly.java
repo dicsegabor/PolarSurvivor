@@ -2,6 +2,8 @@ package Targy;
 
 import Mozgathato.Karakter;
 import Proto.LogAndTesting.Logger;
+import SwingMVC.Controller.Controller;
+import SwingMVC.Eventhandling.Events.TargyhasznalatEvent;
 
 /**
  * Hasznalataval megvizsgalja, hogy a mezon talalhato-e a tobbi komponens,
@@ -17,6 +19,7 @@ public class Pisztoly implements Targy {
     public void hasznal(Karakter karakter) {
 
         Logger.log();
+        Controller.getInstance().targyhasznalatEvent(new TargyhasznalatEvent(this));
     }
 
     /**

@@ -4,6 +4,8 @@ import Epulet.*;
 import Mezo.Jegtabla;
 import Mozgathato.Karakter;
 import Proto.LogAndTesting.Logger;
+import SwingMVC.Controller.Controller;
+import SwingMVC.Eventhandling.Events.TargyhasznalatEvent;
 
 /**
  * Olyan epulet, mely egy hasznalat utan szetesik, nem ved meg a medvetol.
@@ -30,6 +32,7 @@ public class Sator implements Epulet, Targy {
         Logger.log();
 
         ((Jegtabla)karakter.getMezo()).epit(new Sator());
+        Controller.getInstance().targyhasznalatEvent(new TargyhasznalatEvent(this));
     }
 
     /**

@@ -2,6 +2,8 @@ package Targy;
 
 import Mozgathato.Karakter;
 import Proto.LogAndTesting.Logger;
+import SwingMVC.Controller.Controller;
+import SwingMVC.Eventhandling.Events.TargyhasznalatEvent;
 
 /**
  * Segitsegevel ket reteg havat ehet eltavolitani a mezorol, viszont harom hasznalat utan eltorik.
@@ -35,6 +37,8 @@ public class TorekenyLapat extends Lapat implements Targy {
 
         if(hasznalhato == 0)
             karakter.eldob(this);
+
+        Controller.getInstance().targyhasznalatEvent(new TargyhasznalatEvent(this));
     }
 
     @Override

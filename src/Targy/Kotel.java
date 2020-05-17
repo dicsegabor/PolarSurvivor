@@ -2,6 +2,9 @@ package Targy;
 
 import Mozgathato.Karakter;
 import Proto.LogAndTesting.Logger;
+import SwingMVC.Controller.Controller;
+import SwingMVC.Eventhandling.Events.KimentesEvent;
+import SwingMVC.Eventhandling.Events.TargyhasznalatEvent;
 
 /**
  * Segitsegevel ki lehet huzni egy karaktert a vizbol.
@@ -28,6 +31,9 @@ public class Kotel implements Targy {
         Logger.log();
 
         aldozat.lep(megmento.getMezo());
+
+        Controller.getInstance().kimentesEvent(new KimentesEvent(this, megmento, aldozat));
+        Controller.getInstance().targyhasznalatEvent(new TargyhasznalatEvent(this));
     }
 
     /**

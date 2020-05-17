@@ -75,11 +75,6 @@ public class Controller {
         listenerList.add(MezoEventListener.class, listener);
     }
 
-    public void removeListener(MezoEventListener listener){
-
-        listenerList.remove(MezoEventListener.class, listener);
-    }
-
     public void atfordultEvent(AtfordulasEvent eventObject){
 
         Object[] listeners = listenerList.getListenerList();
@@ -140,7 +135,7 @@ public class Controller {
         }
     }
 
-    public void TargyfelvetelEvent(TargyfelvetelEvent eventObject){
+    public void targyfelvetelEvent(TargyfelvetelEvent eventObject){
 
         Object[] listeners = listenerList.getListenerList();
         for(int i = 0; i < listeners.length; i += 2){
@@ -150,7 +145,7 @@ public class Controller {
         }
     }
 
-    public void TargyhasznalatEvent(TargyhasznalatEvent eventObject){
+    public void targyhasznalatEvent(TargyhasznalatEvent eventObject){
 
         Object[] listeners = listenerList.getListenerList();
         for(int i = 0; i < listeners.length; i += 2){
@@ -160,7 +155,7 @@ public class Controller {
         }
     }
 
-    public void ViharEvent(ViharEvent eventObject){
+    public void viharEvent(ViharEvent eventObject){
 
         Object[] listeners = listenerList.getListenerList();
         for(int i = 0; i < listeners.length; i += 2){

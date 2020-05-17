@@ -5,6 +5,8 @@ import Epulet.Epulettipus;
 import Mezo.*;
 import Proto.ProtoProgram;
 import Proto.LogAndTesting.Logger;
+import SwingMVC.Controller.Controller;
+import SwingMVC.Eventhandling.Events.LepesEvent;
 
 /**
  * A palyan koszalo jegesmedvet jelkepezi a jatekban. Ha egy mezore kerul egy karakterrel, akkor vege a jateknak.
@@ -53,6 +55,8 @@ public class Jegesmedve implements Mozgathato {
                     lep(null);
             }
         }
+
+        Controller.getInstance().lepesEvent(new LepesEvent(this.mezo, mezo));
 
         ProtoProgram.halalEllorzes(mezo);
     }

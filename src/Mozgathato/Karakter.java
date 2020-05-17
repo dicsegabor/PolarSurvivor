@@ -5,6 +5,11 @@ import Mezo.Mezo;
 import Mezo.Jegtabla;
 import Proto.ProtoProgram;
 import Proto.LogAndTesting.Logger;
+import SwingMVC.Controller.Controller;
+import SwingMVC.Eventhandling.Events.AsasEvent;
+import SwingMVC.Eventhandling.Events.KutatoKepessegEvent;
+import SwingMVC.Eventhandling.Events.LepesEvent;
+import SwingMVC.Eventhandling.Events.TargyfelvetelEvent;
 import Targy.*;
 
 import java.util.ArrayList;
@@ -77,6 +82,8 @@ public class Karakter implements Mozgathato {
             else
                 targyak.add(targy);
         }
+
+        Controller.getInstance().targyfelvetelEvent(new TargyfelvetelEvent(this));
     }
 
     /**
@@ -109,6 +116,8 @@ public class Karakter implements Mozgathato {
         ProtoProgram.halalEllorzes(mezo);
 
         munkaCsokkent(1);
+
+        Controller.getInstance().lepesEvent(new LepesEvent(this.mezo, mezo));
     }
 
     /**
@@ -133,6 +142,8 @@ public class Karakter implements Mozgathato {
         }
 
         munkaCsokkent(1);
+
+        Controller.getInstance().asasEvent(new AsasEvent(this));
     }
 
     /**

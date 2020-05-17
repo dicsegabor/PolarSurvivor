@@ -2,6 +2,7 @@ package SwingMVC.Eventhandling.Events;
 
 import Mezo.Mezo;
 import Mozgathato.Kutato;
+import SwingMVC.Controller.Controller;
 
 import java.util.EventObject;
 

@@ -8,6 +8,7 @@ import Proto.ProtoProgram;
 import Proto.LogAndTesting.Logger;
 import SwingMVC.Controller.Controller;
 import SwingMVC.Eventhandling.Events.AtfordulasEvent;
+import SwingMVC.Eventhandling.Events.ViharEvent;
 import Targy.Targytipus;
 
 import java.util.ArrayList;
@@ -153,6 +154,8 @@ public abstract class Mezo implements VizbeesesListener {
         Logger.log();
 
         horeteg += ProtoProgram.getRandomNumber(5);
+
+        Controller.getInstance().viharEvent(new ViharEvent(this));
     }
 
     /**

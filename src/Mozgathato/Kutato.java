@@ -2,6 +2,8 @@ package Mozgathato;
 
 import Mezo.Mezo;
 import Proto.LogAndTesting.Logger;
+import SwingMVC.Controller.Controller;
+import SwingMVC.Eventhandling.Events.KutatoKepessegEvent;
 import Targy.Targy;
 
 import java.util.List;
@@ -39,6 +41,8 @@ public class Kutato extends Karakter {
         Logger.log();
 
         munkaCsokkent(1);
+
+        Controller.getInstance().kutatoKepessegEvent(new KutatoKepessegEvent(this, mezo));
 
         return mezo.getKapacitas();
     }
