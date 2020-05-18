@@ -41,7 +41,7 @@ public class MezoMenu extends JPopupMenu {
                 aktivKarakter.keres(Targytipus.BUVARRUHA);
                 addMoveMenupoint();
                 return;
-            } catch (ItemNotFoundException e) { }
+            } catch (ItemNotFoundException e) { return; }
         }
 
         // Szomszédos mezõ -> léphet
