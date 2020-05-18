@@ -122,6 +122,8 @@ public class Controller {
 
     public void atfordultEvent(AtfordulasEvent eventObject){
 
+        gameBoard.setStatusBarText();
+
         Object[] listeners = listenerList.getListenerList();
         for(int i = 0; i < listeners.length; i += 2){
 
@@ -131,6 +133,8 @@ public class Controller {
     }
 
     public void lepesEvent(LepesEvent eventObject){
+
+        gameBoard.setStatusBarText();
 
         Object[] listeners = listenerList.getListenerList();
         for(int i = 0; i < listeners.length; i += 2){
@@ -142,6 +146,8 @@ public class Controller {
 
     public void asasEvent(AsasEvent eventObject){
 
+        gameBoard.setStatusBarText();
+
         Object[] listeners = listenerList.getListenerList();
         for(int i = 0; i < listeners.length; i += 2){
 
@@ -151,6 +157,8 @@ public class Controller {
     }
 
     public void epitesEvent(EpitesEvent eventObject){
+
+        gameBoard.setStatusBarText();
 
         Object[] listeners = listenerList.getListenerList();
         for(int i = 0; i < listeners.length; i += 2){
@@ -162,6 +170,8 @@ public class Controller {
 
     public void kimentesEvent(KimentesEvent eventObject){
 
+        gameBoard.setStatusBarText();
+
         Object[] listeners = listenerList.getListenerList();
         for(int i = 0; i < listeners.length; i += 2){
 
@@ -171,6 +181,8 @@ public class Controller {
     }
 
     public void kutatoKepessegEvent(KutatoKepessegEvent eventObject){
+
+        gameBoard.setStatusBarText();
 
         Object[] listeners = listenerList.getListenerList();
         for(int i = 0; i < listeners.length; i += 2){
@@ -182,6 +194,8 @@ public class Controller {
 
     public void targyfelvetelEvent(TargyfelvetelEvent eventObject){
 
+        gameBoard.setStatusBarText();
+
         Object[] listeners = listenerList.getListenerList();
         for(int i = 0; i < listeners.length; i += 2){
 
@@ -191,6 +205,8 @@ public class Controller {
     }
 
     public void targyhasznalatEvent(TargyhasznalatEvent eventObject){
+
+        gameBoard.setStatusBarText();
 
         Object[] listeners = listenerList.getListenerList();
         for(int i = 0; i < listeners.length; i += 2){
@@ -202,6 +218,8 @@ public class Controller {
 
     public void viharEvent(ViharEvent eventObject){
 
+        gameBoard.setStatusBarText();
+
         Object[] listeners = listenerList.getListenerList();
         for(int i = 0; i < listeners.length; i += 2){
 
@@ -211,6 +229,8 @@ public class Controller {
     }
 
     public void karakterKorvege(KarakterKorvegeEvent eventObject){
+
+        gameBoard.setStatusBarText();
 
         Object[] listeners = listenerList.getListenerList();
         for(int i = 0; i < listeners.length; i += 2){
@@ -222,6 +242,8 @@ public class Controller {
 
     public void korvege(KorvegeEvent evventObject){
 
+        gameBoard.setStatusBarText();
+
         Object[] listeners = listenerList.getListenerList();
         for(int i = 0; i < listeners.length; i += 2){
 
@@ -232,6 +254,8 @@ public class Controller {
 
     public void jatekVege(JatekvegeEvent eventObject){
 
+        gameBoard.setStatusBarText();
+
         Object[] listeners = listenerList.getListenerList();
         for(int i = 0; i < listeners.length; i += 2){
 
@@ -241,6 +265,8 @@ public class Controller {
     }
 
     public void uzenet(UzenetEvent eventObject){
+
+        gameBoard.setStatusBarText();
 
         Object[] listeners = listenerList.getListenerList();
         for(int i = 0; i < listeners.length; i += 2){

@@ -266,12 +266,13 @@ public class MezoView extends JPanel {
             @Override
             public void targyfelvetel(TargyfelvetelEvent event) {
 
-                Targy targy = ((Jegtabla)((Karakter)event.getSource()).getMezo()).getTargy();
+                //Targy targy = ((Jegtabla)((Karakter)event.getSource()).getMezo()).getTargy();
+
 
                 if(((Karakter)event.getSource()).getMezo().equals(mezo)) {
 
-                    removeEntityImage(targy);
-                    JOptionPane.showMessageDialog(getParent(), "A " + targy.tipus() + " felvéve.", "Tárgyfelvétel" , JOptionPane.PLAIN_MESSAGE);
+                    removeEntityImage(event.felvettTargy);
+                    JOptionPane.showMessageDialog(getParent(), "A " + event.felvettTargy.tipus() + " felvéve.", "Tárgyfelvétel" , JOptionPane.PLAIN_MESSAGE);
 
                     repaint();
                     revalidate();

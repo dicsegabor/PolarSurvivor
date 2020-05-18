@@ -23,53 +23,6 @@ public class GameBoard extends JFrame {
 
         randomMap = false;
         gamePanel = new GamePanel(randomMap);
-
-        start();
-
-        Controller.getInstance().addMezoEventListener(new MezoEventListener() {
-            @Override
-            public void atfordult(AtfordulasEvent event) {
-                setStatusBarText();
-            }
-
-            @Override
-            public void astak(AsasEvent event) {
-                setStatusBarText();
-            }
-
-            @Override
-            public void epites(EpitesEvent event) {
-                setStatusBarText();
-            }
-
-            @Override
-            public void kimentettek(KimentesEvent event) {
-                setStatusBarText();
-            }
-
-            @Override
-            public void kutatoKepesseg(KutatoKepessegEvent event) {
-                setStatusBarText();
-            }
-
-            @Override
-            public void leptek(LepesEvent event) {
-                setStatusBarText();
-            }
-
-            @Override
-            public void targyfelvetel(TargyfelvetelEvent event) {
-                setStatusBarText();
-            }
-
-            @Override
-            public void vihar(ViharEvent event) { setStatusBarText(); }
-
-            @Override
-            public void targyhasznalat(TargyhasznalatEvent event) {
-                setStatusBarText();
-            }
-        });
     }
 
     public void reset(){
@@ -99,9 +52,9 @@ public class GameBoard extends JFrame {
         statusLabel = new JLabel();
         setStatusBarText();
         JPanel panel = new JPanel();
-
+        panel.add(statusLabel);
         panel.setVisible(true);
-        add(statusLabel, BorderLayout.SOUTH);
+        add(panel, BorderLayout.SOUTH);
     }
 
     public void setStatusBarText() {
@@ -113,11 +66,10 @@ public class GameBoard extends JFrame {
 
         for (Targy targy : Controller.getInstance().getActiveKarakter().getTargyak()) {
 
-            targylista.append(targy.toString());
+            targylista.append(targy.tipus());
         }
 
         statusLabel.setText(Controller.getInstance().getActiveKarakter().tipus() + " || Munka: " + munka + " | Testho: " + testho + " | Targyak: " + targylista);
-        statusLabel.paintImmediately(statusLabel.getVisibleRect());
     }
 
     private void createMenubar(){

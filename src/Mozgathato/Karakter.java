@@ -69,20 +69,20 @@ public class Karakter implements Mozgathato {
 
         if(mezo.getHoreteg() == 0) {
 
-            Controller.getInstance().targyfelvetelEvent(new TargyfelvetelEvent(this));
 
             Logger.log();
 
             Targy targy = ((Jegtabla) mezo).felvesz();
 
-            if (targy != null) {
+            if (targy == null) return;
 
-                if (targy.tipus().equals(Targytipus.ELELEM))
-                    targy.hasznal(this);
+            if (targy.tipus().equals(Targytipus.ELELEM))
+                targy.hasznal(this);
 
-                else
-                    targyak.add(targy);
-            }
+            else
+                targyak.add(targy);
+
+            Controller.getInstance().targyfelvetelEvent(new TargyfelvetelEvent(this, targy));
         }
     }
 
@@ -109,7 +109,8 @@ public class Karakter implements Mozgathato {
 
         if(this.mezo.szomszedE(mezo)){
 
-            Controller.getInstance().lepesEvent(new LepesEvent(this, mezo, this.mezo));
+            Mezo hova = mezo;
+            Mezo honnan = this.mezo;
 
             Logger.log();
 
@@ -120,6 +121,7 @@ public class Karakter implements Mozgathato {
 
             ProtoProgram.halalEllorzes(mezo);
             munkaCsokkent(1);
+            Controller.getInstance().lepesEvent(new LepesEvent(this, hova, honnan));
         }
     }
 
