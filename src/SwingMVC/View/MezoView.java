@@ -33,8 +33,10 @@ public class MezoView extends JPanel {
         addMenuListener();
 
         GridLayout layout = new GridLayout();
-        layout.setColumns(4);
-        layout.setRows(4);
+        layout.setColumns(3);
+        layout.setRows(3);
+        layout.setHgap(3);
+        layout.setVgap(3);
         setLayout(layout);
 
         drawEntities();
