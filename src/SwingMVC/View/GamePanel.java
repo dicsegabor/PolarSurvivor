@@ -13,7 +13,7 @@ public class GamePanel extends JPanel {
 
     private ArrayList<MezoView> mezoViews;
 
-    public GamePanel(boolean isRandom){
+    public GamePanel(){
 
         super();
 
@@ -26,13 +26,8 @@ public class GamePanel extends JPanel {
         GridLayout layout = new GridLayout(5, 6);
         setLayout(layout);
 
-        if(isRandom)
-            for(Mezo m : Controller.getInstance().getModel().generateRandomMap())
-                addMezoView(new MezoView(m));
-
-        else
-            for(Mezo m : Controller.getInstance().getModel().getMezok())
-                addMezoView(new MezoView(m));
+        for(Mezo m : Controller.getInstance().getModel().getMezok())
+            addMezoView(new MezoView(m));
 
         highlightKarakter();
 

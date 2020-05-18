@@ -12,6 +12,9 @@ import SwingMVC.Eventhandling.Events.JatekvegeEvent;
 import SwingMVC.Eventhandling.Events.KarakterKorvegeEvent;
 import SwingMVC.Eventhandling.Events.KorvegeEvent;
 import SwingMVC.Eventhandling.Events.UzenetEvent;
+import Targy.Jelzofeny;
+import Targy.Patron;
+import Targy.Pisztoly;
 import Targy.Targytipus;
 
 import java.awt.*;
@@ -35,17 +38,9 @@ public class Model {
 
         karakterek = new ArrayList<>();
         mezok = new ArrayList<>();
-        init();
+        loadDefaultMap();
 
         addGameEventListener();
-    }
-
-    public void reset(){
-
-        karakterek.clear();
-        mezok.clear();
-        jegesmedve = null;
-        init();
     }
 
     public ArrayList<Karakter> getKarakterek() {
@@ -65,7 +60,11 @@ public class Model {
         }
     }
 
-    private void init() {
+    public void loadDefaultMap() {
+
+        karakterek.clear();
+        mezok.clear();
+        jegesmedve = null;
 
         File text = new File("src\\SwingMVC\\Model\\Map.txt");
 
@@ -115,7 +114,7 @@ public class Model {
             }
         }
 
-        setSzomszedok(palya);
+        setNeighbours(palya);
 
         Karakter karakter1 = new Eszkimo(palya[1][2]);
         palya[1][2].addKarakter(karakter1);
@@ -133,7 +132,7 @@ public class Model {
                 mezok.add(palya[i][j]);
     }
 
-    private void setSzomszedok(Mezo[][] palya){
+    private void setNeighbours(Mezo[][] palya){
 
         for (int i = 0; i < DEFAULT_MAP_HEIGHT; i++)
             for (int j = 0; j < DEFAULT_MAP_WIDTH ; j++)
@@ -143,26 +142,123 @@ public class Model {
                             palya[i][j].setSzomszed(palya[k][l]);
     }
 
-    public ArrayList<Mezo> generateRandomMap(){
+    public void generateRandomMap(){
 
-        ArrayList<Mezo> mezok = new ArrayList<>();
+        mezok.clear();
+        karakterek.clear();
+        jegesmedve = null;
 
-        int researcherNumber = 1;
-        int eskimoNumber = 1;
-        boolean polarBear = true;
+        ArrayList<Mezo> generatedFields = generateFields(1, 1, true);
 
+        Mezo[][] board = new Mezo[DEFAULT_MAP_HEIGHT][DEFAULT_MAP_WIDTH];
+        fillBoardRandomly(generatedFields, board);
+        setNeighbours(board);
 
-
-        Mezo[][] palya = new Mezo[DEFAULT_MAP_HEIGHT][DEFAULT_MAP_WIDTH];
-
-
-
-        return mezok;
+        for (int i = 0; i < DEFAULT_MAP_HEIGHT; i++)
+            for (int j = 0; j < DEFAULT_MAP_WIDTH; j++)
+                mezok.add(board[i][j]);
     }
 
-    private Point getRandomCoords(){
+    private ArrayList<Mezo> generateFields(int researcherNumber, int eskimoNumber, boolean polarBear ) {
 
-        return new Point(new Random().nextInt(DEFAULT_MAP_HEIGHT), new Random().nextInt(DEFAULT_MAP_WIDTH));
+        ArrayList<Mezo> fields = new ArrayList<>(generateInitFields(researcherNumber, eskimoNumber, polarBear));
+
+        RandomGenerator LYUK = new RandomGenerator(20);
+        RandomGenerator INSTABIL = new RandomGenerator(30);
+        RandomGenerator STABIL = new RandomGenerator(50);
+
+        RandomGenerator LYUK_FEDETTSEG = new RandomGenerator(30);
+        RandomGenerator TARGY = new RandomGenerator(60);
+
+        boolean full = false;
+
+        int maxCapacity = researcherNumber + eskimoNumber + 1;
+
+        while (!full){
+
+            if(LYUK.getJudgment()) {
+
+                fields.add(new Lyuk(LYUK_FEDETTSEG.getJudgment()));
+                full = fields.size() == DEFAULT_MAP_HEIGHT * DEFAULT_MAP_WIDTH;
+            }
+
+           if(INSTABIL.getJudgment() && !full){
+
+               fields.add(new InstabilJegtabla(true, maxCapacity, TARGY.getJudgment()));
+               full = fields.size() == DEFAULT_MAP_HEIGHT * DEFAULT_MAP_WIDTH;
+            }
+
+            if(STABIL.getJudgment() && !full){
+
+                fields.add(new StabilJegtabla(true, TARGY.getJudgment()));
+                full = fields.size() == DEFAULT_MAP_HEIGHT * DEFAULT_MAP_WIDTH;
+            }
+        }
+
+        return fields;
+    }
+
+    private ArrayList<Mezo> generateInitFields(int researcherNumber, int eskimoNumber, boolean polarBear) {
+
+        ArrayList<Mezo> fields = new ArrayList<>();
+
+        for(int i = 0; i < researcherNumber; i++){
+            StabilJegtabla ice = new StabilJegtabla();
+            Kutato researcher = new Kutato(ice);
+            karakterek.add(researcher);
+            ice.befogad(researcher);
+            fields.add(ice);
+        }
+
+        for(int i = 0; i < eskimoNumber; i++){
+            StabilJegtabla ice = new StabilJegtabla();
+            Eszkimo eskimo = new Eszkimo(ice);
+            karakterek.add(eskimo);
+            ice.befogad(eskimo);
+            fields.add(ice);
+        }
+
+        StabilJegtabla ice = new StabilJegtabla();
+        Jegesmedve polarBearAnimal = new Jegesmedve(ice);
+        jegesmedve = polarBearAnimal;
+        ice.befogad(polarBearAnimal);
+        fields.add(ice);
+
+        StabilJegtabla flareGunIce = new StabilJegtabla();
+        flareGunIce.setTargy(new Pisztoly());
+        fields.add(flareGunIce);
+
+        StabilJegtabla cartridgeIce = new StabilJegtabla();
+        cartridgeIce.setTargy(new Patron());
+        fields.add(cartridgeIce);
+
+        StabilJegtabla flareIce = new StabilJegtabla();
+        flareIce.setTargy(new Jelzofeny());
+        fields.add(flareIce);
+
+        return fields;
+    }
+
+    private void fillBoardRandomly(ArrayList<Mezo> mezok, Mezo[][] palya){
+
+        ArrayList<Point> freeCoords = new ArrayList<>();
+        for (int i = 0; i < DEFAULT_MAP_HEIGHT; i++)
+            for (int j = 0; j < DEFAULT_MAP_WIDTH; j++)
+                freeCoords.add(new Point(i, j));
+
+        for (Mezo m : mezok){
+
+            Point coord = getRandomCoords(freeCoords);
+            palya[coord.x][coord.y] = m;
+        }
+    }
+
+    private Point getRandomCoords(ArrayList<Point> coords){
+
+        Point coord = coords.get(new Random().nextInt(coords.size()));
+        coords.remove(coord);
+
+        return coord;
     }
 
     public ArrayList<Mezo> getMezok() {
