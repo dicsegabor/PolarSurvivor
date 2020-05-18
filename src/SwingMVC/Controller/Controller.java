@@ -258,7 +258,7 @@ public class Controller {
             @Override
             public void uzenetEvent(UzenetEvent event) {
 
-                JOptionPane.showMessageDialog(gameBoard, event.uzenet, "Uzenet" , JOptionPane.PLAIN_MESSAGE);
+                JOptionPane.showMessageDialog(gameBoard, event.uzenet, "Üzenet" , JOptionPane.PLAIN_MESSAGE);
             }
         };
 

@@ -72,17 +72,22 @@ public class MezoMenu extends JPopupMenu {
                 addPickupItemMenuPoint();
         }
 
+        // Kutato -> jeget nézhet
+        if(aktivKarakter.tipus().equals(MozgathatoTipus.KUTATO))
+            addCheckIceMenuPoint();
+
+        // Már van épület -> mást már nem lehet építeni
+        if(((Jegtabla) aktivKarakterMezo).getEpulet() != null) return;
+
+        // Eszkimo -> építhet iglut
+        if(aktivKarakter.tipus().equals(MozgathatoTipus.ESZKIMO))
+            addBuildIgluMenuPoint();
+
         // Van sátra -> építhet
         try {
             aktivKarakter.keres(Targytipus.SATOR);
             addBuildTentMenuPoint();
         } catch (ItemNotFoundException e) { }
-
-        // Eszkimo -> építhet iglut
-        if(aktivKarakter.tipus().equals(MozgathatoTipus.ESZKIMO))
-            addBuildIgluMenuPoint();
-        // Kutato -> jeget nézhet
-        else addCheckIceMenuPoint();
     }
 
     private void addCheckIceMenuPoint(){
