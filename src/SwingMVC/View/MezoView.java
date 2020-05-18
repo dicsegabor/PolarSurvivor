@@ -252,6 +252,9 @@ public class MezoView extends JPanel {
             public void vihar(ViharEvent event) {
 
                 legyenHo();
+                if(mezo.getKapacitas() > 0)
+                    if(picLabels.containsKey(((Jegtabla)mezo).getEpulet()))
+                        removeEntityImage(((Jegtabla)mezo).getEpulet());
             }
 
             @Override
