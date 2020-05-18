@@ -215,10 +215,12 @@ public class Karakter implements Mozgathato {
         if(munka - mennyiseg <= 0) {
 
             ProtoProgram.kovetkezoKarakter(this);
-            //TODO: karakterkörvege event
+            Controller.getInstance().karakterKorvege(new KarakterKorvegeEvent(this));
+            munkatVisszaallit();
         }
 
-        munka -= mennyiseg;
+        else
+            munka -= mennyiseg;
     }
 
     public void munkatVisszaallit(){
