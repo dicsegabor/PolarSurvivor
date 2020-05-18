@@ -101,14 +101,16 @@ public class MezoView extends JPanel {
             revalidate();
         }
 
-        else {
+        else{
             setBackgroundImage(mezo);
 
             if(!mezo.getClass().equals(Lyuk.class)) {
+                if(!picLabels.containsKey(((Jegtabla) mezo).getTargy())) {
 
-                Targy targy = ((Jegtabla) mezo).getTargy();
-                if(targy != null)
-                    addEntityImage(new EntityImage(targy));
+                    Targy targy = ((Jegtabla) mezo).getTargy();
+                    if (targy != null)
+                        addEntityImage(new EntityImage(targy));
+                }
             }
         }
     }
