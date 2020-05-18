@@ -119,7 +119,7 @@ public class Model {
         palya[1][2].addKarakter(karakter1);
         karakterek.add(karakter1);
 
-        for(int i = 0; i < 12; i++){
+        for(int i = 0; i < 1; i++){
 
             Karakter karakter2 = new Kutato(palya[3][2]);
             palya[3][2].addKarakter(karakter2);

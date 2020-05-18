@@ -59,6 +59,11 @@ public class MezoView extends JPanel {
             addEntityImage(new EntityImage(mezo.getJegesmedve(),false));
     }
 
+    public boolean containsEntity(Object entity){
+
+        return picLabels.containsKey(entity);
+    }
+
     public void highlightKarakter(Karakter karakter){
 
         if(picLabels.containsKey(karakter)) {

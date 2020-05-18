@@ -61,9 +61,7 @@ public class GameBoard extends JFrame {
             }
 
             @Override
-            public void vihar(ViharEvent event) {
-                setStatusBarText();
-            }
+            public void vihar(ViharEvent event) { setStatusBarText(); }
 
             @Override
             public void targyhasznalat(TargyhasznalatEvent event) {

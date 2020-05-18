@@ -1,7 +1,6 @@
 package SwingMVC.View;
 
 import Mezo.Mezo;
-import Mozgathato.Karakter;
 import SwingMVC.Controller.Controller;
 
 import javax.swing.*;
@@ -10,7 +9,7 @@ import java.util.ArrayList;
 
 public class GamePanel extends JPanel {
 
-    private static final Dimension DEFAULT_DIMENSION = new Dimension(840, 700);
+    public static final Dimension DEFAULT_DIMENSION = new Dimension(840, 700);
 
     private ArrayList<MezoView> mezoViews;
 
@@ -38,13 +37,15 @@ public class GamePanel extends JPanel {
     public void highlightKarakter() {
 
         for (MezoView mv : mezoViews)
-            mv.highlightKarakter(Controller.getInstance().getActiveKarakter());
+            if(mv.containsEntity(Controller.getInstance().getActiveKarakter()))
+                mv.highlightKarakter(Controller.getInstance().getActiveKarakter());
     }
 
     public void removeHighlightKarakter(){
 
         for (MezoView mv : mezoViews)
-            mv.removeHighlightKarakter(Controller.getInstance().getActiveKarakter());
+            if(mv.containsEntity(Controller.getInstance().getActiveKarakter()))
+                mv.removeHighlightKarakter(Controller.getInstance().getActiveKarakter());
     }
 
     private void addMezoView(MezoView mezoView){
