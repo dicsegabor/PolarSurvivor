@@ -2,7 +2,6 @@ package SwingMVC.View;
 
 import Exceptions.ItemNotFoundException;
 import Mezo.*;
-import Mozgathato.Eszkimo;
 import Mozgathato.Karakter;
 import Mozgathato.MozgathatoTipus;
 import SwingMVC.Controller.Controller;
