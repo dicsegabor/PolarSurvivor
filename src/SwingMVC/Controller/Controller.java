@@ -3,6 +3,7 @@ package SwingMVC.Controller;
 import Mezo.Mezo;
 import Mozgathato.Eszkimo;
 import Mozgathato.Karakter;
+import Mozgathato.Kutato;
 import SwingMVC.Eventhandling.Eventhandlers.GameEventListener;
 import SwingMVC.Eventhandling.Eventhandlers.MezoEventListener;
 import SwingMVC.Eventhandling.Events.*;
@@ -85,7 +86,17 @@ public class Controller {
         model.osszeszerel(activeKarakter);
     }
 
-    //EventHandling
+    public void jegetNez(Mezo mezo){
+
+        model.jegetNez((Kutato) activeKarakter, mezo);
+    }
+
+    public void karakterKorVege() {
+
+        model.karakterKorVege(activeKarakter);
+    }
+
+        //EventHandling
     public void addMezoEventListener(MezoEventListener listener){
 
         listenerList.add(MezoEventListener.class, listener);

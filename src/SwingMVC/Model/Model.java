@@ -170,4 +170,14 @@ public class Model {
     public void osszeszerel(Karakter activeKarakter) {
         activeKarakter.kombinal();
     }
+
+    public void jegetNez(Kutato activeKarakter, Mezo mezo) {
+
+        activeKarakter.jegetNez(mezo);
+    }
+
+    public void karakterKorVege(Karakter activeKarakter){
+
+        
+    }
 }
