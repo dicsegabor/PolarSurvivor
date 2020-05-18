@@ -21,14 +21,13 @@ public class GameBoard extends JFrame {
         setLayout(new BorderLayout());
         setResizable(false);
 
-        randomMap = false;
-        gamePanel = new GamePanel(randomMap);
+        gamePanel = new GamePanel();
     }
 
     public void reset(){
 
         remove(gamePanel);
-        gamePanel = new GamePanel(randomMap);
+        gamePanel = new GamePanel();
         buildGUI();
     }
 
@@ -84,11 +83,11 @@ public class GameBoard extends JFrame {
         menuBar.add(map);
 
         JMenuItem loadDefault = new JMenuItem("Load default map");
-        loadDefault.addActionListener((event) -> {randomMap = false; Controller.getInstance().restart();});
+        loadDefault.addActionListener((event) -> {Controller.getInstance().setMap(false); Controller.getInstance().restart();});
         map.add(loadDefault);
 
         JMenuItem generate = new JMenuItem("Random generated map");
-        generate.addActionListener((event) -> {randomMap = true; Controller.getInstance().restart();});
+        generate.addActionListener((event) -> {Controller.getInstance().setMap(true); Controller.getInstance().restart();});
         map.add(generate);
 
         JMenuItem help = new JMenuItem("Help");

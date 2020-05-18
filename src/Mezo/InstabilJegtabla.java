@@ -3,6 +3,8 @@ package Mezo;
 import Exceptions.ItemNotFoundException;
 import Mozgathato.*;
 import Proto.LogAndTesting.Logger;
+import SwingMVC.Model.RandomGenerator;
+import Targy.Targy;
 import Targy.Targytipus;
 
 /**
@@ -41,6 +43,14 @@ public class InstabilJegtabla extends Jegtabla {
     public InstabilJegtabla(int kap){
 
         this.setKapacitas(kap);
+    }
 
+    public InstabilJegtabla(boolean random, int maxKap, boolean vanTargy){
+
+        horeteg = RandomGenerator.getRandomInt(4);
+        if(vanTargy)
+            targy = Targytipus.randomTargy();
+
+        kapacitas = RandomGenerator.getRandomInt(maxKap - 1) + 1;
     }
 }

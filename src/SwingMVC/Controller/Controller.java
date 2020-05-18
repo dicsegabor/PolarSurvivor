@@ -20,6 +20,7 @@ public class Controller {
     private Karakter activeKarakter;
     private GameBoard gameBoard;
     private boolean running;
+    private boolean randomMap;
 
     private EventListenerList listenerList;
 
@@ -36,6 +37,7 @@ public class Controller {
         instance = this;
 
         running = true;
+        randomMap = false;
         listenerList = new EventListenerList();
         model = new Model();
         activeKarakter = model.getKarakter(0);
@@ -53,6 +55,11 @@ public class Controller {
         return activeKarakter;
     }
 
+    public void setMap(boolean isRandom){
+
+        randomMap = isRandom;
+    }
+
     public void addGameBoard(GameBoard gameBoard){
 
         this.gameBoard = gameBoard;
@@ -62,7 +69,12 @@ public class Controller {
     public void restart(){
 
         running = true;
-        model.reset();
+
+        if(randomMap)
+            model.generateRandomMap();
+        else
+            model.loadDefaultMap();
+
         activeKarakter = model.getKarakter(0);
         gameBoard.reset();
         gameBoard.repaint();
@@ -71,7 +83,7 @@ public class Controller {
 
     public void lep(Mezo mezo){
 
-        model.leptet(activeKarakter, mezo);
+        model.lep(activeKarakter, mezo);
     }
 
     public void as(){
@@ -102,11 +114,6 @@ public class Controller {
     public void jegetNez(Mezo mezo){
 
         model.jegetNez((Kutato) activeKarakter, mezo);
-    }
-
-    public void karakterKorVege() {
-
-        model.karakterKorVege(activeKarakter);
     }
 
         //EventHandling
