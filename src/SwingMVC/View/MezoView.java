@@ -110,16 +110,16 @@ public class MezoView extends JPanel {
 
         if(mezo.getHoreteg() != 0){
 
-            String path = "src\\SwingMVC\\View\\Ho.png";
+            URL path = getClass().getResource("Ho.png");
 
-            try { backgroundImage = ImageIO.read(new FileInputStream(path)); }
+            try { backgroundImage = ImageIO.read(path); }
             catch (IOException e) { System.out.println("A fájl nem található: '" + path + "'");}
             setPreferredSize(new Dimension(backgroundImage.getWidth(), backgroundImage.getHeight()));
 
             if(!mezo.getClass().equals(Lyuk.class)) {
 
                 Targy targy = ((Jegtabla) mezo).getTargy();
-                if(targy != null)
+                if (targy != null)
                     removeEntityImage(targy);
             }
             repaint();
@@ -129,7 +129,7 @@ public class MezoView extends JPanel {
         else{
             setBackgroundImage(mezo);
 
-            if(!mezo.getClass().equals(Lyuk.class)) {
+            if(mezo.getKapacitas() != 0) {
                 if(!picLabels.containsKey(((Jegtabla) mezo).getTargy())) {
 
                     Targy targy = ((Jegtabla) mezo).getTargy();
@@ -201,10 +201,9 @@ public class MezoView extends JPanel {
             @Override
             public void atfordult(AtfordulasEvent event) {
 
-                if (mezo.equals(event.getSource())) {
-                    mezo = new Lyuk(false);
+                if (mezo.equals(event.getSource()))
                     setBackgroundImage();
-                }
+
             }
 
             @Override
@@ -229,20 +228,10 @@ public class MezoView extends JPanel {
             }
 
             @Override
-            public void kimentettek(KimentesEvent event) {
-
-                if(event.megmentett.getMezo().equals(mezo))
-                    removeEntityImage(event.megmentett);
-
-                else if(event.megmento.getMezo().equals(mezo))
-                    addEntityImage(new EntityImage(event.megmentett,false));
-            }
-
-            @Override
             public void kutatoKepesseg(KutatoKepessegEvent event) {
 
                 if(event.celpont.equals(mezo))
-                    JOptionPane.showMessageDialog(getParent(), "A mezo kapacitasa " + event.kapacitas, "Kutato", JOptionPane.PLAIN_MESSAGE);
+                    JOptionPane.showMessageDialog(getParent(), "A mezo kapacitasa: " + event.kapacitas + ".", "Kutato", JOptionPane.PLAIN_MESSAGE);
             }
 
             @Override
@@ -272,7 +261,7 @@ public class MezoView extends JPanel {
                 if(((Karakter)event.getSource()).getMezo().equals(mezo)) {
 
                     removeEntityImage(event.felvettTargy);
-                    JOptionPane.showMessageDialog(getParent(), "A " + event.felvettTargy.tipus() + " felvéve.", "Tárgyfelvétel" , JOptionPane.PLAIN_MESSAGE);
+                    JOptionPane.showMessageDialog(getParent(), "A(z) " + event.felvettTargy.tipus() + " felvéve.", "Tárgyfelvétel" , JOptionPane.PLAIN_MESSAGE);
 
                     repaint();
                     revalidate();
@@ -292,7 +281,7 @@ public class MezoView extends JPanel {
             public void targyhasznalat(TargyhasznalatEvent event) {
 
                 if(((Targy)event.getSource()).tipus().equals(Targytipus.ELELEM) && event.karakter.getMezo().equals(mezo))
-                    JOptionPane.showMessageDialog(getParent(), "Az elelem felhasznalva.", "Tárgyhasználat" , JOptionPane.PLAIN_MESSAGE);
+                    JOptionPane.showMessageDialog(getParent(), "Az elelem felhasznalva. (lehet, hoy inkább a medvének kellett volna adni)", "Kajaszünet" , JOptionPane.PLAIN_MESSAGE);
             }
         };
 

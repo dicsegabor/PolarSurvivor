@@ -1,8 +1,6 @@
 package SwingMVC.View;
 
 import SwingMVC.Controller.Controller;
-import SwingMVC.Eventhandling.Eventhandlers.MezoEventListener;
-import SwingMVC.Eventhandling.Events.*;
 import Targy.Targy;
 
 import javax.swing.*;
@@ -12,7 +10,6 @@ public class GameBoard extends JFrame {
 
     private GamePanel gamePanel;
     private JLabel statusLabel;
-    public boolean randomMap;
 
     public GameBoard(){
 

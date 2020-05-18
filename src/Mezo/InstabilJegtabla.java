@@ -29,10 +29,13 @@ public class InstabilJegtabla extends Jegtabla {
             karakterek.add((Karakter)mozgathato);
 
         if(osszsuly() > kapacitas)
-            for(Karakter k : karakterek) {
+            for (Karakter k : karakterek) {
 
-                try { k.keres(Targytipus.BUVARRUHA).hasznal(k); }
-                catch (ItemNotFoundException e) { segitseg(k); }
+                try {
+                    k.keres(Targytipus.BUVARRUHA).hasznal(k);
+                } catch (ItemNotFoundException e) {
+                    segitseg(k);
+                }
             }
     }
 

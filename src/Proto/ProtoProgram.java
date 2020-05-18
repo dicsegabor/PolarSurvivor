@@ -318,7 +318,7 @@ public class ProtoProgram {
 
         if(mezo.halalE())
             for(Karakter k : mezo.getKarakterek())
-                k.meghal("A medve megette a karaktereket!");
+                k.meghal("A medve ma nem koplalt...");
     }
 
     /**

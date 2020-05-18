@@ -20,6 +20,9 @@ import Targy.Targytipus;
 import java.awt.*;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.lang.reflect.Field;
+import java.net.URL;
 import java.util.ArrayList;
 
 import java.util.Arrays;
@@ -62,11 +65,13 @@ public class Model {
         mezok.clear();
         jegesmedve = null;
 
-        File text = new File("src\\SwingMVC\\Model\\Map.txt");
+        URL path = getClass().getResource("Map.txt");
 
         Scanner scanner = null;
-        try { scanner = new Scanner(text); }
-        catch (FileNotFoundException e) { System.out.println("A '" + text + "fájl nem található!"); }
+        try { scanner = new Scanner(path.openStream()); }
+        catch (FileNotFoundException e) { System.out.println("A '" + path + "fájl nem található!"); } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         Mezo[][] palya = new Mezo[DEFAULT_MAP_HEIGHT][DEFAULT_MAP_WIDTH];
 

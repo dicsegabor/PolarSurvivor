@@ -13,8 +13,6 @@ public interface MezoEventListener extends EventListener {
 
     void epites(EpitesEvent event);
 
-    void kimentettek(KimentesEvent event);
-
     void kutatoKepesseg(KutatoKepessegEvent event);
 
     void leptek(LepesEvent event);

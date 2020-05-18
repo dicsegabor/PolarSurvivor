@@ -76,13 +76,13 @@ public class Karakter implements Mozgathato {
 
             if (targy == null) return;
 
+            Controller.getInstance().targyfelvetelEvent(new TargyfelvetelEvent(this, targy));
+
             if (targy.tipus().equals(Targytipus.ELELEM))
                 targy.hasznal(this);
 
             else
                 targyak.add(targy);
-
-            Controller.getInstance().targyfelvetelEvent(new TargyfelvetelEvent(this, targy));
         }
     }
 
@@ -105,23 +105,19 @@ public class Karakter implements Mozgathato {
      * Csokken egyel a munka.
      */
     @Override
-    public void lep(Mezo mezo){
+    public void lep(Mezo hova){
 
-        if(this.mezo.szomszedE(mezo)){
+        if(this.mezo.szomszedE(hova)){
 
-            Mezo hova = mezo;
-            Mezo honnan = this.mezo;
-
+            Controller.getInstance().lepesEvent(new LepesEvent(this, hova, this.mezo));
             Logger.log();
 
             this.mezo.kiad(this);
-            mezo.befogad(this);
+            this.mezo = hova;
+            hova.befogad(this);
 
-            this.mezo = mezo;
-
-            ProtoProgram.halalEllorzes(mezo);
+            ProtoProgram.halalEllorzes(hova);
             munkaCsokkent(1);
-            Controller.getInstance().lepesEvent(new LepesEvent(this, hova, honnan));
         }
     }
 

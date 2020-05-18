@@ -40,12 +40,12 @@ public class Lyuk extends Mezo {
             jegesmedve = (Jegesmedve)mozgathato;
 
         else
-            karakterek.add((Karakter)mozgathato);
+            karakterek.add((Karakter) mozgathato);
 
         for(Karakter k : karakterek) {
 
             try { k.keres(Targytipus.BUVARRUHA).hasznal(k); }
-            catch (ItemNotFoundException e) { segitseg(k); }
+            catch (ItemNotFoundException e) { segitseg(k); break;}
         }
     }
 }

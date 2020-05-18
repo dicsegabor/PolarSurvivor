@@ -9,6 +9,7 @@ import Proto.LogAndTesting.Logger;
 import SwingMVC.Controller.Controller;
 import SwingMVC.Eventhandling.Events.AtfordulasEvent;
 import SwingMVC.Eventhandling.Events.ViharEvent;
+import Targy.Kotel;
 import Targy.Targytipus;
 
 import java.util.ArrayList;
@@ -141,7 +142,7 @@ public abstract class Mezo implements VizbeesesListener {
 
         for(Karakter k : karakterek){
 
-            try { k.keres(Targytipus.KOTEL).hasznal(karakter); return true; }
+            try { ((Kotel)k.keres(Targytipus.KOTEL)).hasznal(karakter, k); return true; }
             catch (ItemNotFoundException ignored) {}
         }
 
@@ -250,6 +251,8 @@ public abstract class Mezo implements VizbeesesListener {
 
         Controller.getInstance().atfordultEvent(new AtfordulasEvent(this));
 
+        horeteg = 0;
+
         Logger.log();
 
         for(Mezo m : szomszedok)
@@ -257,6 +260,10 @@ public abstract class Mezo implements VizbeesesListener {
                 return;
             }
 
-        karakter.meghal("A karakter megfulladt!");
+        if(kapacitas == 0)
+            karakter.meghal("Sajnos lyukra léptél és nem mentett ki senki...");
+
+        else
+            karakter.meghal("Felfordult a jégtábla és nem volt segítség...");
     }
 }

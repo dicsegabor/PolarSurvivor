@@ -5,6 +5,7 @@ import Proto.LogAndTesting.Logger;
 import SwingMVC.Controller.Controller;
 import SwingMVC.Eventhandling.Events.KimentesEvent;
 import SwingMVC.Eventhandling.Events.TargyhasznalatEvent;
+import SwingMVC.Eventhandling.Events.UzenetEvent;
 
 /**
  * Segitsegevel ki lehet huzni egy karaktert a vizbol.
@@ -32,7 +33,7 @@ public class Kotel implements Targy {
 
         aldozat.lep(megmento.getMezo());
 
-        Controller.getInstance().kimentesEvent(new KimentesEvent(this, megmento, aldozat));
+        Controller.getInstance().uzenet(new UzenetEvent(this, "Óvatosan! Most még kihúztak."));
     }
 
     /**

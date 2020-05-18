@@ -175,18 +175,6 @@ public class Controller {
         }
     }
 
-    public void kimentesEvent(KimentesEvent eventObject){
-
-        gameBoard.setStatusBarText();
-
-        Object[] listeners = listenerList.getListenerList();
-        for(int i = 0; i < listeners.length; i += 2){
-
-            if(listeners[i] == MezoEventListener.class)
-                ((MezoEventListener)listeners[i + 1]).kimentettek(eventObject);
-        }
-    }
-
     public void kutatoKepessegEvent(KutatoKepessegEvent eventObject){
 
         gameBoard.setStatusBarText();
