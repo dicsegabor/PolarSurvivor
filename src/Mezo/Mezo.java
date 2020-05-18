@@ -66,7 +66,11 @@ public abstract class Mezo implements VizbeesesListener {
 
         Logger.log();
 
-        this.horeteg = horeteg;
+        if(horeteg > 4)
+            this.horeteg = 4;
+
+        else
+            this.horeteg = horeteg;
     }
 
     public void setKapacitas(int kapacitas) {
@@ -153,7 +157,7 @@ public abstract class Mezo implements VizbeesesListener {
 
         Logger.log();
 
-        horeteg += ProtoProgram.getRandomNumber(5);
+        setHoreteg(horeteg + ProtoProgram.getRandomNumber(2));
 
         Controller.getInstance().viharEvent(new ViharEvent(this));
     }

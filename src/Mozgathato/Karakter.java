@@ -216,7 +216,6 @@ public class Karakter implements Mozgathato {
 
             ProtoProgram.kovetkezoKarakter(this);
             Controller.getInstance().karakterKorvege(new KarakterKorvegeEvent(this));
-            munkatVisszaallit();
         }
 
         else

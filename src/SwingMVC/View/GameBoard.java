@@ -13,36 +13,12 @@ public class GameBoard extends JFrame {
     private GamePanel gamePanel;
     private JLabel label;
     private JPanel panel;
-    private JMenuBar menuBar;
-    private JMenu menu;
-    private JMenuItem restart;
-    private JMenuItem exit;
-    private JMenuItem load;
-    private JMenuItem help;
-    //exit
-    //betoltes
-    //jelmagyarazat
+
     public GameBoard(){
 
         super("Polar Survivor");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
-        //felso
-        menuBar = new JMenuBar();
-        menu=new JMenu("Menu");
-        restart=new JMenuItem("Restart");
-        menu.add(restart);
-        load=new JMenuItem("Load");
-        menu.add(load);
-        help=new JMenuItem("Help");
-        menu.add(help);
-        exit=new JMenuItem("Exit");
-        menu.add(exit);
-        menuBar.add(menu);
-        menuBar.setVisible(true);
-        add(menuBar);
-
-
 
         //kozep
         gamePanel = new GamePanel();
@@ -62,7 +38,30 @@ public class GameBoard extends JFrame {
         label.setText("Munka: "+Integer.toString(munka)+" Testho: "+Integer.toString(testho)+", Targyak: "+targylista);
         panel.setVisible(true);
         add(panel);
+
         start();
+    }
+
+    private void createMenubar(){
+
+        JMenuBar menuBar = new JMenuBar();
+
+        JMenuItem restart = new JMenuItem("Restart");
+        restart.addActionListener((event) -> Controller.getInstance().restart());
+        menuBar.add(restart);
+
+        JMenuItem load=new JMenuItem("Load");
+        menuBar.add(load);
+
+        JMenuItem help=new JMenuItem("Help");
+        menuBar.add(help);
+
+        JMenuItem exit=new JMenuItem("Exit");
+        menuBar.add(exit);
+
+        menuBar.setVisible(true);
+
+        add(menuBar,BorderLayout.NORTH);
     }
 
     public void start(){
@@ -73,7 +72,7 @@ public class GameBoard extends JFrame {
 
     private void buildGUI() {
 
-        add(menuBar,BorderLayout.NORTH);
+        createMenubar();
         add(gamePanel,BorderLayout.CENTER);
         add(label,BorderLayout.SOUTH);
         pack();
