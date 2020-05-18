@@ -119,9 +119,12 @@ public class Model {
         palya[1][2].addKarakter(karakter1);
         karakterek.add(karakter1);
 
-        Karakter karakter2 = new Kutato(palya[3][2]);
-        palya[3][2].addKarakter(karakter2);
-        karakterek.add(karakter2);
+        for(int i = 0; i < 12; i++){
+
+            Karakter karakter2 = new Kutato(palya[3][2]);
+            palya[3][2].addKarakter(karakter2);
+            karakterek.add(karakter2);
+        }
 
         jegesmedve = new Jegesmedve(palya[4][5]);
         palya[4][5].befogad(jegesmedve);

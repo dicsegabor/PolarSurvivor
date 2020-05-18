@@ -1,0 +1,31 @@
+Index: src/SwingMVC/View/GameBoard.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package SwingMVC.View;\r\n\r\nimport SwingMVC.Controller.Controller;\r\nimport Targy.Targy;\r\n\r\nimport javax.swing.*;\r\nimport java.awt.*;\r\n\r\npublic class GameBoard extends JFrame {\r\n\r\n    private GamePanel gamePanel;\r\n    private static JLabel statusLabel;\r\n\r\n    public GameBoard(){\r\n\r\n        super(\"Polar Survivor\");\r\n        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);\r\n        setLayout(new BorderLayout());\r\n        setResizable(false);\r\n\r\n        gamePanel = new GamePanel();\r\n\r\n        start();\r\n    }\r\n\r\n    public void reset(){\r\n\r\n        remove(gamePanel);\r\n        gamePanel = new GamePanel();\r\n        buildGUI();\r\n    }\r\n\r\n    public void hideGame(){\r\n\r\n        gamePanel.setVisible(false);\r\n    }\r\n\r\n    private void setIcon(){\r\n\r\n        ImageIcon img = new ImageIcon(\"Grafikák\\\\Jegesmedve.png\");\r\n        setIconImage(img.getImage());\r\n    }\r\n\r\n    private void createStatusBar(){\r\n\r\n        statusLabel = new JLabel();\r\n        setStatusBarText();\r\n        JPanel panel = new JPanel();\r\n\r\n        panel.setVisible(true);\r\n        add(statusLabel, BorderLayout.SOUTH);\r\n    }\r\n\r\n    public static void setStatusBarText() {\r\n\r\n        int munka = Controller.getInstance().getActiveKarakter().getMunka();\r\n        int testho = Controller.getInstance().getActiveKarakter().getTestho();\r\n\r\n        StringBuilder targylista = new StringBuilder();\r\n\r\n        for (Targy targy : Controller.getInstance().getActiveKarakter().getTargyak()) {\r\n\r\n            targylista.append(targy.toString());\r\n        }\r\n\r\n        statusLabel.setText(\"Munka: \" + munka + \" | Testho: \" + testho + \" | Targyak: \" + targylista);\r\n    }\r\n\r\n    private void createMenubar(){\r\n\r\n        JMenuBar menuBar = new JMenuBar();\r\n\r\n        JMenuItem restart = new JMenuItem(\"Restart\");\r\n        restart.addActionListener((event) -> Controller.getInstance().restart());\r\n        menuBar.add(restart);\r\n\r\n        JMenuItem load = new JMenuItem(\"Load\");\r\n        menuBar.add(load);\r\n\r\n        JMenuItem help = new JMenuItem(\"Help\");\r\n        menuBar.add(help);\r\n\r\n        JMenuItem exit = new JMenuItem(\"Exit\");\r\n        exit.addActionListener((event) -> System.exit(0));\r\n        menuBar.add(exit);\r\n\r\n        menuBar.setVisible(true);\r\n\r\n        add(menuBar,BorderLayout.NORTH);\r\n    }\r\n\r\n    public void start(){\r\n\r\n        setVisible(true);\r\n        buildGUI();\r\n    }\r\n\r\n    private void buildGUI() {\r\n\r\n        createMenubar();\r\n        createStatusBar();\r\n        add(gamePanel,BorderLayout.CENTER);\r\n\r\n        pack();\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>windows-1250
+===================================================================
+--- src/SwingMVC/View/GameBoard.java	(revision acdc9558f4a703191f56552bde731e569d203151)
++++ src/SwingMVC/View/GameBoard.java	(date 1589802375502)
+@@ -35,12 +35,6 @@
+         gamePanel.setVisible(false);
+     }
+ 
+-    private void setIcon(){
+-
+-        ImageIcon img = new ImageIcon("Grafikák\\Jegesmedve.png");
+-        setIconImage(img.getImage());
+-    }
+-
+     private void createStatusBar(){
+ 
+         statusLabel = new JLabel();
+@@ -63,7 +57,7 @@
+             targylista.append(targy.toString());
+         }
+ 
+-        statusLabel.setText("Munka: " + munka + " | Testho: " + testho + " | Targyak: " + targylista);
++        statusLabel.setText(Controller.getInstance().getActiveKarakter().tipus() + " || Munka: " + munka + " | Testho: " + testho + " | Targyak: " + targylista);
+     }
+ 
+     private void createMenubar(){
