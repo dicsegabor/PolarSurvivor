@@ -28,6 +28,14 @@ public class Model {
         System.out.println("");
     }
 
+    public void reset(){
+
+        karakterek.clear();
+        mezok.clear();
+        jegesmedve = null;
+        init();
+    }
+
     private void init() {
 
         File text = new File("src\\SwingMVC\\Model\\Map.txt");

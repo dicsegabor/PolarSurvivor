@@ -7,7 +7,9 @@ import SwingMVC.Eventhandling.Eventhandlers.GameEventListener;
 import SwingMVC.Eventhandling.Eventhandlers.MezoEventListener;
 import SwingMVC.Eventhandling.Events.*;
 import SwingMVC.Model.Model;
+import SwingMVC.View.GameBoard;
 
+import javax.swing.*;
 import javax.swing.event.EventListenerList;
 
 public class Controller {
@@ -15,6 +17,7 @@ public class Controller {
     private static Controller instance;
     private Model model;
     private Karakter activeKarakter;
+    private GameBoard gameBoard;
 
     private EventListenerList listenerList;
 
@@ -33,6 +36,8 @@ public class Controller {
         listenerList = new EventListenerList();
         model = new Model();
         activeKarakter = model.getKarakter(0);
+
+        addGameEventListener();
     }
 
     public Model getModel() {
@@ -43,6 +48,11 @@ public class Controller {
     public Karakter getActiveKarakter() {
 
         return activeKarakter;
+    }
+
+    public void addGameBoard(GameBoard gameBoard){
+
+        this.gameBoard = gameBoard;
     }
 
     public void lep(Mezo mezo){
@@ -79,12 +89,6 @@ public class Controller {
     public void addMezoEventListener(MezoEventListener listener){
 
         listenerList.add(MezoEventListener.class, listener);
-    }
-
-
-    public void addGameEventListener(GameEventListener listener){
-
-        listenerList.add(GameEventListener.class, listener);
     }
 
     public void atfordultEvent(AtfordulasEvent eventObject){
@@ -236,15 +240,19 @@ public class Controller {
             @Override
             public void jatekVege(JatekvegeEvent event) {
 
-
+                JOptionPane.showMessageDialog(gameBoard, event.uzenet, "Vége a játéknak" , JOptionPane.PLAIN_MESSAGE);
+                model.reset();
+                gameBoard.repaint();
+                gameBoard.revalidate();
             }
 
             @Override
             public void uzenetEvent(UzenetEvent event) {
 
+                JOptionPane.showMessageDialog(gameBoard, event.uzenet, "Uzenet" , JOptionPane.PLAIN_MESSAGE);
             }
         };
 
-        addGameEventListener(gameEventListener);
+        listenerList.add(GameEventListener.class, gameEventListener);
     }
 }

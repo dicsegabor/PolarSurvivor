@@ -238,7 +238,7 @@ public class MezoView extends JPanel {
                 if(((Karakter)event.getSource()).getMezo().equals(mezo)) {
 
                     removeEntityImage(targy);
-                    JOptionPane.showMessageDialog(null, "A " + targy.tipus() + " felvéve.");
+                    JOptionPane.showMessageDialog(getParent(), "A " + targy.tipus() + " felvéve.", "Tárgyfelvétel" , JOptionPane.PLAIN_MESSAGE);
 
                     repaint();
                     revalidate();
@@ -255,7 +255,7 @@ public class MezoView extends JPanel {
             public void targyhasznalat(TargyhasznalatEvent event) {
 
                 if(((Targy)event.getSource()).tipus().equals(Targytipus.ELELEM))
-                    JOptionPane.showMessageDialog(null, "Az elelem felhasznalva.");
+                    JOptionPane.showMessageDialog(getParent(), "Az elelem felhasznalva.", "Tárgyhasználat" , JOptionPane.PLAIN_MESSAGE);
             }
         };
 
