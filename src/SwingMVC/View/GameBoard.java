@@ -1,6 +1,8 @@
 package SwingMVC.View;
 
 import SwingMVC.Controller.Controller;
+import SwingMVC.Eventhandling.Eventhandlers.MezoEventListener;
+import SwingMVC.Eventhandling.Events.*;
 import Targy.Targy;
 
 import javax.swing.*;
@@ -21,6 +23,53 @@ public class GameBoard extends JFrame {
         gamePanel = new GamePanel();
 
         start();
+
+        Controller.getInstance().addMezoEventListener(new MezoEventListener() {
+            @Override
+            public void atfordult(AtfordulasEvent event) {
+                setStatusBarText();
+            }
+
+            @Override
+            public void astak(AsasEvent event) {
+                setStatusBarText();
+            }
+
+            @Override
+            public void epites(EpitesEvent event) {
+                setStatusBarText();
+            }
+
+            @Override
+            public void kimentettek(KimentesEvent event) {
+                setStatusBarText();
+            }
+
+            @Override
+            public void kutatoKepesseg(KutatoKepessegEvent event) {
+                setStatusBarText();
+            }
+
+            @Override
+            public void leptek(LepesEvent event) {
+                setStatusBarText();
+            }
+
+            @Override
+            public void targyfelvetel(TargyfelvetelEvent event) {
+                setStatusBarText();
+            }
+
+            @Override
+            public void vihar(ViharEvent event) {
+                setStatusBarText();
+            }
+
+            @Override
+            public void targyhasznalat(TargyhasznalatEvent event) {
+                setStatusBarText();
+            }
+        });
     }
 
     public void reset(){
