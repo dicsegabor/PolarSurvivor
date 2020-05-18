@@ -148,13 +148,13 @@ public class Controller {
         }
     }
 
-    public void eszkimoKepessegEvent(EszkimoKepessegEvent eventObject){
+    public void epitesEvent(EpitesEvent eventObject){
 
         Object[] listeners = listenerList.getListenerList();
         for(int i = 0; i < listeners.length; i += 2){
 
             if(listeners[i] == MezoEventListener.class)
-                ((MezoEventListener)listeners[i + 1]).eszkimoKepesseg(eventObject);
+                ((MezoEventListener)listeners[i + 1]).epites(eventObject);
         }
     }
 

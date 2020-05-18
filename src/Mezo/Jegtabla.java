@@ -5,6 +5,7 @@ import Exceptions.ItemNotFoundException;
 import Mozgathato.*;
 import Proto.LogAndTesting.Logger;
 import SwingMVC.Controller.Controller;
+import SwingMVC.Eventhandling.Events.EpitesEvent;
 import SwingMVC.Eventhandling.Events.ViharEvent;
 import Targy.*;
 
@@ -56,6 +57,9 @@ public abstract class Jegtabla extends Mezo {
         if(epulet != null) {
 
             this.epulet = epulet;
+
+            Controller.getInstance().epitesEvent(new EpitesEvent(this, this.epulet));
+
             if(osszsuly() > kapacitas)
                 for(Karakter k : karakterek) {
 
