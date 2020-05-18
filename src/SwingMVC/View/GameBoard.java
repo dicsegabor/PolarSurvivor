@@ -84,6 +84,16 @@ public class GameBoard extends JFrame {
         gamePanel.setVisible(false);
     }
 
+    public void highlightKarakter() {
+
+        gamePanel.highlightKarakter();
+    }
+
+    public void removeHighlightKarakter(){
+
+        gamePanel.removeHighlightKarakter();
+    }
+
     private void createStatusBar(){
 
         statusLabel = new JLabel();

@@ -56,6 +56,7 @@ public class Controller {
     public void addGameBoard(GameBoard gameBoard){
 
         this.gameBoard = gameBoard;
+        gameBoard.highlightKarakter();
     }
 
     public void restart(){
@@ -256,7 +257,9 @@ public class Controller {
             @Override
             public void karakterKorvege(KarakterKorvegeEvent event) {
 
+                gameBoard.removeHighlightKarakter();
                 activeKarakter = model.getNextKarakter(activeKarakter);
+                gameBoard.highlightKarakter();
             }
 
             @Override

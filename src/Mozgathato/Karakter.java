@@ -156,8 +156,11 @@ public class Karakter implements Mozgathato {
      */
     public void kombinal(){
 
-        if(mezo.tudnakEOsszeszerlni())
+        if(mezo.tudnakEOsszeszerlni()){
+
             ProtoProgram.jatekVege("Sikerult! Megmenekult mindenki!");
+            Controller.getInstance().jatekVege(new JatekvegeEvent(this, "Sikerült! Megmenekültünk!"));
+        }
 
         else
             System.out.println("Nincsenek meg a szukseges targyak!");

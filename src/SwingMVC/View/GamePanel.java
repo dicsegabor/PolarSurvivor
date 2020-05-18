@@ -1,6 +1,7 @@
 package SwingMVC.View;
 
 import Mezo.Mezo;
+import Mozgathato.Karakter;
 import SwingMVC.Controller.Controller;
 
 import javax.swing.*;
@@ -29,7 +30,21 @@ public class GamePanel extends JPanel {
         for(Mezo m : Controller.getInstance().getModel().getMezok())
             addMezoView(new MezoView(m));
 
+        highlightKarakter();
+
         setVisible(true);
+    }
+
+    public void highlightKarakter() {
+
+        for (MezoView mv : mezoViews)
+            mv.highlightKarakter(Controller.getInstance().getActiveKarakter());
+    }
+
+    public void removeHighlightKarakter(){
+
+        for (MezoView mv : mezoViews)
+            mv.removeHighlightKarakter(Controller.getInstance().getActiveKarakter());
     }
 
     private void addMezoView(MezoView mezoView){

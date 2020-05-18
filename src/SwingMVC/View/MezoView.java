@@ -53,10 +53,30 @@ public class MezoView extends JPanel {
     private void drawEntities() {
 
         for(Karakter k : mezo.getKarakterek())
-            addEntityImage(new EntityImage(k));
+            addEntityImage(new EntityImage(k,false));
 
         if(mezo.getJegesmedve() != null)
-            addEntityImage(new EntityImage(mezo.getJegesmedve()));
+            addEntityImage(new EntityImage(mezo.getJegesmedve(),false));
+    }
+
+    public void highlightKarakter(Karakter karakter){
+
+        if(picLabels.containsKey(karakter)) {
+            removeEntityImage(karakter);
+            addEntityImage(new EntityImage(karakter, true));
+        }
+        repaint();
+        revalidate();
+    }
+
+    public void removeHighlightKarakter(Karakter karakter){
+
+        if(picLabels.containsKey(karakter)) {
+            removeEntityImage(karakter);
+            addEntityImage(new EntityImage(karakter, false));
+        }
+        repaint();
+        revalidate();
     }
 
     private void setBackgroundImage(){
@@ -109,7 +129,7 @@ public class MezoView extends JPanel {
 
                     Targy targy = ((Jegtabla) mezo).getTargy();
                     if (targy != null)
-                        addEntityImage(new EntityImage(targy));
+                        addEntityImage(new EntityImage(targy,false));
                 }
             }
         }
@@ -197,7 +217,7 @@ public class MezoView extends JPanel {
             public void epites(EpitesEvent event) {
 
                 if(event.getSource().equals(mezo))
-                    addEntityImage(new EntityImage(event.epulet));
+                    addEntityImage(new EntityImage(event.epulet,false));
 
                 repaint();
                 revalidate();
@@ -210,7 +230,7 @@ public class MezoView extends JPanel {
                     removeEntityImage(event.megmentett);
 
                 else if(event.megmento.getMezo().equals(mezo))
-                    addEntityImage(new EntityImage(event.megmentett));
+                    addEntityImage(new EntityImage(event.megmentett,false));
             }
 
             @Override
@@ -232,7 +252,7 @@ public class MezoView extends JPanel {
 
                 else  if(mezo.equals(event.hova)) {
 
-                    addEntityImage(new EntityImage(event.getSource()));
+                    addEntityImage(new EntityImage(event.getSource(),false));
                     repaint();
                     revalidate();
                 }
