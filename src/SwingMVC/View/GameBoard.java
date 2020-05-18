@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.sql.Struct;
@@ -137,8 +138,8 @@ public class GameBoard extends JFrame {
         try(InputStream in = url.openStream()){
 
             byte[] bytes = in.readAllBytes();
-            //TODO: Kitalálni a kódolást
-            text = new String(bytes, Charset.defaultCharset());
+            //TODO: Kitalálni a kódolást, mert így nem jó
+            text = new String(bytes, StandardCharsets.UTF_8);
         }
         catch (IOException e) {
             e.printStackTrace();
@@ -148,7 +149,7 @@ public class GameBoard extends JFrame {
         JScrollPane scrollPane = new JScrollPane(textArea);
         textArea.setLineWrap(true);
         textArea.setWrapStyleWord(true);
-        scrollPane.setPreferredSize( new Dimension( 500, 500 ) );
+        scrollPane.setPreferredSize( new Dimension( 500, 600 ) );
         JOptionPane.showMessageDialog(this, scrollPane, "Help", JOptionPane.PLAIN_MESSAGE);
     }
 

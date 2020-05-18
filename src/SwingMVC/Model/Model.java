@@ -239,14 +239,17 @@ public class Model {
 
         StabilJegtabla flareGunIce = new StabilJegtabla();
         flareGunIce.setTargy(new Pisztoly());
+        flareGunIce.setHoreteg(1);
         fields.add(flareGunIce);
 
         StabilJegtabla cartridgeIce = new StabilJegtabla();
         cartridgeIce.setTargy(new Patron());
+        cartridgeIce.setHoreteg(1);
         fields.add(cartridgeIce);
 
         StabilJegtabla flareIce = new StabilJegtabla();
         flareIce.setTargy(new Jelzofeny());
+        flareIce.setHoreteg(1);
         fields.add(flareIce);
 
         return fields;
