@@ -14,9 +14,12 @@ import SwingMVC.Eventhandling.Events.KorvegeEvent;
 import SwingMVC.Eventhandling.Events.UzenetEvent;
 import Targy.Targytipus;
 
+import java.awt.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+
+import java.util.Random;
 import java.util.Scanner;
 
 public class Model {
@@ -24,6 +27,9 @@ public class Model {
     private ArrayList<Karakter> karakterek;
     private ArrayList<Mezo> mezok;
     private Jegesmedve jegesmedve;
+
+    private static final int DEFAULT_MAP_WIDTH = 6;
+    private static final int DEFAULT_MAP_HEIGHT = 5;
 
     public Model(){
 
@@ -70,18 +76,12 @@ public class Model {
             System.out.println("lol");
         }
 
-        int a,b;
-        a = scanner.nextInt();
-        b = scanner.nextInt();
-
-        Mezo[][] palya = new Mezo[a][b];
-
-        scanner.nextLine();
+        Mezo[][] palya = new Mezo[DEFAULT_MAP_HEIGHT][DEFAULT_MAP_WIDTH];
 
         while(scanner.hasNextLine()){
 
-        for (int i = 0; i < a; i++) {
-            for (int j = 0; j < b ; j++) {
+        for (int i = 0; i < DEFAULT_MAP_HEIGHT; i++) {
+            for (int j = 0; j < DEFAULT_MAP_WIDTH ; j++) {
 
                     String tmp = scanner.nextLine();
                     String[] sor = tmp.split("\\t");
@@ -115,39 +115,54 @@ public class Model {
             }
         }
 
+        setSzomszedok(palya);
+
         Karakter karakter1 = new Eszkimo(palya[1][2]);
         palya[1][2].addKarakter(karakter1);
         karakterek.add(karakter1);
 
-        for(int i = 0; i < 1; i++){
+        Karakter karakter2 = new Kutato(palya[3][2]);
+        palya[3][2].addKarakter(karakter2);
+        karakterek.add(karakter2);
 
-            Karakter karakter2 = new Kutato(palya[3][2]);
-            palya[3][2].addKarakter(karakter2);
-            karakterek.add(karakter2);
-        }
+        jegesmedve = new Jegesmedve(palya[2][4]);
+        palya[2][4].befogad(jegesmedve);
 
-        jegesmedve = new Jegesmedve(palya[4][5]);
-        palya[4][5].befogad(jegesmedve);
-
-        for (int i = 0; i < a; i++) {            //először
-            for (int j = 0; j < b ; j++) {
-
-                for (int k = 0; k < a; k++) {      //mégegyszer
-                    for (int l = 0; l < b; l++) {
-
-                        if(Math.abs(i-k) == 0 && Math.abs(j-l) == 1 || Math.abs(i-k) == 1 && Math.abs(j-l) == 0){
-                                    palya[i][j].setSzomszed(palya[k][l]);
-                        }
-                    }
-                }
-            }
-        }
-
-        for (int i = 0; i < a; i++) {
-            for (int j = 0; j <b; j++) {
+        for (int i = 0; i < DEFAULT_MAP_HEIGHT; i++)
+            for (int j = 0; j < DEFAULT_MAP_WIDTH; j++)
                 mezok.add(palya[i][j]);
-            }
-        }
+    }
+
+    private void setSzomszedok(Mezo[][] palya){
+
+        for (int i = 0; i < DEFAULT_MAP_HEIGHT; i++)
+            for (int j = 0; j < DEFAULT_MAP_WIDTH ; j++)
+                for (int k = 0; k < DEFAULT_MAP_HEIGHT; k++)
+                    for (int l = 0; l < DEFAULT_MAP_WIDTH; l++)
+                        if(Math.abs(i-k) == 0 && Math.abs(j-l) == 1 || Math.abs(i-k) == 1 && Math.abs(j-l) == 0)
+                            palya[i][j].setSzomszed(palya[k][l]);
+    }
+
+    public ArrayList<Mezo> generateRandomMap(){
+
+        ArrayList<Mezo> mezok = new ArrayList<>();
+
+        int researcherNumber = 1;
+        int eskimoNumber = 1;
+        boolean polarBear = true;
+
+
+
+        Mezo[][] palya = new Mezo[DEFAULT_MAP_HEIGHT][DEFAULT_MAP_WIDTH];
+
+
+
+        return mezok;
+    }
+
+    private Point getRandomCoords(){
+
+        return new Point(new Random().nextInt(DEFAULT_MAP_HEIGHT), new Random().nextInt(DEFAULT_MAP_WIDTH));
     }
 
     public ArrayList<Mezo> getMezok() {

@@ -12,6 +12,7 @@ public class GameBoard extends JFrame {
 
     private GamePanel gamePanel;
     private JLabel statusLabel;
+    public boolean randomMap;
 
     public GameBoard(){
 
@@ -20,7 +21,8 @@ public class GameBoard extends JFrame {
         setLayout(new BorderLayout());
         setResizable(false);
 
-        gamePanel = new GamePanel();
+        randomMap = false;
+        gamePanel = new GamePanel(randomMap);
 
         start();
 
@@ -73,7 +75,7 @@ public class GameBoard extends JFrame {
     public void reset(){
 
         remove(gamePanel);
-        gamePanel = new GamePanel();
+        gamePanel = new GamePanel(randomMap);
         buildGUI();
     }
 
@@ -126,8 +128,16 @@ public class GameBoard extends JFrame {
         restart.addActionListener((event) -> Controller.getInstance().restart());
         menuBar.add(restart);
 
-        JMenuItem load = new JMenuItem("Load");
-        menuBar.add(load);
+        JMenu map = new JMenu("Map");
+        menuBar.add(map);
+
+        JMenuItem loadDefault = new JMenuItem("Load default map");
+        loadDefault.addActionListener((event) -> {randomMap = false; Controller.getInstance().restart();});
+        map.add(loadDefault);
+
+        JMenuItem generate = new JMenuItem("Random generated map");
+        generate.addActionListener((event) -> {randomMap = true; Controller.getInstance().restart();});
+        map.add(generate);
 
         JMenuItem help = new JMenuItem("Help");
         menuBar.add(help);
@@ -136,6 +146,7 @@ public class GameBoard extends JFrame {
         exit.addActionListener((event) -> System.exit(0));
         menuBar.add(exit);
 
+        menuBar.setLayout(new GridLayout(1, 4));
         menuBar.setVisible(true);
 
         add(menuBar,BorderLayout.NORTH);
