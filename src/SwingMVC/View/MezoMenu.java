@@ -4,6 +4,7 @@ import Exceptions.ItemNotFoundException;
 import Mezo.*;
 import Mozgathato.Eszkimo;
 import Mozgathato.Karakter;
+import Mozgathato.MozgathatoTipus;
 import SwingMVC.Controller.Controller;
 import Targy.Targytipus;
 
@@ -68,7 +69,7 @@ public class MezoMenu extends JPopupMenu {
         } catch (ItemNotFoundException e) { }
 
         // Eszkimo -> építhet iglut
-        if(aktivKarakter.getClass().equals(Eszkimo.class))
+        if(aktivKarakter.tipus().equals(MozgathatoTipus.ESZKIMO))
             addBuildIgluMenuPoint();
     }
 
