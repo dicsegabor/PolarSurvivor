@@ -2,10 +2,10 @@ package SwingMVC.View;
 
 import Exceptions.ItemNotFoundException;
 import Mezo.*;
-import Mozgathato.Eszkimo;
 import Mozgathato.Karakter;
 import Mozgathato.MozgathatoTipus;
 import SwingMVC.Controller.Controller;
+import SwingMVC.Eventhandling.Events.KarakterKorvegeEvent;
 import Targy.Targytipus;
 
 import javax.swing.*;
@@ -27,27 +27,37 @@ public class MezoMenu extends JPopupMenu {
         Karakter aktivKarakter = Controller.getInstance().getActiveKarakter();
         Mezo aktivKarakterMezo = aktivKarakter.getMezo();
 
+        addEndTurnMenuPoint();
+
         // Csak szomszédos vagy saját mezõn
         if(!mezoView.getMezo().szomszedE(aktivKarakterMezo) &&
            !mezoView.getMezo().equals(aktivKarakterMezo))
             return;
 
-        // Össze tudják szerelni a jelzõpisztolyt -> ez legyen az elsõ opció
-        if(aktivKarakterMezo.tudnakEOsszeszerlni())
+        // Össze tudják szerelni a jelzõpisztolyt
+        if(mezoView.getMezo().equals(aktivKarakterMezo) && aktivKarakterMezo.tudnakEOsszeszerlni())
             addCombineMenuPoint();
 
-        // Van búvárruha -> léphet lyukra
-        if(mezoView.getMezo().getClass().equals(Lyuk.class)){
-            try {
-                aktivKarakter.keres(Targytipus.BUVARRUHA);
-                addMoveMenupoint();
-                return;
-            } catch (ItemNotFoundException e) { return; }
-        }
-
-        // Szomszédos mezõ -> léphet
         if(mezoView.getMezo().szomszedE(aktivKarakterMezo)) {
-            addMoveMenupoint();
+            // Kutató szomszédos mezõn jeget néz
+            if(aktivKarakter.tipus().equals(MozgathatoTipus.KUTATO))
+                addCheckIceMenuPoint();
+
+            // Szomszédos mezõre lépés
+            // Lyuk
+            if(mezoView.getMezo().getClass().equals(Lyuk.class)){
+                // Van rajta hó -> léphet
+                if(mezoView.getMezo().getHoreteg() > 0)
+                    addMoveMenupoint();
+                // Nincs hó, de van búvárruhája -> léphet
+                else {
+                    try {
+                        aktivKarakter.keres(Targytipus.BUVARRUHA);
+                        addMoveMenupoint();
+                    } catch (ItemNotFoundException e) { }
+                }
+            // Nem lyuk -> biztos léphet
+            } else addMoveMenupoint();
         }
 
         // Ezutániakat csak saját mezõn csinálhatja
@@ -71,6 +81,23 @@ public class MezoMenu extends JPopupMenu {
         // Eszkimo -> építhet iglut
         if(aktivKarakter.tipus().equals(MozgathatoTipus.ESZKIMO))
             addBuildIgluMenuPoint();
+        // Kutato -> jeget nézhet
+        else addCheckIceMenuPoint();
+    }
+
+    private void addCheckIceMenuPoint(){
+
+        JMenuItem check = new JMenuItem("Jeget néz");
+        check.addActionListener((event) -> Controller.getInstance().jegetNez(mezoView.getMezo()));
+        add(check);
+    }
+
+    private void addEndTurnMenuPoint(){
+
+        JMenuItem endturn = new JMenuItem("Kör vége");
+        Karakter source = Controller.getInstance().getActiveKarakter();
+        endturn.addActionListener((event) -> Controller.getInstance().karakterKorvege(new KarakterKorvegeEvent(source)));
+        add(endturn);
     }
 
     private void addMoveMenupoint(){

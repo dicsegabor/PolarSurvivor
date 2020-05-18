@@ -220,4 +220,14 @@ public class Model {
 
         Controller.getInstance().addGameEventListener(gameEventListener);
     }
+
+    public void jegetNez(Kutato activeKarakter, Mezo mezo) {
+
+        activeKarakter.jegetNez(mezo);
+    }
+
+    public void karakterKorVege(Karakter activeKarakter){
+
+
+    }
 }
