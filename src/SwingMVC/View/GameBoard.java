@@ -11,7 +11,7 @@ import java.awt.*;
 public class GameBoard extends JFrame {
 
     private GamePanel gamePanel;
-    private static JLabel statusLabel;
+    private JLabel statusLabel;
 
     public GameBoard(){
 
@@ -84,12 +84,6 @@ public class GameBoard extends JFrame {
         gamePanel.setVisible(false);
     }
 
-    private void setIcon(){
-
-        ImageIcon img = new ImageIcon("Grafikák\\Jegesmedve.png");
-        setIconImage(img.getImage());
-    }
-
     private void createStatusBar(){
 
         statusLabel = new JLabel();
@@ -100,7 +94,7 @@ public class GameBoard extends JFrame {
         add(statusLabel, BorderLayout.SOUTH);
     }
 
-    public static void setStatusBarText() {
+    public void setStatusBarText() {
 
         int munka = Controller.getInstance().getActiveKarakter().getMunka();
         int testho = Controller.getInstance().getActiveKarakter().getTestho();
@@ -112,7 +106,8 @@ public class GameBoard extends JFrame {
             targylista.append(targy.toString());
         }
 
-        statusLabel.setText("Munka: " + munka + " | Testho: " + testho + " | Targyak: " + targylista);
+        statusLabel.setText(Controller.getInstance().getActiveKarakter().tipus() + " || Munka: " + munka + " | Testho: " + testho + " | Targyak: " + targylista);
+        statusLabel.paintImmediately(statusLabel.getVisibleRect());
     }
 
     private void createMenubar(){
