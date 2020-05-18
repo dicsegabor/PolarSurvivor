@@ -24,8 +24,6 @@ public class GamePanel extends JPanel {
         setBackground(Color.BLACK);
 
         GridLayout layout = new GridLayout(5, 6);
-        layout.setVgap(1);
-        layout.setHgap(1);
         setLayout(layout);
 
         for(Mezo m : Controller.getInstance().getModel().getMezok())
