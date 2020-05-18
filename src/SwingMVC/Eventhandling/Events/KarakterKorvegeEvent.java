@@ -2,9 +2,7 @@ package SwingMVC.Eventhandling.Events;
 
 import java.util.EventObject;
 
-public class JatekvegeEvent extends EventObject {
-
-    public String uzenet;
+public class KarakterKorvegeEvent extends EventObject {
 
     /**
      * Constructs a prototypical Event.
@@ -12,9 +10,7 @@ public class JatekvegeEvent extends EventObject {
      * @param source the object on which the Event initially occurred
      * @throws IllegalArgumentException if source is null
      */
-    public JatekvegeEvent(Object source, String uzenet) {
-
+    public KarakterKorvegeEvent(Object source) {
         super(source);
-        this.uzenet = uzenet;
     }
 }

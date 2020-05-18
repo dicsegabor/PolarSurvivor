@@ -3,6 +3,7 @@ package SwingMVC.Controller;
 import Mezo.Mezo;
 import Mozgathato.Eszkimo;
 import Mozgathato.Karakter;
+import SwingMVC.Eventhandling.Eventhandlers.GameEventListener;
 import SwingMVC.Eventhandling.Eventhandlers.MezoEventListener;
 import SwingMVC.Eventhandling.Events.*;
 import SwingMVC.Model.Model;
@@ -75,9 +76,15 @@ public class Controller {
     }
 
     //EventHandling
-    public void addListener(MezoEventListener listener){
+    public void addMezoEventListener(MezoEventListener listener){
 
         listenerList.add(MezoEventListener.class, listener);
+    }
+
+
+    public void addGameEventListener(GameEventListener listener){
+
+        listenerList.add(GameEventListener.class, listener);
     }
 
     public void atfordultEvent(AtfordulasEvent eventObject){
@@ -168,5 +175,76 @@ public class Controller {
             if(listeners[i] == MezoEventListener.class)
                 ((MezoEventListener)listeners[i + 1]).vihar(eventObject);
         }
+    }
+
+    public void karakterKorvege(KarakterKorvegeEvent eventObject){
+
+        Object[] listeners = listenerList.getListenerList();
+        for(int i = 0; i < listeners.length; i += 2){
+
+            if(listeners[i] == GameEventListener.class)
+                ((GameEventListener)listeners[i + 1]).karakterKorvege(eventObject);
+        }
+    }
+
+    public void korvege(KorvegeEvent evventObject){
+
+        Object[] listeners = listenerList.getListenerList();
+        for(int i = 0; i < listeners.length; i += 2){
+
+            if(listeners[i] == GameEventListener.class)
+                ((GameEventListener)listeners[i + 1]).korvege(evventObject);
+        }
+    }
+
+    public void jatekVege(JatekvegeEvent eventObject){
+
+        Object[] listeners = listenerList.getListenerList();
+        for(int i = 0; i < listeners.length; i += 2){
+
+            if(listeners[i] == GameEventListener.class)
+                ((GameEventListener)listeners[i + 1]).jatekVege(eventObject);
+        }
+    }
+
+    public void uzenet(UzenetEvent eventObject){
+
+        Object[] listeners = listenerList.getListenerList();
+        for(int i = 0; i < listeners.length; i += 2){
+
+            if(listeners[i] == GameEventListener.class)
+                ((GameEventListener)listeners[i + 1]).uzenetEvent(eventObject);
+        }
+    }
+
+    private void addGameEventListener(){
+
+        GameEventListener gameEventListener = new GameEventListener() {
+
+            @Override
+            public void karakterKorvege(KarakterKorvegeEvent event) {
+
+
+            }
+
+            @Override
+            public void korvege(KorvegeEvent event) {
+
+
+            }
+
+            @Override
+            public void jatekVege(JatekvegeEvent event) {
+
+
+            }
+
+            @Override
+            public void uzenetEvent(UzenetEvent event) {
+
+            }
+        };
+
+        addGameEventListener(gameEventListener);
     }
 }

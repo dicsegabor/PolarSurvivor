@@ -259,6 +259,6 @@ public class MezoView extends JPanel {
             }
         };
 
-        Controller.getInstance().addListener(mezoEventListener);
+        Controller.getInstance().addMezoEventListener(mezoEventListener);
     }
 }
