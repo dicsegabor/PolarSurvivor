@@ -19,7 +19,7 @@ public class Elelem implements Targy {
         Logger.log();
 
         karakter.testhotCsokkent(-1);
-        Controller.getInstance().targyhasznalatEvent(new TargyhasznalatEvent(this));
+        Controller.getInstance().targyhasznalatEvent(new TargyhasznalatEvent(this, karakter));
     }
 
     /**

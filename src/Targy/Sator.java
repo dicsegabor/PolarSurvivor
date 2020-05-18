@@ -32,7 +32,6 @@ public class Sator implements Epulet, Targy {
         Logger.log();
 
         ((Jegtabla)karakter.getMezo()).epit(new Sator());
-        Controller.getInstance().targyhasznalatEvent(new TargyhasznalatEvent(this));
     }
 
     /**

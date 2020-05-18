@@ -17,7 +17,7 @@ public class Buvarruha implements Targy {
     public void hasznal(Karakter karakter) {
 
         Logger.log();
-        Controller.getInstance().targyhasznalatEvent(new TargyhasznalatEvent(this));
+        Controller.getInstance().targyhasznalatEvent(new TargyhasznalatEvent(this, karakter));
     }
 
     /**

@@ -33,7 +33,6 @@ public class Kotel implements Targy {
         aldozat.lep(megmento.getMezo());
 
         Controller.getInstance().kimentesEvent(new KimentesEvent(this, megmento, aldozat));
-        Controller.getInstance().targyhasznalatEvent(new TargyhasznalatEvent(this));
     }
 
     /**

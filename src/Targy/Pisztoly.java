@@ -19,7 +19,6 @@ public class Pisztoly implements Targy {
     public void hasznal(Karakter karakter) {
 
         Logger.log();
-        Controller.getInstance().targyhasznalatEvent(new TargyhasznalatEvent(this));
     }
 
     /**

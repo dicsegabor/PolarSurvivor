@@ -123,6 +123,9 @@ public class Model {
         palya[3][2].addKarakter(karakter2);
         karakterek.add(karakter2);
 
+        jegesmedve = new Jegesmedve(palya[4][5]);
+        palya[4][5].befogad(jegesmedve);
+
         for (int i = 0; i < a; i++) {            //először
             for (int j = 0; j < b ; j++) {
 

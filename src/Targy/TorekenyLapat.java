@@ -37,8 +37,6 @@ public class TorekenyLapat extends Lapat implements Targy {
 
         if(hasznalhato == 0)
             karakter.eldob(this);
-
-        Controller.getInstance().targyhasznalatEvent(new TargyhasznalatEvent(this));
     }
 
     @Override

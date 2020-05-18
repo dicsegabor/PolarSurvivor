@@ -53,6 +53,8 @@ public class Jegesmedve implements Mozgathato {
                     lep(null);
             }
 
+            this.mezo = mezo;
+
             ProtoProgram.halalEllorzes(mezo);
         }
     }

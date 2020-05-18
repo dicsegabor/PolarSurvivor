@@ -19,7 +19,6 @@ public class Lapat implements Targy {
         Logger.log();
 
         karakter.getMezo().havatCsokkent(2);
-        Controller.getInstance().targyhasznalatEvent(new TargyhasznalatEvent(this));
     }
 
     /**

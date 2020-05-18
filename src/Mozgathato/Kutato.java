@@ -42,10 +42,19 @@ public class Kutato extends Karakter {
 
         munkaCsokkent(1);
 
-        Controller.getInstance().kutatoKepessegEvent(new KutatoKepessegEvent(this, mezo));
+        String kapacitas;
+
+        if(mezo.getKapacitas() > 20)
+            kapacitas = "VÉGTELEN";
+
+        else
+            kapacitas = Integer.toString(mezo.getKapacitas());
+
+        Controller.getInstance().kutatoKepessegEvent(new KutatoKepessegEvent(this, mezo, kapacitas));
 
         if(mezo.szomszedE(this.mezo) || mezo.equals(this.mezo))
             return mezo.getKapacitas();
+
         return -1;
     }
 

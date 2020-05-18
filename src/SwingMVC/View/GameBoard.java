@@ -5,41 +5,65 @@ import Targy.Targy;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.List;
 
 public class GameBoard extends JFrame {
 
     private GamePanel gamePanel;
-    private JLabel label;
-    private JPanel panel;
+    private static JLabel statusLabel;
 
     public GameBoard(){
 
         super("Polar Survivor");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
+        setResizable(false);
 
-        //kozep
         gamePanel = new GamePanel();
 
-        //also
-        int munka=Controller.getInstance().getActiveKarakter().getMunka();
-        int testho=Controller.getInstance().getActiveKarakter().getTestho();
-        List<Targy> targyak = new ArrayList<Targy>();
-        targyak.addAll(Controller.getInstance().getActiveKarakter().getTargyak());
-        String targylista="";
-        for (Targy targy:targyak)
-        {
-            targylista+=targy.toString();
-        }
-        label=new JLabel();
-        panel=new JPanel();
-        label.setText("Munka: "+Integer.toString(munka)+" Testho: "+Integer.toString(testho)+", Targyak: "+targylista);
-        panel.setVisible(true);
-        add(panel);
-
         start();
+    }
+
+    public void reset(){
+
+        remove(gamePanel);
+        gamePanel = new GamePanel();
+        buildGUI();
+    }
+
+    public void hideGame(){
+
+        gamePanel.setVisible(false);
+    }
+
+    private void setIcon(){
+
+        ImageIcon img = new ImageIcon("Grafikák\\Jegesmedve.png");
+        setIconImage(img.getImage());
+    }
+
+    private void createStatusBar(){
+
+        statusLabel = new JLabel();
+        setStatusBarText();
+        JPanel panel = new JPanel();
+
+        panel.setVisible(true);
+        add(statusLabel, BorderLayout.SOUTH);
+    }
+
+    public static void setStatusBarText() {
+
+        int munka = Controller.getInstance().getActiveKarakter().getMunka();
+        int testho = Controller.getInstance().getActiveKarakter().getTestho();
+
+        StringBuilder targylista = new StringBuilder();
+
+        for (Targy targy : Controller.getInstance().getActiveKarakter().getTargyak()) {
+
+            targylista.append(targy.toString());
+        }
+
+        statusLabel.setText("Munka: " + munka + " | Testho: " + testho + " | Targyak: " + targylista);
     }
 
     private void createMenubar(){
@@ -50,13 +74,14 @@ public class GameBoard extends JFrame {
         restart.addActionListener((event) -> Controller.getInstance().restart());
         menuBar.add(restart);
 
-        JMenuItem load=new JMenuItem("Load");
+        JMenuItem load = new JMenuItem("Load");
         menuBar.add(load);
 
-        JMenuItem help=new JMenuItem("Help");
+        JMenuItem help = new JMenuItem("Help");
         menuBar.add(help);
 
-        JMenuItem exit=new JMenuItem("Exit");
+        JMenuItem exit = new JMenuItem("Exit");
+        exit.addActionListener((event) -> System.exit(0));
         menuBar.add(exit);
 
         menuBar.setVisible(true);
@@ -73,8 +98,9 @@ public class GameBoard extends JFrame {
     private void buildGUI() {
 
         createMenubar();
+        createStatusBar();
         add(gamePanel,BorderLayout.CENTER);
-        add(label,BorderLayout.SOUTH);
+
         pack();
     }
 }

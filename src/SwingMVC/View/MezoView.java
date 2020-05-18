@@ -216,7 +216,8 @@ public class MezoView extends JPanel {
             @Override
             public void kutatoKepesseg(KutatoKepessegEvent event) {
 
-                JOptionPane.showMessageDialog(null, "A mezo kapacitasa " + event.celpont.getKapacitas());
+                if(event.celpont.equals(mezo))
+                    JOptionPane.showMessageDialog(getParent(), "A mezo kapacitasa " + event.kapacitas, "Kutato", JOptionPane.PLAIN_MESSAGE);
             }
 
             @Override
@@ -264,7 +265,7 @@ public class MezoView extends JPanel {
             @Override
             public void targyhasznalat(TargyhasznalatEvent event) {
 
-                if(((Targy)event.getSource()).tipus().equals(Targytipus.ELELEM))
+                if(((Targy)event.getSource()).tipus().equals(Targytipus.ELELEM) && event.karakter.getMezo().equals(mezo))
                     JOptionPane.showMessageDialog(getParent(), "Az elelem felhasznalva.", "Tárgyhasználat" , JOptionPane.PLAIN_MESSAGE);
             }
         };
