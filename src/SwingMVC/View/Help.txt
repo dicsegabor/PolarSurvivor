@@ -1,0 +1,26 @@
+A Polar Survivor célja hogy a játékosok összeszedjék a a pályán szétszórt jelzőpisztoly alkatrészeit.
+Mezők: Lyuk : Ha ilyenre lép valaki és nem tud megmenekülni, akkor a játéknak vége.
+    Stabil jégtábla : Akármennyi karakter lehet rajta, értékes tárgyak lehetnek a hó alatt.
+    Instabil jégtábla: Csak bizonyos számú karakter léphet a mezőre, különben átfordul, és a rajta lévők vízbe esnek…
+    Akárhányszor minden játékos lépett, a pályán vihar söpör végig ami csökkenti a karakterek testhőjét.
+
+A kétféle karakter:
+
+Eszkimó: 5 testhője(HP) van, tud iglut építeni ami megvéd a viharoktól és 
+jegesmedvéktől
+Sarkkutató: 4 testhője van, képes megvizsgálni a szomszédős mezők teherbírását.
+Ellenség: Jegesmedve:Ha megesz valakit, akkor vége a játéknak, akkor is ha az illető sátorban  van.
+véletlenszerűen mozog.
+
+
+Tárgyak: Étel : életerőt növel 1-el.
+    Lapát: Segítségével 2 réteg havat el lehet távolítani egy mezőről.
+    Törékeny lapát: Olyan mint a lapát, csak 3 használat után eltörik.
+Kötél: Ha ezt birtokolja valaki, és a mellette lévő mezőben valaki vÍzbe esik, akkor a saját     mezőjére kimenti a karaktert.
+Búvárruha: Akinél ez van, az nem hal meg ha vízbe esik, tud vízen keresztül lépni.
+Sátor: Megvéd a vihartól, de használat után eltűnik a jegesmedvétől nem véd meg.
+Jelzőfény,Patron,Pisztoly : Az összesset össze kell szedni a nyeréshez.
+
+
+Játékmenet:A soron következő karakter addig tud tevékenységeket végezni amíg van elegendő munkája, amint ez kifogy, azonnal a következő játékos jön.
+A játékos a karakterét a mezőkön jobb egérrel kattintva tudja irányítani, ilyenkor tűnnek fel az éppen elérhető funkciók.

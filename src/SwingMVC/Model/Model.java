@@ -18,10 +18,8 @@ import Targy.Pisztoly;
 import Targy.Targytipus;
 
 import java.awt.*;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.lang.reflect.Field;
 import java.net.URL;
 import java.util.ArrayList;
 
@@ -34,6 +32,10 @@ public class Model {
     private ArrayList<Karakter> karakterek;
     private ArrayList<Mezo> mezok;
     private Jegesmedve jegesmedve;
+
+    public static int researcherCount = 1;
+    public static int eskimoCount = 1;
+    public static boolean polarBear = true;
 
     private static final int DEFAULT_MAP_WIDTH = 6;
     private static final int DEFAULT_MAP_HEIGHT = 5;
@@ -145,13 +147,20 @@ public class Model {
                             palya[i][j].setSzomszed(palya[k][l]);
     }
 
+    public static void setGenerator(int researcherCount, int eskimoCount, boolean polarBear ){
+
+        Model.researcherCount = researcherCount;
+        Model.eskimoCount = eskimoCount;
+        Model.polarBear = polarBear;
+    }
+
     public void generateRandomMap(){
 
         mezok.clear();
         karakterek.clear();
         jegesmedve = null;
 
-        ArrayList<Mezo> generatedFields = generateFields(1, 1, true);
+        ArrayList<Mezo> generatedFields = generateFields();
 
         Mezo[][] board = new Mezo[DEFAULT_MAP_HEIGHT][DEFAULT_MAP_WIDTH];
         fillBoardRandomly(generatedFields, board);
@@ -161,9 +170,9 @@ public class Model {
             mezok.addAll(Arrays.asList(board[i]).subList(0, DEFAULT_MAP_WIDTH));
     }
 
-    private ArrayList<Mezo> generateFields(int researcherNumber, int eskimoNumber, boolean polarBear ) {
+    private ArrayList<Mezo> generateFields() {
 
-        ArrayList<Mezo> fields = new ArrayList<>(generateInitFields(researcherNumber, eskimoNumber, polarBear));
+        ArrayList<Mezo> fields = new ArrayList<>(generateInitFields(researcherCount, eskimoCount, polarBear));
 
         RandomGenerator LYUK = new RandomGenerator(20);
         RandomGenerator INSTABIL = new RandomGenerator(30);
@@ -174,7 +183,7 @@ public class Model {
 
         boolean full = false;
 
-        int maxCapacity = researcherNumber + eskimoNumber + 1;
+        int maxCapacity = researcherCount + eskimoCount + 1;
 
         while (!full){
 
@@ -220,11 +229,13 @@ public class Model {
             fields.add(ice);
         }
 
-        StabilJegtabla ice = new StabilJegtabla();
-        Jegesmedve polarBearAnimal = new Jegesmedve(ice);
-        jegesmedve = polarBearAnimal;
-        ice.befogad(polarBearAnimal);
-        fields.add(ice);
+        if(polarBear) {
+            StabilJegtabla ice = new StabilJegtabla();
+            Jegesmedve polarBearAnimal = new Jegesmedve(ice);
+            jegesmedve = polarBearAnimal;
+            ice.befogad(polarBearAnimal);
+            fields.add(ice);
+        }
 
         StabilJegtabla flareGunIce = new StabilJegtabla();
         flareGunIce.setTargy(new Pisztoly());
