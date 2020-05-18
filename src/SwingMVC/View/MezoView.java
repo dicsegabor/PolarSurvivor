@@ -213,13 +213,21 @@ public class MezoView extends JPanel {
             }
 
             @Override
-            public void leptek(LepesEvent event, Mozgathato mozgathato) {
+            public void leptek(LepesEvent event) {
 
-                if (mezo.equals(event.getSource()))
-                    removeEntityImage(mozgathato);
+                if (mezo.equals(event.honnan)) {
 
-                else  if(mezo.equals(event.mezo))
-                    addEntityImage(new EntityImage(mozgathato));
+                    removeEntityImage(event.getSource());
+                    repaint();
+                    revalidate();
+                }
+
+                else  if(mezo.equals(event.hova)) {
+
+                    addEntityImage(new EntityImage(event.getSource()));
+                    repaint();
+                    revalidate();
+                }
             }
 
             @Override
@@ -231,8 +239,10 @@ public class MezoView extends JPanel {
 
                     removeEntityImage(targy);
                     JOptionPane.showMessageDialog(null, "A " + targy.tipus() + " felvéve.");
-                }
 
+                    repaint();
+                    revalidate();
+                }
             }
 
             @Override

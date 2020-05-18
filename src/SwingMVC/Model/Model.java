@@ -5,6 +5,7 @@ import Mezo.*;
 import Mozgathato.Eszkimo;
 import Mozgathato.Jegesmedve;
 import Mozgathato.Karakter;
+import Mozgathato.Kutato;
 import Targy.Targytipus;
 
 import java.io.File;
@@ -23,6 +24,8 @@ public class Model {
         karakterek = new ArrayList<>();
         mezok = new ArrayList<>();
         init();
+
+        System.out.println("");
     }
 
     private void init() {
@@ -79,10 +82,13 @@ public class Model {
             }
         }
 
-        Karakter karakter = new Eszkimo(palya[1][2]);
+        Karakter karakter1 = new Eszkimo(palya[1][2]);
+        palya[1][2].addKarakter(karakter1);
+        karakterek.add(karakter1);
 
-        palya[1][2].addKarakter(karakter);
-        karakterek.add(karakter);
+        Karakter karakter2 = new Kutato(palya[3][2]);
+        palya[3][2].addKarakter(karakter2);
+        karakterek.add(karakter2);
 
         for (int i = 0; i < a; i++) {            //először
             for (int j = 0; j < b ; j++) {

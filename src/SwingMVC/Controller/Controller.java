@@ -96,7 +96,7 @@ public class Controller {
         for(int i = 0; i < listeners.length; i += 2){
 
             if(listeners[i] == MezoEventListener.class)
-                ((MezoEventListener)listeners[i + 1]).leptek(eventObject, activeKarakter);
+                ((MezoEventListener)listeners[i + 1]).leptek(eventObject);
         }
     }
 

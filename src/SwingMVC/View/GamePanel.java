@@ -1,13 +1,7 @@
 package SwingMVC.View;
 
 import Mezo.Mezo;
-import Mezo.StabilJegtabla;
-import Mozgathato.Eszkimo;
-import Mozgathato.Jegesmedve;
-import Mozgathato.Karakter;
 import SwingMVC.Controller.Controller;
-import SwingMVC.Eventhandling.Eventhandlers.MezoEventListener;
-import Targy.Lapat;
 
 import javax.swing.*;
 import java.awt.*;

@@ -33,32 +33,28 @@ public class Jegesmedve implements Mozgathato {
     @Override
     public void lep(Mezo mezo){
 
-        Logger.log();
-
-        this.mezo.kiad(this);
-
-        if(mezo == null) {
-
+        if(mezo == null)
             mezo = this.mezo.getRandomSzomszed();
 
-            mezo.befogad(this);
-        }
+        if(this.mezo.szomszedE(mezo)) {
 
-        else {
+            Controller.getInstance().lepesEvent(new LepesEvent(this, mezo, this.mezo));
+
+            Logger.log();
+
+            this.mezo.kiad(this);
             mezo.befogad(this);
 
-            if(mezo.getKapacitas() != 0) {
+            if (mezo.getKapacitas() != 0) {
 
                 Epulet epulet = ((Jegtabla) mezo).getEpulet();
 
                 if (epulet != null && epulet.epulettipus().equals(Epulettipus.IGLU))
                     lep(null);
             }
+
+            ProtoProgram.halalEllorzes(mezo);
         }
-
-        Controller.getInstance().lepesEvent(new LepesEvent(this.mezo, mezo));
-
-        ProtoProgram.halalEllorzes(mezo);
     }
 
     @Override

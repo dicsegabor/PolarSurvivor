@@ -70,20 +70,23 @@ public class Karakter implements Mozgathato {
      */
     public void felvesz() {
 
-        Logger.log();
+        if(mezo.getHoreteg() == 0) {
 
-        Targy targy = ((Jegtabla)mezo).felvesz();
+            Controller.getInstance().targyfelvetelEvent(new TargyfelvetelEvent(this));
 
-        if(targy != null) {
+            Logger.log();
 
-            if (targy.tipus().equals(Targytipus.ELELEM))
-                targy.hasznal(this);
+            Targy targy = ((Jegtabla) mezo).felvesz();
 
-            else
-                targyak.add(targy);
+            if (targy != null) {
+
+                if (targy.tipus().equals(Targytipus.ELELEM))
+                    targy.hasznal(this);
+
+                else
+                    targyak.add(targy);
+            }
         }
-
-        Controller.getInstance().targyfelvetelEvent(new TargyfelvetelEvent(this));
     }
 
     /**
@@ -105,19 +108,20 @@ public class Karakter implements Mozgathato {
     @Override
     public void lep(Mezo mezo){
 
-        Logger.log();
+        if(this.mezo.szomszedE(mezo)){
 
-        this.mezo.kiad(this);
+            Controller.getInstance().lepesEvent(new LepesEvent(this, mezo, this.mezo));
 
-        mezo.befogad(this);
+            Logger.log();
 
-        this.mezo = mezo;
+            this.mezo.kiad(this);
+            mezo.befogad(this);
 
-        ProtoProgram.halalEllorzes(mezo);
+            this.mezo = mezo;
 
-        munkaCsokkent(1);
-
-        Controller.getInstance().lepesEvent(new LepesEvent(this.mezo, mezo));
+            ProtoProgram.halalEllorzes(mezo);
+            munkaCsokkent(1);
+        }
     }
 
     /**
@@ -209,8 +213,11 @@ public class Karakter implements Mozgathato {
 
         Logger.log();
 
-        if(munka - mennyiseg <= 0)
+        if(munka - mennyiseg <= 0) {
+
             ProtoProgram.kovetkezoKarakter(this);
+            //TODO: karakterkörvege event
+        }
 
         munka -= mennyiseg;
     }

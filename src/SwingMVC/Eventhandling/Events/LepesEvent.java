@@ -1,12 +1,14 @@
 package SwingMVC.Eventhandling.Events;
 
 import Mezo.Mezo;
+import Mozgathato.Mozgathato;
 
 import java.util.EventObject;
 
 public class LepesEvent extends EventObject {
 
-    public Mezo mezo;
+    public Mezo hova;
+    public Mezo honnan;
 
     /**
      * Constructs a prototypical Event.
@@ -14,9 +16,10 @@ public class LepesEvent extends EventObject {
      * @param source the object on which the Event initially occurred
      * @throws IllegalArgumentException if source is null
      */
-    public LepesEvent(Mezo source, Mezo hova) {
+    public LepesEvent(Mozgathato source, Mezo hova, Mezo honnan) {
 
         super(source);
-        this.mezo = hova;
+        this.honnan = honnan;
+        this.hova = hova;
     }
 }
