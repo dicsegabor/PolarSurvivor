@@ -20,6 +20,8 @@ public class StabilJegtabla extends Jegtabla {
         horeteg = RandomGenerator.getRandomInt(4);
         if(vanTargy)
             targy = Targytipus.randomTargy();
+
+        kapacitas = Integer.MAX_VALUE;
     }
 
     /**

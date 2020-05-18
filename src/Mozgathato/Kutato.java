@@ -44,7 +44,7 @@ public class Kutato extends Karakter {
 
         String kapacitas;
 
-        if(mezo.getKapacitas() > 20)
+        if(mezo.getKapacitas() == Integer.MAX_VALUE)
             kapacitas = "VÉGTELEN";
 
         else

@@ -83,7 +83,7 @@ public class Controller {
 
     public void lep(Mezo mezo){
 
-        model.leptet(activeKarakter, mezo);
+        model.lep(activeKarakter, mezo);
     }
 
     public void as(){
@@ -114,11 +114,6 @@ public class Controller {
     public void jegetNez(Mezo mezo){
 
         model.jegetNez((Kutato) activeKarakter, mezo);
-    }
-
-    public void karakterKorVege() {
-
-        model.karakterKorVege(activeKarakter);
     }
 
         //EventHandling

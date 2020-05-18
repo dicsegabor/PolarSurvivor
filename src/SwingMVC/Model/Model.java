@@ -22,6 +22,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
+import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -41,11 +42,6 @@ public class Model {
         loadDefaultMap();
 
         addGameEventListener();
-    }
-
-    public ArrayList<Karakter> getKarakterek() {
-
-        return karakterek;
     }
 
     public Karakter getNextKarakter(Karakter karakter){
@@ -69,46 +65,49 @@ public class Model {
         File text = new File("src\\SwingMVC\\Model\\Map.txt");
 
         Scanner scanner = null;
-        try {
-            scanner = new Scanner(text);
-        } catch (FileNotFoundException e) {
-            System.out.println("lol");
-        }
+        try { scanner = new Scanner(text); }
+        catch (FileNotFoundException e) { System.out.println("A '" + text + "fájl nem található!"); }
 
         Mezo[][] palya = new Mezo[DEFAULT_MAP_HEIGHT][DEFAULT_MAP_WIDTH];
 
-        while(scanner.hasNextLine()){
+        if(scanner == null)
+            return;
 
-        for (int i = 0; i < DEFAULT_MAP_HEIGHT; i++) {
-            for (int j = 0; j < DEFAULT_MAP_WIDTH ; j++) {
+        while(scanner.hasNextLine()){
+            for (int i = 0; i < DEFAULT_MAP_HEIGHT; i++) {
+                for (int j = 0; j < DEFAULT_MAP_WIDTH ; j++) {
 
                     String tmp = scanner.nextLine();
                     String[] sor = tmp.split("\\t");
 
-                    if(sor[0].equals("LYUK")){
-                        if(0 == Integer.parseInt(sor[2])){
-                            palya[i][j] = new Lyuk(false);
-                        }
+                    switch (sor[0]) {
 
-                        else{
-                            palya[i][j] = new Lyuk(true);
-                        }
+                        case "LYUK":
+                            if (0 == Integer.parseInt(sor[2]))
+                                palya[i][j] = new Lyuk(false);
 
-                    }
+                            else
+                                palya[i][j] = new Lyuk(true);
 
-                    else if(sor[0].equals("STABIL")){
-                        StabilJegtabla stabil = new StabilJegtabla();
-                        stabil.setHoreteg(Integer.parseInt(sor[2]));
-                        stabil.setTargy(Targytipus.letrehoz(Targytipus.valueOf(sor[3])));
-                        palya[i][j] = stabil;
-                    }
+                            break;
 
-                    else if(sor[0].equals("INSTABIL")){
-                        InstabilJegtabla instabil = new InstabilJegtabla(Integer.parseInt(sor[1]));
-                        instabil.setHoreteg(Integer.parseInt(sor[2]));
-                        if(!sor[3].equals("null"))
-                            instabil.setTargy(Targytipus.letrehoz(Targytipus.valueOf(sor[3])));
-                        palya[i][j] = instabil;
+                        case "STABIL":
+                            StabilJegtabla stabil = new StabilJegtabla();
+
+                            stabil.setHoreteg(Integer.parseInt(sor[2]));
+                            stabil.setTargy(Targytipus.letrehoz(Targytipus.valueOf(sor[3])));
+                            palya[i][j] = stabil;
+                            break;
+
+                        case "INSTABIL":
+                            InstabilJegtabla instabil = new InstabilJegtabla(Integer.parseInt(sor[1]));
+                            instabil.setHoreteg(Integer.parseInt(sor[2]));
+
+                            if (!sor[3].equals("null"))
+                                instabil.setTargy(Targytipus.letrehoz(Targytipus.valueOf(sor[3])));
+
+                            palya[i][j] = instabil;
+                            break;
                     }
                 }
             }
@@ -128,8 +127,7 @@ public class Model {
         palya[2][4].befogad(jegesmedve);
 
         for (int i = 0; i < DEFAULT_MAP_HEIGHT; i++)
-            for (int j = 0; j < DEFAULT_MAP_WIDTH; j++)
-                mezok.add(palya[i][j]);
+            mezok.addAll(Arrays.asList(palya[i]).subList(0, DEFAULT_MAP_WIDTH));
     }
 
     private void setNeighbours(Mezo[][] palya){
@@ -155,8 +153,7 @@ public class Model {
         setNeighbours(board);
 
         for (int i = 0; i < DEFAULT_MAP_HEIGHT; i++)
-            for (int j = 0; j < DEFAULT_MAP_WIDTH; j++)
-                mezok.add(board[i][j]);
+            mezok.addAll(Arrays.asList(board[i]).subList(0, DEFAULT_MAP_WIDTH));
     }
 
     private ArrayList<Mezo> generateFields(int researcherNumber, int eskimoNumber, boolean polarBear ) {
@@ -276,7 +273,7 @@ public class Model {
         return karakterek.get(ID);
     }
 
-    public void leptet(Karakter karakter, Mezo mezo){
+    public void lep(Karakter karakter, Mezo mezo){
 
         karakter.lep(mezo);
     }
@@ -343,10 +340,5 @@ public class Model {
     public void jegetNez(Kutato activeKarakter, Mezo mezo) {
 
         activeKarakter.jegetNez(mezo);
-    }
-
-    public void karakterKorVege(Karakter activeKarakter){
-
-
     }
 }
