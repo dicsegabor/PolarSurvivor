@@ -62,6 +62,7 @@ public class Controller {
 
         running = true;
         model.reset();
+        activeKarakter = model.getKarakter(0);
         gameBoard = new GameBoard();
         gameBoard.repaint();
         gameBoard.revalidate();

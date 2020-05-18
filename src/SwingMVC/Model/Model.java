@@ -107,6 +107,8 @@ public class Model {
                     else if(sor[0].equals("INSTABIL")){
                         InstabilJegtabla instabil = new InstabilJegtabla(Integer.parseInt(sor[1]));
                         instabil.setHoreteg(Integer.parseInt(sor[2]));
+                        if(!sor[3].equals("null"))
+                            instabil.setTargy(Targytipus.letrehoz(Targytipus.valueOf(sor[3])));
                         palya[i][j] = instabil;
                     }
                 }

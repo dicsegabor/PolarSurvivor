@@ -185,8 +185,12 @@ public class MezoView extends JPanel {
             @Override
             public void astak(AsasEvent event) {
 
-                if(((Karakter)event.getSource()).getMezo().equals(mezo))
+                if(((Karakter)event.getSource()).getMezo().equals(mezo)) {
+
                     legyenHo();
+                    repaint();
+                    revalidate();
+                }
             }
 
             @Override
