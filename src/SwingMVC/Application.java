@@ -1,5 +1,6 @@
 package SwingMVC;
 
+import SwingMVC.Controller.Controller;
 import SwingMVC.View.GameBoard;
 
 public class Application {
@@ -9,6 +10,7 @@ public class Application {
     public static void main(String[] args){
 
         gameBoard = new GameBoard();
+        Controller.getInstance().addGameBoard(gameBoard);
         gameBoard.start();
     }
 }
