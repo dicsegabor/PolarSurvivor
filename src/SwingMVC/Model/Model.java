@@ -36,6 +36,15 @@ public class Model {
         init();
     }
 
+    public Karakter getNextKarakter(Karakter karakter){
+
+        if(karakterek.indexOf(karakter) < karakterek.size() - 1)
+            return karakterek.get(karakterek.indexOf(karakter) + 1);
+
+        else
+            return karakterek.get(0);
+    }
+
     private void init() {
 
         File text = new File("src\\SwingMVC\\Model\\Map.txt");

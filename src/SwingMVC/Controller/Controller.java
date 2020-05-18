@@ -228,7 +228,7 @@ public class Controller {
             @Override
             public void karakterKorvege(KarakterKorvegeEvent event) {
 
-
+                activeKarakter = model.getNextKarakter(activeKarakter);
             }
 
             @Override
