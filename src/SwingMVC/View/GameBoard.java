@@ -1,6 +1,7 @@
 package SwingMVC.View;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class GameBoard extends JFrame {
 
@@ -10,10 +11,17 @@ public class GameBoard extends JFrame {
 
         super("Polar Survivor");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        gamePanel = new GamePanel();
+
+        //TODO: menüsáv jó elrakása
+        setLayout(new GridLayout(3, 1));
+
+        //TODO: Menüsáv
         JMenuBar menuBar = new JMenuBar();
         add(menuBar);
 
+        gamePanel = new GamePanel();
+
+        //TODO:
         start();
     }
 

@@ -12,6 +12,8 @@ public class MezoMenu extends JPopupMenu {
 
         super();
         this.mezoView = mezoView;
+
+        //TODO:Szelektív menüponthozzáadás
         addMoveMenupoint();
         addDigMenuPoint();
         addPickupItemMenuPoint();
