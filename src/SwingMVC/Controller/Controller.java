@@ -242,8 +242,6 @@ public class Controller {
 
                 JOptionPane.showMessageDialog(gameBoard, event.uzenet, "Vége a játéknak" , JOptionPane.PLAIN_MESSAGE);
                 model.reset();
-                gameBoard.repaint();
-                gameBoard.revalidate();
             }
 
             @Override

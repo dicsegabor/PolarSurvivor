@@ -1,11 +1,12 @@
 package Mezo;
 
 import Epulet.*;
+import Exceptions.ItemNotFoundException;
 import Mozgathato.*;
 import Proto.LogAndTesting.Logger;
 import SwingMVC.Controller.Controller;
 import SwingMVC.Eventhandling.Events.ViharEvent;
-import Targy.Targy;
+import Targy.*;
 
 /**
  * A jegtablat jelkepezi. Tarolhat targyat.
@@ -56,8 +57,11 @@ public abstract class Jegtabla extends Mezo {
 
             this.epulet = epulet;
             if(osszsuly() > kapacitas)
-                for(Karakter k : karakterek)
-                    segitseg(k);
+                for(Karakter k : karakterek) {
+
+                    try { k.keres(Targytipus.BUVARRUHA).hasznal(k); }
+                    catch (ItemNotFoundException e) { segitseg(k); }
+                }
         }
 
         else
