@@ -44,7 +44,9 @@ public class Kutato extends Karakter {
 
         Controller.getInstance().kutatoKepessegEvent(new KutatoKepessegEvent(this, mezo));
 
-        return mezo.getKapacitas();
+        if(mezo.szomszedE(this.mezo) || mezo.equals(this.mezo))
+            return mezo.getKapacitas();
+        return -1;
     }
 
     @Override

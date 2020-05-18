@@ -1,6 +1,12 @@
 package SwingMVC.View;
 
+import Exceptions.ItemNotFoundException;
+import Mezo.*;
+import Mozgathato.Eszkimo;
+import Mozgathato.Karakter;
+import Mozgathato.MozgathatoTipus;
 import SwingMVC.Controller.Controller;
+import Targy.Targytipus;
 
 import javax.swing.*;
 
@@ -13,13 +19,58 @@ public class MezoMenu extends JPopupMenu {
         super();
         this.mezoView = mezoView;
 
-        //TODO:Szelektív menüponthozzáadás
-        addMoveMenupoint();
-        addDigMenuPoint();
-        addPickupItemMenuPoint();
-        addBuildIgluMenuPoint();
-        addBuildTentMenuPoint();
-        addCombineMenuPoint();
+        listSelectableMenuPoints();
+    }
+
+    private void listSelectableMenuPoints(){
+
+        Karakter aktivKarakter = Controller.getInstance().getActiveKarakter();
+        Mezo aktivKarakterMezo = aktivKarakter.getMezo();
+
+        // Csak szomszédos vagy saját mezõn
+        if(!mezoView.getMezo().szomszedE(aktivKarakterMezo) &&
+           !mezoView.getMezo().equals(aktivKarakterMezo))
+            return;
+
+        // Össze tudják szerelni a jelzõpisztolyt -> ez legyen az elsõ opció
+        if(aktivKarakterMezo.tudnakEOsszeszerlni())
+            addCombineMenuPoint();
+
+        // Van búvárruha -> léphet lyukra
+        if(mezoView.getMezo().getClass().equals(Lyuk.class)){
+            try {
+                aktivKarakter.keres(Targytipus.BUVARRUHA);
+                addMoveMenupoint();
+                return;
+            } catch (ItemNotFoundException e) { return; }
+        }
+
+        // Szomszédos mezõ -> léphet
+        if(mezoView.getMezo().szomszedE(aktivKarakterMezo)) {
+            addMoveMenupoint();
+        }
+
+        // Ezutániakat csak saját mezõn csinálhatja
+        if(!mezoView.getMezo().equals(aktivKarakterMezo)) return;
+
+        // Van hó a mezõn -> áshat
+        if(aktivKarakterMezo.getHoreteg() > 0)
+            addDigMenuPoint();
+        else {
+            // Van tárgy a mezõn és hó nincs -> felveheti
+            if (((Jegtabla) aktivKarakterMezo).getTargy() != null)
+                addPickupItemMenuPoint();
+        }
+
+        // Van sátra -> építhet
+        try {
+            aktivKarakter.keres(Targytipus.SATOR);
+            addBuildTentMenuPoint();
+        } catch (ItemNotFoundException e) { }
+
+        // Eszkimo -> építhet iglut
+        if(aktivKarakter.tipus().equals(MozgathatoTipus.ESZKIMO))
+            addBuildIgluMenuPoint();
     }
 
     private void addMoveMenupoint(){

@@ -6,10 +6,7 @@ import Mezo.Jegtabla;
 import Proto.ProtoProgram;
 import Proto.LogAndTesting.Logger;
 import SwingMVC.Controller.Controller;
-import SwingMVC.Eventhandling.Events.AsasEvent;
-import SwingMVC.Eventhandling.Events.KutatoKepessegEvent;
-import SwingMVC.Eventhandling.Events.LepesEvent;
-import SwingMVC.Eventhandling.Events.TargyfelvetelEvent;
+import SwingMVC.Eventhandling.Events.*;
 import Targy.*;
 
 import java.util.ArrayList;
@@ -99,6 +96,8 @@ public class Karakter implements Mozgathato {
         Logger.log();
 
         ProtoProgram.jatekVege("Meghalt a karakter!");
+
+        Controller.getInstance().jatekVege(new JatekvegeEvent(this, halalUzenet));
     }
 
     /**
@@ -216,10 +215,12 @@ public class Karakter implements Mozgathato {
         if(munka - mennyiseg <= 0) {
 
             ProtoProgram.kovetkezoKarakter(this);
-            //TODO: karakterkörvege event
+            Controller.getInstance().karakterKorvege(new KarakterKorvegeEvent(this));
+            munkatVisszaallit();
         }
 
-        munka -= mennyiseg;
+        else
+            munka -= mennyiseg;
     }
 
     public void munkatVisszaallit(){

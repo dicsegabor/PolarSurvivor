@@ -28,6 +28,23 @@ public class Model {
         System.out.println("");
     }
 
+    public void reset(){
+
+        karakterek.clear();
+        mezok.clear();
+        jegesmedve = null;
+        init();
+    }
+
+    public Karakter getNextKarakter(Karakter karakter){
+
+        if(karakterek.indexOf(karakter) < karakterek.size() - 1)
+            return karakterek.get(karakterek.indexOf(karakter) + 1);
+
+        else
+            return karakterek.get(0);
+    }
+
     private void init() {
 
         File text = new File("src\\SwingMVC\\Model\\Map.txt");
