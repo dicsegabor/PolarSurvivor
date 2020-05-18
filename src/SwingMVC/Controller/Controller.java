@@ -19,6 +19,7 @@ public class Controller {
     private Model model;
     private Karakter activeKarakter;
     private GameBoard gameBoard;
+    private boolean running;
 
     private EventListenerList listenerList;
 
@@ -34,6 +35,7 @@ public class Controller {
 
         instance = this;
 
+        running = true;
         listenerList = new EventListenerList();
         model = new Model();
         activeKarakter = model.getKarakter(0);
@@ -54,6 +56,15 @@ public class Controller {
     public void addGameBoard(GameBoard gameBoard){
 
         this.gameBoard = gameBoard;
+    }
+
+    public void restart(){
+
+        running = true;
+        model.reset();
+        gameBoard = new GameBoard();
+        gameBoard.repaint();
+        gameBoard.revalidate();
     }
 
     public void lep(Mezo mezo){
@@ -102,6 +113,11 @@ public class Controller {
         listenerList.add(MezoEventListener.class, listener);
     }
 
+    public void addGameEventListener(GameEventListener listener){
+
+        listenerList.add(GameEventListener.class, listener);
+    }
+
     public void atfordultEvent(AtfordulasEvent eventObject){
 
         Object[] listeners = listenerList.getListenerList();
@@ -132,13 +148,13 @@ public class Controller {
         }
     }
 
-    public void eszkimoKepessegEvent(EszkimoKepessegEvent eventObject){
+    public void epitesEvent(EpitesEvent eventObject){
 
         Object[] listeners = listenerList.getListenerList();
         for(int i = 0; i < listeners.length; i += 2){
 
             if(listeners[i] == MezoEventListener.class)
-                ((MezoEventListener)listeners[i + 1]).eszkimoKepesseg(eventObject);
+                ((MezoEventListener)listeners[i + 1]).epites(eventObject);
         }
     }
 
@@ -243,16 +259,16 @@ public class Controller {
             }
 
             @Override
-            public void korvege(KorvegeEvent event) {
-
-
-            }
+            public void korvege(KorvegeEvent event) {}
 
             @Override
             public void jatekVege(JatekvegeEvent event) {
 
-                JOptionPane.showMessageDialog(gameBoard, event.uzenet, "Vége a játéknak" , JOptionPane.PLAIN_MESSAGE);
-                model.reset();
+                if(running) {
+
+                    JOptionPane.showMessageDialog(gameBoard, event.uzenet, "Vége a játéknak", JOptionPane.PLAIN_MESSAGE);
+                    running = false;
+                }
             }
 
             @Override
@@ -262,6 +278,6 @@ public class Controller {
             }
         };
 
-        listenerList.add(GameEventListener.class, gameEventListener);
+        addGameEventListener(gameEventListener);
     }
 }

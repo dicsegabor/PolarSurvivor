@@ -188,12 +188,13 @@ public class MezoView extends JPanel {
             }
 
             @Override
-            public void eszkimoKepesseg(EszkimoKepessegEvent event) {
+            public void epites(EpitesEvent event) {
 
-                Mezo mezo = ((Eszkimo)event.getSource()).getMezo();
+                if(event.getSource().equals(mezo))
+                    addEntityImage(new EntityImage(event.epulet));
 
-                if(mezo.equals(MezoView.this.mezo))
-                    addEntityImage(new EntityImage(((Jegtabla)mezo).getEpulet()));
+                repaint();
+                revalidate();
             }
 
             @Override

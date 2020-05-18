@@ -4,8 +4,6 @@ import Epulet.Iglu;
 import Mezo.Mezo;
 import Mezo.Jegtabla;
 import Proto.LogAndTesting.Logger;
-import SwingMVC.Controller.Controller;
-import SwingMVC.Eventhandling.Events.EszkimoKepessegEvent;
 import Targy.Targy;
 
 import java.util.List;
@@ -42,9 +40,10 @@ public class Eszkimo extends Karakter {
 
         Logger.log();
 
-        ((Jegtabla)mezo).epit(new Iglu());
+        if(((Jegtabla)mezo).getEpulet() == null)
+            ((Jegtabla)mezo).epit(new Iglu());
 
-        Controller.getInstance().eszkimoKepessegEvent(new EszkimoKepessegEvent(this));
+        munkaCsokkent(1);
     }
 
     @Override

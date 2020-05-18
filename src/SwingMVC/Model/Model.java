@@ -6,6 +6,12 @@ import Mozgathato.Eszkimo;
 import Mozgathato.Jegesmedve;
 import Mozgathato.Karakter;
 import Mozgathato.Kutato;
+import SwingMVC.Controller.Controller;
+import SwingMVC.Eventhandling.Eventhandlers.GameEventListener;
+import SwingMVC.Eventhandling.Events.JatekvegeEvent;
+import SwingMVC.Eventhandling.Events.KarakterKorvegeEvent;
+import SwingMVC.Eventhandling.Events.KorvegeEvent;
+import SwingMVC.Eventhandling.Events.UzenetEvent;
 import Targy.Targytipus;
 
 import java.io.File;
@@ -25,7 +31,7 @@ public class Model {
         mezok = new ArrayList<>();
         init();
 
-        System.out.println("");
+        addGameEventListener();
     }
 
     public void reset(){
@@ -36,13 +42,21 @@ public class Model {
         init();
     }
 
+    public ArrayList<Karakter> getKarakterek() {
+
+        return karakterek;
+    }
+
     public Karakter getNextKarakter(Karakter karakter){
 
         if(karakterek.indexOf(karakter) < karakterek.size() - 1)
             return karakterek.get(karakterek.indexOf(karakter) + 1);
 
-        else
+        else{
+
+            Controller.getInstance().korvege(new KorvegeEvent(this));
             return karakterek.get(0);
+        }
     }
 
     private void init() {
@@ -171,6 +185,42 @@ public class Model {
         activeKarakter.kombinal();
     }
 
+    private void addGameEventListener(){
+
+        GameEventListener gameEventListener = new GameEventListener() {
+
+            @Override
+            public void karakterKorvege(KarakterKorvegeEvent event) {
+
+            }
+
+            @Override
+            public void korvege(KorvegeEvent event) {
+
+                for(Karakter k : karakterek)
+                    k.munkatVisszaallit();
+
+                for(Mezo m : mezok)
+                    m.vihar();
+
+                if(jegesmedve != null)
+                    jegesmedve.lep(null);
+            }
+
+            @Override
+            public void jatekVege(JatekvegeEvent event) {
+
+            }
+
+            @Override
+            public void uzenetEvent(UzenetEvent event) {
+
+            }
+        };
+
+        Controller.getInstance().addGameEventListener(gameEventListener);
+    }
+
     public void jegetNez(Kutato activeKarakter, Mezo mezo) {
 
         activeKarakter.jegetNez(mezo);
@@ -178,6 +228,6 @@ public class Model {
 
     public void karakterKorVege(Karakter activeKarakter){
 
-        
+
     }
 }

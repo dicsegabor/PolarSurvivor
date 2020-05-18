@@ -11,7 +11,7 @@ public interface MezoEventListener extends EventListener {
 
     void astak(AsasEvent event);
 
-    void eszkimoKepesseg(EszkimoKepessegEvent event);
+    void epites(EpitesEvent event);
 
     void kimentettek(KimentesEvent event);
 

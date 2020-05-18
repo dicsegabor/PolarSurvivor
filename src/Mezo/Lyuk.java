@@ -22,6 +22,11 @@ public class Lyuk extends Mezo {
             horeteg = 0;
     }
 
+    @Override
+    public void vihar() {
+
+    }
+
     /**
      * Berak egy karaktert a karakterlistajaba.
      * A ralepo karakterek egybel a vizbe esnek, es eltunik rola a ho.
