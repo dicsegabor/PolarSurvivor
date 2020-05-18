@@ -13,7 +13,7 @@ public class GameBoard extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         //TODO: menüsáv jó elrakása
-        setLayout(new GridLayout(3, 1));
+        //setLayout(new GridLayout(3, 1));
 
         //TODO: Menüsáv
         JMenuBar menuBar = new JMenuBar();
@@ -21,7 +21,8 @@ public class GameBoard extends JFrame {
 
         gamePanel = new GamePanel();
 
-        //TODO:
+        //TODO:karaktertul
+
         start();
     }
 
