@@ -13,4 +13,6 @@ public interface GameEventListener extends EventListener {
     void jatekVege(JatekvegeEvent event);
 
     void uzenetEvent(UzenetEvent event);
+
+    void statusUpdate(KarakterStatusUpdateEvent event);
 }

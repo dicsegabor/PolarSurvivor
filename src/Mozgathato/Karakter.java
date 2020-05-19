@@ -83,6 +83,8 @@ public class Karakter implements Mozgathato {
 
             else
                 targyak.add(targy);
+
+            Controller.getInstance().statusUpdate(new KarakterStatusUpdateEvent(this));
         }
     }
 
@@ -199,11 +201,12 @@ public class Karakter implements Mozgathato {
 
         Logger.log();
 
-        if(testho - mennyiseg <= 0)
-            meghal("Megfagytam");
+        testho -= mennyiseg;
 
-        else
-            testho -= mennyiseg;
+        Controller.getInstance().statusUpdate(new KarakterStatusUpdateEvent(this));
+
+        if(testho <= 0)
+            meghal("Megfagytam");
     }
 
     /**
@@ -213,14 +216,15 @@ public class Karakter implements Mozgathato {
 
         Logger.log();
 
-        if(munka - mennyiseg <= 0) {
+        munka -= mennyiseg;
+
+        Controller.getInstance().statusUpdate(new KarakterStatusUpdateEvent(this));
+
+        if(munka <= 0) {
 
             ProtoProgram.kovetkezoKarakter(this);
             Controller.getInstance().karakterKorvege(new KarakterKorvegeEvent(this));
         }
-
-        else
-            munka -= mennyiseg;
     }
 
     public void munkatVisszaallit(){

@@ -2,8 +2,9 @@ package Mezo;
 
 import Mozgathato.*;
 import Proto.LogAndTesting.Logger;
-import SwingMVC.Model.RandomGenerator;
 import Targy.*;
+
+import java.util.Random;
 
 /**
  * Az stabil jegtablat jelkepezi.
@@ -17,7 +18,7 @@ public class StabilJegtabla extends Jegtabla {
 
     public StabilJegtabla(boolean random, boolean vanTargy){
 
-        horeteg = RandomGenerator.getRandomInt(4);
+        horeteg = new Random().nextInt(4);
         if(vanTargy)
             targy = Targytipus.randomTargy();
 

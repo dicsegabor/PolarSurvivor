@@ -323,9 +323,6 @@ public class MezoView extends JPanel {
             @Override
             public void targyfelvetel(TargyfelvetelEvent event) {
 
-                //Targy targy = ((Jegtabla)((Karakter)event.getSource()).getMezo()).getTargy();
-
-
                 if(((Karakter)event.getSource()).getMezo().equals(mezo)) {
 
                     removeEntityImage(event.felvettTargy);

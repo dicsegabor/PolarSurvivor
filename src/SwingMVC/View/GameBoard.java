@@ -2,7 +2,6 @@ package SwingMVC.View;
 
 import SwingMVC.Controller.Controller;
 import SwingMVC.Model.MapGenerator;
-import SwingMVC.Model.Model;
 import Targy.Targy;
 
 import javax.swing.*;
@@ -11,7 +10,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
-import java.util.Map;
 
 /**
  * Ez az osztály felelõs a program megjelenítéséért.

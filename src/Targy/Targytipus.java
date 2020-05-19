@@ -1,6 +1,6 @@
 package Targy;
 
-import SwingMVC.Model.RandomGenerator;
+import java.util.Random;
 
 /**
  * Tarolja a targyak tipusait.
@@ -29,7 +29,7 @@ public enum Targytipus {
 
     public static Targy randomTargy(){
 
-        switch (RandomGenerator.getRandomInt(5)){
+        switch (new Random().nextInt(5)){
 
             case 0: return new Lapat();
             case 1: return new Kotel();

@@ -271,6 +271,18 @@ public class Controller {
         }
     }
 
+    public void statusUpdate(KarakterStatusUpdateEvent eventObject){
+
+        gameBoard.setStatusBarText();
+
+        Object[] listeners = listenerList.getListenerList();
+        for(int i = 0; i < listeners.length; i += 2){
+
+            if(listeners[i] == GameEventListener.class)
+                ((GameEventListener)listeners[i + 1]).statusUpdate(eventObject);
+        }
+    }
+
     private void addGameEventListener(){
 
         GameEventListener gameEventListener = new GameEventListener() {
@@ -301,6 +313,14 @@ public class Controller {
             public void uzenetEvent(UzenetEvent event) {
 
                 JOptionPane.showMessageDialog(gameBoard, event.uzenet, "Üzenet" , JOptionPane.PLAIN_MESSAGE);
+            }
+
+            @Override
+            public void statusUpdate(KarakterStatusUpdateEvent event) {
+
+                gameBoard.setStatusBarText();
+                gameBoard.repaint();
+                gameBoard.revalidate();
             }
         };
 

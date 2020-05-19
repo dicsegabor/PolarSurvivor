@@ -8,10 +8,7 @@ import Mozgathato.Karakter;
 import Mozgathato.Kutato;
 import SwingMVC.Controller.Controller;
 import SwingMVC.Eventhandling.Eventhandlers.GameEventListener;
-import SwingMVC.Eventhandling.Events.JatekvegeEvent;
-import SwingMVC.Eventhandling.Events.KarakterKorvegeEvent;
-import SwingMVC.Eventhandling.Events.KorvegeEvent;
-import SwingMVC.Eventhandling.Events.UzenetEvent;
+import SwingMVC.Eventhandling.Events.*;
 import Targy.Targytipus;
 
 import java.io.FileNotFoundException;
@@ -210,6 +207,11 @@ public class Model {
 
             @Override
             public void uzenetEvent(UzenetEvent event) {
+
+            }
+
+            @Override
+            public void statusUpdate(KarakterStatusUpdateEvent event) {
 
             }
         };
