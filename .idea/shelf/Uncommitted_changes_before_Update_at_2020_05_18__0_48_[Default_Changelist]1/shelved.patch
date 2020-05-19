@@ -1,0 +1,19 @@
+Index: .idea/encodings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"Encoding\">\r\n    <file url=\"file://$PROJECT_DIR$/src/Mozgathato/Karakter.java\" charset=\"windows-1250\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/encodings.xml	(revision 9832fdb5a952c8058f2c4de87eeccacd6c14e99a)
++++ .idea/encodings.xml	(date 1589747266159)
+@@ -1,6 +1,8 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+   <component name="Encoding">
++    <file url="file://$PROJECT_DIR$/src/Mezo/Mezo.java" charset="windows-1250" />
+     <file url="file://$PROJECT_DIR$/src/Mozgathato/Karakter.java" charset="windows-1250" />
++    <file url="file://$PROJECT_DIR$/src/SwingMVC/Application.java" charset="windows-1250" />
+   </component>
+ </project>
+\ No newline at end of file

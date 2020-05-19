@@ -1,0 +1,30 @@
+Index: .idea/libraries/JavaFX.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><component name=\"libraryTable\">\r\n  <library name=\"JavaFX\">\r\n    <CLASSES>\r\n      <root url=\"file://$PROJECT_DIR$/../../../../../../Program Files/Java/javafx-sdk-11.0.2/lib\" />\r\n    </CLASSES>\r\n    <JAVADOC />\r\n    <SOURCES>\r\n      <root url=\"file://$PROJECT_DIR$/../../../../../../Program Files/Java/javafx-sdk-11.0.2/lib\" />\r\n    </SOURCES>\r\n    <jarDirectory url=\"file://$PROJECT_DIR$/../../../../../../Program Files/Java/javafx-sdk-11.0.2/lib\" recursive=\"false\" />\r\n    <jarDirectory url=\"file://$PROJECT_DIR$/../../../../../../Program Files/Java/javafx-sdk-11.0.2/lib\" recursive=\"false\" type=\"SOURCES\" />\r\n  </library>\r\n</component>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/libraries/JavaFX.xml	(revision 9832fdb5a952c8058f2c4de87eeccacd6c14e99a)
++++ .idea/libraries/JavaFX.xml	(date 1589747266149)
+@@ -1,13 +1,13 @@
+ <component name="libraryTable">
+   <library name="JavaFX">
+     <CLASSES>
+-      <root url="file://$PROJECT_DIR$/../../../../../../Program Files/Java/javafx-sdk-11.0.2/lib" />
++      <root url="file://$PROJECT_DIR$/../../../../Program Files/Java/javafx-sdk-11.0.2/lib" />
+     </CLASSES>
+     <JAVADOC />
+     <SOURCES>
+-      <root url="file://$PROJECT_DIR$/../../../../../../Program Files/Java/javafx-sdk-11.0.2/lib" />
++      <root url="file://$PROJECT_DIR$/../../../../Program Files/Java/javafx-sdk-11.0.2/lib" />
+     </SOURCES>
+-    <jarDirectory url="file://$PROJECT_DIR$/../../../../../../Program Files/Java/javafx-sdk-11.0.2/lib" recursive="false" />
+-    <jarDirectory url="file://$PROJECT_DIR$/../../../../../../Program Files/Java/javafx-sdk-11.0.2/lib" recursive="false" type="SOURCES" />
++    <jarDirectory url="file://$PROJECT_DIR$/../../../../Program Files/Java/javafx-sdk-11.0.2/lib" recursive="false" />
++    <jarDirectory url="file://$PROJECT_DIR$/../../../../Program Files/Java/javafx-sdk-11.0.2/lib" recursive="false" type="SOURCES" />
+   </library>
+ </component>
+\ No newline at end of file
+diff --git .idea/shelf/Uncommitted_changes_before_Update_at_2020__05__17__21_35__Default_Changelist_.xml .idea/shelf/Uncommitted_changes_before_Update_at_2020__05__17__21_35__Default_Changelist_.xml
+diff --git .idea/shelf/Uncommitted_changes_before_Update_at_2020__05__17__11_40__Default_Changelist_.xml .idea/shelf/Uncommitted_changes_before_Update_at_2020__05__17__11_40__Default_Changelist_.xml
