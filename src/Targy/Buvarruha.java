@@ -3,6 +3,7 @@ package Targy;
 import Mozgathato.Karakter;
 import Proto.LogAndTesting.Logger;
 import SwingMVC.Controller.Controller;
+import SwingMVC.Eventhandling.Events.AtfordulasEvent;
 import SwingMVC.Eventhandling.Events.TargyhasznalatEvent;
 
 /**
@@ -18,6 +19,7 @@ public class Buvarruha implements Targy {
 
         Logger.log();
         Controller.getInstance().targyhasznalatEvent(new TargyhasznalatEvent(this, karakter));
+        Controller.getInstance().atfordultEvent(new AtfordulasEvent(karakter.getMezo()));
     }
 
     /**
