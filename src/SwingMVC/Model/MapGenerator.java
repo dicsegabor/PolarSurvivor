@@ -15,9 +15,9 @@ public class MapGenerator {
     public static int eskimoCount = 1;
     public static boolean polarBear = true;
 
-    public static int HOLE = 20;
-    public static int UNSTABLE = 30;
-    public static int STABLE = 50;
+    public static int HOLE = 40;
+    public static int UNSTABLE = 50;
+    public static int STABLE = 100;
     public static int HOLE_COVERAGE = 30;
     public static int ITEM_CHANCE = 60;
 
@@ -101,7 +101,7 @@ public class MapGenerator {
             else if(number < UNSTABLE)
                 generatedFields.add(new InstabilJegtabla(true, maxCapacity, number < ITEM_CHANCE));
 
-             else if(number < STABLE)
+            else if(number < STABLE)
                 generatedFields.add(new StabilJegtabla(true, number < ITEM_CHANCE));
 
             full = generatedFields.size() == Model.DEFAULT_MAP_HEIGHT * Model.DEFAULT_MAP_WIDTH;

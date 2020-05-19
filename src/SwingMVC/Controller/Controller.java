@@ -400,7 +400,7 @@ public class Controller {
 
                     JOptionPane.showMessageDialog(gameBoard, event.uzenet, "Vége a játéknak", JOptionPane.PLAIN_MESSAGE);
                     running = false;
-                    gameBoard.hideGame();
+                    restart();
                 }
             }
 
