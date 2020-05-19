@@ -15,6 +15,13 @@ public class MapGenerator {
     public static int eskimoCount = 1;
     public static boolean polarBear = true;
 
+    //RATIOS
+    public static int HOLE = 20;
+    public static int UNSTABLE = 30;
+    public static int STABLE = 50;
+    public static int HOLE_COVERAGE = 30;
+    public static int ITEM_CHANCE = 60;
+
     private ArrayList<Mezo> fields;
     private ArrayList<Karakter> characters;
     private Jegesmedve bear;
@@ -63,12 +70,12 @@ public class MapGenerator {
 
         ArrayList<Mezo> generatedFields = new ArrayList<>(generateInitFields());
 
-        RandomGenerator LYUK = new RandomGenerator(20);
-        RandomGenerator INSTABIL = new RandomGenerator(30);
-        RandomGenerator STABIL = new RandomGenerator(50);
+        RandomGenerator LYUK = new RandomGenerator(HOLE);
+        RandomGenerator INSTABIL = new RandomGenerator(UNSTABLE);
+        RandomGenerator STABIL = new RandomGenerator(STABLE);
 
-        RandomGenerator LYUK_FEDETTSEG = new RandomGenerator(30);
-        RandomGenerator TARGY = new RandomGenerator(60);
+        RandomGenerator LYUK_FEDETTSEG = new RandomGenerator(HOLE_COVERAGE);
+        RandomGenerator TARGY = new RandomGenerator(ITEM_CHANCE);
 
         boolean full = false;
 

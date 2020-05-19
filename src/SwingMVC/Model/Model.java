@@ -28,6 +28,8 @@ public class Model {
     private ArrayList<Mezo> mezok;
     private Jegesmedve jegesmedve;
 
+    private MapGenerator generator;
+
     public static final int DEFAULT_MAP_WIDTH = 6;
     public static final int DEFAULT_MAP_HEIGHT = 5;
 
@@ -35,6 +37,9 @@ public class Model {
 
         karakterek = new ArrayList<>();
         mezok = new ArrayList<>();
+
+        generator = new MapGenerator(mezok, karakterek, jegesmedve);
+
         loadDefaultMap();
 
         addGameEventListener();
@@ -130,7 +135,6 @@ public class Model {
 
     public void generateRandomMap(){
 
-        MapGenerator generator = new MapGenerator(mezok, karakterek, jegesmedve);
         generator.generateRandomMap();
     }
 

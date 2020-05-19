@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.util.Map;
 
 /**
  * Ez az osztály felelõs a program megjelenítéséért.
@@ -153,16 +154,48 @@ public class GameBoard extends JFrame {
         JTextField researcherCount = new JTextField(Integer.toString(MapGenerator.researcherCount));
         JTextField eskimoCount = new JTextField(Integer.toString(MapGenerator.eskimoCount));
         JCheckBox polarBear = new JCheckBox("", MapGenerator.polarBear);
+        JButton advanced = new JButton("Show advanced");
+        advanced.addActionListener(e -> createAdvancedGeneratorSettings());
+
         Object[] message = {
 
-                "Kutatok szama:", researcherCount,
+                "Kutatok szama", researcherCount,
                 "Eszkimok szama", eskimoCount,
-                "Jegesmedve", polarBear
+                "Jegesmedve", polarBear,
+                advanced
         };
 
         int option = JOptionPane.showConfirmDialog(this, message, "Set generator", JOptionPane.OK_CANCEL_OPTION);
         if (option == JOptionPane.OK_OPTION)
             MapGenerator.setGenerator(Integer.parseInt(researcherCount.getText()), Integer.parseInt(eskimoCount.getText()), polarBear.isSelected());
+    }
+
+    private void createAdvancedGeneratorSettings(){
+
+        JTextField holeRatio = new JTextField(Integer.toString(MapGenerator.HOLE));
+        JTextField unstableRatio = new JTextField(Integer.toString(MapGenerator.UNSTABLE));
+        JTextField stableRatio = new JTextField(Integer.toString(MapGenerator.STABLE));
+        JTextField holeCoverageRatio = new JTextField(Integer.toString(MapGenerator.HOLE_COVERAGE));
+        JTextField itemRatio = new JTextField(Integer.toString(MapGenerator.ITEM_CHANCE));
+
+        Object[] message = {
+
+                "Lyuk esely", holeRatio,
+                "Instabil esely", unstableRatio,
+                "Stabil esely", stableRatio,
+                "Lyuk lefedettseg esely", holeCoverageRatio,
+                "Targy esely", itemRatio
+        };
+
+        int option = JOptionPane.showConfirmDialog(this, message, "Set generator", JOptionPane.OK_CANCEL_OPTION);
+        if (option == JOptionPane.OK_OPTION){
+
+            MapGenerator.HOLE = Integer.parseInt(holeRatio.getText());
+            MapGenerator.UNSTABLE = Integer.parseInt(unstableRatio.getText());
+            MapGenerator.STABLE = Integer.parseInt(stableRatio.getText());
+            MapGenerator.HOLE_COVERAGE = Integer.parseInt(holeCoverageRatio.getText());
+            MapGenerator.ITEM_CHANCE = Integer.parseInt(itemRatio.getText());
+        }
     }
 
     /**
