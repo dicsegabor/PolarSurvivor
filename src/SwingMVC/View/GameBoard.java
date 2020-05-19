@@ -93,11 +93,16 @@ public class GameBoard extends JFrame {
      */
     private void createStatusBar(){
 
+        //Tárolók létrehozása
         statusBar = new JPanel();
         statusLabel = new JLabel();
+
+        //Beállítjuk a szöveget
         setStatusBarText();
         statusBar.add(statusLabel);
         statusBar.setVisible(true);
+
+        //Hozzáadjuk a JFrame-hez
         add(statusBar, BorderLayout.SOUTH);
     }
 
@@ -106,15 +111,15 @@ public class GameBoard extends JFrame {
      */
     public void setStatusBarText() {
 
+        //Lekérdezzük a munnkát és a testhõt az aktív karaktertõl
         int munka = Controller.getInstance().getActiveKarakter().getMunka();
         int testho = Controller.getInstance().getActiveKarakter().getTestho();
 
         StringBuilder targylista = new StringBuilder();
 
-        for (Targy targy : Controller.getInstance().getActiveKarakter().getTargyak()) {
-
+        //Lekérdezzük a tárgylistát
+        for (Targy targy : Controller.getInstance().getActiveKarakter().getTargyak())
             targylista.append(targy.tipus());
-        }
 
         statusLabel.setText(Controller.getInstance().getActiveKarakter().tipus() + " || Munka: " + munka + " | Testho: " + testho + " | Targyak: " + targylista);
     }
@@ -127,30 +132,41 @@ public class GameBoard extends JFrame {
 
         JMenuBar menuBar = new JMenuBar();
 
+        //Reload map gomb létrehozása
         JMenuItem restart = new JMenuItem("Reload map");
+        //Meghívja a Controller restart függvényét
         restart.addActionListener((event) -> Controller.getInstance().restart());
         menuBar.add(restart);
 
+        //A map menü létrehozása
         JMenu map = new JMenu("Map");
         menuBar.add(map);
 
+        //Load default map meüpont létrehozása
         JMenuItem loadDefault = new JMenuItem("Load default map");
         loadDefault.addActionListener((event) -> {Controller.getInstance().setMap(false); Controller.getInstance().restart();});
         map.add(loadDefault);
 
+        //Random generated map meüpont létrehozása
         JMenuItem generate = new JMenuItem("Random generated map");
         generate.addActionListener((event) -> {Controller.getInstance().setMap(true); Controller.getInstance().restart();});
         map.add(generate);
 
+        //Set generato meüpont létrehozása
         JMenuItem setGenerator = new JMenuItem("Set generator");
+        //
         setGenerator.addActionListener((event) -> createGeneratorInputDialog());
         map.add(setGenerator);
 
+        //Help meüpont létrehozása
         JMenuItem help = new JMenuItem("Help");
+        //Létrehozza a helpdialogot
         help.addActionListener((event) -> createHelpDialog());
         menuBar.add(help);
 
+        //Exit meüpont létrehozása
         JMenuItem exit = new JMenuItem("Exit");
+        //Kilép az alkalmazásból
         exit.addActionListener((event) -> System.exit(0));
         menuBar.add(exit);
 
