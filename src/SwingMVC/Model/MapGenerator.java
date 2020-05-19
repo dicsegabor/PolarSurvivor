@@ -24,14 +24,22 @@ public class MapGenerator {
     private ArrayList<Mezo> fields;
     private ArrayList<Karakter> characters;
     private Jegesmedve bear;
-
+    /**
+     * Feltöltjük a tárolókat a generáláshoz.
+     * @param characters egy karakter lista
+     * @param fields egy mező lista
+     * @param polarBear a jegesmedve
+     */
     public MapGenerator(ArrayList<Mezo> fields, ArrayList<Karakter> characters, Jegesmedve polarBear){
 
         this.fields = fields;
         this.characters = characters;
         this.bear = polarBear;
     }
-
+    /**
+     * Beállítja a mezők szomszédjait.
+     * @param palya a megadott pálya.
+     */
     public static void setNeighbours(Mezo[][] palya){
 
         for (int i = 0; i < Model.DEFAULT_MAP_HEIGHT; i++)
@@ -41,14 +49,22 @@ public class MapGenerator {
                         if(Math.abs(i-k) == 0 && Math.abs(j-l) == 1 || Math.abs(i-k) == 1 && Math.abs(j-l) == 0)
                             palya[i][j].setSzomszed(palya[k][l]);
     }
-
+    /**
+     * Beállítjuk hogy mennyi kutatók és az eszkimók számát a generéléshoz.
+     * Megadhatjuk hogy lesz-e jegesmedve.
+     * @param researcherCount A kutatók száma.
+     * @param eskimoCount Az eszkimók száma.
+     * @param polarBear A pálya tartalmaz-e jegesmedvét.
+     */
     public static void setGenerator(int researcherCount, int eskimoCount, boolean polarBear ){
 
         MapGenerator.researcherCount = researcherCount;
         MapGenerator.eskimoCount = eskimoCount;
         MapGenerator.polarBear = polarBear;
     }
-
+    /**
+     * Létrehozunk egy teljesen véletlenszerű játékteret.
+     */
     public void generateRandomMap(){
 
         fields.clear();
@@ -64,7 +80,9 @@ public class MapGenerator {
         for (int i = 0; i < Model.DEFAULT_MAP_HEIGHT; i++)
             fields.addAll(Arrays.asList(board[i]).subList(0, Model.DEFAULT_MAP_WIDTH));
     }
-
+    /**
+     * Az alap mező listát bővítjük ki további véletlenszerű mezőkkel ezzel létrehozva a teljes játékteret.
+     */
     private ArrayList<Mezo> generateFields() {
 
         ArrayList<Mezo> generatedFields = new ArrayList<>(generateInitFields());
@@ -91,7 +109,10 @@ public class MapGenerator {
 
         return generatedFields;
     }
-
+    /**
+     * Létre hozzuk azt a mező listát amelyeken a játékhoz szükséges alapok kellenek(min. 1-1 kutató-eszkimó és a játék megnyeréséhez szükséges 3 tárgy)
+     *
+     */
     private ArrayList<Mezo> generateInitFields() {
 
         ArrayList<Mezo> fields = new ArrayList<>();
@@ -137,7 +158,11 @@ public class MapGenerator {
 
         return fields;
     }
-
+    /**
+     * A paraméterben átadott mezőkkel véletlenszerűen feltölti a pályát.
+     * @param mezok A mezőket tároló lista.
+     * @param palya Maga a pálya.
+     */
     private void fillBoardRandomly(ArrayList<Mezo> mezok, Mezo[][] palya){
 
         ArrayList<Point> freeCoords = new ArrayList<>();
@@ -151,7 +176,10 @@ public class MapGenerator {
             palya[coord.x][coord.y] = m;
         }
     }
-
+    /**
+     * Véletlenszerű koordinátával tér vissza.
+     * @param coords
+     */
     private Point getRandomCoords(ArrayList<Point> coords){
 
         Point coord = coords.get(new Random().nextInt(coords.size()));
