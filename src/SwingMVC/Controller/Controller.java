@@ -81,36 +81,59 @@ public class Controller {
         gameBoard.revalidate();
     }
 
+    /**
+     *
+     * @param mezo  A model a paraméterül kapott mezõre lépteti az aktív karaktert.
+     */
     public void lep(Mezo mezo){
 
         model.lep(activeKarakter, mezo);
     }
 
+    /**
+     * Aktív karakter ás
+     */
     public void as(){
 
         model.as(activeKarakter);
     }
 
+    /**
+     * Aktív karakter tárgyat felvesz.
+     */
     public void targyatFelvesz(){
 
         model.targyatFelvesz(activeKarakter);
     }
 
+    /**
+     * Aktív eszkimo karakter iglut épít
+     */
     public void iglutEpit(){
 
         model.iglutEpit((Eszkimo)activeKarakter);
     }
 
+    /**
+     * Aktív karakter sátrat épít.
+     */
     public void satratEpit(){
 
         model.satratEpit(activeKarakter);
     }
 
+    /**
+     * összeszereli a karakter a nyeréshez szükséges tárgyakat.
+     */
     public void osszeszerel(){
 
         model.osszeszerel(activeKarakter);
     }
 
+    /**
+     * Az aktív sarkkutató karakter a paraméterül kapott mezõt megvizsgálja
+     * @param mezo
+     */
     public void jegetNez(Mezo mezo){
 
         model.jegetNez((Kutato) activeKarakter, mezo);
