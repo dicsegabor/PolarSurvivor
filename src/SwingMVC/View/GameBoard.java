@@ -257,7 +257,7 @@ public class GameBoard extends JFrame {
         JScrollPane scrollPane = new JScrollPane(textArea);
         textArea.setLineWrap(true);
         textArea.setWrapStyleWord(true);
-        scrollPane.setPreferredSize( new Dimension( 500, 600 ) );
+        scrollPane.setPreferredSize( new Dimension( 700, 600 ) );
         //kirajzoljuk az optionpane-t
         JOptionPane.showMessageDialog(this, scrollPane, "Help", JOptionPane.PLAIN_MESSAGE);
     }
