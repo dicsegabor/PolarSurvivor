@@ -206,7 +206,7 @@ public class Karakter implements Mozgathato {
         Controller.getInstance().statusUpdate(new KarakterStatusUpdateEvent(this));
 
         if(testho <= 0)
-            meghal("Megfagytam");
+            meghal("Megfagytam.");
     }
 
     /**
