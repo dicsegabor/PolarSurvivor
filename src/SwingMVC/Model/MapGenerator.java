@@ -85,9 +85,9 @@ public class MapGenerator {
 
              else if(number < STABLE)
                 generatedFields.add(new StabilJegtabla(true, number < ITEM_CHANCE));
-        }
 
-        full = generatedFields.size() == Model.DEFAULT_MAP_HEIGHT * Model.DEFAULT_MAP_WIDTH;
+            full = generatedFields.size() == Model.DEFAULT_MAP_HEIGHT * Model.DEFAULT_MAP_WIDTH;
+        }
 
         return generatedFields;
     }
