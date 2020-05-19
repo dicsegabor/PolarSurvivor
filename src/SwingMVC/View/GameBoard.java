@@ -170,6 +170,9 @@ public class GameBoard extends JFrame {
             MapGenerator.setGenerator(Integer.parseInt(researcherCount.getText()), Integer.parseInt(eskimoCount.getText()), polarBear.isSelected());
     }
 
+    /**
+     * Letrehozza azt az inputDialog-ot, ahol a generator további beállításait állíthatjuk
+     */
     private void createAdvancedGeneratorSettings(){
 
         JTextField holeRatio = new JTextField(Integer.toString(MapGenerator.HOLE));

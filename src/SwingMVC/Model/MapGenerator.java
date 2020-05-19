@@ -15,7 +15,6 @@ public class MapGenerator {
     public static int eskimoCount = 1;
     public static boolean polarBear = true;
 
-    //RATIOS
     public static int HOLE = 20;
     public static int UNSTABLE = 30;
     public static int STABLE = 50;
@@ -70,37 +69,25 @@ public class MapGenerator {
 
         ArrayList<Mezo> generatedFields = new ArrayList<>(generateInitFields());
 
-        RandomGenerator LYUK = new RandomGenerator(HOLE);
-        RandomGenerator INSTABIL = new RandomGenerator(UNSTABLE);
-        RandomGenerator STABIL = new RandomGenerator(STABLE);
-
-        RandomGenerator LYUK_FEDETTSEG = new RandomGenerator(HOLE_COVERAGE);
-        RandomGenerator TARGY = new RandomGenerator(ITEM_CHANCE);
-
         boolean full = false;
 
         int maxCapacity = researcherCount + eskimoCount + 1;
 
         while (!full){
 
-            if(LYUK.getJudgment()) {
+            int number = new Random().nextInt(100);
 
-                generatedFields.add(new Lyuk(LYUK_FEDETTSEG.getJudgment()));
-                full = generatedFields.size() == Model.DEFAULT_MAP_HEIGHT * Model.DEFAULT_MAP_WIDTH;
-            }
+            if(number < HOLE)
+                generatedFields.add(new Lyuk(number < HOLE_COVERAGE));
 
-            if(INSTABIL.getJudgment() && !full){
+            else if(number < UNSTABLE)
+                generatedFields.add(new InstabilJegtabla(true, maxCapacity, number < ITEM_CHANCE));
 
-                generatedFields.add(new InstabilJegtabla(true, maxCapacity, TARGY.getJudgment()));
-                full = generatedFields.size() == Model.DEFAULT_MAP_HEIGHT * Model.DEFAULT_MAP_WIDTH;
-            }
-
-            if(STABIL.getJudgment() && !full){
-
-                generatedFields.add(new StabilJegtabla(true, TARGY.getJudgment()));
-                full = generatedFields.size() == Model.DEFAULT_MAP_HEIGHT * Model.DEFAULT_MAP_WIDTH;
-            }
+             else if(number < STABLE)
+                generatedFields.add(new StabilJegtabla(true, number < ITEM_CHANCE));
         }
+
+        full = generatedFields.size() == Model.DEFAULT_MAP_HEIGHT * Model.DEFAULT_MAP_WIDTH;
 
         return generatedFields;
     }
