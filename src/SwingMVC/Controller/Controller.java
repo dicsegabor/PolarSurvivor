@@ -13,17 +13,43 @@ import SwingMVC.View.GameBoard;
 import javax.swing.*;
 import javax.swing.event.EventListenerList;
 
+/**
+ * Singleton Controller
+ * A view és model közti összeköttetést valósítja meg
+ */
 public class Controller {
 
     private static Controller instance;
+    /**
+     * Az játék állapotát tartalmazó Model példány
+     */
     private Model model;
+    /**
+     * A jelenleg soron lévõ karakter modellbeli megfelelõje
+     */
     private Karakter activeKarakter;
+    /**
+     * A view, amit a felhaszáló lát
+     */
     private GameBoard gameBoard;
+    /**
+     * A játék futását jelzõ változó
+     */
     private boolean running;
+    /**
+     * Jelzi, hogy a pályabetöltés random vagy elõre elkészített pályával történjen
+     */
     private boolean randomMap;
 
+    /**
+     * Az eseményekre feliratkozó EventListenerek listája
+     */
     private EventListenerList listenerList;
 
+    /**
+     * A Controller példány lekérdezése
+     * @return A Controller példány
+     */
     public static Controller getInstance() {
 
         if(instance == null)
@@ -32,6 +58,9 @@ public class Controller {
         return instance;
     }
 
+    /**
+     * A Controller singleton inicializálása
+     */
     public Controller(){
 
         instance = this;
@@ -39,33 +68,56 @@ public class Controller {
         running = true;
         randomMap = false;
         listenerList = new EventListenerList();
+        // új model létrehozása
         model = new Model();
+        // a soron következõ karakter lekérése a modellbõl
         activeKarakter = model.getKarakter(0);
 
+        // Az eseménykezelõk beregisztrálása
         addGameEventListener();
     }
 
+    /**
+     * Az adatokat tartalmazó modell
+     * @return A használatban lévõ modell
+     */
     public Model getModel() {
 
         return model;
     }
 
+    /**
+     * A jelenleg soron lévõ karakter a modellbõl
+     * @return A soron lévõ karakter
+     */
     public Karakter getActiveKarakter() {
 
         return activeKarakter;
     }
 
+    /**
+     * Random generált pályát töltsön-e be
+     * @param isRandom A random pályabetöltést jelzõ boolean
+     */
     public void setMap(boolean isRandom){
 
         randomMap = isRandom;
     }
 
+    /**
+     * Felveszi a view-t képezõ GameBoardot
+     * @param gameBoard A megjelenítendõ GameBoard
+     */
     public void addGameBoard(GameBoard gameBoard){
 
         this.gameBoard = gameBoard;
+        // soron lévõ karakter kiemelése
         gameBoard.highlightKarakter();
     }
 
+    /**
+     * Új játék indítása
+     */
     public void restart(){
 
         running = true;
