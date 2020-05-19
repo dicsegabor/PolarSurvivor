@@ -1,6 +1,7 @@
 package SwingMVC.View;
 
 import SwingMVC.Controller.Controller;
+import SwingMVC.Model.MapGenerator;
 import SwingMVC.Model.Model;
 import Targy.Targy;
 
@@ -149,9 +150,9 @@ public class GameBoard extends JFrame {
      */
     private void createGeneratorInputDialog(){
 
-        JTextField researcherCount = new JTextField(Integer.toString(Model.researcherCount));
-        JTextField eskimoCount = new JTextField(Integer.toString(Model.eskimoCount));
-        JCheckBox polarBear = new JCheckBox("", Model.polarBear);
+        JTextField researcherCount = new JTextField(Integer.toString(MapGenerator.researcherCount));
+        JTextField eskimoCount = new JTextField(Integer.toString(MapGenerator.eskimoCount));
+        JCheckBox polarBear = new JCheckBox("", MapGenerator.polarBear);
         Object[] message = {
 
                 "Kutatok szama:", researcherCount,
@@ -161,7 +162,7 @@ public class GameBoard extends JFrame {
 
         int option = JOptionPane.showConfirmDialog(this, message, "Set generator", JOptionPane.OK_CANCEL_OPTION);
         if (option == JOptionPane.OK_OPTION)
-            Model.setGenerator(Integer.parseInt(researcherCount.getText()), Integer.parseInt(eskimoCount.getText()), polarBear.isSelected());
+            MapGenerator.setGenerator(Integer.parseInt(researcherCount.getText()), Integer.parseInt(eskimoCount.getText()), polarBear.isSelected());
     }
 
     /**

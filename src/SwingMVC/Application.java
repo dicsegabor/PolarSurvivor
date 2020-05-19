@@ -3,13 +3,14 @@ package SwingMVC;
 import SwingMVC.Controller.Controller;
 import SwingMVC.View.GameBoard;
 
+/**
+ * Elindítja a gameBoardot, valamint hozzárendeli a controllerhez
+ */
 public class Application {
-
-    private static GameBoard gameBoard;
 
     public static void main(String[] args){
 
-        gameBoard = new GameBoard();
+        GameBoard gameBoard = new GameBoard();
         Controller.getInstance().addGameBoard(gameBoard);
         gameBoard.start();
     }

@@ -241,10 +241,16 @@ public class MezoView extends JPanel {
         addMouseListener(listener);
     }
 
+    /**
+     * Beállítja a mezoView-hoz tarttozó listenert, ami a model áltatl küldött eseményekre reagál
+     */
     private void setupMezoListener(){
 
         MezoEventListener mezoEventListener = new MezoEventListener() {
 
+            /**
+             * A mezõ átfordulására reagál
+             */
             @Override
             public void atfordult(AtfordulasEvent event) {
 
@@ -253,6 +259,9 @@ public class MezoView extends JPanel {
 
             }
 
+            /**
+             * A mezõn való ásásra reagál
+             */
             @Override
             public void astak(AsasEvent event) {
 
@@ -264,6 +273,9 @@ public class MezoView extends JPanel {
                 }
             }
 
+            /**
+             * A mzõn való építésre reagál
+             */
             @Override
             public void epites(EpitesEvent event) {
 
@@ -274,6 +286,9 @@ public class MezoView extends JPanel {
                 revalidate();
             }
 
+            /**
+             * A kutató képessséghasználatára reagál
+             */
             @Override
             public void kutatoKepesseg(KutatoKepessegEvent event) {
 
@@ -281,6 +296,9 @@ public class MezoView extends JPanel {
                     JOptionPane.showMessageDialog(getParent(), "A mezo kapacitasa: " + event.kapacitas + ".", "Kutato", JOptionPane.PLAIN_MESSAGE);
             }
 
+            /**
+             * A karakter lépésére reagál
+             */
             @Override
             public void leptek(LepesEvent event) {
 
@@ -299,6 +317,9 @@ public class MezoView extends JPanel {
                 }
             }
 
+            /**
+             * A tárgyfelvételre reagál
+             */
             @Override
             public void targyfelvetel(TargyfelvetelEvent event) {
 
@@ -315,6 +336,9 @@ public class MezoView extends JPanel {
                 }
             }
 
+            /**
+             * A viharra reagál
+             */
             @Override
             public void vihar(ViharEvent event) {
 
@@ -324,6 +348,9 @@ public class MezoView extends JPanel {
                         removeEntityImage(((Jegtabla)mezo).getEpulet());
             }
 
+            /**
+             * Egy tárgy használatára reagál
+             */
             @Override
             public void targyhasznalat(TargyhasznalatEvent event) {
 

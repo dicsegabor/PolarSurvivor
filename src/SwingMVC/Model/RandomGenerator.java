@@ -27,9 +27,4 @@ public class RandomGenerator {
 
         return new Random().nextInt(range);
     }
-
-    public static boolean getRandomBooelan(){
-
-        return new Random().nextBoolean();
-    }
 }
