@@ -25,6 +25,11 @@ public class GameBoard extends JFrame {
     /**
      * Az aktív karakter tulajdonságait megjelenítõ állapotsáv.
      */
+    private JPanel statusBar;
+
+    /**
+     * Az aktív karakter tulajdonságait megjelenítõ állapotsáv.
+     */
     private JLabel statusLabel;
 
     public GameBoard(){
@@ -44,6 +49,7 @@ public class GameBoard extends JFrame {
     public void reset(){
 
         remove(gamePanel);
+        remove(statusBar);
         gamePanel = new GamePanel();
         buildGUI();
     }
@@ -77,12 +83,12 @@ public class GameBoard extends JFrame {
      */
     private void createStatusBar(){
 
+        statusBar = new JPanel();
         statusLabel = new JLabel();
         setStatusBarText();
-        JPanel panel = new JPanel();
-        panel.add(statusLabel);
-        panel.setVisible(true);
-        add(panel, BorderLayout.SOUTH);
+        statusBar.add(statusLabel);
+        statusBar.setVisible(true);
+        add(statusBar, BorderLayout.SOUTH);
     }
 
     /**
