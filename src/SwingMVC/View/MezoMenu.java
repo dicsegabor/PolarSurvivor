@@ -20,11 +20,16 @@ public class MezoMenu extends JPopupMenu {
      */
     private MezoView mezoView;
 
+    /**
+     * Jobb-klikk menü
+     * @param mezoView A mezõ, amire a játékos a képernyõn kattintott
+     */
     public MezoMenu(MezoView mezoView){
 
         super();
         this.mezoView = mezoView;
 
+        // A megjelenítendõ opciók betöltése
         listSelectableMenuPoints();
     }
 
@@ -33,55 +38,81 @@ public class MezoMenu extends JPopupMenu {
      */
     private void listSelectableMenuPoints(){
 
+        // A jelenleg soron lévõ karakter
         Karakter aktivKarakter = Controller.getInstance().getActiveKarakter();
+        // A mezõ, amin a jelenleg soron lévõ karakter áll
         Mezo aktivKarakterMezo = aktivKarakter.getMezo();
 
+        /* Kör vége menüpont
+         * Bármelyik mezõn választható
+         */
         addEndTurnMenuPoint();
 
-        // Csak szomszédos vagy saját mezõn
+        // A többi menüpont csak szomszédos vagy saját mezõn érhetõ el
         if(!mezoView.getMezo().szomszedE(aktivKarakterMezo) &&
            !mezoView.getMezo().equals(aktivKarakterMezo))
             return;
 
-        // Össze tudják szerelni a jelzõpisztolyt
+        /*
+         * Jelzõpisztoly összeszerelése
+         * Csak saját mezõn
+         * Akkor, ha már megvan minden alkatrész a mezõn álló karaktereknél
+         */
         if(mezoView.getMezo().equals(aktivKarakterMezo) && aktivKarakterMezo.tudnakEOsszeszerlni())
             addCombineMenuPoint();
 
+        /*
+         * Csak szomszédos mezõn elérhetõ opciók ezután
+         */
         if(mezoView.getMezo().szomszedE(aktivKarakterMezo)) {
-            // Kutató szomszédos mezõn jeget néz
+
+            // Kutató: jég kapacitását nézheti
             if(aktivKarakter.tipus().equals(MozgathatoTipus.KUTATO))
                 addCheckIceMenuPoint();
 
-            // Szomszédos mezõre lépés
-            // Lyuk
+            /*
+             * Lépés
+             * Csak az aktív karakter mezõjével szomszédos mezõre
+             *
+             * Lyuk esetén
+             */
             if(mezoView.getMezo().getClass().equals(Lyuk.class)){
-                // Van rajta hó -> léphet
+
+                // Van hó a mezõn -> léphet
                 if(mezoView.getMezo().getHoreteg() > 0)
                     addMoveMenupoint();
-                // Nincs hó, de van búvárruhája -> léphet
+
+                // Nincs hó a mezõn, de van búvárruhája -> léphet
                 else {
                     try {
                         aktivKarakter.keres(Targytipus.BUVARRUHA);
                         addMoveMenupoint();
                     } catch (ItemNotFoundException ignored) { }
                 }
-            // Nem lyuk -> biztos léphet
+
+            // Nem lyuk -> biztos ráléphet
             } else addMoveMenupoint();
         }
 
-        // Ezutániakat csak saját mezõn csinálhatja
-        if(!mezoView.getMezo().equals(aktivKarakterMezo)) return;
+        /*
+         * Csak saját, nem lyuk mezõn elérhetõ opciók ezután
+         */
+        if(!mezoView.getMezo().equals(aktivKarakterMezo) || mezoView.getMezo().getClass().equals(Lyuk.class))
+            return;
 
         // Van hó a mezõn -> áshat
         if(aktivKarakterMezo.getHoreteg() > 0)
             addDigMenuPoint();
+
+        // Nincs hó a mezõn
         else {
-            // Van tárgy a mezõn és hó nincs -> felveheti
+
+            // Van tárgy a mezõn és nem fedi hó -> felveheti
             if (((Jegtabla) aktivKarakterMezo).getTargy() != null)
                 addPickupItemMenuPoint();
         }
 
-        // Kutato -> jeget nézhet
+        // Kutató -> jeget nézhet
         if(aktivKarakter.tipus().equals(MozgathatoTipus.KUTATO))
             addCheckIceMenuPoint();
 
@@ -92,7 +123,7 @@ public class MezoMenu extends JPopupMenu {
         if(aktivKarakter.tipus().equals(MozgathatoTipus.ESZKIMO))
             addBuildIgluMenuPoint();
 
-        // Van sátra -> építhet
+        // Van sátra -> építhet sátrat
         try {
             aktivKarakter.keres(Targytipus.SATOR);
             addBuildTentMenuPoint();
