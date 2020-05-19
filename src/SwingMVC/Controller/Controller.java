@@ -267,6 +267,8 @@ public class Controller {
                 gameBoard.removeHighlightKarakter();
                 activeKarakter = model.getNextKarakter(activeKarakter);
                 gameBoard.highlightKarakter();
+
+                statusUpdate(new KarakterStatusUpdateEvent(this));
             }
 
             @Override

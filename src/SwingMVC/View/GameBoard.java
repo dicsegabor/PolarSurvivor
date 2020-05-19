@@ -14,11 +14,13 @@ import java.nio.charset.StandardCharsets;
 /**
  * Ez az osztály felelõs a program megjelenítéséért.
  * Egy JFrame-bõl származik, tehát ez tárol minden mást.
+ * MEgjelenít egy menüszallagot, valamint a karakter statusbar-ját.
  */
 public class GameBoard extends JFrame {
 
     /**
      * A panel, ami a mezõk grafikus megjelenítését tárolja.
+     * Tárolja a mezõn található entitások megjelenítését is.
      */
     private GamePanel gamePanel;
 
@@ -28,17 +30,19 @@ public class GameBoard extends JFrame {
     private JPanel statusBar;
 
     /**
-     * Az aktív karakter tulajdonságait megjelenítõ állapotsáv.
+     * Az aktív karakter tulajdonságait megjelenítõ állapotsávban a szöveg.
      */
     private JLabel statusLabel;
 
     public GameBoard(){
 
+        //Beállítjuk az alapvetõ dolgokat
         super("Polar Survivor");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
         setResizable(false);
 
+        //Beálllítjuk a gamePanelt
         gamePanel = new GamePanel();
     }
 
@@ -48,14 +52,18 @@ public class GameBoard extends JFrame {
      */
     public void reset(){
 
+        //Kitöröljük a régi objektumokat
         remove(gamePanel);
         remove(statusBar);
+
+        //Új objektumot töltünk be
         gamePanel = new GamePanel();
         buildGUI();
     }
 
     /**
-     * Elrejti az aktuális játékot, hogy ne lehessen katintgatni
+     * Elrejti az aktuális játékot, hogy ne lehessen katintgatni.
+     * Ez csak a játék végén hívjuk meg, hog nem maradjon ott a befejezetlen játék.
      */
     public void hideGame(){
 
@@ -63,7 +71,8 @@ public class GameBoard extends JFrame {
     }
 
     /**
-     * Kiemeli az aktyv karaktert
+     * Kiemeli az aktív karaktert.
+     * Kicseréli az aktív karakter képét egy kijelölt karakter képre.
      */
     public void highlightKarakter() {
 
@@ -71,7 +80,8 @@ public class GameBoard extends JFrame {
     }
 
     /**
-     * Megszünteti az aktív karakter kiemelését
+     * Megszünteti az aktív karakter kiemelését.
+     * Kicseréli a kijelölt aktív karakter képét egy nem kijelöltre.
      */
     public void removeHighlightKarakter(){
 
@@ -79,7 +89,7 @@ public class GameBoard extends JFrame {
     }
 
     /**
-     * Létrehozza az állapotsávot és az elemeit
+     * Létrehozza az állapotsávot és az elemeit, valamint hozzáadja.
      */
     private void createStatusBar(){
 
@@ -215,7 +225,6 @@ public class GameBoard extends JFrame {
         try(InputStream in = url.openStream()){
 
             byte[] bytes = in.readAllBytes();
-            //TODO: Kitalálni a kódolást, mert így nem jó
             text = new String(bytes, StandardCharsets.UTF_8);
         }
         catch (IOException e) {

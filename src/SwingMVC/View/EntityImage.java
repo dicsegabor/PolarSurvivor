@@ -7,16 +7,19 @@ import java.net.URL;
 
 /**
  * A jegtablakon megjeleno enitasok kepeit tarolja, illetve kezeli azok betolteset.
+ * Fõ funkciója az, hogy megadhatunk neki egy objectet és betölti az ahoz tartozó képet.
  */
 public class EntityImage {
 
     /**
-     * A kép, ami az entitáshoz tartozik.
+     * A kép, ami az objektumhoz tartozik.
+     * Automatikusan betöltõdik a létrehozáskor
      */
     private BufferedImage image;
 
     /**
-     * Az entitás, amihez a kép tartozik.
+     * Az object, amihez a kép tartozik.
+     * Ide csak olyanokat adjunk meg, amikhez van képünk.
      */
     private Object entity;
 
@@ -35,18 +38,22 @@ public class EntityImage {
 
         URL path;
 
+        //Ha ki van jelölve a karakter, akkor a kijelölt kéet tölti be hozzzá
         if(!highlighted)
             path = entity.getClass().getResource(entity.getClass().getSimpleName() + ".png");
 
+        //Ha nincs kijelölve a karakter akkor a nem kjelöt képet tölti be hozzá
         else
             path = entity.getClass().getResource("H" + entity.getClass().getSimpleName() + ".png");
 
+        //Az ImageIO segítségével beolvassuk a képet.
         try { image = ImageIO.read(path); }
         catch (IOException e) { System.out.println("A fájl nem található: '" + path + "'");}
     }
 
     /**
-     * Visszatér az entitással.
+     * Visszatér az entitással,
+     * így elérhetjük a kép modellbeli emgfelelõjét.
      */
     public Object getEntity() {
 
@@ -54,7 +61,8 @@ public class EntityImage {
     }
 
     /**
-     * Visszatér a tárolt képpel.
+     * Visszatér a tárolt képpel,
+     * így elérhetjük az objektum view-beli megfelelõjét.
      */
     public BufferedImage getImage() {
 
