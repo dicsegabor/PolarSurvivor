@@ -13,15 +13,28 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
 
+/**
+ * A mezõhöz tartozó grafika megjelenítéséért felelõs
+ */
 public class MezoView extends JPanel {
 
+    /**
+     * Tárolja a modellben hozzá tartozó mezõt
+     */
     private Mezo mezo;
+
+    /**
+     * A mezõn található entitások grafikái
+     */
     private HashMap<Object, JLabel> picLabels;
+
+    /**
+     * A mezõhöz tartozó háttérkép
+     */
     private BufferedImage backgroundImage;
 
     public MezoView(Mezo mezo){
@@ -45,11 +58,17 @@ public class MezoView extends JPanel {
         setupMezoListener();
     }
 
+    /**
+     * Visszatér a mezõvel
+     */
     public Mezo getMezo() {
 
         return mezo;
     }
 
+    /**
+     * Kirajzolja a mezo által tárolt entitásokat
+     */
     private void drawEntities() {
 
         for(Karakter k : mezo.getKarakterek())
@@ -59,11 +78,17 @@ public class MezoView extends JPanel {
             addEntityImage(new EntityImage(mezo.getJegesmedve(),false));
     }
 
+    /**
+     * Lekérdezi, hogy tartalmazza-e az entitáshoz tartozó grafikát
+     */
     public boolean containsEntity(Object entity){
 
         return picLabels.containsKey(entity);
     }
 
+    /**
+     * Kiemeli a megadott karaktert
+     */
     public void highlightKarakter(Karakter karakter){
 
         if(picLabels.containsKey(karakter)) {
@@ -74,6 +99,9 @@ public class MezoView extends JPanel {
         revalidate();
     }
 
+    /**
+     * Megszünteti a megadott karakter kiemelését
+     */
     public void removeHighlightKarakter(Karakter karakter){
 
         if(picLabels.containsKey(karakter)) {
@@ -84,6 +112,9 @@ public class MezoView extends JPanel {
         revalidate();
     }
 
+    /**
+     * Beállítja a háttérképet a tartalmazott mezõ alapján
+     */
     private void setBackgroundImage(){
 
         URL path = mezo.getClass().getResource(mezo.getClass().getSimpleName() + ".png");
@@ -95,6 +126,9 @@ public class MezoView extends JPanel {
         revalidate();
     }
 
+    /**
+     * Beállítja a hátérképet a megadott mezõtípus alapján
+     */
     public void setBackgroundImage(Object mezotipus){
 
         URL path = mezotipus.getClass().getResource(mezotipus.getClass().getSimpleName() + ".png");
@@ -106,6 +140,10 @@ public class MezoView extends JPanel {
         revalidate();
     }
 
+    /**
+     * Elleõrzi, hogy havasnak kell-e lennie a mezõnek,
+     * és ha igen, akkor rak rá egy réteg havat, valamint eltünteti a tárgyat
+     */
     private void legyenHo(){
 
         if(mezo.getHoreteg() != 0){
@@ -140,6 +178,9 @@ public class MezoView extends JPanel {
         }
     }
 
+    /**
+     * Felüldefiniálás. Megrajzolja a hátteret
+     */
     @Override
     protected void paintComponent(Graphics g) {
 
@@ -147,6 +188,9 @@ public class MezoView extends JPanel {
         g.drawImage(backgroundImage , 0, 0, null);
     }
 
+    /**
+     * Hozzáad a mezoView-hoz egy entitásnak a grafikáját
+     */
     private void addEntityImage(EntityImage image){
 
         JLabel picLabel = new JLabel(new ImageIcon(image.getImage()));
@@ -154,6 +198,9 @@ public class MezoView extends JPanel {
         add(picLabel);
     }
 
+    /**
+     * Kitörli egy entitás grafikáját a mezoView-ból
+     */
     private void removeEntityImage(Object entity){
 
         if(picLabels.get(entity) != null) {

@@ -7,12 +7,25 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
+/**
+ * Tárolja a mezõkhöz tartozó mezoView-kat, és gondoskodik az elrendezésükrõl
+ */
 public class GamePanel extends JPanel {
 
+    /**
+     * Tarolja a játéktér alapméretét
+     */
     public static final Dimension DEFAULT_DIMENSION = new Dimension(840, 700);
 
+    /**
+     * Tárolja a mezõkhöz tartozó mezoView-kat
+     */
     private ArrayList<MezoView> mezoViews;
 
+    /**
+     * Beállítja a panel tulajdonságait, valamint feltölti  mezoView listát a model alapján
+     * Kiemeli a kezdõ karaktert
+     */
     public GamePanel(){
 
         super();
@@ -34,6 +47,9 @@ public class GamePanel extends JPanel {
         setVisible(true);
     }
 
+    /**
+     * Kiemeli az aktív karaktert
+     */
     public void highlightKarakter() {
 
         for (MezoView mv : mezoViews)
@@ -41,6 +57,9 @@ public class GamePanel extends JPanel {
                 mv.highlightKarakter(Controller.getInstance().getActiveKarakter());
     }
 
+    /**
+     * Megszünteti az aktív karakter kiemelését
+     */
     public void removeHighlightKarakter(){
 
         for (MezoView mv : mezoViews)
@@ -48,6 +67,10 @@ public class GamePanel extends JPanel {
                 mv.removeHighlightKarakter(Controller.getInstance().getActiveKarakter());
     }
 
+    /**
+     * Hozzáadja a paraméterként kapo mezoView-t a listához, valamint a panlehez
+     * @param mezoView
+     */
     private void addMezoView(MezoView mezoView){
 
         mezoViews.add(mezoView);

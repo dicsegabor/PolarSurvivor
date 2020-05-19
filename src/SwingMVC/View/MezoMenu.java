@@ -10,8 +10,14 @@ import Targy.Targytipus;
 
 import javax.swing.*;
 
+/**
+ * A jobb klikk hatására elõugró menü, amivel a karaktereket irányíthatjuk
+ */
 public class MezoMenu extends JPopupMenu {
 
+    /**
+     * Tárolja a hozzá tartozó mezoViewt
+     */
     private MezoView mezoView;
 
     public MezoMenu(MezoView mezoView){
@@ -22,6 +28,9 @@ public class MezoMenu extends JPopupMenu {
         listSelectableMenuPoints();
     }
 
+    /**
+     * A tárolt mezoView alapján, csak a releváns menüpontokat jeleníti meg
+     */
     private void listSelectableMenuPoints(){
 
         Karakter aktivKarakter = Controller.getInstance().getActiveKarakter();
@@ -54,7 +63,7 @@ public class MezoMenu extends JPopupMenu {
                     try {
                         aktivKarakter.keres(Targytipus.BUVARRUHA);
                         addMoveMenupoint();
-                    } catch (ItemNotFoundException e) { }
+                    } catch (ItemNotFoundException ignored) { }
                 }
             // Nem lyuk -> biztos léphet
             } else addMoveMenupoint();
@@ -87,9 +96,12 @@ public class MezoMenu extends JPopupMenu {
         try {
             aktivKarakter.keres(Targytipus.SATOR);
             addBuildTentMenuPoint();
-        } catch (ItemNotFoundException e) { }
+        } catch (ItemNotFoundException ignored) { }
     }
 
+    /**
+     * A kutató képesség menüpont
+     */
     private void addCheckIceMenuPoint(){
 
         JMenuItem check = new JMenuItem("Jeget néz");
@@ -97,6 +109,9 @@ public class MezoMenu extends JPopupMenu {
         add(check);
     }
 
+    /**
+     * A körvége menüpont
+     */
     private void addEndTurnMenuPoint(){
 
         JMenuItem endturn = new JMenuItem("Kör vége");
@@ -105,6 +120,9 @@ public class MezoMenu extends JPopupMenu {
         add(endturn);
     }
 
+    /**
+     * A lépés menüpont
+     */
     private void addMoveMenupoint(){
 
         JMenuItem move = new JMenuItem("Lép");
@@ -112,6 +130,9 @@ public class MezoMenu extends JPopupMenu {
         add(move);
     }
 
+    /**
+     * Az ásás menüpont
+     */
     private void addDigMenuPoint() {
 
         JMenuItem dig = new JMenuItem("Ás");
@@ -119,6 +140,9 @@ public class MezoMenu extends JPopupMenu {
         add(dig);
     }
 
+    /**
+     * A felvétel menüpont
+     */
     private void addPickupItemMenuPoint() {
 
         JMenuItem pickup = new JMenuItem("Felvesz");
@@ -126,6 +150,9 @@ public class MezoMenu extends JPopupMenu {
         add(pickup);
     }
 
+    /**
+     * Az eszkimó képsség menüpont
+     */
     private void addBuildIgluMenuPoint() {
 
         JMenuItem build = new JMenuItem("Iglut épít");
@@ -133,6 +160,9 @@ public class MezoMenu extends JPopupMenu {
         add(build);
     }
 
+    /**
+     * A sátorépítés menüpont
+     */
     private void addBuildTentMenuPoint() {
 
         JMenuItem build = new JMenuItem("Sátrat épít");
@@ -140,6 +170,9 @@ public class MezoMenu extends JPopupMenu {
         add(build);
     }
 
+    /**
+     * A kombinálás menüpont
+     */
     private void addCombineMenuPoint() {
 
         JMenuItem combine = new JMenuItem("Összeszerelés");

@@ -9,15 +9,22 @@ import java.awt.*;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.sql.Struct;
 
+/**
+ * Ez az osztály felelõs a program megjelenítéséért.
+ * Egy JFrame-bõl származik, tehát ez tárol minden mást.
+ */
 public class GameBoard extends JFrame {
 
+    /**
+     * A panel, ami a mezõk grafikus megjelenítését tárolja.
+     */
     private GamePanel gamePanel;
+
+    /**
+     * Az aktív karakter tulajdonságait megjelenítõ állapotsáv.
+     */
     private JLabel statusLabel;
 
     public GameBoard(){
@@ -30,6 +37,10 @@ public class GameBoard extends JFrame {
         gamePanel = new GamePanel();
     }
 
+    /**
+     * Visszaállítja a gamePanel-t az eredeti állapotába
+     * (vagy új random pálát generáltat vele)
+     */
     public void reset(){
 
         remove(gamePanel);
@@ -37,21 +48,33 @@ public class GameBoard extends JFrame {
         buildGUI();
     }
 
+    /**
+     * Elrejti az aktuális játékot, hogy ne lehessen katintgatni
+     */
     public void hideGame(){
 
         gamePanel.setVisible(false);
     }
 
+    /**
+     * Kiemeli az aktyv karaktert
+     */
     public void highlightKarakter() {
 
         gamePanel.highlightKarakter();
     }
 
+    /**
+     * Megszünteti az aktív karakter kiemelését
+     */
     public void removeHighlightKarakter(){
 
         gamePanel.removeHighlightKarakter();
     }
 
+    /**
+     * Létrehozza az állapotsávot és az elemeit
+     */
     private void createStatusBar(){
 
         statusLabel = new JLabel();
@@ -62,6 +85,9 @@ public class GameBoard extends JFrame {
         add(panel, BorderLayout.SOUTH);
     }
 
+    /**
+     * Az állaptosávban található adatokat lekrdezi és belerakja az állapotsávba
+     */
     public void setStatusBarText() {
 
         int munka = Controller.getInstance().getActiveKarakter().getMunka();
@@ -77,6 +103,10 @@ public class GameBoard extends JFrame {
         statusLabel.setText(Controller.getInstance().getActiveKarakter().tipus() + " || Munka: " + munka + " | Testho: " + testho + " | Targyak: " + targylista);
     }
 
+    /**
+     * Létrehozza a menüsort és elemeit,
+     * valamint beállítja azok viselkedését
+     */
     private void createMenubar(){
 
         JMenuBar menuBar = new JMenuBar();
@@ -114,6 +144,9 @@ public class GameBoard extends JFrame {
         add(menuBar,BorderLayout.NORTH);
     }
 
+    /**
+     * Létrehozza az Inputdialog-ot, amiben beállíthatjuk a pályagenerátor adatait
+     */
     private void createGeneratorInputDialog(){
 
         JTextField researcherCount = new JTextField(Integer.toString(Model.researcherCount));
@@ -131,6 +164,9 @@ public class GameBoard extends JFrame {
             Model.setGenerator(Integer.parseInt(researcherCount.getText()), Integer.parseInt(eskimoCount.getText()), polarBear.isSelected());
     }
 
+    /**
+     * Letrehozza a dialog-ot, amiben  kiirjuk a help szöveget
+     */
     private void createHelpDialog(){
 
         URL url = getClass().getResource("Help.txt");
@@ -153,12 +189,19 @@ public class GameBoard extends JFrame {
         JOptionPane.showMessageDialog(this, scrollPane, "Help", JOptionPane.PLAIN_MESSAGE);
     }
 
+    /**
+     * Ezzel a metódussal lehet elindítani a játékot.
+     * Láthatóvá tesi, valamint felépíti a GUI-t.
+     */
     public void start(){
 
         setVisible(true);
         buildGUI();
     }
 
+    /**
+     * Felépíti a GUI-t;
+     */
     private void buildGUI() {
 
         createMenubar();
