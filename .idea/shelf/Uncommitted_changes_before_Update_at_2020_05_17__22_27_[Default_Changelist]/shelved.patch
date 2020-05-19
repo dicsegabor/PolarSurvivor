@@ -1,0 +1,864 @@
+Index: src/SwingMVC/Controller/Controller.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package SwingMVC.Controller;\r\n\r\nimport Mezo.Mezo;\r\nimport Mozgathato.Karakter;\r\nimport SwingMVC.Eventhandling.Eventhandlers.AtfordulasEventListener;\r\nimport SwingMVC.Eventhandling.Events.AtfordulasEvent;\r\nimport SwingMVC.Model.Model;\r\nimport javafx.event.Event;\r\n\r\nimport javax.swing.event.EventListenerList;\r\nimport java.util.EventListener;\r\nimport java.util.EventObject;\r\n\r\npublic class Controller {\r\n\r\n    private static Controller instance;\r\n    private Model model;\r\n    private Karakter activeKarakter;\r\n\r\n    private EventListenerList listenerList;\r\n\r\n    public static Controller getInstance() {\r\n\r\n        if(instance == null)\r\n            return new Controller();\r\n\r\n        return instance;\r\n    }\r\n\r\n    public Controller(){\r\n\r\n        instance = this;\r\n\r\n        listenerList = new EventListenerList();\r\n        model = new Model();\r\n        activeKarakter = model.getKarakter(0);\r\n    }\r\n\r\n    public void lep(Mezo mezo){\r\n\r\n        model.leptet(activeKarakter, mezo);\r\n    }\r\n\r\n    //EventHandling\r\n    public void addListener(AtfordulasEventListener listener){\r\n\r\n        listenerList.add(AtfordulasEventListener.class, listener);\r\n    }\r\n\r\n    public void removeListener(AtfordulasEventListener listener){\r\n\r\n        listenerList.remove(AtfordulasEventListener.class, listener);\r\n    }\r\n\r\n    public void fireEvent(AtfordulasEvent eventObject){\r\n\r\n        Object[] listeners = listenerList.getListenerList();\r\n        for(int i = 0; i < listeners.length; i += 2){\r\n\r\n            if(listeners[i] == AtfordulasEventListener.class)\r\n                ((AtfordulasEventListener)listeners[i + 1]).atfordult(eventObject);\r\n        }\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/SwingMVC/Controller/Controller.java	(revision 2042b74251debd90a91323a6c8f527fc7df00cd3)
++++ src/SwingMVC/Controller/Controller.java	(date 1589735632159)
+@@ -5,7 +5,7 @@
+ import SwingMVC.Eventhandling.Eventhandlers.AtfordulasEventListener;
+ import SwingMVC.Eventhandling.Events.AtfordulasEvent;
+ import SwingMVC.Model.Model;
+-import javafx.event.Event;
++//import javafx.event.Event;
+ 
+ import javax.swing.event.EventListenerList;
+ import java.util.EventListener;
+Index: src/MVC/View/Game/Mezo/MezoTipusok/JegtablaView.java
+===================================================================
+--- src/MVC/View/Game/Mezo/MezoTipusok/JegtablaView.java	(revision 2042b74251debd90a91323a6c8f527fc7df00cd3)
++++ src/MVC/View/Game/Mezo/MezoTipusok/JegtablaView.java	(revision 2042b74251debd90a91323a6c8f527fc7df00cd3)
+@@ -1,51 +0,0 @@
+-package MVC.View.Game.Mezo.MezoTipusok;
+-
+-import MVC.View.Game.Mezo.MezoView;
+-import Mezo.Mezo;
+-import javafx.scene.canvas.Canvas;
+-import javafx.scene.canvas.GraphicsContext;
+-import javafx.scene.control.ContextMenu;
+-import javafx.scene.control.MenuItem;
+-import javafx.scene.layout.*;
+-import javafx.scene.image.Image;
+-
+-import javax.imageio.ImageIO;
+-import java.io.File;
+-import java.io.FileInputStream;
+-import java.io.FileNotFoundException;
+-import java.io.IOException;
+-import java.util.ArrayList;
+-
+-public class JegtablaView extends MezoView {
+-    public JegtablaView(Mezo m) {
+-        super(m);
+-        Image background = null;
+-        try {
+-            background = new Image(new FileInputStream("src/MVC/View/Resources/stabiljegtabla.png"));
+-        } catch (FileNotFoundException e) {
+-            e.printStackTrace();
+-        }
+-        Background bg = new Background(new BackgroundImage(
+-                background,
+-                BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,
+-                BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT));
+-        this.mezo.setBackground(bg);
+-        this.getChildren().add(mezo);
+-        this.menu = new ContextMenu();
+-
+-        this.mezoImage = new Image("file:src/MVC/View/Resources/stabiljegtabla.png");
+-    }
+-
+-    @Override
+-    public void draw(Canvas canvas, int x, int y, double w, double h) {
+-        GraphicsContext g = canvas.getGraphicsContext2D();
+-        g.drawImage(mezoImage, x, y, w, h);
+-    }
+-
+-    public void showOptionsMenu(double x, double y, ArrayList<MenuItem> items) {
+-        menu.hide();
+-        menu.getItems().clear();
+-        menu.getItems().addAll(items);
+-        menu.show(mezo, x, y);
+-    }
+-}
+Index: src/MVC/Controller/GameController.java
+===================================================================
+--- src/MVC/Controller/GameController.java	(revision 2042b74251debd90a91323a6c8f527fc7df00cd3)
++++ src/MVC/Controller/GameController.java	(revision 2042b74251debd90a91323a6c8f527fc7df00cd3)
+@@ -1,67 +0,0 @@
+-package MVC.Controller;
+-
+-import MVC.Model.GameModel;
+-import MVC.View.Game.GameView;
+-import MVC.View.Game.Mezo.MezoTipusok.JegtablaView;
+-import MVC.View.Game.Mezo.MezoView;
+-import MVC.View.Game.Mozgathato.Karakterek.EszkimoView;
+-import MVC.View.Game.Mozgathato.MozgathatoView;
+-import Mezo.Mezo;
+-import Mozgathato.Karakter;
+-import Proto.Commander.Exceptions.WrongArgumentException;
+-import javafx.scene.control.MenuItem;
+-import javafx.scene.input.MouseButton;
+-import javafx.scene.input.MouseEvent;
+-
+-import java.io.FileInputStream;
+-import java.io.FileNotFoundException;
+-import java.util.ArrayList;
+-import java.util.Map;
+-import java.util.Scanner;
+-
+-public class GameController {
+-    private GameModel model;
+-    private GameView view;
+-    private Karakter aktualisKarakter;
+-    private MozgathatoView aktualisKarakterView;
+-
+-    public GameController(GameView view) {
+-        model = new GameModel();
+-        aktualisKarakter = model.getCurrentKarakter();
+-        this.view = view;
+-        init();
+-        aktualisKarakterView = view.getKarakterek().get(0);
+-        for(MezoView mv : view.getMezok()) {
+-            mv.addEventHandler(MouseEvent.MOUSE_PRESSED, e -> {
+-                mv.showOptionsMenu(e.getScreenX(), e.getScreenY(), options(mv));
+-            });
+-        }
+-    }
+-
+-    private void init() {
+-        view.setMapSize(3, 3);
+-        model.getMezok().forEach(m -> {
+-            JegtablaView jv = new JegtablaView(m);
+-            m.getKarakterek().forEach(k -> {
+-                MozgathatoView kar = new EszkimoView(jv);
+-                view.addKarakter(kar);
+-                jv.befogad(kar);
+-            });
+-            view.addMezo(jv);
+-        });
+-    }
+-
+-    private ArrayList<MenuItem> options(MezoView mv) {
+-        ArrayList<MenuItem> options = new ArrayList<>();
+-        Mezo jelenlegi = model.getCurrentKarakter().getMezo();
+-        if(jelenlegi.szomszedE(mv.getModelMezo())) {
+-            MenuItem lep = new MenuItem("Lep");
+-            lep.setOnAction(e -> {
+-                aktualisKarakter.lep(mv.getModelMezo());
+-                aktualisKarakterView.lep(mv);
+-            });
+-            options.add(lep);
+-        }
+-        return options;
+-    }
+-}
+Index: src/MVC/CanvasView/Drawables/Ho.java
+===================================================================
+--- src/MVC/CanvasView/Drawables/Ho.java	(revision 2042b74251debd90a91323a6c8f527fc7df00cd3)
++++ src/MVC/CanvasView/Drawables/Ho.java	(revision 2042b74251debd90a91323a6c8f527fc7df00cd3)
+@@ -1,9 +0,0 @@
+-package MVC.CanvasView.Drawables;
+-
+-import MVC.CanvasView.Drawable;
+-
+-public class Ho extends Drawable {
+-    public Ho(String imageFileName) {
+-        super(imageFileName);
+-    }
+-}
+Index: src/MVC/CanvasView/App.java
+===================================================================
+--- src/MVC/CanvasView/App.java	(revision 2042b74251debd90a91323a6c8f527fc7df00cd3)
++++ src/MVC/CanvasView/App.java	(revision 2042b74251debd90a91323a6c8f527fc7df00cd3)
+@@ -1,27 +0,0 @@
+-package MVC.CanvasView;
+-
+-import MVC.Controller.Controller;
+-import javafx.application.Application;
+-import javafx.scene.Scene;
+-import javafx.scene.layout.Pane;
+-import javafx.stage.Stage;
+-
+-public class App extends Application {
+-
+-    @Override
+-    public void start(Stage primaryStage) {
+-
+-        Pane window = new Pane();
+-        window.setPrefSize(1280, 720);
+-
+-        Controller controller = new Controller(window);
+-        Scene scene = new Scene(window);
+-        primaryStage.setScene(scene);
+-        primaryStage.show();
+-    }
+-
+-    public static void main(String[] args){
+-
+-        launch(args);
+-    }
+-}
+Index: src/MVC/View/Menu/MenuView.java
+===================================================================
+--- src/MVC/View/Menu/MenuView.java	(revision 2042b74251debd90a91323a6c8f527fc7df00cd3)
++++ src/MVC/View/Menu/MenuView.java	(revision 2042b74251debd90a91323a6c8f527fc7df00cd3)
+@@ -1,22 +0,0 @@
+-package MVC.View.Menu;
+-
+-import javafx.geometry.Pos;
+-import javafx.scene.layout.GridPane;
+-
+-import java.util.Collections;
+-import java.util.List;
+-
+-public class MenuView extends GridPane {
+-    private MenuButton play;
+-
+-    public MenuView(double w, double h) {
+-        this.setPrefSize(w, h);
+-        this.setAlignment(Pos.CENTER);
+-        play = new MenuButton("Play", 50, 20);
+-        MenuButton exit = new MenuButton("Exit", 50, 20);
+-        exit.setOnAction(e -> System.exit(0));
+-        this.add(play, 0, 0);
+-        this.add(exit, 0, 1);
+-    }
+-    public MenuButton getPlayButton() { return play; }
+-}
+Index: src/MVC/CanvasView/Drawables/MezoGroup.java
+===================================================================
+--- src/MVC/CanvasView/Drawables/MezoGroup.java	(revision 2042b74251debd90a91323a6c8f527fc7df00cd3)
++++ src/MVC/CanvasView/Drawables/MezoGroup.java	(revision 2042b74251debd90a91323a6c8f527fc7df00cd3)
+@@ -1,30 +0,0 @@
+-package MVC.CanvasView.Drawables;
+-
+-import MVC.CanvasView.Drawable;
+-import Mezo.Mezo;
+-import javafx.scene.canvas.Canvas;
+-import javafx.scene.canvas.GraphicsContext;
+-
+-import java.util.ArrayList;
+-
+-public abstract class MezoGroup extends Drawable {
+-    protected Canvas canvas;
+-    protected Mezo model;
+-    protected double size;
+-    protected ArrayList<Drawable> mozgathatok;
+-
+-    public MezoGroup(int size, Mezo model, String imageFileName) {
+-        super(imageFileName);
+-        this.model = model;
+-        this.size = size;
+-        mozgathatok = new ArrayList<>();
+-        canvas = new Canvas(size, size);
+-        loadImage(imageFileName);
+-    }
+-
+-    public ArrayList<Drawable> getMozgathatok() { return mozgathatok; }
+-
+-    public Canvas getCanvas() { return canvas; }
+-
+-    public abstract void draw();
+-}
+Index: src/MVC/Model/GameModel.java
+===================================================================
+--- src/MVC/Model/GameModel.java	(revision 2042b74251debd90a91323a6c8f527fc7df00cd3)
++++ src/MVC/Model/GameModel.java	(revision 2042b74251debd90a91323a6c8f527fc7df00cd3)
+@@ -1,38 +0,0 @@
+-package MVC.Model;
+-
+-import Mezo.Mezo;
+-import Mezo.StabilJegtabla;
+-import Mozgathato.Mozgathato;
+-import Mozgathato.Karakter;
+-import Mozgathato.Eszkimo;
+-
+-import java.util.ArrayList;
+-
+-public class GameModel {
+-    private ArrayList<Mozgathato> mozgathatok;
+-    private ArrayList<Karakter> karakterek;
+-    private ArrayList<Mezo> mezok;
+-
+-    public GameModel() {
+-        mozgathatok = new ArrayList<Mozgathato>();
+-        karakterek = new ArrayList<Karakter>();
+-        mezok = new ArrayList<Mezo>();
+-
+-        mezok.add(new StabilJegtabla());
+-        mezok.add(new StabilJegtabla());
+-        mezok.add(new StabilJegtabla());
+-
+-        mezok.get(0).setSzomszed(mezok.get(1));
+-        mezok.get(1).setSzomszed(mezok.get(0));
+-        mezok.get(1).setSzomszed(mezok.get(2));
+-        mezok.get(2).setSzomszed(mezok.get(1));
+-
+-        Eszkimo e1 = new Eszkimo(mezok.get(1));
+-        mezok.get(1).addKarakter(e1);
+-        karakterek.add(e1);
+-    }
+-
+-    public ArrayList<Mezo> getMezok() { return mezok; }
+-    public ArrayList<Mozgathato> getMozgathatok() { return mozgathatok; }
+-    public Karakter getCurrentKarakter() { return karakterek.get(0); }
+-}
+Index: src/MVC/View/Game/GameView.java
+===================================================================
+--- src/MVC/View/Game/GameView.java	(revision 2042b74251debd90a91323a6c8f527fc7df00cd3)
++++ src/MVC/View/Game/GameView.java	(revision 2042b74251debd90a91323a6c8f527fc7df00cd3)
+@@ -1,51 +0,0 @@
+-package MVC.View.Game;
+-
+-import MVC.View.Game.Mezo.MezoView;
+-import MVC.View.Game.Mezo.MezoTipusok.JegtablaView;
+-import MVC.View.Game.Mozgathato.Karakterek.EszkimoView;
+-import MVC.View.Game.Mozgathato.MozgathatoView;
+-import javafx.geometry.Pos;
+-import javafx.scene.layout.FlowPane;
+-import javafx.scene.layout.GridPane;
+-import javafx.scene.layout.Pane;
+-import javafx.scene.paint.Color;
+-import javafx.scene.paint.Paint;
+-import javafx.scene.shape.Rectangle;
+-
+-import java.util.ArrayList;
+-
+-public class GameView extends GridPane {
+-    private ArrayList<MezoView> mezok;
+-    private ArrayList<MozgathatoView> mozgathatok;
+-    private ArrayList<MozgathatoView> karakterek;
+-    private int mapWidth, mapHeight;
+-
+-    public GameView(double width, double height) {
+-        this.setPrefSize(width, height);
+-        this.setAlignment(Pos.CENTER);
+-
+-        mezok = new ArrayList<MezoView>();
+-        mozgathatok = new ArrayList<MozgathatoView>();
+-        karakterek = new ArrayList<MozgathatoView>();
+-    }
+-
+-    public void setMapSize(int x, int y) { mapWidth = x; mapHeight = y; }
+-
+-    public ArrayList<MezoView> getMezok() { return mezok; }
+-
+-    public void addMezo(MezoView mv) {
+-        this.add(mv,mezok.size() % mapHeight, mezok.size()/mapWidth);
+-        mezok.add(mv);
+-    }
+-
+-    public ArrayList<MozgathatoView> getKarakterek() { return karakterek; }
+-
+-    public void addKarakter(MozgathatoView k) {
+-        karakterek.add(k);
+-        mozgathatok.add(k);
+-    }
+-
+-    public void addJegesmedve(MozgathatoView j) {
+-        mozgathatok.add(j);
+-    }
+-}
+Index: src/MVC/CanvasView/Mezo/MezoView.java
+===================================================================
+--- src/MVC/CanvasView/Mezo/MezoView.java	(revision 2042b74251debd90a91323a6c8f527fc7df00cd3)
++++ src/MVC/CanvasView/Mezo/MezoView.java	(revision 2042b74251debd90a91323a6c8f527fc7df00cd3)
+@@ -1,15 +0,0 @@
+-package MVC.CanvasView.Mezo;
+-
+-import MVC.CanvasView.Drawables.MezoGroup;
+-import Mezo.Mezo;
+-import javafx.scene.layout.Pane;
+-
+-public abstract class MezoView extends Pane {
+-    protected MezoGroup mezoGroup;
+-
+-    public MezoView(int size) {
+-        this.setMinSize(size, size);
+-    }
+-
+-    public void draw() { mezoGroup.draw(); }
+-}
+Index: src/MVC/View/Game/Mozgathato/MozgathatoView.java
+===================================================================
+--- src/MVC/View/Game/Mozgathato/MozgathatoView.java	(revision 2042b74251debd90a91323a6c8f527fc7df00cd3)
++++ src/MVC/View/Game/Mozgathato/MozgathatoView.java	(revision 2042b74251debd90a91323a6c8f527fc7df00cd3)
+@@ -1,19 +0,0 @@
+-package MVC.View.Game.Mozgathato;
+-
+-import MVC.View.Game.Mezo.MezoView;
+-import javafx.scene.layout.Pane;
+-import javafx.scene.paint.Color;
+-import javafx.scene.shape.Rectangle;
+-
+-public class MozgathatoView extends Rectangle {
+-    private MezoView mezoView;
+-
+-    public MozgathatoView(MezoView mv) {
+-        super(100, 200, Color.CADETBLUE);
+-        this.mezoView = mv;
+-    }
+-    public void lep(MezoView mv) {
+-        mezoView.kiad(this);
+-        mv.befogad(this);
+-    }
+-}
+Index: src/MVC/View/Menu/MenuButton.java
+===================================================================
+--- src/MVC/View/Menu/MenuButton.java	(revision 2042b74251debd90a91323a6c8f527fc7df00cd3)
++++ src/MVC/View/Menu/MenuButton.java	(revision 2042b74251debd90a91323a6c8f527fc7df00cd3)
+@@ -1,16 +0,0 @@
+-package MVC.View.Menu;
+-
+-import javafx.scene.control.Button;
+-
+-public class MenuButton extends Button {
+-
+-    private String text;
+-    private int width, height;
+-
+-    public MenuButton(String text, int width, int height) {
+-
+-        super(text);
+-        this.text = text;
+-        this.setPrefSize(width, height);
+-    }
+-}
+Index: src/MVC/CanvasView/Drawable.java
+===================================================================
+--- src/MVC/CanvasView/Drawable.java	(revision 2042b74251debd90a91323a6c8f527fc7df00cd3)
++++ src/MVC/CanvasView/Drawable.java	(revision 2042b74251debd90a91323a6c8f527fc7df00cd3)
+@@ -1,22 +0,0 @@
+-package MVC.CanvasView;
+-
+-import MVC.View.Resources.ResourceProvider;
+-import javafx.scene.canvas.Canvas;
+-import javafx.scene.canvas.GraphicsContext;
+-import javafx.scene.image.Image;
+-
+-public abstract class Drawable {
+-    protected Image image;
+-
+-    public Drawable(String imageFileName) {
+-        loadImage(imageFileName);
+-    }
+-
+-    public Image getDrawable() {
+-        return image;
+-    }
+-
+-    public void loadImage(String imageFileName) {
+-        image = ResourceProvider.getResource(imageFileName);
+-    }
+-}
+Index: src/MVC/CanvasView/Drawables/Mozgathato/Mozgathato.java
+===================================================================
+--- src/MVC/CanvasView/Drawables/Mozgathato/Mozgathato.java	(revision 2042b74251debd90a91323a6c8f527fc7df00cd3)
++++ src/MVC/CanvasView/Drawables/Mozgathato/Mozgathato.java	(revision 2042b74251debd90a91323a6c8f527fc7df00cd3)
+@@ -1,9 +0,0 @@
+-package MVC.CanvasView.Drawables.Mozgathato;
+-
+-import MVC.CanvasView.Drawable;
+-
+-public class Mozgathato extends Drawable {
+-    public Mozgathato(String imageFileName) {
+-        super(imageFileName);
+-    }
+-}
+Index: src/MVC/CanvasView/Drawables/StabilJegtablaGroup.java
+===================================================================
+--- src/MVC/CanvasView/Drawables/StabilJegtablaGroup.java	(revision 2042b74251debd90a91323a6c8f527fc7df00cd3)
++++ src/MVC/CanvasView/Drawables/StabilJegtablaGroup.java	(revision 2042b74251debd90a91323a6c8f527fc7df00cd3)
+@@ -1,29 +0,0 @@
+-package MVC.CanvasView.Drawables;
+-
+-import MVC.View.Resources.ResourceProvider;
+-import Mezo.Mezo;
+-import javafx.scene.canvas.GraphicsContext;
+-import javafx.scene.image.Image;
+-import javafx.scene.paint.Color;
+-
+-public class StabilJegtablaGroup extends MezoGroup {
+-    private Image targy;
+-    private Image epulet;
+-
+-    public StabilJegtablaGroup(int size, Mezo model) {
+-        super(size, model, "stabiljegtabla.png");
+-    }
+-
+-    @Override
+-    public void draw() {
+-        GraphicsContext g = canvas.getGraphicsContext2D();
+-        g.drawImage(this.image, 0, 0, size, size);
+-
+-        if(model.getHoreteg() > 0)
+-            g.drawImage(ResourceProvider.getResource("ho.png"), 0, 0, size, size);
+-
+-        for(int i = 0; i < mozgathatok.size(); ++i) {
+-            g.drawImage(mozgathatok.get(i).getDrawable(), i * size / mozgathatok.size(), 0, this.size / 2, this.size/4);
+-        }
+-    }
+-}
+Index: src/MVC/CanvasView/Mezo/StabilJegtablaView.java
+===================================================================
+--- src/MVC/CanvasView/Mezo/StabilJegtablaView.java	(revision 2042b74251debd90a91323a6c8f527fc7df00cd3)
++++ src/MVC/CanvasView/Mezo/StabilJegtablaView.java	(revision 2042b74251debd90a91323a6c8f527fc7df00cd3)
+@@ -1,12 +0,0 @@
+-package MVC.CanvasView.Mezo;
+-
+-import MVC.CanvasView.Drawables.StabilJegtablaGroup;
+-import Mezo.StabilJegtabla;
+-
+-public class StabilJegtablaView extends MezoView {
+-    public StabilJegtablaView(int size, StabilJegtablaGroup g) {
+-        super(size);
+-        this.mezoGroup = g;
+-        this.getChildren().add(mezoGroup.getCanvas());
+-    }
+-}
+Index: src/MVC/CanvasView/Drawables/Mozgathato/Eszkimo.java
+===================================================================
+--- src/MVC/CanvasView/Drawables/Mozgathato/Eszkimo.java	(revision 2042b74251debd90a91323a6c8f527fc7df00cd3)
++++ src/MVC/CanvasView/Drawables/Mozgathato/Eszkimo.java	(revision 2042b74251debd90a91323a6c8f527fc7df00cd3)
+@@ -1,7 +0,0 @@
+-package MVC.CanvasView.Drawables.Mozgathato;
+-
+-public class Eszkimo extends Mozgathato {
+-    public Eszkimo() {
+-        super("eszkimo.png");
+-    }
+-}
+Index: src/MVC/View/Game/Mozgathato/Karakterek/EszkimoView.java
+===================================================================
+--- src/MVC/View/Game/Mozgathato/Karakterek/EszkimoView.java	(revision 2042b74251debd90a91323a6c8f527fc7df00cd3)
++++ src/MVC/View/Game/Mozgathato/Karakterek/EszkimoView.java	(revision 2042b74251debd90a91323a6c8f527fc7df00cd3)
+@@ -1,27 +0,0 @@
+-package MVC.View.Game.Mozgathato.Karakterek;
+-
+-import MVC.View.Game.Mezo.MezoView;
+-import MVC.View.Game.Mozgathato.MozgathatoView;
+-import javafx.scene.image.Image;
+-import javafx.scene.layout.*;
+-
+-import java.io.FileInputStream;
+-import java.io.FileNotFoundException;
+-
+-public class EszkimoView extends MozgathatoView {
+-    public EszkimoView(MezoView mv) {
+-        super(mv);
+-        Image background = null;
+-        try {
+-            background = new Image(new FileInputStream("src/MVC/View/Resources/eszkimo.png"));
+-        } catch (FileNotFoundException e) {
+-            e.printStackTrace();
+-        }
+-        //Image background = new Image("src/MVC/View/Resources/eszkimo.png");
+-        Background bg = new Background(new BackgroundImage(
+-                background,
+-                BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,
+-                BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT));
+-        //this.setBackground(bg);
+-    }
+-}
+Index: src/MVC/Controller/GameControllerCanvas.java
+===================================================================
+--- src/MVC/Controller/GameControllerCanvas.java	(revision 2042b74251debd90a91323a6c8f527fc7df00cd3)
++++ src/MVC/Controller/GameControllerCanvas.java	(revision 2042b74251debd90a91323a6c8f527fc7df00cd3)
+@@ -1,21 +0,0 @@
+-package MVC.Controller;
+-
+-import MVC.CanvasView.GameViewCanvas;
+-import MVC.Model.GameModel;
+-import javafx.scene.layout.Pane;
+-
+-public class GameControllerCanvas {
+-    private GameModel model;
+-    private GameViewCanvas view;
+-
+-    public GameControllerCanvas(GameViewCanvas view) {
+-        model = new GameModel();
+-        this.view = view;
+-        init();
+-    }
+-
+-    void init() {
+-        view.init(model);
+-        view.drawAll();
+-    }
+-}
+Index: src/MVC/View/Resources/ResourceProvider.java
+===================================================================
+--- src/MVC/View/Resources/ResourceProvider.java	(revision 2042b74251debd90a91323a6c8f527fc7df00cd3)
++++ src/MVC/View/Resources/ResourceProvider.java	(revision 2042b74251debd90a91323a6c8f527fc7df00cd3)
+@@ -1,19 +0,0 @@
+-package MVC.View.Resources;
+-
+-import javafx.scene.image.Image;
+-
+-import java.util.HashMap;
+-
+-public class ResourceProvider {
+-    private static HashMap<String, Image> images = new HashMap<>();
+-    private static String path = "file:src/MVC/View/Resources/";
+-
+-    public static Image getResource(String fileName) {
+-        if(images.containsKey(fileName))
+-            return images.get(fileName);
+-
+-        Image img = new Image(path + fileName);
+-        images.put(fileName, img);
+-        return img;
+-    }
+-}
+Index: src/MVC/Controller/Controller.java
+===================================================================
+--- src/MVC/Controller/Controller.java	(revision 2042b74251debd90a91323a6c8f527fc7df00cd3)
++++ src/MVC/Controller/Controller.java	(revision 2042b74251debd90a91323a6c8f527fc7df00cd3)
+@@ -1,28 +0,0 @@
+-package MVC.Controller;
+-
+-import MVC.CanvasView.GameViewCanvas;
+-import MVC.Model.GameModel;
+-import MVC.View.Game.GameView;
+-import MVC.View.Menu.MenuView;
+-import javafx.scene.layout.Pane;
+-
+-public class Controller {
+-    private MenuView menu;
+-    private GameViewCanvas game;
+-    private Pane window;
+-    private GameControllerCanvas gc;
+-
+-    public Controller(Pane window) {
+-        this.window = window;
+-        menu = new MenuView(window.getPrefWidth(), window.getPrefHeight());
+-        window.getChildren().add(menu);
+-        menu.getPlayButton().setOnAction(e -> startNewGame());
+-    }
+-
+-    private void startNewGame() {
+-        window.getChildren().clear();
+-        game = new GameViewCanvas(window.getPrefWidth(), window.getPrefHeight());
+-        gc = new GameControllerCanvas(game);
+-        window.getChildren().add(game);
+-    }
+-}
+Index: src/MVC/View/Game_Main.java
+===================================================================
+--- src/MVC/View/Game_Main.java	(revision 2042b74251debd90a91323a6c8f527fc7df00cd3)
++++ src/MVC/View/Game_Main.java	(revision 2042b74251debd90a91323a6c8f527fc7df00cd3)
+@@ -1,27 +0,0 @@
+-package MVC.View;
+-
+-import MVC.Controller.Controller;
+-import javafx.application.Application;
+-import javafx.scene.Scene;
+-import javafx.scene.layout.Pane;
+-import javafx.stage.Stage;
+-
+-public class Game_Main extends Application {
+-
+-    @Override
+-    public void start(Stage primaryStage) {
+-
+-        Pane window = new Pane();
+-        window.setPrefSize(1280, 720);
+-
+-        Controller controller = new Controller(window);
+-        Scene scene = new Scene(window);
+-        primaryStage.setScene(scene);
+-        primaryStage.show();
+-    }
+-
+-    public static void main(String[] args){
+-
+-        launch(args);
+-    }
+-}
+Index: src/MVC/View/WindowCanvas.java
+===================================================================
+--- src/MVC/View/WindowCanvas.java	(revision 2042b74251debd90a91323a6c8f527fc7df00cd3)
++++ src/MVC/View/WindowCanvas.java	(revision 2042b74251debd90a91323a6c8f527fc7df00cd3)
+@@ -1,34 +0,0 @@
+-package MVC.View;
+-
+-import MVC.View.Game.Mezo.MezoView;
+-import javafx.scene.canvas.Canvas;
+-import javafx.scene.canvas.GraphicsContext;
+-import javafx.scene.layout.Pane;
+-import javafx.scene.paint.Color;
+-
+-import java.util.ArrayList;
+-
+-public class WindowCanvas extends Pane {
+-    private Canvas canvas;
+-    private ArrayList<MezoView> mezoViews;
+-    private int mapHeight, mapWidth;
+-
+-    public WindowCanvas(double w, double h) {
+-        this.setPrefSize(w, h);
+-        canvas = new Canvas(w, h);
+-        this.getChildren().add(canvas);
+-        draw();
+-    }
+-
+-    public void setMapSize(int x, int y) { mapHeight = y; mapWidth = x; }
+-
+-    public void draw() {
+-        GraphicsContext g = this.canvas.getGraphicsContext2D();
+-        double tileSize = this.getPrefHeight() / mapHeight;
+-        for(int i = 0; i < mapHeight; ++i) {
+-            for(int j = 0; j < mapWidth; ++j) {
+-                mezoViews.get(i * mapWidth + j).draw(canvas, i, j, tileSize, tileSize);
+-            }
+-        }
+-    }
+-}
+Index: src/MVC/View/Game/Mezo/MezoView.java
+===================================================================
+--- src/MVC/View/Game/Mezo/MezoView.java	(revision 2042b74251debd90a91323a6c8f527fc7df00cd3)
++++ src/MVC/View/Game/Mezo/MezoView.java	(revision 2042b74251debd90a91323a6c8f527fc7df00cd3)
+@@ -1,56 +0,0 @@
+-package MVC.View.Game.Mezo;
+-
+-import MVC.View.Game.Mozgathato.MozgathatoView;
+-import Mezo.Mezo;
+-import javafx.event.EventType;
+-import javafx.scene.Group;
+-import javafx.scene.canvas.Canvas;
+-import javafx.scene.canvas.GraphicsContext;
+-import javafx.scene.control.ContextMenu;
+-import javafx.scene.control.MenuItem;
+-import javafx.scene.image.Image;
+-import javafx.scene.input.MouseButton;
+-import javafx.scene.input.MouseEvent;
+-import javafx.scene.layout.BackgroundImage;
+-import javafx.scene.layout.Pane;
+-import javafx.scene.shape.Rectangle;
+-
+-import javax.imageio.ImageIO;
+-import java.util.ArrayList;
+-
+-public abstract class MezoView extends Group {
+-    private ArrayList<MozgathatoView> mozgathatok;
+-    private ArrayList<Rectangle> targyak;
+-    private Rectangle epulet;
+-    protected Pane mezo;
+-    protected Image mezoImage;
+-    protected BackgroundImage backgroundImage;
+-    protected ContextMenu menu;
+-    private Mezo modelMezo;
+-
+-    public MezoView(Mezo m) {
+-        mozgathatok = new ArrayList<>();
+-        targyak = new ArrayList<Rectangle>();
+-        mezo = new Pane();
+-        mezo.setPrefSize(200, 200);
+-        this.modelMezo = m;
+-    }
+-
+-    public abstract void draw(Canvas canvas, int x, int y, double w, double h);
+-
+-    public Mezo getModelMezo() { return modelMezo; }
+-
+-    public abstract void showOptionsMenu(double x, double y, ArrayList<MenuItem> items);
+-    public void befogad(MozgathatoView m) {
+-        mozgathatok.add(m);
+-        this.getChildren().add(m);
+-    }
+-    public void kiad(MozgathatoView m) {
+-        mozgathatok.remove(m);
+-        this.getChildren().remove(m);
+-    }
+-    public ArrayList<MozgathatoView> getMozgathatok() {
+-        return mozgathatok;
+-    }
+-    public Pane getMezo() { return mezo; }
+-}
+Index: src/MVC/CanvasView/GameViewCanvas.java
+===================================================================
+--- src/MVC/CanvasView/GameViewCanvas.java	(revision 2042b74251debd90a91323a6c8f527fc7df00cd3)
++++ src/MVC/CanvasView/GameViewCanvas.java	(revision 2042b74251debd90a91323a6c8f527fc7df00cd3)
+@@ -1,42 +0,0 @@
+-package MVC.CanvasView;
+-
+-import MVC.CanvasView.Drawables.MezoGroup;
+-import MVC.CanvasView.Drawables.Mozgathato.Eszkimo;
+-import MVC.CanvasView.Drawables.StabilJegtablaGroup;
+-import MVC.CanvasView.Mezo.MezoView;
+-import MVC.CanvasView.Mezo.StabilJegtablaView;
+-import MVC.Model.GameModel;
+-import Mezo.Mezo;
+-import Mezo.StabilJegtabla;
+-import javafx.scene.layout.GridPane;
+-
+-import java.util.ArrayList;
+-
+-public class GameViewCanvas extends GridPane {
+-    private ArrayList<MezoView> mezok;
+-    private double width, height;
+-
+-    public GameViewCanvas(double w, double h) {
+-        this.setMinSize(w, h);
+-        width = w; height = h;
+-        mezok = new ArrayList<>();
+-    }
+-
+-    public void drawAll() {
+-        mezok.forEach(m -> m.draw());
+-    }
+-
+-    public void init(GameModel model) {
+-        mezok.clear();
+-        int mapWidth = 5, mapHeight = 3;
+-        int size = model.getMezok().size();
+-        for(int i = 0; i < model.getMezok().size(); ++i) {
+-            Mezo m = model.getMezok().get(i);
+-            MezoGroup mg = new StabilJegtablaGroup((int)this.height / mapHeight, m);
+-            m.getKarakterek().forEach(k -> mg.getMozgathatok().add(new Eszkimo()));
+-            MezoView mv = new StabilJegtablaView((int)this.height/mapHeight, (StabilJegtablaGroup) mg);
+-            this.add(mv, i % mapHeight, i / mapWidth);
+-            mezok.add(mv);
+-        }
+-    }
+-}
+Index: .idea/libraries/JavaFX.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><component name=\"libraryTable\">\r\n  <library name=\"JavaFX\">\r\n    <CLASSES>\r\n      <root url=\"file://$PROJECT_DIR$/../../../../../../Program Files/Java/javafx-sdk-11.0.2/lib\" />\r\n    </CLASSES>\r\n    <JAVADOC />\r\n    <SOURCES>\r\n      <root url=\"file://$PROJECT_DIR$/../../../../../../Program Files/Java/javafx-sdk-11.0.2/lib\" />\r\n    </SOURCES>\r\n    <jarDirectory url=\"file://$PROJECT_DIR$/../../../../../../Program Files/Java/javafx-sdk-11.0.2/lib\" recursive=\"false\" />\r\n    <jarDirectory url=\"file://$PROJECT_DIR$/../../../../../../Program Files/Java/javafx-sdk-11.0.2/lib\" recursive=\"false\" type=\"SOURCES\" />\r\n  </library>\r\n</component>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/libraries/JavaFX.xml	(revision 2042b74251debd90a91323a6c8f527fc7df00cd3)
++++ .idea/libraries/JavaFX.xml	(date 1589728998628)
+@@ -1,13 +1,13 @@
+ <component name="libraryTable">
+   <library name="JavaFX">
+     <CLASSES>
+-      <root url="file://$PROJECT_DIR$/../../../../../../Program Files/Java/javafx-sdk-11.0.2/lib" />
++      <root url="file://$PROJECT_DIR$/../../../../Program Files/Java/javafx-sdk-11.0.2/lib" />
+     </CLASSES>
+     <JAVADOC />
+     <SOURCES>
+-      <root url="file://$PROJECT_DIR$/../../../../../../Program Files/Java/javafx-sdk-11.0.2/lib" />
++      <root url="file://$PROJECT_DIR$/../../../../Program Files/Java/javafx-sdk-11.0.2/lib" />
+     </SOURCES>
+-    <jarDirectory url="file://$PROJECT_DIR$/../../../../../../Program Files/Java/javafx-sdk-11.0.2/lib" recursive="false" />
+-    <jarDirectory url="file://$PROJECT_DIR$/../../../../../../Program Files/Java/javafx-sdk-11.0.2/lib" recursive="false" type="SOURCES" />
++    <jarDirectory url="file://$PROJECT_DIR$/../../../../Program Files/Java/javafx-sdk-11.0.2/lib" recursive="false" />
++    <jarDirectory url="file://$PROJECT_DIR$/../../../../Program Files/Java/javafx-sdk-11.0.2/lib" recursive="false" type="SOURCES" />
+   </library>
+ </component>
+\ No newline at end of file
+Index: .idea/encodings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"Encoding\">\r\n    <file url=\"file://$PROJECT_DIR$/src/Mozgathato/Karakter.java\" charset=\"windows-1250\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/encodings.xml	(revision 2042b74251debd90a91323a6c8f527fc7df00cd3)
++++ .idea/encodings.xml	(date 1589735600218)
+@@ -1,6 +1,8 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+   <component name="Encoding">
++    <file url="file://$PROJECT_DIR$/src/Mezo/Mezo.java" charset="windows-1250" />
+     <file url="file://$PROJECT_DIR$/src/Mozgathato/Karakter.java" charset="windows-1250" />
++    <file url="file://$PROJECT_DIR$/src/SwingMVC/Application.java" charset="windows-1250" />
+   </component>
+ </project>
+\ No newline at end of file
+diff --git .idea/shelf/Uncommitted_changes_before_Update_at_2020__05__17__11_40__Default_Changelist_.xml .idea/shelf/Uncommitted_changes_before_Update_at_2020__05__17__11_40__Default_Changelist_.xml
