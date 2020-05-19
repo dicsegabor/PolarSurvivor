@@ -133,36 +133,59 @@ public class Controller {
         gameBoard.revalidate();
     }
 
+    /**
+     *
+     * @param mezo  A model a paraméterül kapott mezõre lépteti az aktív karaktert.
+     */
     public void lep(Mezo mezo){
 
         model.lep(activeKarakter, mezo);
     }
 
+    /**
+     * Aktív karakter ás
+     */
     public void as(){
 
         model.as(activeKarakter);
     }
 
+    /**
+     * Aktív karakter tárgyat felvesz.
+     */
     public void targyatFelvesz(){
 
         model.targyatFelvesz(activeKarakter);
     }
 
+    /**
+     * Aktív eszkimo karakter iglut épít
+     */
     public void iglutEpit(){
 
         model.iglutEpit((Eszkimo)activeKarakter);
     }
 
+    /**
+     * Aktív karakter sátrat épít.
+     */
     public void satratEpit(){
 
         model.satratEpit(activeKarakter);
     }
 
+    /**
+     * összeszereli a karakter a nyeréshez szükséges tárgyakat.
+     */
     public void osszeszerel(){
 
         model.osszeszerel(activeKarakter);
     }
 
+    /**
+     * Az aktív sarkkutató karakter a paraméterül kapott mezõt megvizsgálja
+     * @param mezo
+     */
     public void jegetNez(Mezo mezo){
 
         model.jegetNez((Kutato) activeKarakter, mezo);
@@ -178,7 +201,10 @@ public class Controller {
 
         listenerList.add(GameEventListener.class, listener);
     }
-
+    /**
+     * A függvény értesíti a listenereket a paraméterben megadott eventrõl.
+     * @param eventObject
+     */
     public void atfordultEvent(AtfordulasEvent eventObject){
 
         Object[] listeners = listenerList.getListenerList();
@@ -188,7 +214,10 @@ public class Controller {
                 ((MezoEventListener)listeners[i + 1]).atfordult(eventObject);
         }
     }
-
+    /**
+     * A függvény értesíti a listenereket a paraméterben megadott eventrõl.
+     * @param eventObject
+     */
     public void lepesEvent(LepesEvent eventObject){
 
         Object[] listeners = listenerList.getListenerList();
@@ -198,7 +227,10 @@ public class Controller {
                 ((MezoEventListener)listeners[i + 1]).leptek(eventObject);
         }
     }
-
+    /**
+     * A függvény értesíti a listenereket a paraméterben megadott eventrõl.
+     * @param eventObject
+     */
     public void asasEvent(AsasEvent eventObject){
 
         Object[] listeners = listenerList.getListenerList();
@@ -208,7 +240,10 @@ public class Controller {
                 ((MezoEventListener)listeners[i + 1]).astak(eventObject);
         }
     }
-
+    /**
+     * A függvény értesíti a listenereket a paraméterben megadott eventrõl.
+     * @param eventObject
+     */
     public void epitesEvent(EpitesEvent eventObject){
 
         Object[] listeners = listenerList.getListenerList();
@@ -218,7 +253,10 @@ public class Controller {
                 ((MezoEventListener)listeners[i + 1]).epites(eventObject);
         }
     }
-
+    /**
+     * A függvény értesíti a listenereket a paraméterben megadott eventrõl.
+     * @param eventObject
+     */
     public void kutatoKepessegEvent(KutatoKepessegEvent eventObject){
 
         Object[] listeners = listenerList.getListenerList();
@@ -228,7 +266,10 @@ public class Controller {
                 ((MezoEventListener)listeners[i + 1]).kutatoKepesseg(eventObject);
         }
     }
-
+    /**
+     * A függvény értesíti a listenereket a paraméterben megadott eventrõl.
+     * @param eventObject
+     */
     public void targyfelvetelEvent(TargyfelvetelEvent eventObject){
 
         Object[] listeners = listenerList.getListenerList();
@@ -239,6 +280,10 @@ public class Controller {
         }
     }
 
+    /**
+     * A függvény értesíti a listenereket a paraméterben megadott eventrõl.
+     * @param eventObject
+     */
     public void targyhasznalatEvent(TargyhasznalatEvent eventObject){
 
         Object[] listeners = listenerList.getListenerList();
@@ -248,6 +293,10 @@ public class Controller {
                 ((MezoEventListener)listeners[i + 1]).targyhasznalat(eventObject);
         }
     }
+    /**
+     * A függvény értesíti a listenereket a paraméterben megadott eventrõl.
+     * @param eventObject
+     */
 
     public void viharEvent(ViharEvent eventObject){
 
@@ -259,6 +308,10 @@ public class Controller {
         }
     }
 
+    /**
+     * A függvény értesíti a listenereket a paraméterben megadott eventrõl.
+     * @param eventObject
+     */
     public void karakterKorvege(KarakterKorvegeEvent eventObject){
 
         Object[] listeners = listenerList.getListenerList();
@@ -268,17 +321,25 @@ public class Controller {
                 ((GameEventListener)listeners[i + 1]).karakterKorvege(eventObject);
         }
     }
+    /**
+     * A függvények értesítik a listenereket a paraméterben megadott eventrõl.
+     * @param eventObject
+     */
 
-    public void korvege(KorvegeEvent evventObject){
+    public void korvege(KorvegeEvent eventObject){
 
         Object[] listeners = listenerList.getListenerList();
         for(int i = 0; i < listeners.length; i += 2){
 
             if(listeners[i] == GameEventListener.class)
-                ((GameEventListener)listeners[i + 1]).korvege(evventObject);
+                ((GameEventListener)listeners[i + 1]).korvege(eventObject);
         }
     }
 
+    /**
+     * A függvények értesítik a listenereket a paraméterben megadott eventrõl.
+     * @param eventObject
+     */
     public void jatekVege(JatekvegeEvent eventObject){
 
         Object[] listeners = listenerList.getListenerList();
@@ -288,7 +349,10 @@ public class Controller {
                 ((GameEventListener)listeners[i + 1]).jatekVege(eventObject);
         }
     }
-
+    /**
+     * A függvények értesítik a listenereket a paraméterben megadott eventrõl.
+     * @param eventObject
+     */
     public void uzenet(UzenetEvent eventObject){
 
         Object[] listeners = listenerList.getListenerList();
@@ -298,7 +362,10 @@ public class Controller {
                 ((GameEventListener)listeners[i + 1]).uzenetEvent(eventObject);
         }
     }
-
+    /**
+     * A függvények értesítik a listenereket a paraméterben megadott eventrõl.
+     * @param eventObject
+     */
     public void statusUpdate(KarakterStatusUpdateEvent eventObject){
 
         Object[] listeners = listenerList.getListenerList();

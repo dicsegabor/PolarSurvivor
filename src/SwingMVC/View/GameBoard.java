@@ -154,7 +154,7 @@ public class GameBoard extends JFrame {
 
         //Set generato meüpont létrehozása
         JMenuItem setGenerator = new JMenuItem("Set generator");
-        //
+        //Létrehozza a set generator dialog
         setGenerator.addActionListener((event) -> createGeneratorInputDialog());
         map.add(setGenerator);
 
@@ -181,9 +181,11 @@ public class GameBoard extends JFrame {
      */
     private void createGeneratorInputDialog(){
 
+        //Beolvasáshoz felveszünk 2 textfieldet, és beleírjuk a jelenlegi értékeket
         JTextField researcherCount = new JTextField(Integer.toString(MapGenerator.researcherCount));
         JTextField eskimoCount = new JTextField(Integer.toString(MapGenerator.eskimoCount));
         JCheckBox polarBear = new JCheckBox("", MapGenerator.polarBear);
+        //Advance settings gom létrehozása
         JButton advanced = new JButton("Show advanced");
         advanced.addActionListener(e -> createAdvancedGeneratorSettings());
 
@@ -195,6 +197,7 @@ public class GameBoard extends JFrame {
                 advanced
         };
 
+        //Az optionpane megjelenítése, valamint kiértékelése
         int option = JOptionPane.showConfirmDialog(this, message, "Set generator", JOptionPane.OK_CANCEL_OPTION);
         if (option == JOptionPane.OK_OPTION)
             MapGenerator.setGenerator(Integer.parseInt(researcherCount.getText()), Integer.parseInt(eskimoCount.getText()), polarBear.isSelected());
@@ -236,7 +239,9 @@ public class GameBoard extends JFrame {
      */
     private void createHelpDialog(){
 
+        //Lekérdezzük a help.txt helyét
         URL url = getClass().getResource("Help.txt");
+        //beolvassuk a fájlt
         String text = "";
         try(InputStream in = url.openStream()){
 
@@ -247,11 +252,13 @@ public class GameBoard extends JFrame {
             e.printStackTrace();
         }
 
+        //Betöltjük a szöveget a textareaban
         JTextArea textArea = new JTextArea(text);
         JScrollPane scrollPane = new JScrollPane(textArea);
         textArea.setLineWrap(true);
         textArea.setWrapStyleWord(true);
-        scrollPane.setPreferredSize( new Dimension( 500, 600 ) );
+        scrollPane.setPreferredSize( new Dimension( 700, 600 ) );
+        //kirajzoljuk az optionpane-t
         JOptionPane.showMessageDialog(this, scrollPane, "Help", JOptionPane.PLAIN_MESSAGE);
     }
 
